@@ -5,11 +5,14 @@
   "scripts": {
     "build": "bun scripts/build.ts",
     "taxonomy": "bun scripts/taxonomy.ts",
-    "check": "tsc --noEmit && bun scripts/check.ts"
+    "check": "tsc --noEmit && bun scripts/check.ts && bun run --cwd packages/core build && bun test"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "sharp": "^0.35.5",
     "typescript": "^6.0.3"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

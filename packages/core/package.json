@@ -1,0 +1,28 @@
+{
+  "name": "@ingredient-icons/core",
+  "version": "0.1.0",
+  "description": "Soft 3D icons for cooking ingredients, keyed by the Open Food Facts taxonomy, with ancestor fallback",
+  "license": "(MIT AND CC0-1.0 AND ODbL-1.0)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./icons/*": "./icons/*",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "icons", "LICENSE", "LICENSE-ICONS", "NOTICE"],
+  "sideEffects": false,
+  "keywords": ["icons", "ingredients", "food", "recipe", "open-food-facts", "emoji"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EBf-Studio/ingredient-icons.git",
+    "directory": "packages/core"
+  },
+  "scripts": {
+    "build": "bun scripts/generate.ts && tsc -p tsconfig.build.json",
+    "test": "bun test",
+    "prepack": "bun run build"
+  }
+}
