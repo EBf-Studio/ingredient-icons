@@ -9,13 +9,32 @@ npm install @ingredient-icons/core
 ```ts
 import { findIcon, iconName, iconUrl } from "@ingredient-icons/core"
 
-iconUrl("en:shallot")                 // https://cdn.jsdelivr.net/npm/@ingredient-icons/core@0.1.0/icons/webp/128/en_shallot.webp
+iconUrl("en:shallot")                 // https://cdn.jsdelivr.net/npm/@ingredient-icons/core@<version>/icons/webp/128/en_shallot.webp
 iconUrl("en:cherry-tomato", { size: 64 }) // the tomato's icon
 findIcon("en:cherry-tomato")          // { id: "en:tomato", file: "en_tomato", exact: false }
 iconName("en:shallot", "fr")          // "échalote"
 ```
 
-Icons ship as transparent WebP in 64, 128 and 256 px, under `icons/webp/{size}/`. URLs default to the jsDelivr CDN, pinned to the installed version; to serve the files yourself, expose the package's `icons/` folder and pass `{ baseUrl }`.
+Icons ship as transparent WebP in 64, 128 and 256 px, under `icons/webp/{size}/`. URLs default to the jsDelivr CDN, pinned to the installed version.
+
+## Serving the files yourself
+
+Expose the package's `icons/` folder and pass `{ baseUrl }`. With Express:
+
+```ts
+import { createRequire } from "node:module"
+import path from "node:path"
+import express from "express"
+import { iconUrl } from "@ingredient-icons/core"
+
+const root = path.dirname(createRequire(import.meta.url).resolve("@ingredient-icons/core/package.json"))
+const app = express()
+app.use("/ingredient-icons/icons", express.static(path.join(root, "icons"), { immutable: true, maxAge: "1y" }))
+
+iconUrl("en:shallot", { baseUrl: "https://api.example.com/ingredient-icons" })
+```
+
+An icon can change between versions: if you cache forever, put the package version (`VERSION`) in the path.
 
 ## Licenses
 
