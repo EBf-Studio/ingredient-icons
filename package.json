@@ -1,0 +1,15 @@
+{
+  "name": "ingredient-icons",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun scripts/build.ts",
+    "taxonomy": "bun scripts/taxonomy.ts",
+    "check": "tsc --noEmit && bun scripts/check.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3"
+  }
+}

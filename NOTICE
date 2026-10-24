@@ -1,0 +1,15 @@
+ingredient-icons
+by Marmalade (https://try-marmalade.com)
+
+Icons (icons/, manifest.json)
+  Dedicated to the public domain under CC0 1.0 (LICENSE-ICONS).
+  Created with Grok.
+
+Taxonomy (taxonomy.json)
+  Contains data from the Open Food Facts ingredients taxonomy
+  (https://world.openfoodfacts.org), made available under the
+  Open Database License 1.0: https://opendatacommons.org/licenses/odbl/1-0/
+  ingredient-icons is not affiliated with Open Food Facts.
+
+Code (scripts/)
+  MIT (LICENSE).
