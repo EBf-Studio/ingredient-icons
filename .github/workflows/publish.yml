@@ -1,6 +1,7 @@
 name: Publish
 
-# Publishes @ingredient-icons/core when a GitHub release is published.
+# Stages @ingredient-icons/core when a GitHub release is published: a maintainer
+# then approves it on npmjs.com or with `npm stage approve`, with 2FA.
 # Authenticates with npm Trusted Publishing (OIDC): no npm token is stored here.
 on:
   release:
@@ -22,5 +23,5 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: bun install --frozen-lockfile
       - run: bun run check
-      - run: npm publish --access public
+      - run: npm stage publish
         working-directory: packages/core
