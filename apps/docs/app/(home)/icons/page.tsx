@@ -20,7 +20,7 @@ export default function IconsPage() {
   }));
 
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-5 pt-10 pb-24 sm:px-8 lg:pt-14">
+    <main className="mx-auto w-full max-w-(--site-width) flex-1 px-5 pt-10 pb-24 sm:px-8 lg:pt-14">
       <h1 className="font-display text-5xl font-semibold tracking-tight [font-variation-settings:'SOFT'_100]">
         The pantry
       </h1>

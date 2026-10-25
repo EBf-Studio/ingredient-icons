@@ -6,7 +6,7 @@ import { cn } from '@/lib/cn';
 
 // HomeLayout wraps its children in a <main>, but the docs page brings its own.
 function Shell({ ref: _ref, ...props }: ComponentProps<'main'>) {
-  return <div {...props} className={cn('flex flex-1 flex-col [--fd-layout-width:1400px]', props.className)} />;
+  return <div {...props} className={cn('flex flex-1 flex-col [--fd-layout-width:var(--site-width)]', props.className)} />;
 }
 
 /** The home page's top bar around a layout that already has its own <main>. */

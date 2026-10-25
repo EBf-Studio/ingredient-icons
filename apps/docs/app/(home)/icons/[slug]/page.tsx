@@ -52,7 +52,7 @@ iconUrl("${icon.id}")
 // ${cdn}`;
 
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-5 pt-8 pb-24 sm:px-8">
+    <main className="mx-auto w-full max-w-(--site-width) flex-1 px-5 pt-8 pb-24 sm:px-8">
       <nav aria-label="Breadcrumb" className="text-sm text-fd-muted-foreground">
         <Link href="/icons" className="hover:text-fd-foreground">
           Icons

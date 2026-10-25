@@ -78,7 +78,7 @@ export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col">
       {/* Hero */}
-      <section className="mx-auto grid grid-cols-1 w-full max-w-6xl items-center gap-10 px-5 pt-10 pb-16 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16 lg:pt-16 lg:pb-24">
+      <section className="mx-auto grid grid-cols-1 w-full max-w-(--site-width) items-center gap-10 px-5 pt-10 pb-16 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16 lg:pt-16 lg:pb-24">
         <div className="max-w-xl">
           <h1 className="font-display text-[clamp(2.75rem,7vw,5.25rem)] font-semibold leading-[0.98] tracking-[-0.025em] [font-variation-settings:'SOFT'_100,'WONK'_1]">
             An icon for every ingredient.
@@ -115,7 +115,7 @@ export default function HomePage() {
 
       {/* Emojis run out */}
       <section className="border-y bg-fd-card">
-        <div className="mx-auto grid grid-cols-1 w-full max-w-6xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-16">
+        <div className="mx-auto grid grid-cols-1 w-full max-w-(--site-width) gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-16">
           <div>
             <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">
               Emojis run out at the onion.
@@ -160,7 +160,7 @@ export default function HomePage() {
       </section>
 
       {/* Fallback */}
-      <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
+      <section className="mx-auto w-full max-w-(--site-width) px-5 py-24 sm:px-8">
         <div className="max-w-2xl">
           <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">
             No icon of its own? It borrows its parent&apos;s.
@@ -179,7 +179,7 @@ export default function HomePage() {
 
       {/* Code + recipe */}
       <section className="border-y bg-fd-card">
-        <div className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
+        <div className="mx-auto w-full max-w-(--site-width) px-5 py-24 sm:px-8">
           <div className="max-w-2xl">
             <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">
               One function between your recipe and its icons.
@@ -228,7 +228,7 @@ export default function HomePage() {
       </section>
 
       {/* What ships */}
-      <section className="mx-auto grid grid-cols-1 w-full max-w-6xl items-end gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)]">
+      <section className="mx-auto grid grid-cols-1 w-full max-w-(--site-width) items-end gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)]">
         <div className="flex items-end gap-3 overflow-x-auto pb-2 sm:gap-6" aria-label="The strawberry at each size">
           {LADDER.map((size) => (
             <figure key={size} className="flex shrink-0 flex-col items-center gap-3">
@@ -261,7 +261,7 @@ export default function HomePage() {
       </section>
 
       {/* Closing */}
-      <section className="mx-auto w-full max-w-6xl px-5 pb-24 sm:px-8">
+      <section className="mx-auto w-full max-w-(--site-width) px-5 pb-24 sm:px-8">
         <div className="relative overflow-hidden rounded-[2rem] bg-basil px-6 py-14 text-fd-primary-foreground sm:px-12 dark:bg-[#1d3a27] dark:text-fd-foreground">
           <div className="relative z-10 max-w-lg">
             <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">
@@ -295,7 +295,7 @@ export default function HomePage() {
       </section>
 
       <footer className="border-t">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-5 py-8 text-sm text-fd-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <div className="mx-auto flex w-full max-w-(--site-width) flex-col gap-3 px-5 py-8 text-sm text-fd-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <p>
             Made by <a href={marmaladeUrl} className="text-fd-foreground underline-offset-4 hover:underline">Marmalade</a>.
             Icons CC0, taxonomy data ODbL from Open Food Facts, code MIT.

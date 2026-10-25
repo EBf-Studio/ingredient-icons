@@ -214,3 +214,33 @@ html > body[data-scroll-locked] {
     animation: none;
   }
 }
+
+/* Every page shares one width and side padding (px-5 sm:px-8), and the top bar follows it,
+   so the logo sits above the content's left edge on the home page, the gallery and the docs. */
+:root {
+  --site-width: 80rem;
+}
+
+#nd-nav nav > div {
+  padding-inline: 1.25rem;
+}
+
+@media (width >= 40rem) {
+  #nd-nav nav > div {
+    padding-inline: 2rem;
+  }
+}
+
+/* On phones the docs use the same 1.25rem side padding as the top bar and the home page. */
+@media (width < 48rem) {
+  #nd-subnav,
+  #nd-page,
+  [data-toc-popover] header > button {
+    padding-inline: 1.25rem;
+  }
+
+  /* Like the top bar's menu button, pull the sidebar button out so its icon meets the edge. */
+  #nd-subnav > button:last-child {
+    margin-inline-end: -0.5rem;
+  }
+}
