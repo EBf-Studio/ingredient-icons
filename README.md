@@ -51,7 +51,10 @@ bun install
 bun run build      # cut-out, every size and format, manifest.json, .out/review.html
 bun run taxonomy   # pins the Open Food Facts taxonomy, writes taxonomy.json
 bun run check      # types, files against the manifest, ids against the taxonomy
+bun run docs       # the website (apps/docs) on http://localhost:3000
 ```
+
+The website is a Fumadocs app in `apps/docs`: home page, documentation in `apps/docs/content/docs`, and a page per icon. It reads `manifest.json`, `taxonomy.json` and `icons/` from the repository, so a new batch shows up on the next deploy. On Vercel, set the project's root directory to `apps/docs`.
 
 The repository grows with every batch: `git clone --depth 1` if you only need the icons.
 

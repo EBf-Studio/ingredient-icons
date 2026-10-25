@@ -1,0 +1,216 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* Kitchen counter: a pale sage surface, basil green for actions, tomato red for
+   the one thing that matters on a screen (the fallback hop), butter for highlights. */
+@theme {
+  --color-fd-background: #f5f7f2;
+  --color-fd-foreground: #18211c;
+  --color-fd-muted: #eaeee6;
+  --color-fd-muted-foreground: #5b6a60;
+  --color-fd-popover: #fbfcfa;
+  --color-fd-popover-foreground: #18211c;
+  --color-fd-card: #fbfcfa;
+  --color-fd-card-foreground: #18211c;
+  --color-fd-border: #dbe2d6;
+  --color-fd-primary: #2e6b45;
+  --color-fd-primary-foreground: #f5f7f2;
+  --color-fd-secondary: #e6ebe2;
+  --color-fd-secondary-foreground: #18211c;
+  --color-fd-accent: #e3eadf;
+  --color-fd-accent-foreground: #18211c;
+  --color-fd-ring: #2e6b45;
+
+  --color-basil: #2e6b45;
+  --color-tomato: #df4a2f;
+  --color-butter: #f4d36b;
+  --color-counter: #f5f7f2;
+  --color-ink: #18211c;
+
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-mono: var(--font-mono-face), ui-monospace, SFMono-Regular, monospace;
+}
+
+.dark {
+  --color-fd-background: #0f1411;
+  --color-fd-foreground: #e7ece5;
+  --color-fd-muted: #1a221d;
+  --color-fd-muted-foreground: #98a69c;
+  --color-fd-popover: #141a16;
+  --color-fd-popover-foreground: #e7ece5;
+  --color-fd-card: #151c17;
+  --color-fd-card-foreground: #e7ece5;
+  --color-fd-border: #263029;
+  --color-fd-primary: #8fd0a3;
+  --color-fd-primary-foreground: #0f1411;
+  --color-fd-secondary: #1b231e;
+  --color-fd-secondary-foreground: #e7ece5;
+  --color-fd-accent: #1f2922;
+  --color-fd-accent-foreground: #e7ece5;
+  --color-fd-ring: #8fd0a3;
+
+  --color-basil: #8fd0a3;
+  --color-tomato: #ff7a5c;
+  --color-butter: #e9c75a;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* Fraunces with its soft, rounded terminals: the same plump feel as the icons. */
+.font-display,
+#nd-page h1,
+.prose :is(h2, h3) {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 0;
+  letter-spacing: -0.01em;
+}
+
+#nd-page h1 {
+  font-weight: 600;
+}
+
+.prose :is(h2, h3) {
+  font-weight: 560;
+}
+
+/* Icons are photographs of tiny objects: keep their edges crisp when scaled down. */
+.icon-img {
+  image-rendering: auto;
+  -webkit-user-drag: none;
+}
+
+/* The hero shelf: columns of icons drifting in opposite directions. */
+@keyframes shelf-up {
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes shelf-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.shelf-column {
+  animation: shelf-up var(--shelf-duration, 60s) linear infinite;
+}
+
+.shelf-column[data-direction='down'] {
+  animation-name: shelf-down;
+}
+
+.shelf:hover .shelf-column {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shelf-column {
+    animation: none;
+  }
+}
+
+.shelf-mask {
+  mask-image: linear-gradient(to bottom, transparent, black 14%, black 86%, transparent);
+}
+
+@keyframes hop-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+}
+
+.hop-in {
+  animation: hop-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hop-in {
+    animation: none;
+  }
+}
+
+/* The fallback demo: an ancestor's icon pops in, then drops into the empty slot below. */
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.pop-in {
+  animation: pop-in 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes borrow-drop {
+  0% {
+    opacity: 0.6;
+    transform: translateY(var(--drop, 0)) scale(0.85);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(6%) scale(1.04, 0.94);
+  }
+  85% {
+    transform: translateY(-4%) scale(0.98, 1.03);
+  }
+}
+
+.borrow-drop {
+  animation: borrow-drop 620ms cubic-bezier(0.55, 0, 0.45, 1) both;
+}
+
+@keyframes draw-down {
+  from {
+    clip-path: inset(-1rem -6rem 100% -1rem);
+  }
+  to {
+    clip-path: inset(-1rem -6rem -1rem -1rem);
+  }
+}
+
+.draw-down {
+  animation: draw-down 420ms ease-out both;
+}
+
+/* The rung being checked right now. */
+@keyframes scan {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-basil) 0%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--color-basil) 22%, transparent);
+  }
+}
+
+.scan {
+  animation: scan 480ms ease-in-out;
+  border-color: var(--color-basil);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop-in,
+  .borrow-drop,
+  .draw-down,
+  .scan {
+    animation: none;
+  }
+}

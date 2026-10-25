@@ -5,7 +5,8 @@
   "scripts": {
     "build": "bun scripts/build.ts",
     "taxonomy": "bun scripts/taxonomy.ts",
-    "check": "tsc --noEmit && bun scripts/check.ts && bun run --cwd packages/core build && bun test"
+    "check": "tsc --noEmit && bun scripts/check.ts && bun run --cwd packages/core build && bun test",
+    "docs": "bun run --cwd apps/docs dev"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -13,6 +14,7 @@
     "typescript": "^6.0.3"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ]
 }
