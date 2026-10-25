@@ -5,6 +5,7 @@
 
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
+import { FALLBACK_PRESETS } from "../lib/fallback-presets"
 
 const site = path.resolve(import.meta.dir, "..")
 const root = path.resolve(site, "../..")
@@ -75,7 +76,8 @@ function chain(id: string): string[] | undefined {
 
 const lookup: Record<string, string[]> = {}
 const fallbacks = new Map<string, string[]>()
-for (const id of Object.keys(taxonomy.parents)) {
+// Taxonomy roots such as en:salt have no entry in `parents`, but they are ids too.
+for (const id of new Set([...Object.keys(taxonomy.parents), ...Object.keys(manifest.icons)])) {
   const steps = chain(id)
   if (!steps) continue
   lookup[id] = steps
@@ -95,6 +97,11 @@ const icons = Object.entries(manifest.icons)
     parents: taxonomy.parents[id] ?? [],
     fallbacks: (fallbacks.get(id) ?? []).sort((a, b) => Number(!a.startsWith("en:")) - Number(!b.startsWith("en:")) || a.localeCompare(b)),
   }))
+  .map((icon) => ({
+    ...icon,
+    // Readable English names of the ids that borrow this icon, for search: "cherry tomato" finds the tomato.
+    aliases: icon.fallbacks.filter((f) => f.startsWith("en:")).map((f) => f.slice(3).replaceAll("-", " ")),
+  }))
   .sort((a, b) => a.en.localeCompare(b.en))
 
 await mkdir(path.join(site, "lib/generated"), { recursive: true })
@@ -102,9 +109,9 @@ await writeFile(
   path.join(site, "lib/generated/icons.json"),
   JSON.stringify({
     version,
-    taxonomyCommit: taxonomy.commit,
-    taxonomySize: Object.keys(taxonomy.parents).length,
     resolvable: Object.keys(lookup).length,
+    // The demo's examples are rendered on the server, before lookup.json arrives.
+    presetSteps: Object.fromEntries(FALLBACK_PRESETS.map((id) => [id, lookup[id]!])),
     categories: CATEGORIES.map(({ key, title }) => ({ key, title })),
     icons,
   }),
@@ -119,14 +126,7 @@ await writeFile(path.join(site, "public/data/lookup.json"), JSON.stringify(looku
 await writeFile(
   path.join(site, "public/data/search-icons.json"),
   JSON.stringify(
-    icons.map(({ id, slug, file, en, fr, fallbacks }) => ({
-      id,
-      slug,
-      file,
-      en,
-      fr,
-      aliases: fallbacks.filter((f) => f.startsWith("en:")).map((f) => f.slice(3).replaceAll("-", " ")),
-    })),
+    icons.map(({ id, slug, file, en, fr, aliases }) => ({ id, slug, file, en, fr, aliases })),
   ),
 )
 

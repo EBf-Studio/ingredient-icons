@@ -19,7 +19,7 @@ export async function generateMetadata(props: PageProps<'/icons/[slug]'>): Promi
   const icon = iconBySlug((await props.params).slug);
   if (!icon) notFound();
   const title = `${capitalize(icon.en)} icon`;
-  const description = `A soft 3D ${icon.en} icon for recipe apps, Open Food Facts id ${icon.id}. PNG and WebP from 64 to 512 px, public domain.`;
+  const description = `A soft 3D ${icon.en} icon for recipe apps, Open Food Facts id ${icon.id}. PNG from 64 to 512 px and WebP from 64 to 256 px, public domain.`;
   return {
     title,
     description,

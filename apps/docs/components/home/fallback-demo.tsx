@@ -4,55 +4,48 @@ import { Check, RotateCcw, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
+import { FALLBACK_PRESETS } from '@/lib/fallback-presets';
 import { iconSrc, readableId } from '@/lib/icon-path';
+import { fetchJsonOnce } from '@/lib/fetch-json';
+import { fold } from '@/lib/icon-search';
 
 /** Taxonomy id → the ids findIcon walks through, ending at the one with an icon. */
 type Lookup = Record<string, string[]>;
 
-let lookupPromise: Promise<Lookup> | undefined;
-const loadLookup = () => (lookupPromise ??= fetch('/data/lookup.json').then((r) => r.json() as Promise<Lookup>));
-
-const PRESETS = [
-  'en:cherry-tomato',
-  'en:fleur-de-sel',
-  'en:basmati-rice',
-  'en:extra-virgin-olive-oil',
-  'en:napa-cabbage',
-  'en:lardon',
-  'en:wheat-tortilla',
-  'en:smoked-paprika',
-];
-
+/** Icon files are named after their id: "en:tomato" is en_tomato. */
 const fileOf = (id: string) => id.replace(':', '_');
-const normalize = (text: string) =>
-  text
-    .trim()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/^en:/, '')
-    .replace(/\s+/g, '-');
+/** "en:basmati-rice" and "Basmati rice" both fold to "basmati rice". */
+const foldId = (text: string) => fold(text.trim().replace(/^en:/i, ''));
 
-export function FallbackDemo({ slugs, footer }: { slugs: Record<string, string>; footer?: React.ReactNode }) {
+export function FallbackDemo({
+  slugs,
+  presetSteps,
+  footer,
+}: {
+  slugs: Record<string, string>;
+  /** Chains of the presets, computed at build time so the first paint is already right. */
+  presetSteps: Record<string, string[]>;
+  footer?: React.ReactNode;
+}) {
   const [lookup, setLookup] = useState<Lookup>();
   const [query, setQuery] = useState('');
-  const [selected, setSelected] = useState(PRESETS[0]!);
+  const [selected, setSelected] = useState(FALLBACK_PRESETS[0]!);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const listId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // The preset is drawn from the lookup too, so fetch it once the demo is on screen.
+  // Searching needs every chain; the presets already have theirs, so they play without it.
   useEffect(() => {
-    void loadLookup().then(setLookup);
+    fetchJsonOnce<Lookup>('/data/lookup.json').then(setLookup, () => {});
   }, []);
 
   const matches = useMemo(() => {
-    const needle = normalize(query);
+    const needle = foldId(query);
     if (!lookup || !needle) return [];
-    const english = Object.keys(lookup).filter((id) => id.startsWith('en:') && id.includes(needle));
+    const english = Object.keys(lookup).filter((id) => id.startsWith('en:') && foldId(id).includes(needle));
     return english
-      .sort((a, b) => Number(!a.startsWith(`en:${needle}`)) - Number(!b.startsWith(`en:${needle}`)) || a.length - b.length)
+      .sort((a, b) => Number(!foldId(a).startsWith(needle)) - Number(!foldId(b).startsWith(needle)) || a.length - b.length)
       .slice(0, 7);
   }, [lookup, query]);
 
@@ -65,11 +58,12 @@ export function FallbackDemo({ slugs, footer }: { slugs: Record<string, string>;
     setActive(0);
   };
 
-  const steps = lookup?.[selected] ?? [selected];
+  const steps = lookup?.[selected] ?? presetSteps[selected] ?? [selected];
+  const known = Boolean(lookup?.[selected] ?? presetSteps[selected]);
   const target = steps.at(-1)!;
   const exact = steps.length === 1;
-  const noMatch = lookup && normalize(query) && matches.length === 0;
-  const tick = useClimb(lookup ? steps.length : 0, `${selected}#${run}`);
+  const noMatch = lookup && foldId(query) && matches.length === 0;
+  const tick = useClimb(known ? steps.length : 0, `${selected}#${run}`);
   const borrowed = !exact && tick >= steps.length + 2;
   const { ref: treeRef, span } = useSlotSpan(`${selected}#${run}`);
 
@@ -146,7 +140,7 @@ export function FallbackDemo({ slugs, footer }: { slugs: Record<string, string>;
 
         <p className="mt-5 text-sm text-fd-muted-foreground">Or pick one:</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
-          {PRESETS.map((id) => (
+          {FALLBACK_PRESETS.map((id) => (
             <button
               key={id}
               type="button"

@@ -9,12 +9,13 @@ import {
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { FallbackDemo } from '@/components/home/fallback-demo';
+import { MotionToggle } from '@/components/home/motion-toggle';
 import { Shelf } from '@/components/home/shelf';
 import { IconImage } from '@/components/icon-image';
 import { InstallCommand } from '@/components/install-command';
-import { iconById, icons, resolvable, total, version } from '@/lib/icons';
+import { iconById, icons, presetSteps, resolvable, total, version } from '@/lib/icons';
 import { cn } from '@/lib/cn';
-import { githubUrl, marmaladeUrl, newIssueUrl, packageName } from '@/lib/shared';
+import { githubUrl, marmaladeUrl, newIssueUrl, npmUrl, packageName } from '@/lib/shared';
 
 // Ingredients that share one emoji, and the icons that tell them apart.
 const EMOJI_ROWS = [
@@ -155,6 +156,7 @@ export default function HomePage() {
             className="absolute inset-0 rounded-panel opacity-60 [background-image:linear-gradient(var(--color-fd-border)_1px,transparent_1px),linear-gradient(90deg,var(--color-fd-border)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
           />
           <Shelf className="h-full" />
+          <MotionToggle />
         </div>
       </section>
 
@@ -219,7 +221,7 @@ export default function HomePage() {
           walks up its parents and takes the first one that has.
         </SectionHeader>
         <div className="mt-12">
-          <FallbackDemo slugs={slugs} footer={<Coverage />} />
+          <FallbackDemo slugs={slugs} presetSteps={presetSteps} footer={<Coverage />} />
         </div>
       </section>
 
@@ -282,6 +284,7 @@ export default function HomePage() {
       <section className="mx-auto grid grid-cols-1 w-full max-w-(--site-width) items-end gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)]">
         <div
           className="flex items-end justify-between gap-3 overflow-x-auto border-b border-dashed pb-4 sm:gap-6 lg:pr-12"
+          role="group"
           aria-label="The strawberry at each size"
         >
           {LADDER.map((size) => (
@@ -369,6 +372,7 @@ export default function HomePage() {
             <Link href="/docs" className="hover:text-fd-foreground">Docs</Link>
             <Link href="/icons" className="hover:text-fd-foreground">Icons</Link>
             <a href={githubUrl} className="hover:text-fd-foreground">GitHub</a>
+            <a href={npmUrl} className="hover:text-fd-foreground">npm</a>
             <Link href="/docs/licenses" className="hover:text-fd-foreground">Licenses</Link>
           </nav>
         </div>

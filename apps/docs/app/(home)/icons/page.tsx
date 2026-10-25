@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Gallery, type GalleryIcon } from '@/components/gallery/gallery';
-import { categories, icons, readableId, total } from '@/lib/icons';
+import { categories, icons, total } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Browse the icons',
@@ -15,8 +15,7 @@ export default function IconsPage() {
     en: icon.en,
     fr: icon.fr,
     category: icon.category,
-    // English fallbacks are searchable too: "cherry tomato" finds the tomato.
-    aliases: icon.fallbacks.filter((id) => id.startsWith('en:')).map(readableId),
+    aliases: icon.aliases,
   }));
 
   return (

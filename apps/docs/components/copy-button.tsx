@@ -14,7 +14,11 @@ export function useCopy(): [boolean, (text: string) => void] {
   return [
     copied,
     (text) => {
-      void navigator.clipboard.writeText(text).then(() => setCopied(true));
+      // Clipboard access can be refused (insecure context, permissions); then nothing is shown as copied.
+      navigator.clipboard?.writeText(text).then(
+        () => setCopied(true),
+        () => {},
+      );
     },
   ];
 }

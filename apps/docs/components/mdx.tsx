@@ -1,5 +1,4 @@
 import { findIcon } from '@ingredient-icons/core';
-import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { File, Files, Folder } from 'fumadocs-ui/components/files';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
@@ -8,7 +7,7 @@ import defaultMdxComponents from 'fumadocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
 import Link from 'next/link';
 import { IconImage } from '@/components/icon-image';
-import { iconById, resolvable, total, version } from '@/lib/icons';
+import { iconById, resolvable, total } from '@/lib/icons';
 
 /** A row of icons, each linking to its page in the gallery. */
 function IconRow({ ids, size = 64 }: { ids: string[]; size?: number }) {
@@ -44,9 +43,10 @@ function Resolves({ id }: { id: string }) {
       <code className="min-w-0 truncate font-mono text-sm">{id}</code>
       {!icon.exact && (
         <>
-          <span className="text-tomato" aria-label="falls back to">
+          <span className="text-tomato" aria-hidden>
             →
           </span>
+          <span className="sr-only">falls back to</span>
           <Link href={`/icons/${entry.slug}`} className="font-mono text-sm underline underline-offset-4">
             {icon.id}
           </Link>
@@ -56,15 +56,13 @@ function Resolves({ id }: { id: string }) {
   );
 }
 
+/** Numbers that change with each batch, spelled out in text copies by lib/mdx-text.ts. */
 const Total = () => <>{total}</>;
 const Resolvable = () => <>{resolvable.toLocaleString('en')}</>;
-const Version = () => <>{version}</>;
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
     ...defaultMdxComponents,
-    Accordion,
-    Accordions,
     File,
     Files,
     Folder,
@@ -77,7 +75,6 @@ export function getMDXComponents(components?: MDXComponents) {
     Resolves,
     Total,
     Resolvable,
-    Version,
     ...components,
   } satisfies MDXComponents;
 }

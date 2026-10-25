@@ -24,13 +24,12 @@ export function InstallCommand({ className }: { className?: string }) {
         className,
       )}
     >
-      <div role="tablist" aria-label="Package manager" className="flex gap-1 border-b px-2 pt-1.5">
+      <div role="group" aria-label="Package manager" className="flex gap-1 border-b px-2 pt-1.5">
         {(Object.keys(managers) as Manager[]).map((name) => (
           <button
             key={name}
-            role="tab"
             type="button"
-            aria-selected={manager === name}
+            aria-pressed={manager === name}
             onClick={() => setManager(name)}
             className={cn(
               '-mb-px border-b-2 px-2 pb-1.5 pt-1 font-mono text-xs transition-colors',

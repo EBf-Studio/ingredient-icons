@@ -30,3 +30,8 @@ export default function proxy(request: NextRequest) {
 
   return NextResponse.next();
 }
+
+// Only the docs have Markdown copies to serve; skip icons, assets and every other page.
+export const config = {
+  matcher: ['/docs', '/docs.md', '/docs/:path*'],
+};

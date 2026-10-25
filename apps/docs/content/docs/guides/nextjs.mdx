@@ -29,23 +29,15 @@ In a Client Component, compute the URLs in a Server Component above it and pass 
 
 ## With next/image
 
-The files are already small, transparent WebP at fixed sizes, so `next/image` adds little. To use it anyway, allow the CDN:
-
-```js title="next.config.mjs"
-export default {
-  images: {
-    remotePatterns: [new URL("https://cdn.jsdelivr.net/npm/@ingredient-icons/core@*/icons/**")],
-  },
-}
-```
+The files are already small, transparent WebP at fixed sizes, so `next/image` adds little. To use it anyway, pass `unoptimized`:
 
 ```tsx
 import Image from "next/image"
 
-<Image src={iconUrl(id, { size: 256 })!} alt="" width={40} height={40} unoptimized />
+<Image src={iconUrl(id)!} alt="" width={40} height={40} unoptimized />
 ```
 
-`unoptimized` serves the file as is: re-encoding a 128 px WebP saves nothing.
+`unoptimized` serves the file as is, since re-encoding a 128 px WebP saves nothing. It also means the CDN doesn't need to be listed in `images.remotePatterns`.
 
 ## Serving from your own domain
 

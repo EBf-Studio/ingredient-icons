@@ -9,6 +9,7 @@ export interface IconEntry {
   category: string;
   parents: string[];
   fallbacks: string[];
+  aliases: string[];
 }
 
 export interface Category {
@@ -20,9 +21,9 @@ export const icons: IconEntry[] = data.icons;
 export const categories: Category[] = data.categories;
 export const total = icons.length;
 export const version: string = data.version;
-export const taxonomyCommit: string = data.taxonomyCommit;
-export const taxonomySize: number = data.taxonomySize;
 export const resolvable: number = data.resolvable;
+/** Fallback chains of the home demo's preset examples, so they render before lookup.json loads. */
+export const presetSteps: Record<string, string[]> = data.presetSteps;
 
 const byId = new Map(icons.map((icon) => [icon.id, icon]));
 const bySlug = new Map(icons.map((icon) => [icon.slug, icon]));

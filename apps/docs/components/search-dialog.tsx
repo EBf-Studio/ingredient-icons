@@ -17,14 +17,12 @@ import { useDocsSearch } from 'fumadocs-core/search/client';
 import { fetchClient } from 'fumadocs-core/search/client/fetch';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
+import { fetchJsonOnce } from '@/lib/fetch-json';
 import { GALLERY_SEARCH_EVENT, indexIcons, matchIcons, type SearchableIcon } from '@/lib/icon-search';
 import { iconSrc } from '@/lib/icon-path';
 
 const MAX_ICONS = 6;
 
-let iconsPromise: Promise<SearchableIcon[]> | undefined;
-const loadIcons = () =>
-  (iconsPromise ??= fetch('/data/search-icons.json').then((r) => r.json() as Promise<SearchableIcon[]>));
 
 const client = fetchClient({ api: '/api/search' });
 
@@ -36,7 +34,8 @@ export default function SiteSearchDialog(props: SharedProps) {
 
   // A small file (about 16 KB gzipped), so fetch it as soon as the dialog first opens.
   useEffect(() => {
-    if (props.open && !icons) void loadIcons().then(setIcons);
+    // On failure the dialog still searches the docs, and the next opening tries again.
+    if (props.open && !icons) fetchJsonOnce<SearchableIcon[]>('/data/search-icons.json').then(setIcons, () => {});
   }, [props.open, icons]);
 
   const index = useMemo(() => (icons ? indexIcons(icons) : []), [icons]);

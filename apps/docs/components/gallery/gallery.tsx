@@ -71,7 +71,7 @@ export function Gallery({ icons, categories }: { icons: GalleryIcon[]; categorie
 
   return (
     <div className="mt-8">
-      <div className="sticky top-(--fd-nav-height,56px) z-10 -mx-5 border-b bg-fd-background/90 px-5 py-3 backdrop-blur sm:-mx-8 sm:px-8">
+      <div className="sticky top-14 z-10 -mx-5 border-b bg-fd-background/90 px-5 py-3 backdrop-blur sm:-mx-8 sm:px-8">
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative min-w-0 flex-1 basis-64">
             <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-fd-muted-foreground" />
@@ -102,13 +102,12 @@ export function Gallery({ icons, categories }: { icons: GalleryIcon[]; categorie
               </kbd>
             )}
           </div>
-          <div role="radiogroup" aria-label="Icon size" className="flex rounded-control border bg-fd-card p-1 shadow-card">
+          <div role="group" aria-label="Icon size" className="flex rounded-control border bg-fd-card p-1 shadow-card">
             {(['cozy', 'compact'] as const).map((value) => (
               <button
                 key={value}
                 type="button"
-                role="radio"
-                aria-checked={density === value}
+                aria-pressed={density === value}
                 onClick={() => setDensity(value)}
                 className={cn(
                   'rounded-lg px-3 py-1.5 text-sm capitalize transition-colors',

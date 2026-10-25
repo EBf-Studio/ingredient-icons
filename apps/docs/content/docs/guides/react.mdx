@@ -51,10 +51,10 @@ export function IngredientIcon({ id, size = 40 }: Props) {
 Leave `alt` empty when the ingredient's name is written next to the icon, which is the case in an ingredient list. When the icon stands alone, name it:
 
 ```tsx
-import { iconName, findIcon } from "@ingredient-icons/core"
+import { findIcon, iconName, iconUrl } from "@ingredient-icons/core"
 
 const icon = findIcon("en:shallot")
-<img src={iconUrl("en:shallot")} alt={icon && iconName(icon.id)} />
+<img src={iconUrl("en:shallot")} alt={(icon && iconName(icon.id)) ?? ""} />
 ```
 
 ## Rendering on the server
