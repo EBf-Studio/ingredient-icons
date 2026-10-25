@@ -79,8 +79,10 @@ export default function HomePage() {
     <main className="flex flex-1 flex-col">
       {/* Hero */}
       <section className="mx-auto grid grid-cols-1 w-full max-w-(--site-width) items-center gap-10 px-5 pt-10 pb-16 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16 lg:pt-16 lg:pb-24">
-        <div className="max-w-xl">
-          <h1 className="font-display text-[clamp(2.75rem,7vw,5.25rem)] font-semibold leading-[0.98] tracking-[-0.025em] [font-variation-settings:'SOFT'_100,'WONK'_1]">
+        {/* The title scales with this column so "An icon for every" always fits on the first line
+            (Fraunces widens its letters at small sizes, hence the margin in 12.2cqi). */}
+        <div className="@container max-w-[38rem]">
+          <h1 className="font-display text-[clamp(2rem,12.2cqi,5.25rem)] font-semibold leading-[0.98] tracking-[-0.025em] [font-variation-settings:'SOFT'_100,'WONK'_1]">
             An icon for every ingredient.
           </h1>
           <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-fd-muted-foreground">
