@@ -85,12 +85,11 @@ const CTA_ICONS = [
   'en_pear', 'en_shallot', 'en_cherry', 'en_broccoli', 'en_aubergine', 'en_peach',
 ];
 
-/** Title on the left, introduction on the right on wide screens; stacked below lg. */
 function SectionHeader({ title, children }: { title: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:items-end lg:gap-16">
-      <h2 className="max-w-xl font-display text-4xl font-semibold leading-tight tracking-tight">{title}</h2>
-      <p className="max-w-xl leading-relaxed text-fd-muted-foreground lg:pb-1">{children}</p>
+    <div className="max-w-2xl">
+      <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">{title}</h2>
+      <p className="mt-4 leading-relaxed text-fd-muted-foreground">{children}</p>
     </div>
   );
 }
@@ -112,9 +111,6 @@ function Coverage() {
           <p className="mt-2 text-sm text-fd-muted-foreground">ingredients covered</p>
         </div>
       </div>
-      <p className="mt-4 border-t pt-4 text-sm leading-relaxed text-fd-muted-foreground">
-        Every new icon also covers the ingredients below it in the taxonomy.
-      </p>
     </div>
   );
 }
@@ -210,7 +206,14 @@ export default function HomePage() {
 
       {/* Fallback */}
       <section className="mx-auto w-full max-w-(--site-width) px-5 py-24 sm:px-8">
-        <SectionHeader title={<>No icon of its own? It borrows its parent&apos;s.</>}>
+        <SectionHeader
+          title={
+            <>
+              <span className="block">No icon of its own?</span>
+              <span className="block">It borrows its parent&apos;s.</span>
+            </>
+          }
+        >
           Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and
           sea salt is a salt. When an ingredient has no icon, <code className="font-mono text-[0.9em]">findIcon</code>{' '}
           walks up its parents and takes the first one that has.
@@ -227,48 +230,35 @@ export default function HomePage() {
             Pass the ingredient id you already store and get back an image URL, in React, React
             Native or anything else that shows images.
           </SectionHeader>
-          <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:gap-12">
-            <div className="flex min-w-0 flex-col gap-8">
-              {/* Stretched to the recipe card's height, like an editor pane. */}
-              <CodeBlockTabs
-                defaultValue="react"
-                className="my-0 flex min-w-0 flex-1 flex-col [&_figure]:h-full [&>[role=tabpanel]]:flex-1"
-              >
-                <CodeBlockTabsList>
-                  <CodeBlockTabsTrigger value="react">React</CodeBlockTabsTrigger>
-                  <CodeBlockTabsTrigger value="native">React Native</CodeBlockTabsTrigger>
-                  <CodeBlockTabsTrigger value="url">Any URL</CodeBlockTabsTrigger>
-                </CodeBlockTabsList>
-                <CodeBlockTab value="react">
-                  <ServerCodeBlock lang="tsx" code={reactCode} />
-                </CodeBlockTab>
-                <CodeBlockTab value="native">
-                  <ServerCodeBlock lang="tsx" code={nativeCode} />
-                </CodeBlockTab>
-                <CodeBlockTab value="url">
-                  <ServerCodeBlock lang="ts" code={urlCode} />
-                </CodeBlockTab>
-              </CodeBlockTabs>
-              <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                {CODE_FACTS.map((fact) => (
-                  <div key={fact.title}>
-                    <dt className="font-medium">{fact.title}</dt>
-                    <dd className="mt-1.5 text-sm leading-relaxed text-fd-muted-foreground">{fact.body}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
+          <div className="mt-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-12">
+            <CodeBlockTabs defaultValue="react" className="my-0 min-w-0">
+              <CodeBlockTabsList>
+                <CodeBlockTabsTrigger value="react">React</CodeBlockTabsTrigger>
+                <CodeBlockTabsTrigger value="native">React Native</CodeBlockTabsTrigger>
+                <CodeBlockTabsTrigger value="url">Any URL</CodeBlockTabsTrigger>
+              </CodeBlockTabsList>
+              <CodeBlockTab value="react">
+                <ServerCodeBlock lang="tsx" code={reactCode} />
+              </CodeBlockTab>
+              <CodeBlockTab value="native">
+                <ServerCodeBlock lang="tsx" code={nativeCode} />
+              </CodeBlockTab>
+              <CodeBlockTab value="url">
+                <ServerCodeBlock lang="ts" code={urlCode} />
+              </CodeBlockTab>
+            </CodeBlockTabs>
 
             <figure className="rounded-[1.75rem] border bg-fd-background p-6 shadow-[0_24px_48px_-28px_rgb(24_33_28/0.35)]">
               <figcaption>
                 <p className="font-display text-2xl font-semibold">Ratatouille</p>
                 <p className="mt-1 text-sm text-fd-muted-foreground">Serves 4, 1 h 15 min</p>
               </figcaption>
-              <ul className="mt-5 flex flex-col">
+              {/* Two columns keep the card as short as the code beside it. */}
+              <ul className="mt-5 grid grid-cols-1 gap-x-6 sm:grid-cols-2">
                 {RECIPE.map((item) => (
-                  <li key={item.id} className="flex items-center gap-3 border-b border-dashed py-1.5 last:border-0">
+                  <li key={item.id} className="flex items-center gap-3 border-b border-dashed py-1.5 last:border-0 sm:nth-last-2:border-0">
                     <IconImage file={findIcon(item.id)!.file} size={40} className="size-10" />
-                    <span className="text-[15px]">
+                    <span className="text-[15px] leading-tight">
                       <span className="font-medium">{item.quantity}</span> {item.name}
                     </span>
                   </li>
@@ -276,6 +266,15 @@ export default function HomePage() {
               </ul>
             </figure>
           </div>
+
+          <dl className="mt-12 grid grid-cols-1 gap-6 border-t pt-10 sm:grid-cols-3 sm:gap-10">
+            {CODE_FACTS.map((fact) => (
+              <div key={fact.title}>
+                <dt className="font-medium">{fact.title}</dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-fd-muted-foreground">{fact.body}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
@@ -344,7 +343,7 @@ export default function HomePage() {
           {/* A wall of icons across the right half, fading out before it reaches the text. */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] items-center md:flex [mask-image:linear-gradient(to_right,transparent,black_35%)]"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] items-center md:flex [mask-image:linear-gradient(to_right,transparent_10%,black_55%)]"
           >
             <div className="grid shrink-0 rotate-[-8deg] grid-cols-6 gap-3">
               {CTA_ICONS.map((file, i) => (

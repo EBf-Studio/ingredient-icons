@@ -163,7 +163,7 @@ export function FallbackDemo({ slugs, footer }: { slugs: Record<string, string>;
             </button>
           ))}
         </div>
-        {footer && <div className="mt-10 lg:mt-auto lg:pt-10">{footer}</div>}
+        {footer && <div className="mt-8">{footer}</div>}
       </div>
 
       <div className="relative flex min-w-0 flex-col overflow-hidden rounded-2xl border bg-fd-card">
