@@ -1,0 +1,38 @@
+---
+title: Introduction
+description: Soft 3D icons for cooking ingredients, keyed by the Open Food Facts taxonomy.
+icon: Sparkles
+---
+
+Ingredient Icons gives every ingredient of a recipe its own picture. There are <Total /> icons today, and each one is named after an id of the [Open Food Facts ingredients taxonomy](https://wiki.openfoodfacts.org/Global_taxonomies), so a recipe that stores `en:shallot` already knows which icon to show.
+
+<IconRow ids={["en:shallot", "en:fresh-cream", "en:salt", "en:black-pepper", "en:brie", "en:basil", "en:lemon", "en:salmon"]} />
+
+## Why not emojis?
+
+Emojis run out fast in a kitchen. There is no emoji for a shallot or fresh cream, and 🧂 has to stand for both salt and pepper. Recipe apps end up with half their ingredients drawn as a generic bowl.
+
+## What you get
+
+- **<Total /> icons**, in one consistent soft 3D style, on transparent backgrounds.
+- **Fallback through the taxonomy.** An ingredient without an icon gets its closest ancestor's: cherry tomatoes get the tomato, lardons get bacon. That covers <Resolvable /> taxonomy ids.
+- **WebP in 64, 128 and 256 px** in the npm package, served from jsDelivr or from your own server. **PNG up to 512 px** in the repository.
+- **English and French names** for every icon, from Open Food Facts.
+- **Public domain.** The icons are CC0: no attribution, no license file to ship.
+
+## Where to start
+
+<Cards>
+  <Card icon={<span>📦</span>} title="Installation" href="/docs/installation">
+    Add the package to a web, Node or React Native project.
+  </Card>
+  <Card icon={<span>⏱️</span>} title="Quick start" href="/docs/quick-start">
+    Show the icons of a recipe in five minutes.
+  </Card>
+  <Card icon={<span>🌳</span>} title="Ids and fallback" href="/docs/guides/ids-and-fallback">
+    How an ingredient finds its icon.
+  </Card>
+  <Card icon={<span>🧺</span>} title="Browse the icons" href="/icons">
+    Every icon, searchable in English and French.
+  </Card>
+</Cards>

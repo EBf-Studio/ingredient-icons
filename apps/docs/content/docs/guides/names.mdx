@@ -1,0 +1,34 @@
+---
+title: Names
+description: English and French names for every icon.
+icon: Languages
+---
+
+Each icon comes with its English and French name from Open Food Facts.
+
+```ts
+import { iconName } from "@ingredient-icons/core"
+
+iconName("en:shallot")        // "shallot"
+iconName("en:shallot", "fr")  // "échalote"
+iconName("en:fresh-cream", "fr") // "crème fraîche"
+```
+
+## Only ids with an icon have a name
+
+`iconName` knows the names of the <Total /> ids that have an icon, not of the whole taxonomy. For an id that falls back to an ancestor, name the icon you show, not the ingredient:
+
+```ts
+import { findIcon, iconName } from "@ingredient-icons/core"
+
+iconName("en:cherry-tomato") // undefined
+
+const icon = findIcon("en:cherry-tomato")
+iconName(icon!.id) // "tomato"
+```
+
+Your recipe data most likely has its own names for ingredients already: use those in the interface, and `iconName` for alt text and search.
+
+## Other languages
+
+Only English and French ship today. The [Open Food Facts taxonomy](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/food/ingredients.txt) has names in many more languages. Open an issue if you need one.

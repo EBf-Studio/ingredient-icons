@@ -1,0 +1,57 @@
+---
+title: React Native
+description: Ingredient icons in React Native and Expo apps.
+icon: Smartphone
+---
+
+```npm
+npm install @ingredient-icons/core
+```
+
+The package is plain JavaScript with no native code: it works in Expo Go and bare React Native without a rebuild.
+
+## With Expo Image
+
+[`expo-image`](https://docs.expo.dev/versions/latest/sdk/image/) decodes WebP on both platforms and caches files on disk, so an icon downloads once.
+
+```tsx title="components/IngredientIcon.tsx"
+import { Image } from "expo-image"
+import { iconUrl } from "@ingredient-icons/core"
+
+export function IngredientIcon({ id, size = 40 }: { id: string; size?: number }) {
+  const uri = iconUrl(id, { size: size <= 42 ? 128 : 256 })
+  if (!uri) return null
+  return (
+    <Image
+      source={{ uri }}
+      style={{ width: size, height: size }}
+      cachePolicy="disk"
+      transition={120}
+      accessible={false}
+    />
+  )
+}
+```
+
+`accessible={false}` hides the icon from VoiceOver and TalkBack when the ingredient's name is next to it.
+
+## With the built-in Image
+
+```tsx
+import { Image } from "react-native"
+import { iconUrl } from "@ingredient-icons/core"
+
+<Image source={{ uri: iconUrl("en:shallot") }} style={{ width: 40, height: 40 }} />
+```
+
+## Sizes on phones
+
+| Displayed at | Phone screen | File size |
+| --- | --- | --- |
+| 20 pt | 3× | `64` |
+| 40 pt | 3× | `128` |
+| 80 pt | 3× | `256` |
+
+## Offline
+
+To ship icons inside the app, copy the ones you need from `node_modules/@ingredient-icons/core/icons/webp/` into your assets and `require` them. With hundreds of icons, a CDN and a disk cache is usually the better trade.

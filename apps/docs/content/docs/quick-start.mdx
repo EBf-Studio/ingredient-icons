@@ -1,0 +1,84 @@
+---
+title: Quick start
+description: Show the icons of a recipe in five minutes.
+icon: Timer
+---
+
+<Steps>
+
+<Step>
+
+### Install the package
+
+```npm
+npm install @ingredient-icons/core
+```
+
+</Step>
+
+<Step>
+
+### Get an icon URL
+
+Pass an Open Food Facts ingredient id to `iconUrl`. You get a URL to a 128 px WebP on jsDelivr.
+
+```ts
+import { iconUrl } from "@ingredient-icons/core"
+
+iconUrl("en:shallot")
+// https://cdn.jsdelivr.net/npm/@ingredient-icons/core@<version>/icons/webp/128/en_shallot.webp
+```
+
+</Step>
+
+<Step>
+
+### Render it
+
+The URL goes wherever an image goes.
+
+```tsx title="Ingredient.tsx"
+import { iconUrl } from "@ingredient-icons/core"
+
+export function Ingredient({ id, name }: { id: string; name: string }) {
+  const src = iconUrl(id)
+  return (
+    <li>
+      {src && <img src={src} alt="" width={40} height={40} />}
+      {name}
+    </li>
+  )
+}
+```
+
+`alt` is empty because the name is written next to the icon: a screen reader would say it twice.
+
+</Step>
+
+<Step>
+
+### Let the taxonomy fill the gaps
+
+Ask for an ingredient that has no icon, and you get its closest ancestor's:
+
+<Resolves id="en:cherry-tomato" />
+
+```ts
+iconUrl("en:cherry-tomato") // …/icons/webp/128/en_tomato.webp
+iconUrl("en:unicorn-steak") // undefined
+```
+
+`iconUrl` returns `undefined` when neither the id nor any of its ancestors has an icon. Show a placeholder of your own, or nothing.
+
+</Step>
+
+</Steps>
+
+## Next steps
+
+<Cards>
+  <Card title="Ids and fallback" href="/docs/guides/ids-and-fallback">Where ids come from, and how the fallback walks the taxonomy.</Card>
+  <Card title="React" href="/docs/guides/react">A typed component with sizes and a placeholder.</Card>
+  <Card title="React Native" href="/docs/guides/react-native">With Expo Image and its disk cache.</Card>
+  <Card title="API reference" href="/docs/reference/api">Every function and constant.</Card>
+</Cards>

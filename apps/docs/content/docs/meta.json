@@ -1,0 +1,15 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "index",
+    "installation",
+    "quick-start",
+    "---Guides---",
+    "...guides",
+    "---Reference---",
+    "...reference",
+    "---Project---",
+    "requesting-icons",
+    "licenses"
+  ]
+}

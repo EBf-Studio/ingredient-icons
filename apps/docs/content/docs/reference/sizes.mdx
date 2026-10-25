@@ -1,0 +1,34 @@
+---
+title: Sizes and formats
+description: Which file to pick for each display size.
+icon: Ruler
+---
+
+Every icon is a square image on a transparent background.
+
+| Format | Sizes | Where |
+| --- | --- | --- |
+| WebP | 64, 128, 256 | npm package, repository |
+| PNG | 64, 128, 256, 512 | repository |
+
+## Picking a size
+
+Take a file at least as large as the icon on screen, in device pixels.
+
+| Shown at | 2× screen | 3× screen |
+| --- | --- | --- |
+| 20 px | `64` | `64` |
+| 32 px | `64` | `128` |
+| 40 px | `128` | `128` |
+| 64 px | `128` | `256` |
+| 80 px | `256` | `256` |
+
+128 px covers a 40 pt icon on a 3× screen; 256 px covers almost everything else. Use the 512 px PNG for print, marketing pages and design tools.
+
+## Weight
+
+The 128 px WebP files average about 8 KB. A recipe with twelve ingredients loads about 100 KB of icons once, then the browser or the app caches them.
+
+## Style
+
+All icons share one soft 3D style, on a transparent background with no plate or cast shadow. `STYLE` (and `style` in `manifest.json`) changes if the style is redrawn.

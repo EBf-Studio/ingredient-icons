@@ -1,0 +1,69 @@
+---
+title: Next.js
+description: Resolve icons on the server and render them with or without next/image.
+icon: Triangle
+---
+
+## In a Server Component
+
+Server Components run on the server only, so the taxonomy data never reaches the browser.
+
+```tsx title="app/recipes/[id]/ingredients.tsx"
+import { iconUrl } from "@ingredient-icons/core"
+
+export function Ingredients({ items }: { items: { id: string; name: string }[] }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          <img src={iconUrl(item.id)} alt="" width={40} height={40} />
+          {item.name}
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+In a Client Component, compute the URLs in a Server Component above it and pass them down as props.
+
+## With next/image
+
+The files are already small, transparent WebP at fixed sizes, so `next/image` adds little. To use it anyway, allow the CDN:
+
+```js title="next.config.mjs"
+export default {
+  images: {
+    remotePatterns: [new URL("https://cdn.jsdelivr.net/npm/@ingredient-icons/core@*/icons/**")],
+  },
+}
+```
+
+```tsx
+import Image from "next/image"
+
+<Image src={iconUrl(id, { size: 256 })!} alt="" width={40} height={40} unoptimized />
+```
+
+`unoptimized` serves the file as is: re-encoding a 128 px WebP saves nothing.
+
+## Serving from your own domain
+
+Copy the package's `icons/` folder into `public/` after each install:
+
+```json title="package.json"
+{
+  "scripts": {
+    "postinstall": "mkdir -p public/ingredient-icons && cp -R node_modules/@ingredient-icons/core/icons public/ingredient-icons/"
+  }
+}
+```
+
+Then point `baseUrl` at the folder that contains `icons/`:
+
+```ts
+iconUrl("en:shallot", { baseUrl: "/ingredient-icons" })
+// /ingredient-icons/icons/webp/128/en_shallot.webp
+```
+
+Add `public/ingredient-icons` to `.gitignore`. See [Self-hosting](/docs/guides/self-hosting) for caching.

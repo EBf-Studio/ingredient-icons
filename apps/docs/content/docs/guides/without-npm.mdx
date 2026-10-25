@@ -1,0 +1,107 @@
+---
+title: Without npm
+description: Use the icons from Swift, Kotlin, Python, a design tool, or any other stack.
+icon: FolderOpen
+---
+
+The icons are plain files in the [GitHub repository](https://github.com/EBf-Studio/ingredient-icons), with two JSON files that describe them. Packages for native platforms will follow under the `@ingredient-icons` scope.
+
+## The files
+
+<Files>
+  <Folder name="icons" defaultOpen>
+    <Folder name="png" defaultOpen>
+      <Folder name="64" />
+      <Folder name="128" />
+      <Folder name="256" />
+      <Folder name="512" />
+    </Folder>
+    <Folder name="webp">
+      <Folder name="64" />
+      <Folder name="128" />
+      <Folder name="256" />
+    </Folder>
+  </Folder>
+  <File name="manifest.json" />
+  <File name="taxonomy.json" />
+</Files>
+
+PNG is the canonical format, and the only one in 512 px. WebP is the same image, smaller, for the web and React Native.
+
+```sh
+git clone --depth 1 https://github.com/EBf-Studio/ingredient-icons.git
+```
+
+The repository grows with every batch of icons: `--depth 1` skips the history.
+
+## Straight from a CDN
+
+jsDelivr serves any file of the repository:
+
+```txt
+https://cdn.jsdelivr.net/gh/EBf-Studio/ingredient-icons@main/icons/png/256/en_shallot.png
+```
+
+Replace `main` with a commit hash to pin the files.
+
+## Finding an icon
+
+Look the id up in `manifest.json`. When it has none, walk up its parents in `taxonomy.json` and take the first ancestor that has one. See [the file formats](/docs/reference/files).
+
+<Tabs items={["Python", "Swift", "Kotlin"]}>
+<Tab value="Python">
+
+```python title="icons.py"
+import json
+
+manifest = json.load(open("manifest.json"))["icons"]
+parents = json.load(open("taxonomy.json"))["parents"]
+
+def find_icon(id: str) -> str | None:
+    level, seen = [id], {id}
+    for _ in range(7):
+        for candidate in level:
+            if candidate in manifest:
+                return manifest[candidate]["file"]
+        level = [p for c in level for p in parents.get(c, []) if not (p in seen or seen.add(p))]
+    return None
+
+find_icon("en:cherry-tomato")  # "en_tomato"
+```
+
+</Tab>
+<Tab value="Swift">
+
+```swift title="IngredientIcons.swift"
+struct Manifest: Decodable { let icons: [String: Entry]; struct Entry: Decodable { let file: String } }
+struct Taxonomy: Decodable { let parents: [String: [String]] }
+
+func findIcon(_ id: String, manifest: Manifest, taxonomy: Taxonomy) -> String? {
+    var level = [id], seen: Set = [id]
+    for _ in 0...6 {
+        if let hit = level.lazy.compactMap({ manifest.icons[$0]?.file }).first { return hit }
+        level = level.flatMap { taxonomy.parents[$0] ?? [] }.filter { seen.insert($0).inserted }
+    }
+    return nil
+}
+```
+
+</Tab>
+<Tab value="Kotlin">
+
+```kotlin title="IngredientIcons.kt"
+fun findIcon(id: String, files: Map<String, String>, parents: Map<String, List<String>>): String? {
+    var level = listOf(id)
+    val seen = mutableSetOf(id)
+    repeat(7) {
+        level.firstNotNullOfOrNull { files[it] }?.let { return it }
+        level = level.flatMap { parents[it].orEmpty() }.filter { seen.add(it) }
+    }
+    return null
+}
+```
+
+</Tab>
+</Tabs>
+
+The file name goes into `manifest.json`'s `path` template: `icons/{format}/{size}/{file}.{format}`.
