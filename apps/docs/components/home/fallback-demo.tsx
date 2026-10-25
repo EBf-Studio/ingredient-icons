@@ -2,7 +2,7 @@
 
 import { Check, RotateCcw, Search, X } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
 import { iconSrc, readableId } from '@/lib/icon-path';
 
@@ -71,6 +71,7 @@ export function FallbackDemo({ slugs }: { slugs: Record<string, string> }) {
   const noMatch = lookup && normalize(query) && matches.length === 0;
   const tick = useClimb(lookup ? steps.length : 0, `${selected}#${run}`);
   const borrowed = !exact && tick >= steps.length + 2;
+  const { ref: treeRef, span } = useSlotSpan(`${selected}#${run}`);
 
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-12">
@@ -183,8 +184,11 @@ export function FallbackDemo({ slugs }: { slugs: Record<string, string> }) {
           <ol
             key={`${selected}#${run}`}
             aria-label={`How ${selected} finds its icon`}
-            className="relative mx-auto w-fit max-w-full pr-20 sm:pr-28"
-            style={{ '--drop': `calc(${steps.length - 1} * -${STEP})` } as React.CSSProperties}
+            // A fixed width rather than w-fit: the tags appearing during the climb would
+            // otherwise widen the list and shift the centred tree sideways.
+            ref={treeRef}
+            className="relative mx-auto w-full max-w-md pr-12 sm:pr-28"
+            style={{ '--drop': `${span ? -span.height : 0}px` } as React.CSSProperties}
           >
             {/* Top of the list is the ancestor that has the icon; the ingredient asked for sits at the bottom. */}
             {steps
@@ -205,7 +209,7 @@ export function FallbackDemo({ slugs }: { slugs: Record<string, string> }) {
                   last={i === 0}
                 />
               ))}
-            {!exact && <BorrowArrow show={tick >= steps.length + 1} levels={steps.length - 1} />}
+            {!exact && span && <BorrowArrow show={tick >= steps.length + 1} {...span} />}
           </ol>
         </div>
 
@@ -225,9 +229,35 @@ export function FallbackDemo({ slugs }: { slugs: Record<string, string> }) {
   );
 }
 
-/** Height of one rung plus the link below it; the borrowed icon falls this far per level. */
-const STEP = '6.5rem';
 const BEAT = 480;
+
+/**
+ * Where the top and bottom slots of the tree sit, measured rather than computed: a long
+ * name can wrap and make its rung taller. The borrowed icon falls `height` pixels and the
+ * arrow spans the same distance, starting `top` pixels into the list.
+ */
+function useSlotSpan(key: string) {
+  const ref = useRef<HTMLOListElement>(null);
+  const [span, setSpan] = useState<{ top: number; height: number }>();
+  useLayoutEffect(() => {
+    const list = ref.current;
+    if (!list) return;
+    const measure = () => {
+      const slots = list.querySelectorAll('[data-slot]');
+      const first = slots[0]?.getBoundingClientRect();
+      const last = slots[slots.length - 1]?.getBoundingClientRect();
+      if (!first || !last) return;
+      const top = first.top + first.height / 2 - list.getBoundingClientRect().top;
+      const height = last.top - first.top;
+      setSpan((prev) => (prev?.top === top && prev.height === height ? prev : { top, height }));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [key]);
+  return { ref, span };
+}
 
 /**
  * Plays the climb: tick 1..n checks each rung from the bottom up, n + 1 draws the
@@ -272,7 +302,7 @@ function Rung(props: {
   if (found && checked) {
     slot = (
       <Link href={props.href} aria-label={`${readableId(id)} icon`} className="pop-in block">
-        <img src={iconSrc(fileOf(id), 128)} alt="" className="size-16 drop-shadow-[0_8px_10px_rgb(24_33_28/0.15)]" />
+        <img src={iconSrc(fileOf(id), 128)} alt="" className="size-12 drop-shadow-[0_8px_10px_rgb(24_33_28/0.15)] sm:size-16" />
       </Link>
     );
   } else if (borrowed) {
@@ -280,7 +310,7 @@ function Rung(props: {
       <img
         src={iconSrc(fileOf(props.target), 128)}
         alt=""
-        className="borrow-drop size-16 drop-shadow-[0_8px_10px_rgb(24_33_28/0.15)]"
+        className="borrow-drop size-12 drop-shadow-[0_8px_10px_rgb(24_33_28/0.15)] sm:size-16"
       />
     );
   }
@@ -302,10 +332,11 @@ function Rung(props: {
 
   return (
     <li>
-      <div className="flex h-20 items-center gap-3 sm:gap-4">
+      <div className="flex min-h-16 items-center gap-3 sm:min-h-20 sm:gap-4">
         <div
+          data-slot
           className={cn(
-            'relative flex size-20 shrink-0 items-center justify-center rounded-2xl border-2 transition-colors duration-300',
+            'relative flex size-16 shrink-0 items-center justify-center sm:size-20 rounded-2xl border-2 transition-colors duration-300',
             (found && checked) || borrowed
               ? 'border-transparent bg-transparent'
               : 'border-dashed bg-fd-background/70',
@@ -319,7 +350,7 @@ function Rung(props: {
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span
               className={cn(
-                'text-[15px] font-medium transition-colors',
+                'text-[15px] leading-tight font-medium transition-colors',
                 !checked && !asked && 'text-fd-muted-foreground',
               )}
             >
@@ -335,7 +366,7 @@ function Rung(props: {
         </div>
       </div>
       {!props.last && (
-        <div aria-hidden className="flex h-6 w-20 justify-center">
+        <div aria-hidden className="flex h-6 w-16 justify-center sm:w-20">
           <span className="relative w-px bg-[linear-gradient(var(--color-fd-muted-foreground)_50%,transparent_50%)] bg-[length:1px_6px] opacity-50">
             <span className="absolute top-1/2 left-2 -translate-y-1/2 font-sans text-[11px] whitespace-nowrap text-fd-muted-foreground">
               is a kind of ↑
@@ -364,13 +395,13 @@ function Tag({ tone, children }: { tone?: 'tomato' | 'basil' | 'butter'; childre
 }
 
 /** The curved arrow from the ancestor's icon back down to the empty slot. */
-function BorrowArrow({ show, levels }: { show: boolean; levels: number }) {
+function BorrowArrow({ show, top, height }: { show: boolean; top: number; height: number }) {
   if (!show) return null;
   return (
     <div
       aria-hidden
-      className="draw-down absolute right-10 w-10 sm:right-14 sm:w-14"
-      style={{ top: '2.5rem', height: `calc(${levels} * ${STEP})` }}
+      className="draw-down absolute right-1 w-10 sm:right-14 sm:w-14"
+      style={{ top, height }}
     >
       <svg viewBox="0 0 56 100" preserveAspectRatio="none" className="size-full overflow-visible text-tomato">
         <path
@@ -386,7 +417,7 @@ function BorrowArrow({ show, levels }: { show: boolean; levels: number }) {
       <svg viewBox="0 0 10 10" className="absolute -bottom-[5px] -left-1 size-2.5 text-tomato">
         <path d="M10 0 L0 5 L10 10 Z" fill="currentColor" />
       </svg>
-      <span className="absolute top-1/2 left-full -translate-y-1/2 -translate-x-1 font-display text-[15px] font-semibold whitespace-nowrap text-tomato italic [font-variation-settings:'SOFT'_100,'WONK'_1]">
+      <span className="absolute top-1/2 left-full -translate-y-1/2 -translate-x-1 font-display max-sm:hidden text-[15px] font-semibold whitespace-nowrap text-tomato italic [font-variation-settings:'SOFT'_100,'WONK'_1]">
         borrow!
       </span>
     </div>
