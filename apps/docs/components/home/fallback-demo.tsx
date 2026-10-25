@@ -33,7 +33,7 @@ const normalize = (text: string) =>
     .replace(/^en:/, '')
     .replace(/\s+/g, '-');
 
-export function FallbackDemo({ slugs }: { slugs: Record<string, string> }) {
+export function FallbackDemo({ slugs, footer }: { slugs: Record<string, string>; footer?: React.ReactNode }) {
   const [lookup, setLookup] = useState<Lookup>();
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(PRESETS[0]!);
@@ -74,8 +74,8 @@ export function FallbackDemo({ slugs }: { slugs: Record<string, string> }) {
   const { ref: treeRef, span } = useSlotSpan(`${selected}#${run}`);
 
   return (
-    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-12">
-      <div>
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:gap-12">
+      <div className="flex flex-col">
         <div className="relative">
           <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-fd-muted-foreground" />
           <input
@@ -163,6 +163,7 @@ export function FallbackDemo({ slugs }: { slugs: Record<string, string> }) {
             </button>
           ))}
         </div>
+        {footer && <div className="mt-10 lg:mt-auto lg:pt-10">{footer}</div>}
       </div>
 
       <div className="relative flex min-w-0 flex-col overflow-hidden rounded-2xl border bg-fd-card">

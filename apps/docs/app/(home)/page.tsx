@@ -13,6 +13,7 @@ import { Shelf } from '@/components/home/shelf';
 import { IconImage } from '@/components/icon-image';
 import { InstallCommand } from '@/components/install-command';
 import { iconById, icons, resolvable, total, version } from '@/lib/icons';
+import { cn } from '@/lib/cn';
 import { githubUrl, marmaladeUrl, newIssueUrl, packageName } from '@/lib/shared';
 
 // Ingredients that share one emoji, and the icons that tell them apart.
@@ -71,6 +72,52 @@ findIcon("en:unicorn-steak")
 // undefined: show your own placeholder`;
 
 const LADDER = [64, 128, 256, 512] as const;
+
+const CODE_FACTS = [
+  { title: 'Pinned to your version', body: 'URLs point to the exact release you installed on jsDelivr, so icons never change under you.' },
+  { title: 'Or your own server', body: 'Pass baseUrl to serve the icons folder from your CDN or your app bundle.' },
+  { title: 'Typed', body: 'Icon and IconSize types ship with the package.' },
+];
+
+const CTA_ICONS = [
+  'en_lemon', 'en_garlic', 'en_basil', 'en_egg', 'en_tomato', 'en_butter',
+  'en_avocado', 'en_carrot', 'en_strawberry', 'en_mushroom', 'en_brie', 'en_chili-pepper',
+  'en_pear', 'en_shallot', 'en_cherry', 'en_broccoli', 'en_aubergine', 'en_peach',
+];
+
+/** Title on the left, introduction on the right on wide screens; stacked below lg. */
+function SectionHeader({ title, children }: { title: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:items-end lg:gap-16">
+      <h2 className="max-w-xl font-display text-4xl font-semibold leading-tight tracking-tight">{title}</h2>
+      <p className="max-w-xl leading-relaxed text-fd-muted-foreground lg:pb-1">{children}</p>
+    </div>
+  );
+}
+
+/** How far the fallback stretches the icon set, shown under the demo's controls. */
+function Coverage() {
+  return (
+    <div className="rounded-2xl border bg-fd-card p-5">
+      <div className="flex items-end gap-3">
+        <div>
+          <p className="font-display text-4xl font-semibold leading-none tracking-tight">{total}</p>
+          <p className="mt-2 text-sm text-fd-muted-foreground">icons drawn</p>
+        </div>
+        <ArrowRight className="mb-7 size-5 shrink-0 text-tomato" aria-hidden />
+        <div>
+          <p className="font-display text-4xl font-semibold leading-none tracking-tight text-basil">
+            {resolvable.toLocaleString('en')}
+          </p>
+          <p className="mt-2 text-sm text-fd-muted-foreground">ingredients covered</p>
+        </div>
+      </div>
+      <p className="mt-4 border-t pt-4 text-sm leading-relaxed text-fd-muted-foreground">
+        Every new icon also covers the ingredients below it in the taxonomy.
+      </p>
+    </div>
+  );
+}
 
 export default function HomePage() {
   const slugs = Object.fromEntries(icons.map((icon) => [icon.id, icon.slug]));
@@ -163,51 +210,54 @@ export default function HomePage() {
 
       {/* Fallback */}
       <section className="mx-auto w-full max-w-(--site-width) px-5 py-24 sm:px-8">
-        <div className="max-w-2xl">
-          <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">
-            No icon of its own? It borrows its parent&apos;s.
-          </h2>
-          <p className="mt-4 leading-relaxed text-fd-muted-foreground">
-            Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and
-            sea salt is a salt. When an ingredient has no icon, <code className="font-mono text-[0.9em]">findIcon</code>{' '}
-            walks up its parents and takes the first one that has. That is how {total} icons cover{' '}
-            {resolvable.toLocaleString('en')} ingredients.
-          </p>
-        </div>
-        <div className="mt-10">
-          <FallbackDemo slugs={slugs} />
+        <SectionHeader title={<>No icon of its own? It borrows its parent&apos;s.</>}>
+          Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and
+          sea salt is a salt. When an ingredient has no icon, <code className="font-mono text-[0.9em]">findIcon</code>{' '}
+          walks up its parents and takes the first one that has.
+        </SectionHeader>
+        <div className="mt-12">
+          <FallbackDemo slugs={slugs} footer={<Coverage />} />
         </div>
       </section>
 
       {/* Code + recipe */}
       <section className="border-y bg-fd-card">
         <div className="mx-auto w-full max-w-(--site-width) px-5 py-24 sm:px-8">
-          <div className="max-w-2xl">
-            <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">
-              One function between your recipe and its icons.
-            </h2>
-            <p className="mt-4 leading-relaxed text-fd-muted-foreground">
-              Pass the ingredient id you already store, get back an image URL. Files are served from
-              jsDelivr and pinned to the version you installed, or from your own server.
-            </p>
-          </div>
-          <div className="mt-10 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-center">
-            <CodeBlockTabs defaultValue="react" className="my-0 min-w-0">
-              <CodeBlockTabsList>
-                <CodeBlockTabsTrigger value="react">React</CodeBlockTabsTrigger>
-                <CodeBlockTabsTrigger value="native">React Native</CodeBlockTabsTrigger>
-                <CodeBlockTabsTrigger value="url">Any URL</CodeBlockTabsTrigger>
-              </CodeBlockTabsList>
-              <CodeBlockTab value="react">
-                <ServerCodeBlock lang="tsx" code={reactCode} />
-              </CodeBlockTab>
-              <CodeBlockTab value="native">
-                <ServerCodeBlock lang="tsx" code={nativeCode} />
-              </CodeBlockTab>
-              <CodeBlockTab value="url">
-                <ServerCodeBlock lang="ts" code={urlCode} />
-              </CodeBlockTab>
-            </CodeBlockTabs>
+          <SectionHeader title="One function between your recipe and its icons.">
+            Pass the ingredient id you already store and get back an image URL, in React, React
+            Native or anything else that shows images.
+          </SectionHeader>
+          <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:gap-12">
+            <div className="flex min-w-0 flex-col gap-8">
+              {/* Stretched to the recipe card's height, like an editor pane. */}
+              <CodeBlockTabs
+                defaultValue="react"
+                className="my-0 flex min-w-0 flex-1 flex-col [&_figure]:h-full [&>[role=tabpanel]]:flex-1"
+              >
+                <CodeBlockTabsList>
+                  <CodeBlockTabsTrigger value="react">React</CodeBlockTabsTrigger>
+                  <CodeBlockTabsTrigger value="native">React Native</CodeBlockTabsTrigger>
+                  <CodeBlockTabsTrigger value="url">Any URL</CodeBlockTabsTrigger>
+                </CodeBlockTabsList>
+                <CodeBlockTab value="react">
+                  <ServerCodeBlock lang="tsx" code={reactCode} />
+                </CodeBlockTab>
+                <CodeBlockTab value="native">
+                  <ServerCodeBlock lang="tsx" code={nativeCode} />
+                </CodeBlockTab>
+                <CodeBlockTab value="url">
+                  <ServerCodeBlock lang="ts" code={urlCode} />
+                </CodeBlockTab>
+              </CodeBlockTabs>
+              <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                {CODE_FACTS.map((fact) => (
+                  <div key={fact.title}>
+                    <dt className="font-medium">{fact.title}</dt>
+                    <dd className="mt-1.5 text-sm leading-relaxed text-fd-muted-foreground">{fact.body}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
 
             <figure className="rounded-[1.75rem] border bg-fd-background p-6 shadow-[0_24px_48px_-28px_rgb(24_33_28/0.35)]">
               <figcaption>
@@ -231,7 +281,10 @@ export default function HomePage() {
 
       {/* What ships */}
       <section className="mx-auto grid grid-cols-1 w-full max-w-(--site-width) items-end gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)]">
-        <div className="flex items-end gap-3 overflow-x-auto pb-2 sm:gap-6" aria-label="The strawberry at each size">
+        <div
+          className="flex items-end justify-between gap-3 overflow-x-auto border-b border-dashed pb-4 sm:gap-6 lg:pr-12"
+          aria-label="The strawberry at each size"
+        >
           {LADDER.map((size) => (
             <figure key={size} className="flex shrink-0 flex-col items-center gap-3">
               <img
@@ -288,10 +341,21 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-          <div aria-hidden className="pointer-events-none absolute -right-6 -bottom-10 hidden grid-cols-3 gap-2 rotate-[-8deg] sm:grid">
-            {['en_lemon', 'en_garlic', 'en_basil', 'en_egg', 'en_tomato', 'en_butter'].map((file) => (
-              <IconImage key={file} file={file} size={112} className="size-28" />
-            ))}
+          {/* A wall of icons across the right half, fading out before it reaches the text. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] items-center md:flex [mask-image:linear-gradient(to_right,transparent,black_35%)]"
+          >
+            <div className="grid shrink-0 rotate-[-8deg] grid-cols-6 gap-3">
+              {CTA_ICONS.map((file, i) => (
+                <IconImage
+                  key={file}
+                  file={file}
+                  size={112}
+                  className={cn('size-24 lg:size-28', i % 2 === 1 && 'translate-y-6')}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
