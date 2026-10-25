@@ -1,0 +1,64 @@
+---
+title: Self-hosting
+description: Serve the icon files from your own server or CDN instead of jsDelivr.
+icon: Server
+---
+
+By default, URLs point at jsDelivr, pinned to the installed version. Serve the files yourself when you need them on your own domain, behind your firewall, or offline.
+
+## How baseUrl works
+
+`iconUrl` joins `baseUrl` and the icon's path inside the package:
+
+```ts
+iconUrl("en:shallot", { baseUrl: "https://api.example.com/ingredient-icons" })
+// https://api.example.com/ingredient-icons/icons/webp/128/en_shallot.webp
+//                                          └──────── iconPath() ────────┘
+```
+
+So `baseUrl` is the folder that contains `icons/`. A trailing slash is fine.
+
+## With Express
+
+```ts title="server.ts"
+import { createRequire } from "node:module"
+import path from "node:path"
+import express from "express"
+import { iconUrl } from "@ingredient-icons/core"
+
+const root = path.dirname(createRequire(import.meta.url).resolve("@ingredient-icons/core/package.json"))
+const app = express()
+
+app.use(
+  "/ingredient-icons/icons",
+  express.static(path.join(root, "icons"), { immutable: true, maxAge: "1y" }),
+)
+
+iconUrl("en:shallot", { baseUrl: "https://api.example.com/ingredient-icons" })
+```
+
+## On a CDN or a bucket
+
+Upload `node_modules/@ingredient-icons/core/icons/` as part of your deploy, then pass the bucket's URL as `baseUrl`.
+
+## Caching
+
+An icon can be redrawn between versions while keeping its file name. If you cache forever, put the version in the path so a new release gets new URLs:
+
+```ts
+import { VERSION, iconUrl } from "@ingredient-icons/core"
+
+iconUrl("en:shallot", { baseUrl: `https://cdn.example.com/ingredient-icons/${VERSION}` })
+```
+
+The jsDelivr default already does this.
+
+## Paths without a URL
+
+`iconPath` returns the path inside the package, for code that reads files directly:
+
+```ts
+import { iconPath } from "@ingredient-icons/core"
+
+iconPath("en:shallot", 64) // "icons/webp/64/en_shallot.webp"
+```

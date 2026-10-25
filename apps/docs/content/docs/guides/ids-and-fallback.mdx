@@ -1,0 +1,65 @@
+---
+title: Ids and fallback
+description: Where ingredient ids come from, and how an ingredient without an icon finds one.
+icon: GitFork
+---
+
+## Ids
+
+Every icon is named after an id of the [Open Food Facts ingredients taxonomy](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/food/ingredients.txt): a language code, a colon, and the ingredient's canonical name.
+
+| Ingredient | Id | File |
+| --- | --- | --- |
+| Shallot | `en:shallot` | `en_shallot.webp` |
+| Fresh cream | `en:fresh-cream` | `en_fresh-cream.webp` |
+| Black pepper | `en:black-pepper` | `en_black-pepper.webp` |
+
+File names are ids with `:` replaced by `_`.
+
+### Getting ids for your ingredients
+
+- **From Open Food Facts products.** The [product API](https://openfoodfacts.github.io/openfoodfacts-server/api/) returns `ingredients[].id` with these ids.
+- **From your own ingredient list.** Map each of your ingredients to an id once, by hand or with the [taxonomy file](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/food/ingredients.txt), and store it. The [gallery](/icons) shows the id of every icon.
+- **From other languages.** The taxonomy also has ids such as `fr:crème-fraîche-liquide`. They have parents like any other, so the fallback works on them too: that one gets the cream icon.
+
+## Fallback
+
+The taxonomy knows that fleur de sel is a sea salt, and that sea salt is a salt. When an id has no icon, `findIcon` looks at its parents, then at their parents, and stops at the first one that has an icon.
+
+<Resolves id="en:fleur-de-sel" />
+<Resolves id="en:basmati-rice" />
+<Resolves id="en:napa-cabbage" />
+
+That is how <Total /> icons cover <Resolvable /> taxonomy ids.
+
+```ts
+import { findIcon } from "@ingredient-icons/core"
+
+findIcon("en:shallot")
+// { id: "en:shallot", file: "en_shallot", exact: true }
+
+findIcon("en:fleur-de-sel")
+// { id: "en:salt", file: "en_salt", exact: false }
+
+findIcon("en:not-an-ingredient")
+// undefined
+```
+
+### How the walk works
+
+- It goes **level by level**: all parents first, then all grandparents. An ingredient with two parents gets the icon of whichever parent comes first in the taxonomy.
+- It stops after **six levels** of ancestors.
+- It never loops, even if the taxonomy has a cycle.
+
+### When to check `exact`
+
+`exact` is `false` when the icon is an ancestor's. Most apps can ignore it: a tomato for cherry tomatoes is what people expect. Use it when an approximation would mislead, for example in an allergen list.
+
+```ts
+const icon = findIcon(id)
+const src = icon?.exact ? iconUrl(id) : undefined
+```
+
+## Pinned taxonomy
+
+The package pins the taxonomy to one Open Food Facts commit, exported as `TAXONOMY_COMMIT`. A new id added to Open Food Facts after that commit has no parents yet in the package, so it only gets an icon if it has one of its own. Updates come with new releases.

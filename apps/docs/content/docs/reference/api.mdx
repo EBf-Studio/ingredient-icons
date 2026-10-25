@@ -1,0 +1,104 @@
+---
+title: API
+description: Every function, constant and type exported by @ingredient-icons/core.
+icon: Braces
+---
+
+```ts
+import {
+  findIcon, iconPath, iconUrl, iconName,
+  ids, sizes, CDN_URL, VERSION, STYLE, TAXONOMY_COMMIT,
+  type Icon, type IconSize,
+} from "@ingredient-icons/core"
+```
+
+## findIcon
+
+```ts
+function findIcon(id: string): Icon | undefined
+```
+
+The icon of an Open Food Facts ingredient id, or of its closest ancestor in the taxonomy when it has none of its own. `undefined` when no ancestor within six levels has one. See [Ids and fallback](/docs/guides/ids-and-fallback).
+
+```ts
+findIcon("en:cherry-tomato") // { id: "en:tomato", file: "en_tomato", exact: false }
+```
+
+### Icon
+
+<TypeTable
+  type={{
+    id: { type: 'string', description: 'The id whose icon this is: the one asked for, or the closest ancestor that has one.' },
+    file: { type: 'string', description: 'File name without extension: "en_shallot".' },
+    exact: { type: 'boolean', description: 'False when the icon is an ancestor\'s: cherry tomatoes get the tomato.' },
+  }}
+/>
+
+## iconUrl
+
+```ts
+function iconUrl(id: string, options?: { size?: IconSize; baseUrl?: string }): string | undefined
+```
+
+URL of the icon's WebP file, after fallback. `undefined` when `findIcon` finds nothing.
+
+<TypeTable
+  type={{
+    size: { type: 'IconSize', typeDescription: '64 | 128 | 256', default: '128', description: 'Width and height of the file, in pixels.' },
+    baseUrl: { type: 'string', default: 'CDN_URL', description: 'Folder that contains the package\'s icons/ folder. See Self-hosting.' },
+  }}
+/>
+
+```ts
+iconUrl("en:shallot", { size: 256 })
+// https://cdn.jsdelivr.net/npm/@ingredient-icons/core@<version>/icons/webp/256/en_shallot.webp
+```
+
+## iconPath
+
+```ts
+function iconPath(id: string, size?: IconSize): string | undefined
+```
+
+Path of the icon inside the package, after fallback. `size` defaults to `128`.
+
+```ts
+iconPath("en:shallot", 64) // "icons/webp/64/en_shallot.webp"
+```
+
+## iconName
+
+```ts
+function iconName(id: string, locale?: "en" | "fr"): string | undefined
+```
+
+Name of an id that has its own icon, from the Open Food Facts taxonomy. `locale` defaults to `"en"`. No fallback: `undefined` for ids without an icon. See [Names](/docs/guides/names).
+
+```ts
+iconName("en:shallot", "fr") // "échalote"
+```
+
+## Constants
+
+<TypeTable
+  type={{
+    ids: { type: 'readonly string[]', description: 'Every id that has its own icon.' },
+    sizes: { type: 'readonly IconSize[]', description: 'Sizes shipped in the package: [64, 128, 256].' },
+    CDN_URL: { type: 'string', description: 'jsDelivr URL of the package, pinned to its version. The default baseUrl.' },
+    VERSION: { type: 'string', description: 'Version of the installed package.' },
+    STYLE: { type: 'number', description: 'Version of the drawing style. It changes when icons are redrawn in a new style.' },
+    TAXONOMY_COMMIT: { type: 'string', description: 'Open Food Facts commit the parents and names come from.' },
+  }}
+/>
+
+## Types
+
+```ts
+type IconSize = 64 | 128 | 256
+
+interface Icon {
+  id: string
+  file: string
+  exact: boolean
+}
+```

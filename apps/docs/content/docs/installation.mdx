@@ -1,0 +1,42 @@
+---
+title: Installation
+description: Add @ingredient-icons/core to your project.
+icon: Package
+---
+
+```npm
+npm install @ingredient-icons/core
+```
+
+The package is [on npm](https://www.npmjs.com/package/@ingredient-icons/core) and works in browsers, Node, Bun, Deno and React Native. It is ESM only and ships its own TypeScript types.
+
+## What is inside
+
+<Files>
+  <Folder name="@ingredient-icons/core" defaultOpen>
+    <Folder name="dist">
+      <File name="index.js" />
+      <File name="index.d.ts" />
+    </Folder>
+    <Folder name="icons" defaultOpen>
+      <Folder name="webp" defaultOpen>
+        <Folder name="64" />
+        <Folder name="128" />
+        <Folder name="256" />
+      </Folder>
+    </Folder>
+  </Folder>
+</Files>
+
+- `dist/` holds the functions and the data they need: which ids have an icon, the parents of every taxonomy entry and the names.
+- `icons/webp/{size}/` holds the image files, one per icon and size, for when you [serve them yourself](/docs/guides/self-hosting).
+
+You don't have to bundle the images. By default the URLs point at the [jsDelivr](https://www.jsdelivr.com) CDN, pinned to the version you installed.
+
+## Bundle size
+
+The taxonomy data weighs about 270 KB minified, 57 KB gzipped. On the web, call the functions on the server when you can (a Server Component, an API route, your build step) and send only the URLs to the browser. In a mobile app it is a small part of the bundle.
+
+<Callout title="No npm?">
+  The icons are plain files in a Git repository, with a JSON manifest. See [Without npm](/docs/guides/without-npm) for Swift, Kotlin, Python or anything else.
+</Callout>

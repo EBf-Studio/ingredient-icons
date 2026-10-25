@@ -1,0 +1,66 @@
+---
+title: Files
+description: The format of manifest.json and taxonomy.json.
+icon: FileCode
+---
+
+Both files live at the root of the [repository](https://github.com/EBf-Studio/ingredient-icons). The npm package compiles them into its code, so you only need them [without npm](/docs/guides/without-npm).
+
+## manifest.json
+
+Every icon, keyed by taxonomy id.
+
+```json title="manifest.json"
+{
+  "style": 1,
+  "sizes": {
+    "png": [64, 128, 256, 512],
+    "webp": [64, 128, 256]
+  },
+  "path": "icons/{format}/{size}/{file}.{format}",
+  "icons": {
+    "en:shallot": { "file": "en_shallot" }
+  }
+}
+```
+
+<TypeTable
+  type={{
+    style: { type: 'number', description: 'Version of the drawing style.' },
+    sizes: { type: '{ png: number[]; webp: number[] }', description: 'Sizes available in each format.' },
+    path: { type: 'string', description: 'Template of a file\'s path from the repository root.' },
+    icons: { type: 'Record<string, { file: string }>', description: 'File name of each id that has its own icon.' },
+  }}
+/>
+
+License: CC0 1.0.
+
+## taxonomy.json
+
+The part of the Open Food Facts ingredients taxonomy the fallback needs.
+
+```json title="taxonomy.json"
+{
+  "source": "Open Food Facts ingredients taxonomy",
+  "url": "https://github.com/openfoodfacts/openfoodfacts-server/blob/<commit>/taxonomies/food/ingredients.txt",
+  "commit": "<commit>",
+  "license": "ODbL-1.0",
+  "parents": {
+    "en:fleur-de-sel": ["en:sea-salt"],
+    "en:sea-salt": ["en:salt"]
+  },
+  "names": {
+    "en:shallot": { "en": "shallot", "fr": "échalote" }
+  }
+}
+```
+
+<TypeTable
+  type={{
+    commit: { type: 'string', description: 'Open Food Facts commit the data was taken from.' },
+    parents: { type: 'Record<string, string[]>', description: 'Parents of every taxonomy entry that has one, in taxonomy order.' },
+    names: { type: 'Record<string, { en?: string; fr?: string }>', description: 'English and French names of the ids that have an icon.' },
+  }}
+/>
+
+License: ODbL 1.0, from Open Food Facts. See [Licenses](/docs/licenses).

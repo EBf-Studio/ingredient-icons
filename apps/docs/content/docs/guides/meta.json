@@ -1,0 +1,4 @@
+{
+  "title": "Guides",
+  "pages": ["ids-and-fallback", "react", "react-native", "nextjs", "self-hosting", "without-npm", "names"]
+}
