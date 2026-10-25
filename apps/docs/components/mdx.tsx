@@ -39,7 +39,7 @@ function Resolves({ id }: { id: string }) {
   if (!icon) throw new Error(`Resolves: ${id} has no icon`);
   const entry = iconById(icon.id)!;
   return (
-    <div className="not-prose my-4 flex items-center gap-3 rounded-xl border bg-fd-card p-2 pr-4">
+    <div className="not-prose my-4 flex items-center gap-3 rounded-control border bg-fd-card p-2 pr-4 shadow-card">
       <IconImage file={icon.file} size={48} className="size-12" />
       <code className="min-w-0 truncate font-mono text-sm">{id}</code>
       {!icon.exact && (

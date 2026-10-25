@@ -97,7 +97,7 @@ function SectionHeader({ title, children }: { title: React.ReactNode; children: 
 /** How far the fallback stretches the icon set, shown under the demo's controls. */
 function Coverage() {
   return (
-    <div className="rounded-2xl border bg-fd-card p-5">
+    <div className="rounded-card border bg-fd-card p-5 shadow-card">
       <div className="flex items-end gap-3">
         <div>
           <p className="font-display text-4xl font-semibold leading-none tracking-tight">{total}</p>
@@ -149,10 +149,10 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="relative h-[26rem] rounded-[2rem] border bg-fd-muted/60 px-2 sm:h-[34rem] lg:h-[38rem]">
+        <div className="relative h-[26rem] rounded-panel border bg-fd-muted/60 px-2 sm:h-[34rem] lg:h-[38rem]">
           <div
             aria-hidden
-            className="absolute inset-0 rounded-[2rem] opacity-60 [background-image:linear-gradient(var(--color-fd-border)_1px,transparent_1px),linear-gradient(90deg,var(--color-fd-border)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
+            className="absolute inset-0 rounded-panel opacity-60 [background-image:linear-gradient(var(--color-fd-border)_1px,transparent_1px),linear-gradient(90deg,var(--color-fd-border)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
           />
           <Shelf className="h-full" />
         </div>
@@ -248,7 +248,7 @@ export default function HomePage() {
               </CodeBlockTab>
             </CodeBlockTabs>
 
-            <figure className="rounded-[1.75rem] border bg-fd-background p-6 shadow-[0_24px_48px_-28px_rgb(24_33_28/0.35)]">
+            <figure className="rounded-card border bg-fd-background p-6 shadow-raised">
               <figcaption>
                 <p className="font-display text-2xl font-semibold">Ratatouille</p>
                 <p className="mt-1 text-sm text-fd-muted-foreground">Serves 4, 1 h 15 min</p>
@@ -316,7 +316,7 @@ export default function HomePage() {
 
       {/* Closing */}
       <section className="mx-auto w-full max-w-(--site-width) px-5 pb-24 sm:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] bg-basil px-6 py-14 text-fd-primary-foreground sm:px-12 dark:bg-[#1d3a27] dark:text-fd-foreground">
+        <div className="relative overflow-hidden rounded-panel bg-basil px-6 py-14 text-fd-primary-foreground sm:px-12 dark:bg-[#1d3a27] dark:text-fd-foreground">
           <div className="relative z-10 max-w-lg">
             <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">
               Missing an ingredient?

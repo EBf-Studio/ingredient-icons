@@ -20,7 +20,7 @@ export function InstallCommand({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'w-full max-w-md rounded-xl border bg-fd-card shadow-[0_1px_0_rgb(0_0_0/0.04)]',
+        'w-full max-w-md rounded-control border bg-fd-card shadow-card',
         className,
       )}
     >

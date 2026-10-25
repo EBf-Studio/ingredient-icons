@@ -82,7 +82,7 @@ export function Gallery({ icons, categories }: { icons: GalleryIcon[]; categorie
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search in English or French: basil, échalote, en:feta"
               aria-label="Search icons"
-              className="h-11 w-full rounded-xl border bg-fd-card pl-10 pr-10 text-[15px] outline-none placeholder:text-fd-muted-foreground focus:border-basil focus:ring-4 focus:ring-basil/15 [&::-webkit-search-cancel-button]:hidden"
+              className="h-11 w-full rounded-control border bg-fd-card pl-10 shadow-card pr-10 text-[15px] outline-none placeholder:text-fd-muted-foreground focus:border-basil focus:ring-4 focus:ring-basil/15 [&::-webkit-search-cancel-button]:hidden"
             />
             {query ? (
               <button
@@ -102,7 +102,7 @@ export function Gallery({ icons, categories }: { icons: GalleryIcon[]; categorie
               </kbd>
             )}
           </div>
-          <div role="radiogroup" aria-label="Icon size" className="flex rounded-xl border bg-fd-card p-1">
+          <div role="radiogroup" aria-label="Icon size" className="flex rounded-control border bg-fd-card p-1 shadow-card">
             {(['cozy', 'compact'] as const).map((value) => (
               <button
                 key={value}
@@ -221,7 +221,7 @@ function Tile({ icon, via, density }: { icon: GalleryIcon; via?: string; density
       <Link
         href={`/icons/${icon.slug}`}
         className={cn(
-          'flex h-full flex-col items-center rounded-2xl text-center transition-colors hover:bg-fd-card focus-visible:bg-fd-card focus-visible:outline-2 focus-visible:outline-fd-ring',
+          'flex h-full flex-col items-center rounded-card text-center transition-colors hover:bg-fd-card focus-visible:bg-fd-card focus-visible:outline-2 focus-visible:outline-fd-ring',
           cozy ? 'gap-2 px-2 pt-5 pb-4' : 'gap-1 px-1 pt-3 pb-2',
         )}
       >

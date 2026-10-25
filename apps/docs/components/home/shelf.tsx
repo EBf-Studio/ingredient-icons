@@ -50,7 +50,7 @@ export function Shelf({ className }: { className?: string }) {
                   <Link
                     href={`/icons/${icon.slug}`}
                     tabIndex={copy === 1 ? -1 : undefined}
-                    className="group flex flex-col items-center gap-1 rounded-2xl px-2 py-3 outline-none focus-visible:ring-2 focus-visible:ring-fd-ring"
+                    className="group flex flex-col items-center gap-1 rounded-card px-2 py-3 outline-none focus-visible:ring-2 focus-visible:ring-fd-ring"
                   >
                     <IconImage
                       file={icon.file}

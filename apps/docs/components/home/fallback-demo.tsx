@@ -109,13 +109,13 @@ export function FallbackDemo({ slugs, footer }: { slugs: Record<string, string>;
                 setOpen(false);
               }
             }}
-            className="h-12 w-full rounded-xl border bg-fd-card pl-10 pr-4 text-[15px] outline-none transition-shadow placeholder:text-fd-muted-foreground focus:border-basil focus:ring-4 focus:ring-basil/15"
+            className="h-12 w-full rounded-control border bg-fd-card pl-10 shadow-card pr-4 text-[15px] outline-none transition-shadow placeholder:text-fd-muted-foreground focus:border-basil focus:ring-4 focus:ring-basil/15"
           />
           {open && matches.length > 0 && (
             <ul
               id={listId}
               role="listbox"
-              className="absolute inset-x-0 top-full z-20 mt-1.5 overflow-hidden rounded-xl border bg-fd-popover p-1 shadow-lg"
+              className="absolute inset-x-0 top-full z-20 mt-1.5 overflow-hidden rounded-control border bg-fd-popover p-1 shadow-popover"
             >
               {matches.map((id, i) => (
                 <li
@@ -140,11 +140,11 @@ export function FallbackDemo({ slugs, footer }: { slugs: Record<string, string>;
             </ul>
           )}
         </div>
-        <p className="mt-2 min-h-5 text-sm text-fd-muted-foreground" aria-live="polite">
+        <p className="mt-2 text-sm text-fd-muted-foreground empty:hidden" aria-live="polite">
           {noMatch ? 'No ingredient by that name in the taxonomy. Try a simpler word.' : null}
         </p>
 
-        <p className="mt-4 text-sm text-fd-muted-foreground">Or pick one:</p>
+        <p className="mt-5 text-sm text-fd-muted-foreground">Or pick one:</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {PRESETS.map((id) => (
             <button
@@ -163,10 +163,10 @@ export function FallbackDemo({ slugs, footer }: { slugs: Record<string, string>;
             </button>
           ))}
         </div>
-        {footer && <div className="mt-8">{footer}</div>}
+        {footer && <div className="mt-8 lg:mt-auto lg:pt-8">{footer}</div>}
       </div>
 
-      <div className="relative flex min-w-0 flex-col overflow-hidden rounded-2xl border bg-fd-card">
+      <div className="relative flex min-w-0 flex-col overflow-hidden rounded-card border bg-fd-card shadow-card">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-50 [background-image:radial-gradient(var(--color-fd-border)_1px,transparent_1px)] [background-size:18px_18px]"
@@ -303,7 +303,7 @@ function Rung(props: {
   if (found && checked) {
     slot = (
       <Link href={props.href} aria-label={`${readableId(id)} icon`} className="pop-in block">
-        <img src={iconSrc(fileOf(id), 128)} alt="" className="size-12 drop-shadow-[0_8px_10px_rgb(24_33_28/0.15)] sm:size-16" />
+        <img src={iconSrc(fileOf(id), 128)} alt="" className="size-12 drop-shadow-icon sm:size-16" />
       </Link>
     );
   } else if (borrowed) {
@@ -311,7 +311,7 @@ function Rung(props: {
       <img
         src={iconSrc(fileOf(props.target), 128)}
         alt=""
-        className="borrow-drop size-12 drop-shadow-[0_8px_10px_rgb(24_33_28/0.15)] sm:size-16"
+        className="borrow-drop size-12 drop-shadow-icon sm:size-16"
       />
     );
   }
@@ -337,7 +337,7 @@ function Rung(props: {
         <div
           data-slot
           className={cn(
-            'relative flex size-16 shrink-0 items-center justify-center sm:size-20 rounded-2xl border-2 transition-colors duration-300',
+            'relative flex size-16 shrink-0 items-center justify-center sm:size-20 rounded-card border-2 transition-colors duration-300',
             (found && checked) || borrowed
               ? 'border-transparent bg-transparent'
               : 'border-dashed bg-fd-background/70',

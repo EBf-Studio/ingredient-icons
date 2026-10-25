@@ -64,7 +64,7 @@ iconUrl("${icon.id}")
       </nav>
 
       <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
-        <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[2rem] border bg-fd-muted/60">
+        <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-panel border bg-fd-muted/60">
           <div
             aria-hidden
             className="absolute inset-0 opacity-70 [background-image:linear-gradient(var(--color-fd-border)_1px,transparent_1px),linear-gradient(90deg,var(--color-fd-border)_1px,transparent_1px)] [background-size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_72%)]"
@@ -74,7 +74,7 @@ iconUrl("${icon.id}")
             alt={`${icon.en} icon`}
             width={512}
             height={512}
-            className="icon-img relative w-[72%] drop-shadow-[0_30px_30px_rgb(24_33_28/0.18)]"
+            className="icon-img relative w-[72%] drop-shadow-icon-lg"
           />
         </div>
 
@@ -88,7 +88,7 @@ iconUrl("${icon.id}")
             </p>
           )}
 
-          <div className="mt-6 flex items-center gap-1 rounded-xl border bg-fd-card py-1 pr-1 pl-4">
+          <div className="mt-6 flex items-center gap-1 rounded-control border bg-fd-card py-1 pr-1 pl-4 shadow-card">
             <span className="text-sm text-fd-muted-foreground">Id</span>
             <code className="ml-2 min-w-0 flex-1 truncate font-mono text-[15px]">{icon.id}</code>
             <CopyButton value={icon.id} label="Copy id" />
@@ -104,7 +104,7 @@ iconUrl("${icon.id}")
                     key={size}
                     href={iconSrc(icon.file, size, format)}
                     download={`${icon.file}-${size}.${format}`}
-                    className="inline-flex h-9 items-center gap-1.5 rounded-lg border bg-fd-card px-2.5 text-sm transition-colors hover:border-basil/50"
+                    className="inline-flex h-9 items-center gap-1.5 rounded-control border bg-fd-card px-2.5 shadow-card text-sm transition-colors hover:border-basil/50"
                   >
                     <Download className="size-3.5 text-fd-muted-foreground" />
                     {size}
@@ -179,7 +179,7 @@ iconUrl("${icon.id}")
               <li key={sibling.id}>
                 <Link
                   href={`/icons/${sibling.slug}`}
-                  className="group flex flex-col items-center gap-2 rounded-2xl px-2 pt-4 pb-3 text-center transition-colors hover:bg-fd-card"
+                  className="group flex flex-col items-center gap-2 rounded-card px-2 pt-4 pb-3 text-center transition-colors hover:bg-fd-card"
                 >
                   <IconImage file={sibling.file} size={72} className="size-18 transition-transform group-hover:scale-105" />
                   <span className="text-sm leading-tight">{sibling.en}</span>

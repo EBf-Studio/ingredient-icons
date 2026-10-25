@@ -28,6 +28,17 @@
   --color-counter: #f5f7f2;
   --color-ink: #18211c;
 
+  /* One scale for corners and depth across the site: controls (fields, code, inline
+     panels), cards and tiles, and the large showcase panels. */
+  --radius-control: 0.75rem;
+  --radius-card: 1rem;
+  --radius-panel: 2rem;
+  --shadow-card: 0 1px 2px rgb(24 33 28 / 0.05);
+  --shadow-raised: 0 24px 48px -28px rgb(24 33 28 / 0.35);
+  --shadow-popover: 0 16px 32px -12px rgb(24 33 28 / 0.25);
+  --drop-shadow-icon: 0 8px 10px rgb(24 33 28 / 0.15);
+  --drop-shadow-icon-lg: 0 30px 30px rgb(24 33 28 / 0.18);
+
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-mono: var(--font-mono-face), ui-monospace, SFMono-Regular, monospace;
