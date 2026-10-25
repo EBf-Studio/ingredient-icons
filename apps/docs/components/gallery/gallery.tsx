@@ -7,7 +7,7 @@ import { useCopy } from '@/components/copy-button';
 import { IconImage } from '@/components/icon-image';
 import { cn } from '@/lib/cn';
 import type { Category } from '@/lib/icons';
-import { fold, indexIcons, matchIcons, type SearchableIcon } from '@/lib/icon-search';
+import { fold, GALLERY_SEARCH_EVENT, indexIcons, matchIcons, type SearchableIcon } from '@/lib/icon-search';
 import { newIssueUrl } from '@/lib/shared';
 
 export interface GalleryIcon extends SearchableIcon {
@@ -22,6 +22,16 @@ export function Gallery({ icons, categories }: { icons: GalleryIcon[]; categorie
   const [density, setDensity] = useState<Density>('cozy');
   const deferred = useDeferredValue(query);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // The ⌘K dialog links here with ?q= to show every match. When the gallery is already
+  // open, the navigation does not remount it, so the dialog also sends the query as an event.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) setQuery(q);
+    const onSearch = (event: Event) => setQuery((event as CustomEvent<string>).detail);
+    window.addEventListener(GALLERY_SEARCH_EVENT, onSearch);
+    return () => window.removeEventListener(GALLERY_SEARCH_EVENT, onSearch);
+  }, []);
 
   // "/" jumps to search, as on most icon sites.
   useEffect(() => {

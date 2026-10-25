@@ -1,4 +1,5 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
+import SearchDialog from '@/components/search-dialog';
 import type { Metadata } from 'next';
 import { Figtree, Fraunces, JetBrains_Mono } from 'next/font/google';
 import { appName, siteUrl } from '@/lib/shared';
@@ -31,7 +32,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
       suppressHydrationWarning
     >
       <body className="flex flex-col min-h-screen">
-        <RootProvider>{children}</RootProvider>
+        <RootProvider search={{ SearchDialog }}>{children}</RootProvider>
       </body>
     </html>
   );

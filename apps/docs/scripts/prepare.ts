@@ -1,6 +1,7 @@
 // Builds @ingredient-icons/core, copies the icons into public/ and writes the data the
 // site renders from: lib/generated/icons.json (gallery and icon pages), plus
-// public/data/lookup.json (the fallback demo), fetched on demand. Runs before dev and build.
+// public/data/lookup.json (the fallback demo) and public/data/search-icons.json (the ⌘K
+// dialog), both fetched on demand. Runs before dev and build.
 
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
@@ -114,6 +115,20 @@ await rm(path.join(site, "public/data"), { recursive: true, force: true })
 await cp(path.join(root, "icons"), path.join(site, "public/icons"), { recursive: true })
 await mkdir(path.join(site, "public/data"), { recursive: true })
 await writeFile(path.join(site, "public/data/lookup.json"), JSON.stringify(lookup))
+// The ⌘K dialog fetches this when it opens: names and English aliases, no taxonomy.
+await writeFile(
+  path.join(site, "public/data/search-icons.json"),
+  JSON.stringify(
+    icons.map(({ id, slug, file, en, fr, fallbacks }) => ({
+      id,
+      slug,
+      file,
+      en,
+      fr,
+      aliases: fallbacks.filter((f) => f.startsWith("en:")).map((f) => f.slice(3).replaceAll("-", " ")),
+    })),
+  ),
+)
 
 console.log(`${icons.length} icons, ${Object.keys(lookup).length} taxonomy ids resolve to one`)
 for (const { key } of CATEGORIES) console.log(`  ${key}: ${icons.filter((i) => i.category === key).length}`)

@@ -1,4 +1,4 @@
-/** What the gallery searches through for each icon. */
+/** What the gallery and the ⌘K dialog search through for each icon. */
 export interface SearchableIcon {
   id: string;
   slug: string;
@@ -50,3 +50,6 @@ export function matchIcons<T extends SearchableIcon>(index: IconIndexEntry<T>[],
   }
   return scored.sort((a, b) => a.score - b.score);
 }
+
+/** Window event the ⌘K dialog sends to an already open gallery, with the query as detail. */
+export const GALLERY_SEARCH_EVENT = 'gallery-search';
