@@ -86,6 +86,9 @@
     "de:dinkelmehl-type-812": [
       "en:spelt-flour"
     ],
+    "de:eiweißangereichertes-molkenpulver": [
+      "en:whey-powder"
+    ],
     "de:feine-milchschokolade": [
       "en:milk-chocolate"
     ],
@@ -371,6 +374,9 @@
     ],
     "en:alcohol-vinegar": [
       "en:vinegar"
+    ],
+    "en:alcohol-vinegar-powder": [
+      "en:alcohol-vinegar"
     ],
     "en:alfalfa": [
       "en:plant"
@@ -885,6 +891,12 @@
     ],
     "en:barley-malt-flour": [
       "en:barley-flour"
+    ],
+    "en:barley-malt-syrup": [
+      "en:disaccharide"
+    ],
+    "en:barley-malt-vinegar": [
+      "en:malt-vinegar"
     ],
     "en:barley-starch": [
       "en:barley",
@@ -2185,6 +2197,7 @@
       "en:cardamom"
     ],
     "en:cardamom-seed": [
+      "en:cardamom",
       "en:seed"
     ],
     "en:cardoon": [
@@ -2443,6 +2456,9 @@
     "en:cheese-flavouring": [
       "en:flavouring"
     ],
+    "en:cheese-made-from-pasteurized-milk": [
+      "en:cheese"
+    ],
     "en:cheese-powder": [
       "en:cheese"
     ],
@@ -2504,11 +2520,15 @@
     "en:chia": [
       "en:seed"
     ],
+    "en:chia-oil": [
+      "en:vegetable-oil"
+    ],
     "en:chia-seed": [
       "en:chia",
       "en:seed"
     ],
     "en:chick-egg-white-or-protein": [
+      "en:chicken-egg-white",
       "en:chicken-protein"
     ],
     "en:chickasaw-plum": [
@@ -2954,6 +2974,12 @@
     "en:cocoa-paste-processed-with-alkali": [
       "en:cocoa-paste"
     ],
+    "en:cocoa-powder": [
+      "en:cocoa"
+    ],
+    "en:cocoa-powder-processed-with-alkali": [
+      "en:cocoa-powder"
+    ],
     "en:cocoa-powder-with-reduced-cocoa-butter-content": [
       "en:cocoa-powder"
     ],
@@ -2978,12 +3004,18 @@
     "en:coconut-chips": [
       "en:coconut"
     ],
+    "en:coconut-cream": [
+      "en:coconut"
+    ],
     "en:coconut-fat": [
       "en:coconut",
       "en:vegetable-fat"
     ],
     "en:coconut-flakes": [
       "en:coconut"
+    ],
+    "en:coconut-flavouring": [
+      "en:flavouring"
     ],
     "en:coconut-flour": [
       "en:coconut",
@@ -2997,6 +3029,9 @@
     ],
     "en:coconut-milk-light": [
       "en:coconut-milk"
+    ],
+    "en:coconut-oil": [
+      "en:vegetable-oil"
     ],
     "en:coconut-paste": [
       "en:coconut"
@@ -3768,6 +3803,9 @@
     "en:dark-chocolate": [
       "en:chocolate"
     ],
+    "en:dark-chocolate-chunks": [
+      "en:dark-chocolate"
+    ],
     "en:dark-chocolate-with-sweeteners": [
       "en:dark-chocolate",
       "en:preparation"
@@ -4246,6 +4284,10 @@
     "en:durum-wheat-kernels": [
       "en:durum-wheat"
     ],
+    "en:durum-wheat-semolina": [
+      "en:durum-wheat",
+      "en:semolina"
+    ],
     "en:durum-wheat-semolina-pasta": [
       "en:pasta"
     ],
@@ -4291,6 +4333,9 @@
     ],
     "en:egg-pasta": [
       "en:pasta"
+    ],
+    "en:egg-powder": [
+      "en:egg"
     ],
     "en:egg-protein": [
       "en:egg-white"
@@ -4565,6 +4610,9 @@
     "en:farmers-maroilles": [
       "en:maroilles"
     ],
+    "en:fat": [
+      "en:oil-and-fat"
+    ],
     "en:fat-free-half-and-half-cream": [
       "en:cream"
     ],
@@ -4573,6 +4621,10 @@
     ],
     "en:fat-reduced-cocoa": [
       "en:cocoa"
+    ],
+    "en:fat-reduced-cocoa-powder": [
+      "en:cocoa-powder",
+      "en:fat-reduced-cocoa"
     ],
     "en:feijoa": [
       "en:fruit"
@@ -4676,11 +4728,20 @@
     "en:first-age-baby-milk-powder": [
       "en:milk"
     ],
+    "en:fish-gelatine": [
+      "en:gelatin"
+    ],
     "en:fish-meat": [
       "en:fish"
     ],
+    "en:fish-oil": [
+      "en:oil"
+    ],
     "en:fish-protein": [
       "en:fish"
+    ],
+    "en:fish-sauce": [
+      "en:sauce"
     ],
     "en:fish-stock": [
       "en:broth",
@@ -4798,6 +4859,7 @@
       "en:wheat-flour"
     ],
     "en:fourme-d'ambert": [
+      "en:blue-cheese",
       "en:cow-cheese"
     ],
     "en:fourme-de-montbrison": [
@@ -4907,6 +4969,7 @@
       "en:egg"
     ],
     "en:fresh-egg-pasta": [
+      "en:egg-pasta",
       "en:fresh-pasta"
     ],
     "en:fresh-garlic": [
@@ -5072,6 +5135,9 @@
     ],
     "en:fuki": [
       "en:vegetable"
+    ],
+    "en:full-fat-acorn-flour": [
+      "en:acorn"
     ],
     "en:full-fat-soft-cheese": [
       "en:soft-cheese"
@@ -5432,6 +5498,7 @@
       "en:sugar"
     ],
     "en:grape": [
+      "en:berries",
       "en:fruit"
     ],
     "en:grape-juice": [
@@ -5884,6 +5951,9 @@
     "en:hazelnut-kernel": [
       "en:hazelnut"
     ],
+    "en:hazelnut-oil": [
+      "en:vegetable-oil"
+    ],
     "en:hazelnut-paste": [
       "en:hazelnut"
     ],
@@ -6317,6 +6387,9 @@
     "en:invert-sugar-syrup": [
       "en:invert-sugar",
       "en:sugar-syrup"
+    ],
+    "en:iodised-salt": [
+      "en:salt"
     ],
     "en:iodised-sea-salt": [
       "en:iodised-salt",
@@ -6814,6 +6887,9 @@
     "en:lemon-filling": [
       "en:filling"
     ],
+    "en:lemon-flavouring": [
+      "en:flavouring"
+    ],
     "en:lemon-juice": [
       "en:fruit-juice"
     ],
@@ -6850,6 +6926,9 @@
       "en:preparation"
     ],
     "en:lemon-pulp": [
+      "en:lemon"
+    ],
+    "en:lemon-puree": [
       "en:lemon"
     ],
     "en:lemon-sole": [
@@ -6890,6 +6969,7 @@
       "en:maca"
     ],
     "en:lettuce": [
+      "en:leaf-vegetable",
       "en:salad"
     ],
     "en:light-brown-sugar": [
@@ -7238,6 +7318,12 @@
     "en:malt-flour": [
       "en:cereal-flour"
     ],
+    "en:malt-syrup": [
+      "en:disaccharide"
+    ],
+    "en:malt-vinegar": [
+      "en:vinegar"
+    ],
     "en:malted-barley": [
       "en:malt"
     ],
@@ -7470,6 +7556,18 @@
     "en:mechanically-separated-meat": [
       "en:meat"
     ],
+    "en:mechanically-separated-meat-of-beef": [
+      "en:beef-meat",
+      "en:mechanically-separated-meat"
+    ],
+    "en:mechanically-separated-meat-of-chicken": [
+      "en:chicken-meat",
+      "en:mechanically-separated-meat"
+    ],
+    "en:mechanically-separated-meat-of-pork": [
+      "en:mechanically-separated-meat",
+      "en:pork-meat"
+    ],
     "en:mechanically-separated-meat-of-turkey": [
       "en:mechanically-separated-meat",
       "en:turkey-meat"
@@ -7544,6 +7642,9 @@
     "en:melted-grated-cheese": [
       "en:melted-cheese"
     ],
+    "en:melted-powdered-cheese": [
+      "en:melted-cheese"
+    ],
     "en:menhaden-fish-oil": [
       "en:fish-oil"
     ],
@@ -7589,6 +7690,9 @@
     ],
     "en:milk-and-hazelnut-coating": [
       "en:coating"
+    ],
+    "en:milk-chocolate": [
+      "en:chocolate"
     ],
     "en:milk-chocolate-chips": [
       "en:chocolate"
@@ -7637,6 +7741,9 @@
     ],
     "en:milk-protein-isolate": [
       "en:milk-proteins"
+    ],
+    "en:milk-proteins": [
+      "en:animal-protein"
     ],
     "en:milk-spread-with-coconut-flavor": [
       "en:coconut-flavouring",
@@ -7783,6 +7890,7 @@
       "en:red-port"
     ],
     "en:modified-rice-starch": [
+      "en:modified-starch",
       "en:rice-starch"
     ],
     "en:modified-starch": [
@@ -7977,6 +8085,7 @@
       "en:mustard-seed"
     ],
     "en:mustard-sauce": [
+      "en:mustard",
       "en:sauce"
     ],
     "en:mustard-seed": [
@@ -8184,6 +8293,12 @@
     "en:natural-laurel-flavouring": [
       "en:natural-flavouring"
     ],
+    "en:natural-lemon-flavouring": [
+      "en:natural-flavouring"
+    ],
+    "en:natural-lime-flavouring": [
+      "en:natural-flavouring"
+    ],
     "en:natural-lychee-flavour": [
       "en:natural-flavouring"
     ],
@@ -8270,6 +8385,9 @@
     "en:natural-pear-flavouring": [
       "en:natural-flavouring",
       "en:pear-flavouring"
+    ],
+    "en:natural-pepper-flavouring": [
+      "en:natural-flavouring"
     ],
     "en:natural-peppermint-flavouring": [
       "en:natural-flavouring",
@@ -8686,6 +8804,7 @@
       "en:flavouring"
     ],
     "en:onion-oil": [
+      "en:oil",
       "en:onion"
     ],
     "en:onion-paster": [
@@ -8796,6 +8915,9 @@
     "en:organic-barley": [
       "en:barley"
     ],
+    "en:organic-brown-rice": [
+      "en:brown-rice"
+    ],
     "en:organic-brown-sugar": [
       "en:brown-sugar",
       "en:organic-sugar"
@@ -8827,6 +8949,9 @@
     ],
     "en:organic-concentrated-pineapple-juice": [
       "en:concentrated-pineapple-juice"
+    ],
+    "en:organic-concentrated-white-grape-juice": [
+      "en:concentrated-white-grape-juice"
     ],
     "en:organic-corn": [
       "en:corn"
@@ -8945,6 +9070,9 @@
     ],
     "en:organic-rooibos": [
       "en:rooibos"
+    ],
+    "en:organic-round-rice": [
+      "en:round-rice"
     ],
     "en:organic-sesame-oil": [
       "en:sesame-oil"
@@ -9202,6 +9330,9 @@
     "en:partially-defatted-sunflower-seed-flour": [
       "en:sunflower-seed"
     ],
+    "en:partially-demineralized-powdered-whey": [
+      "en:whey-powder"
+    ],
     "en:partially-hydrogenated-industrial-canola-oil": [
       "en:canola-oil",
       "en:partially-hydrogenated-vegetable-oil"
@@ -9252,8 +9383,14 @@
     "en:passion-fruit-flavouring": [
       "en:flavouring"
     ],
+    "en:passion-fruit-juice": [
+      "en:fruit-juice"
+    ],
     "en:passionfruit": [
       "en:fruit"
+    ],
+    "en:pasta": [
+      "en:dough"
     ],
     "en:pasta-made-from-wheat-flour": [
       "en:pasta"
@@ -9350,6 +9487,9 @@
     "en:peach-pulp": [
       "en:peach"
     ],
+    "en:peach-puree": [
+      "en:peach"
+    ],
     "en:peach-syrup": [
       "en:peach"
     ],
@@ -9428,6 +9568,9 @@
     ],
     "en:pecan-nut": [
       "en:tree-nut"
+    ],
+    "en:pecorino": [
+      "en:cheese"
     ],
     "en:pecorino-romano": [
       "en:pecorino"
@@ -9563,6 +9706,9 @@
       "en:baby-cucumber",
       "en:pickled-cucumber"
     ],
+    "en:picodon": [
+      "en:goat-cheese"
+    ],
     "en:pieces-and-juice-of-blackcurrant": [
       "en:blackcurrant"
     ],
@@ -9625,6 +9771,9 @@
     ],
     "en:pineapple-juice-from-concentrate": [
       "en:pineapple-juice"
+    ],
+    "en:pineapple-purée": [
+      "en:pineapple"
     ],
     "en:pineapple-segments": [
       "en:pineapple"
@@ -9693,6 +9842,9 @@
     ],
     "en:pistachio-paste": [
       "en:pistachio-nuts"
+    ],
+    "en:pistachio-seed-oil": [
+      "en:vegetable-oil"
     ],
     "en:pisto": [
       "en:vegetable"
@@ -9815,6 +9967,9 @@
     "en:pomegranate": [
       "en:fruit"
     ],
+    "en:pomegranate-juice": [
+      "en:fruit-juice"
+    ],
     "en:pomegranate-juice-from-concentrate": [
       "en:pomegranate-juice"
     ],
@@ -9845,6 +10000,9 @@
     "en:poppy": [
       "en:plant"
     ],
+    "en:poppyseed": [
+      "en:poppy"
+    ],
     "en:poppyseed-oil": [
       "en:vegetable-oil"
     ],
@@ -9856,6 +10014,9 @@
     ],
     "en:pork-belly": [
       "en:pork-meat"
+    ],
+    "en:pork-bone": [
+      "en:pork-by-product"
     ],
     "en:pork-breast": [
       "en:breast",
@@ -10033,6 +10194,9 @@
       "en:poultry"
     ],
     "en:poultry-protein": [
+      "en:poultry"
+    ],
+    "en:poultry-skin": [
       "en:poultry"
     ],
     "en:pounded-red-chili-pepper": [
@@ -10305,6 +10469,7 @@
       "en:rabbit"
     ],
     "en:rabbit-meat": [
+      "en:meat",
       "en:rabbit"
     ],
     "en:raclette": [
@@ -10389,6 +10554,9 @@
     ],
     "en:raspberry-leaf": [
       "en:herb"
+    ],
+    "en:raspberry-liqueur": [
+      "en:raspberry"
     ],
     "en:raspberry-puree-with-seeds": [
       "en:raspberry-puree"
@@ -10811,6 +10979,7 @@
       "en:kiwifruit"
     ],
     "en:reblochon": [
+      "en:cheese",
       "en:cow-cheese"
     ],
     "en:reconstituted-butter": [
@@ -11121,6 +11290,9 @@
     "en:rhodiola-rosea": [
       "en:plant"
     ],
+    "en:rhubarb": [
+      "en:stalk-vegetable"
+    ],
     "en:rhubarb-juice": [
       "en:rhubarb"
     ],
@@ -11132,6 +11304,9 @@
     ],
     "en:rice-bran": [
       "en:rice"
+    ],
+    "en:rice-bran-oil": [
+      "en:vegetable-oil"
     ],
     "en:rice-cream": [
       "en:rice"
@@ -11179,9 +11354,15 @@
       "en:rice-sourdough",
       "en:sourdough-powder"
     ],
+    "en:rice-starch": [
+      "en:starch"
+    ],
     "en:rice-syrup": [
       "en:disaccharide",
       "en:syrup"
+    ],
+    "en:rice-vinegar": [
+      "en:vinegar"
     ],
     "en:rice-wine": [
       "en:alcohol"
@@ -11475,6 +11656,9 @@
     "en:safflower-flower": [
       "en:safflower"
     ],
+    "en:safflower-oil": [
+      "en:vegetable-oil"
+    ],
     "en:safflower-seed-kernels": [
       "en:seed"
     ],
@@ -11747,6 +11931,9 @@
     "en:semi-skimmed-milk": [
       "en:milk"
     ],
+    "en:semi-skimmed-milk-powder": [
+      "en:milk-powder"
+    ],
     "en:semi-skimmed-pasteurized-goat-milk-uht": [
       "en:semi-skimmed-goat-milk"
     ],
@@ -11810,6 +11997,9 @@
     "en:sesame-seed-bun": [
       "en:special-bread"
     ],
+    "en:sesame-seeds": [
+      "en:sesame"
+    ],
     "en:sesbania-flower": [
       "en:plant"
     ],
@@ -11839,6 +12029,9 @@
     "en:sheep-rennet": [
       "en:coagulating-enzyme"
     ],
+    "en:sheep's-milk-cheese": [
+      "en:cheese"
+    ],
     "en:sheep's-whey": [
       "en:whey"
     ],
@@ -11847,6 +12040,9 @@
     ],
     "en:sheeps-cream": [
       "en:cream"
+    ],
+    "en:sheeps-fat": [
+      "en:animal-fat"
     ],
     "en:sheeps-or-goat-milk": [
       "en:goat-milk",
@@ -12162,6 +12358,7 @@
       "en:salad"
     ],
     "en:sorrel-or-acid": [
+      "en:acid",
       "en:sorrel"
     ],
     "en:sour-cherry": [
@@ -12210,6 +12407,9 @@
     "en:soy-marinade": [
       "en:marinade"
     ],
+    "en:soy-milk": [
+      "en:soy-preparation"
+    ],
     "en:soy-preparation": [
       "en:preparation"
     ],
@@ -12236,6 +12436,7 @@
       "en:sunflower-lecithin"
     ],
     "en:soya-bean": [
+      "en:pulse",
       "en:soya"
     ],
     "en:soya-bean-fiber": [
@@ -12525,6 +12726,9 @@
     "en:strawberry-flavoured-cream": [
       "en:strawberry-flavouring"
     ],
+    "en:strawberry-flavouring": [
+      "en:flavouring"
+    ],
     "en:strawberry-guavas": [
       "en:fruit"
     ],
@@ -12686,6 +12890,9 @@
     ],
     "en:sunflower-protein": [
       "en:plant-protein"
+    ],
+    "en:sunflower-seed": [
+      "en:seed"
     ],
     "en:sunflower-seed-flour": [
       "en:flour",
@@ -13198,6 +13405,9 @@
     ],
     "en:tulsi": [
       "en:herb"
+    ],
+    "en:tuna": [
+      "en:saltwater-fish"
     ],
     "en:tuna-chunks": [
       "en:canned-tuna"
@@ -13721,6 +13931,9 @@
     "en:wheat-glucose-fructose-syrup": [
       "en:glucose-fructose-syrup"
     ],
+    "en:wheat-glucose-syrup": [
+      "en:glucose-syrup"
+    ],
     "en:wheat-gluten": [
       "en:gluten"
     ],
@@ -13771,6 +13984,9 @@
     ],
     "en:wheat-stalk-fiber": [
       "en:wheat-fiber"
+    ],
+    "en:wheat-starch": [
+      "en:starch"
     ],
     "en:wheat-syrup": [
       "en:disaccharide",
@@ -14099,6 +14315,9 @@
       "en:buckwheat-flour",
       "en:wholemeal-flour"
     ],
+    "en:whole-grain-cereal-products": [
+      "en:preparation"
+    ],
     "en:whole-grain-corn-flour": [
       "en:corn-flour",
       "en:wholemeal-flour"
@@ -14232,6 +14451,9 @@
     ],
     "en:whole-walnuts": [
       "en:walnut"
+    ],
+    "en:whole-wheat": [
+      "en:wheat"
     ],
     "en:whole-wheat-bulgur": [
       "en:bulgur"
@@ -14531,6 +14753,10 @@
     "es:aceite-de-oliva-virgen-extra-de-lubrín": [
       "en:extra-virgin-olive-oil"
     ],
+    "es:aceite-hidrogenado-de-colza": [
+      "en:colza-oil",
+      "en:hydrogenated-vegetable-oil"
+    ],
     "es:azucar-caramelizado-en-polvo": [
       "en:caramelised-sugar"
     ],
@@ -14563,6 +14789,7 @@
       "en:coconut-sugar"
     ],
     "es:oleomargarina-bovina": [
+      "en:dairy",
       "en:margarine"
     ],
     "es:plátano-de-canarias-i.g.p.": [
@@ -14592,6 +14819,9 @@
     ],
     "fi:kinkkuvalmiste": [
       "en:meat-preparation"
+    ],
+    "fi:kokolihavalmiste": [
+      "en:meat"
     ],
     "fi:mansikoista-valmistettu-mehu-ja-viinirypäleet": [
       "en:fruit-juice",
@@ -15295,6 +15525,9 @@
     "fr:feuilles-de-verveine": [
       "en:verbena"
     ],
+    "fr:fibres-de-betterave": [
+      "en:beetroot"
+    ],
     "fr:fibres-végétales-d'oligofructose": [
       "en:oligofructose"
     ],
@@ -15361,6 +15594,9 @@
     "fr:fromage-au-lait-de-vache-bio-thermisé": [
       "en:cow-cheese"
     ],
+    "fr:fromage-au-lait-de-vache-pasteurisé": [
+      "en:cow-cheese"
+    ],
     "fr:fromage-au-lait-pasteurisé": [
       "en:cheese"
     ],
@@ -15369,6 +15605,9 @@
     ],
     "fr:fromage-de-brebis-au-lait-pasteurisé": [
       "en:sheep's-milk-cheese"
+    ],
+    "fr:fromage-de-chèvre-au-lait-pasteurisé": [
+      "en:goat-cheese"
     ],
     "fr:fromage-de-chèvre-frais": [
       "en:goat-cheese"
@@ -15394,8 +15633,14 @@
     "fr:fromages-râpées-séchés": [
       "en:cheese"
     ],
+    "fr:fructose-de-blé": [
+      "en:fructose"
+    ],
     "fr:fruits-à-cidre-de-normandie": [
       "en:cider-apples"
+    ],
+    "fr:fumet-de-poisson": [
+      "en:fish"
     ],
     "fr:fumet-de-poisson-aromatisé": [
       "fr:fumet-de-poisson"
@@ -15504,6 +15749,9 @@
       "en:essential-oil"
     ],
     "fr:huile-essentielle-de-menthe": [
+      "en:essential-oil"
+    ],
+    "fr:huile-essentielle-de-poivre": [
       "en:essential-oil"
     ],
     "fr:huile-végétale-raffinée": [
@@ -15878,6 +16126,9 @@
     "fr:miel-et-propolis-verte": [
       "en:honey"
     ],
+    "fr:miel-italien-d'acacia": [
+      "en:acacia-honey"
+    ],
     "fr:miel-toutes-fleurs": [
       "en:flower-honey"
     ],
@@ -16024,6 +16275,9 @@
     "fr:orange-à-jus": [
       "en:orange"
     ],
+    "fr:os-et-viande-de-poulet": [
+      "en:chicken-meat"
+    ],
     "fr:paillettes-d'algues": [
       "en:seaweed"
     ],
@@ -16095,6 +16349,9 @@
     ],
     "fr:pêche-au-sirop": [
       "en:peach"
+    ],
+    "fr:pépites-de-chocolat-au-lait": [
+      "en:milk-chocolate"
     ],
     "fr:pétales-de-bleuet": [
       "fr:bleuets"
@@ -16667,6 +16924,9 @@
     "fr:yogourt-partiellement-écrémé": [
       "en:yogurt"
     ],
+    "hr:dekofeinizirani-ekstrakt-kave": [
+      "en:decaffeinated-coffee"
+    ],
     "hr:l.casei-431": [
       "en:lactobacillus-casei"
     ],
@@ -16768,6 +17028,9 @@
     "nl:gezoet-vegetarisch-weipoeder": [
       "nl:vegetarisch-weipoeder"
     ],
+    "nl:kokospulp": [
+      "en:coconut"
+    ],
     "nl:maïspoeder": [
       "en:corn"
     ],
@@ -16781,6 +17044,7 @@
       "en:barn-eggs"
     ],
     "nl:scharrelei-eiwitpoeder": [
+      "en:egg-white-powder",
       "en:powdered-egg-white"
     ],
     "nl:scharrelkipeiwit": [
@@ -16802,6 +17066,9 @@
       "en:wheat-dextrose",
       "fr:dextrose-de-tapioca"
     ],
+    "nl:vegetarisch-weipoeder": [
+      "en:whey-powder"
+    ],
     "nl:veldbonen": [
       "en:legume"
     ],
@@ -16813,6 +17080,9 @@
     ],
     "nl:vrije-uitloopei-eiwitpoeder": [
       "en:powdered-egg-white"
+    ],
+    "nl:vrije-uitloopeiwitpoeder": [
+      "en:egg-white-powder"
     ],
     "nl:winterpeen": [
       "en:carrot"
@@ -17153,7 +17423,8 @@
       "fr": "Crème"
     },
     "en:cumin": {
-      "en": "cumin"
+      "en": "cumin",
+      "fr": "cumin"
     },
     "en:cured-sausage": {
       "en": "Cured sausage",
@@ -17504,7 +17775,8 @@
       "fr": "huître"
     },
     "en:paprika": {
-      "en": "paprika"
+      "en": "paprika",
+      "fr": "paprika"
     },
     "en:parmigiano-reggiano": {
       "en": "parmigiano reggiano",
