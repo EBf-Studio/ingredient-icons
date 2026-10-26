@@ -1,7 +1,7 @@
 {
   "source": "Open Food Facts ingredients taxonomy",
-  "url": "https://github.com/openfoodfacts/openfoodfacts-server/blob/234008a0a245781a449c8dc975be3416fef1a3ef/taxonomies/food/ingredients.txt",
-  "commit": "234008a0a245781a449c8dc975be3416fef1a3ef",
+  "url": "https://github.com/openfoodfacts/openfoodfacts-server/blob/0a430a851cbab2a57ef896e3bd41647ca823dbbb/taxonomies/food/ingredients.txt",
+  "commit": "0a430a851cbab2a57ef896e3bd41647ca823dbbb",
   "license": "ODbL-1.0",
   "parents": {
     "az:manna-yarması": [
@@ -17422,6 +17422,10 @@
       "en": "cream",
       "fr": "Crème"
     },
+    "en:cucumber": {
+      "en": "cucumber",
+      "fr": "concombre"
+    },
     "en:cumin": {
       "en": "cumin",
       "fr": "cumin"
@@ -18113,6 +18117,10 @@
     "en:veal": {
       "en": "veal",
       "fr": "veau"
+    },
+    "en:vegetable": {
+      "en": "vegetable",
+      "fr": "légume"
     },
     "en:vegetable-broth": {
       "en": "vegetable broth",
