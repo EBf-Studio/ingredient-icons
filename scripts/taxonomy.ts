@@ -30,7 +30,9 @@ export function parseTaxonomy(content: string) {
   }
   for (const rawLine of content.split("\n")) {
     const line = rawLine.trim()
-    if (line === "" || line.startsWith("#")) {
+    // Comments also sit inside entries ("# de: Gurke" amid cucumber's names): only a blank line ends one.
+    if (line.startsWith("#")) continue
+    if (line === "") {
       flush()
       continue
     }
@@ -56,37 +58,39 @@ export function parseTaxonomy(content: string) {
   return entries
 }
 
-const commits = await fetch(`https://api.github.com/repos/${REPO}/commits?path=${FILE}&per_page=1`)
-if (!commits.ok) throw new Error(`GitHub API: ${commits.status}`)
-const [latest] = (await commits.json()) as { sha: string }[]
-if (!latest) throw new Error(`No commit touches ${FILE}`)
-const { sha } = latest
-const content = await (await fetch(`https://raw.githubusercontent.com/${REPO}/${sha}/${FILE}`)).text()
-const entries = parseTaxonomy(content)
-const byId = new Map(entries.map((entry) => [entry.id, entry]))
+if (import.meta.main) {
+  const commits = await fetch(`https://api.github.com/repos/${REPO}/commits?path=${FILE}&per_page=1`)
+  if (!commits.ok) throw new Error(`GitHub API: ${commits.status}`)
+  const [latest] = (await commits.json()) as { sha: string }[]
+  if (!latest) throw new Error(`No commit touches ${FILE}`)
+  const { sha } = latest
+  const content = await (await fetch(`https://raw.githubusercontent.com/${REPO}/${sha}/${FILE}`)).text()
+  const entries = parseTaxonomy(content)
+  const byId = new Map(entries.map((entry) => [entry.id, entry]))
 
-const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
-const unknown = Object.keys(manifest.icons).filter((id) => !byId.has(id))
+  const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
+  const unknown = Object.keys(manifest.icons).filter((id) => !byId.has(id))
 
-const parents: Record<string, string[]> = {}
-for (const entry of [...entries].sort((a, b) => a.id.localeCompare(b.id)))
-  if (entry.parents.length) parents[entry.id] = entry.parents
+  const parents: Record<string, string[]> = {}
+  for (const entry of [...entries].sort((a, b) => a.id.localeCompare(b.id)))
+    if (entry.parents.length) parents[entry.id] = entry.parents
 
-const names: Record<string, Partial<Record<(typeof LOCALES)[number], string>>> = {}
-for (const id of Object.keys(manifest.icons).sort()) {
-  const entry = byId.get(id)
-  if (!entry) continue
-  names[id] = Object.fromEntries(LOCALES.flatMap((l) => (entry.names.has(l) ? [[l, entry.names.get(l)!]] : [])))
+  const names: Record<string, Partial<Record<(typeof LOCALES)[number], string>>> = {}
+  for (const id of Object.keys(manifest.icons).sort()) {
+    const entry = byId.get(id)
+    if (!entry) continue
+    names[id] = Object.fromEntries(LOCALES.flatMap((l) => (entry.names.has(l) ? [[l, entry.names.get(l)!]] : [])))
+  }
+
+  const taxonomy = {
+    source: "Open Food Facts ingredients taxonomy",
+    url: `https://github.com/${REPO}/blob/${sha}/${FILE}`,
+    commit: sha,
+    license: "ODbL-1.0",
+    parents,
+    names,
+  }
+  await writeFile("taxonomy.json", `${JSON.stringify(taxonomy, null, 2)}\n`)
+  console.log(`${entries.length} taxonomy entries at ${sha.slice(0, 7)}, ${Object.keys(names).length} named`)
+  if (unknown.length) console.log(`Not in the taxonomy: ${unknown.join(" ")}`)
 }
-
-const taxonomy = {
-  source: "Open Food Facts ingredients taxonomy",
-  url: `https://github.com/${REPO}/blob/${sha}/${FILE}`,
-  commit: sha,
-  license: "ODbL-1.0",
-  parents,
-  names,
-}
-await writeFile("taxonomy.json", `${JSON.stringify(taxonomy, null, 2)}\n`)
-console.log(`${entries.length} taxonomy entries at ${sha.slice(0, 7)}, ${Object.keys(names).length} named`)
-if (unknown.length) console.log(`Not in the taxonomy: ${unknown.join(" ")}`)
