@@ -240,6 +240,9 @@
     "en:cream": {
       "file": "en_cream"
     },
+    "en:cucumber": {
+      "file": "en_cucumber"
+    },
     "en:cumin": {
       "file": "en_cumin"
     },
@@ -758,6 +761,9 @@
     },
     "en:veal": {
       "file": "en_veal"
+    },
+    "en:vegetable": {
+      "file": "en_vegetable"
     },
     "en:vegetable-broth": {
       "file": "en_vegetable-broth"
