@@ -42,8 +42,10 @@ The part of the Open Food Facts ingredients taxonomy the fallback needs.
 ```json title="taxonomy.json"
 {
   "source": "Open Food Facts ingredients taxonomy",
-  "url": "https://github.com/openfoodfacts/openfoodfacts-server/blob/<commit>/taxonomies/food/ingredients.txt",
+  "release": "v2.118.0",
   "commit": "<commit>",
+  "url": "https://github.com/openfoodfacts/openfoodfacts-server/releases/download/v2.118.0/food-taxonomies-json.tgz",
+  "sha256": "<sha256 of ingredients.json>",
   "license": "ODbL-1.0",
   "parents": {
     "en:fleur-de-sel": ["en:sea-salt"],
@@ -57,7 +59,10 @@ The part of the Open Food Facts ingredients taxonomy the fallback needs.
 
 <TypeTable
   type={{
-    commit: { type: 'string', description: 'Open Food Facts commit the data was taken from.' },
+    release: { type: 'string', description: 'openfoodfacts-server release the data was taken from.' },
+    commit: { type: 'string', description: 'Commit of that release.' },
+    url: { type: 'string', description: 'The release asset holding ingredients.json.' },
+    sha256: { type: 'string', description: 'SHA-256 of the ingredients.json the data was taken from.' },
     parents: { type: 'Record<string, string[]>', description: 'Parents of every taxonomy entry that has one, in taxonomy order.' },
     names: { type: 'Record<string, { en?: string; fr?: string }>', description: 'English and French names of the ids that have an icon.' },
   }}

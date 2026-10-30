@@ -1,7 +1,9 @@
 {
   "source": "Open Food Facts ingredients taxonomy",
-  "url": "https://github.com/openfoodfacts/openfoodfacts-server/blob/0a430a851cbab2a57ef896e3bd41647ca823dbbb/taxonomies/food/ingredients.txt",
-  "commit": "0a430a851cbab2a57ef896e3bd41647ca823dbbb",
+  "release": "v2.118.0",
+  "commit": "bd90d81d0353bf2af1474a9079b6fc2a51ac63d7",
+  "url": "https://github.com/openfoodfacts/openfoodfacts-server/releases/download/v2.118.0/food-taxonomies-json.tgz",
+  "sha256": "962a2c4ac968bc9da3bca25fa7c8c14be1e30bcfaacc78e3ba38510f79e62f1a",
   "license": "ODbL-1.0",
   "parents": {
     "az:manna-yarması": [
@@ -36,10 +38,14 @@
       "en:paprika"
     ],
     "bg:сорбитолов-сироп": [
-      "en:e420(ii)"
+      "en:e420ii"
     ],
     "bg:суха-мая": [
       "en:yeast"
+    ],
+    "ca:carbonat-acid-de-sodi-i-difosfat-de-disodi": [
+      "en:e450i",
+      "en:e500ii"
     ],
     "ca:formatge-tendre": [
       "en:soft-cheese"
@@ -97,6 +103,9 @@
     ],
     "de:flüssiges-pektin": [
       "en:e440"
+    ],
+    "de:gärungskohlensäure": [
+      "en:e290"
     ],
     "de:gelbe-linsen": [
       "en:lentils"
@@ -181,10 +190,13 @@
     "de:nährhefepulver": [
       "en:nutritional-yeast"
     ],
+    "de:natürliche-quellkohlensäure": [
+      "de:quellkohlensäure"
+    ],
     "de:natürliches-kaffee-aroma": [
       "en:natural-flavouring"
     ],
-    "de:natürliches-pfirsich–-und-holunderblütenaroma-mit-anderen-natürlichen-aromen": [
+    "de:natürliches-pfirsich-und-holunderblütenaroma-mit-anderen-natürlichen-aromen": [
       "en:natural-flavouring"
     ],
     "de:orangeschalenextrakt": [
@@ -192,6 +204,9 @@
     ],
     "de:pastinakenpulver": [
       "en:parsnip"
+    ],
+    "de:pflanzlicher-emulgator": [
+      "en:emulsifier"
     ],
     "de:pink-grapefruitöl": [
       "en:pink-grapefruit"
@@ -201,6 +216,9 @@
     ],
     "de:putenfleisch": [
       "en:turkey-meat"
+    ],
+    "de:quellkohlensäure": [
+      "en:e290"
     ],
     "de:reisdrinkpulver": [
       "en:rice-syrup"
@@ -230,8 +248,8 @@
       "en:sour-cream"
     ],
     "de:speisequarkzubereitung": [
-      "en:quark",
-      "en:mild-yogurt"
+      "en:mild-yogurt",
+      "en:quark"
     ],
     "de:steinpilzpulver": [
       "en:cep"
@@ -245,35 +263,35 @@
     "de:verarbeitungsbüffelmolke": [
       "en:whey"
     ],
-    "en:3%-fat-reduced-cocoa-powder": [
+    "en:3-fat-reduced-cocoa-powder": [
       "en:fat-reduced-cocoa-powder"
     ],
-    "en:50-63%-unsalted-vegetable-fat": [
+    "en:50-63-unsalted-vegetable-fat": [
       "en:vegetable-margarine"
     ],
-    "en:50-63%-unsalted-vegetable-fat-high-in-omega-3": [
+    "en:50-63-unsalted-vegetable-fat-high-in-omega-3": [
       "en:vegetable-margarine"
     ],
-    "en:50-63%-unsalted-vegetable-fat-with-plant-sterols-esters": [
+    "en:50-63-unsalted-vegetable-fat-with-plant-sterols-esters": [
       "en:vegetable-margarine"
     ],
-    "en:70%-fat-mayonnaise": [
+    "en:70-fat-mayonnaise": [
       "en:mayonnaise"
     ],
-    "en:70%-unsalted-vegetable-fat": [
+    "en:70-unsalted-vegetable-fat": [
       "en:vegetable-margarine"
     ],
-    "en:80%-fat-salted-butter": [
+    "en:80-fat-salted-butter": [
       "en:salted-butter"
     ],
-    "en:80%-unsalted-vegetable-fat": [
+    "en:80-unsalted-vegetable-fat": [
       "en:vegetable-margarine"
     ],
-    "en:82%-fat-unsalted-butter": [
+    "en:82-fat-unsalted-butter": [
       "en:unsalted-butter"
     ],
-    "en:82%-fat-unsalted-easy-to-spread-butter": [
-      "en:82%-fat-unsalted-butter"
+    "en:82-fat-unsalted-easy-to-spread-butter": [
+      "en:82-fat-unsalted-butter"
     ],
     "en:abalone": [
       "en:mollusc"
@@ -334,6 +352,9 @@
     ],
     "en:acorn-squash": [
       "en:fruit-vegetable"
+    ],
+    "en:adenosine-monophosphate": [
+      "en:nucleotides"
     ],
     "en:advocaat": [
       "en:liqueur"
@@ -436,15 +457,13 @@
     "en:aloe-vera-juice": [
       "en:aloe-vera"
     ],
-    "en:amaranth": [
-      "en:cereal"
-    ],
     "en:amaranth-flour": [
-      "en:amaranth",
-      "en:cereal-flour"
+      "en:cereal-flour",
+      "en:e123"
     ],
     "en:amaranth-leaves": [
-      "en:leaf-vegetable"
+      "en:leaf-vegetable",
+      "en:plant"
     ],
     "en:amarena-cherry-coating": [
       "en:cherry-coating"
@@ -453,7 +472,7 @@
       "en:liqueur"
     ],
     "en:american-anglerfish": [
-      "en:anglerfish"
+      "en:monkfish"
     ],
     "en:american-butterfish": [
       "en:butterfish"
@@ -478,6 +497,13 @@
     ],
     "en:amino-plant-extract": [
       "en:hydrolysed-vegetable-protein"
+    ],
+    "en:ammonium-and-sodium-carbonates": [
+      "en:e500",
+      "en:e503"
+    ],
+    "en:ammonium-molybdate": [
+      "en:molybdenum"
     ],
     "en:amontillado-sherry": [
       "en:sherry"
@@ -570,7 +596,7 @@
     ],
     "en:apple-puree": [
       "en:apple",
-      "en:purée"
+      "en:puree"
     ],
     "en:apple-vinegar": [
       "en:vinegar"
@@ -582,9 +608,6 @@
       "en:apple",
       "en:orange",
       "en:preparation"
-    ],
-    "en:apples": [
-      "en:apple"
     ],
     "en:apricot": [
       "en:prunus-species-fruit"
@@ -656,7 +679,7 @@
       "en:alcohol"
     ],
     "en:aromatic-caramel": [
-      "en:caramel"
+      "en:e150"
     ],
     "en:aromatic-leaf": [
       "en:condiment"
@@ -687,7 +710,10 @@
       "en:flavouring"
     ],
     "en:artificial-french-vanilla-flavouring": [
-      "en:french-vanilla-flavouring",
+      "en:artificial-flavouring",
+      "en:french-vanilla-flavouring"
+    ],
+    "en:artificial-spiced-flavouring": [
       "en:artificial-flavouring"
     ],
     "en:asafoetida": [
@@ -749,9 +775,6 @@
     "en:atlantic-wolffish": [
       "en:fish"
     ],
-    "en:atta": [
-      "en:wheat-flour"
-    ],
     "en:aubergine": [
       "en:fruit-vegetable"
     ],
@@ -777,7 +800,7 @@
       "en:carrot"
     ],
     "en:baby-corn": [
-      "en:sweet-corn"
+      "en:sweetcorn"
     ],
     "en:baby-cucumber": [
       "en:cucumber"
@@ -812,7 +835,7 @@
     "en:baked-lean-lamb-saddle": [
       "en:lamb-saddle"
     ],
-    "en:baker's-yeast": [
+    "en:baker-s-yeast": [
       "en:yeast"
     ],
     "en:balsamic-vinegar": [
@@ -970,7 +993,7 @@
     "en:bearberry": [
       "en:berries"
     ],
-    "en:béarnaise-sauce": [
+    "en:bearnaise-sauce": [
       "en:sauce"
     ],
     "en:beaufort": [
@@ -1032,7 +1055,7 @@
     ],
     "en:beef-gelatin": [
       "en:beef",
-      "en:gelatin"
+      "en:e428"
     ],
     "en:beef-heart": [
       "en:beef-meat"
@@ -1090,6 +1113,7 @@
       "en:alcohol"
     ],
     "en:beet-greens": [
+      "en:leaf-vegetable",
       "en:vegetable"
     ],
     "en:beet-sugar": [
@@ -1129,7 +1153,7 @@
       "en:capsicum-annuum"
     ],
     "en:beluga-lentils": [
-      "fr:lentilles-noires"
+      "en:black-lentils"
     ],
     "en:bergamot": [
       "en:citrus-fruit"
@@ -1160,6 +1184,9 @@
     ],
     "en:berry-preparation": [
       "en:fruits-preparation"
+    ],
+    "en:beta-carotene-dye": [
+      "en:e160ai"
     ],
     "en:beta-galactosidase": [
       "en:lactase"
@@ -1203,7 +1230,10 @@
     "en:bilberry": [
       "en:blueberry"
     ],
-    "en:bird's-eye-chili": [
+    "en:biotin": [
+      "en:vitamins"
+    ],
+    "en:bird-s-eye-chili": [
       "en:chili-pepper"
     ],
     "en:biscuit-and-chocolate": [
@@ -1239,7 +1269,7 @@
       "en:flavouring"
     ],
     "en:black-amaranth-seed": [
-      "en:amaranth"
+      "en:e123"
     ],
     "en:black-and-green-pepper": [
       "en:black-pepper",
@@ -1253,7 +1283,7 @@
       "en:pulse"
     ],
     "en:black-bean-flour": [
-      "en:black-beans"
+      "en:black-bean"
     ],
     "en:black-botifarra": [
       "en:meat"
@@ -1262,8 +1292,8 @@
       "en:cardamom"
     ],
     "en:black-carrot": [
-      "en:anthocyanin",
-      "en:carrot"
+      "en:carrot",
+      "en:e163"
     ],
     "en:black-carrot-extract": [
       "en:black-carrot",
@@ -1383,8 +1413,8 @@
       "en:black-tea"
     ],
     "en:black-thai-rice": [
-      "en:thai-rice",
-      "en:black-rice"
+      "en:black-rice",
+      "en:thai-rice"
     ],
     "en:black-truffle": [
       "en:truffle"
@@ -1443,7 +1473,7 @@
     "en:blended-scotch-whisky": [
       "en:scotch-whisky"
     ],
-    "en:bleu-d'auvergne": [
+    "en:bleu-d-auvergne": [
       "en:blue-cheese"
     ],
     "en:bleu-de-bresse": [
@@ -1488,7 +1518,7 @@
     "en:blue-cheese": [
       "en:cheese"
     ],
-    "en:blue-cheese-from-cow's-milk": [
+    "en:blue-cheese-from-cow-s-milk": [
       "en:blue-cheese"
     ],
     "en:blue-corn": [
@@ -1505,7 +1535,7 @@
       "en:ling"
     ],
     "en:blue-lupin": [
-      "en:lupin"
+      "en:lupin-bean"
     ],
     "en:blue-mold-culture": [
       "en:ferment"
@@ -1581,6 +1611,9 @@
     "en:borlotti-bean": [
       "en:pulse"
     ],
+    "en:boron": [
+      "en:minerals"
+    ],
     "en:bosc-pear": [
       "en:pear"
     ],
@@ -1644,8 +1677,8 @@
     "en:bramley-apple": [
       "en:apple"
     ],
-    "en:bramley-apple-purée": [
-      "en:apple-purée"
+    "en:bramley-apple-puree": [
+      "en:apple-puree"
     ],
     "en:bran": [
       "en:cereal"
@@ -1662,7 +1695,7 @@
     "en:brassica": [
       "en:vegetable"
     ],
-    "en:brassica-rapa-l.": [
+    "en:brassica-rapa-l": [
       "en:brassica"
     ],
     "en:brazil-nut": [
@@ -1670,6 +1703,9 @@
     ],
     "en:brazilian-arabica-coffee": [
       "en:arabica-coffee"
+    ],
+    "en:bread-improver": [
+      "en:enhancer"
     ],
     "en:bread-roll": [
       "en:special-bread"
@@ -1690,7 +1726,7 @@
     "en:bresaola": [
       "en:beef"
     ],
-    "en:brewer's-yeast": [
+    "en:brewer-s-yeast": [
       "en:yeast"
     ],
     "en:brewing-water": [
@@ -1771,9 +1807,6 @@
     ],
     "en:broccoli-leaves": [
       "en:broccoli"
-    ],
-    "en:broccoli-raab": [
-      "en:vegetable"
     ],
     "en:broccoli-stalks": [
       "en:broccoli"
@@ -1971,8 +2004,38 @@
     "en:calamansi": [
       "en:orange"
     ],
+    "en:calcium": [
+      "en:minerals"
+    ],
+    "en:calcium-beta-hydroxy-beta-methyl-butyrate": [
+      "en:hydroxymethylbutyrate"
+    ],
+    "en:calcium-bisglycinate": [
+      "en:calcium"
+    ],
     "en:calcium-caseinate": [
       "en:caseinate"
+    ],
+    "en:calcium-citrate-malate": [
+      "en:calcium"
+    ],
+    "en:calcium-d-pantothenate": [
+      "en:pantothenic-acid"
+    ],
+    "en:calcium-l-methylfolate": [
+      "en:folate"
+    ],
+    "en:calcium-l-pidolate": [
+      "en:calcium"
+    ],
+    "en:calcium-pantothenate": [
+      "en:pantothenic-acid"
+    ],
+    "en:calcium-salts": [
+      "en:calcium"
+    ],
+    "en:calcium-salts-from-orthophosphoric-acid": [
+      "en:calcium"
     ],
     "en:calf-fat": [
       "en:animal-fat"
@@ -2071,7 +2134,7 @@
       "en:carrot-juice"
     ],
     "en:canned-concentrated-tomato-paste": [
-      "en:concentrated-tomato-purée"
+      "en:concentrated-tomato-puree"
     ],
     "en:canned-corn": [
       "en:corn"
@@ -2098,7 +2161,7 @@
     "en:cantal": [
       "en:cow-cheese"
     ],
-    "en:cantal-cheese-half-matured-from-cow's-milk": [
+    "en:cantal-cheese-half-matured-from-cow-s-milk": [
       "en:cantal"
     ],
     "en:cantal-salers": [
@@ -2126,10 +2189,10 @@
       "en:fruit-vegetable"
     ],
     "en:capsicum-extract": [
-      "en:paprika-extract"
+      "en:e160c"
     ],
     "en:capsicum-oleoresin": [
-      "en:paprika-extract"
+      "en:e160c"
     ],
     "en:carambola": [
       "en:fruit"
@@ -2227,14 +2290,11 @@
       "en:pulse"
     ],
     "en:carob-seed-flour": [
-      "en:carob",
+      "en:carob-bean",
       "en:flour"
     ],
-    "en:carotene": [
-      "en:carotenoids"
-    ],
     "en:caroube-dalmate": [
-      "en:carob-seeds"
+      "en:carob-bean"
     ],
     "en:carp": [
       "en:freshwater-fish"
@@ -2489,9 +2549,9 @@
     "en:cherry-preparation": [
       "en:preparation"
     ],
-    "en:cherry-purée": [
+    "en:cherry-puree": [
       "en:cherry",
-      "en:purée"
+      "en:puree"
     ],
     "en:cherry-stem": [
       "en:cherry"
@@ -2552,7 +2612,7 @@
       "en:chicken-fillet"
     ],
     "en:chicken-broth": [
-      "en:chickens",
+      "en:chicken",
       "en:poultry-broth"
     ],
     "en:chicken-cutlet": [
@@ -2695,7 +2755,7 @@
       "en:orange-juice"
     ],
     "en:chinese-cabbage": [
-      "en:brassica-rapa-l.",
+      "en:brassica-rapa-l",
       "en:cabbage"
     ],
     "en:chinese-chestnut": [
@@ -2787,6 +2847,12 @@
       "en:chokeberry",
       "en:fruit-juice"
     ],
+    "en:cholecalciferol": [
+      "en:vitamin-d"
+    ],
+    "en:choline-bitartrate": [
+      "en:choline"
+    ],
     "en:chop-grilled-lamb-rib": [
       "en:lamb-rib"
     ],
@@ -2802,6 +2868,24 @@
     "en:chow-mein-chinese-noodles": [
       "en:noodle"
     ],
+    "en:chromic-chloride": [
+      "en:chromium-chloride"
+    ],
+    "en:chromium": [
+      "en:minerals"
+    ],
+    "en:chromium-chloride": [
+      "en:chromium"
+    ],
+    "en:chromium-iii-sulfate-and-its-hexahydrate": [
+      "en:chromium"
+    ],
+    "en:chromium-nicotinate": [
+      "en:chromium"
+    ],
+    "en:chromium-picolinate": [
+      "en:chromium"
+    ],
     "en:chub-mackerel": [
       "en:mackerel"
     ],
@@ -2813,6 +2897,10 @@
     ],
     "en:churned-butter": [
       "en:butter"
+    ],
+    "en:ci-natural-green-3": [
+      "en:e140i",
+      "en:e141i"
     ],
     "en:cider": [
       "en:alcohol"
@@ -2894,7 +2982,7 @@
     "en:clarified-butter": [
       "en:butterfat"
     ],
-    "en:clarified-cow's-butter": [
+    "en:clarified-cow-s-butter": [
       "en:clarified-butter"
     ],
     "en:clementine": [
@@ -3108,6 +3196,9 @@
     "en:colorful-pepper": [
       "en:pepper"
     ],
+    "en:colour-stabiliser": [
+      "en:stabiliser"
+    ],
     "en:coloured-cheddar": [
       "en:cheddar"
     ],
@@ -3146,7 +3237,7 @@
       "en:plant"
     ],
     "en:common-morel": [
-      "en:morels"
+      "en:morel"
     ],
     "en:common-octopus": [
       "en:octopus"
@@ -3154,10 +3245,10 @@
     "en:common-sole": [
       "en:sole"
     ],
-    "en:compressed-baker's-yeast": [
-      "en:baker's-yeast"
+    "en:compressed-baker-s-yeast": [
+      "en:baker-s-yeast"
     ],
-    "en:comté": [
+    "en:comte": [
       "en:cheese"
     ],
     "en:concentrated-agave-syrup": [
@@ -3242,11 +3333,14 @@
     "en:concentrated-pineapple-juice": [
       "en:pineapple-juice"
     ],
+    "en:concentrated-plant-colour": [
+      "en:colour"
+    ],
     "en:concentrated-pumpkin-juice": [
       "en:pumpkin-juice"
     ],
-    "en:concentrated-purée": [
-      "en:purée"
+    "en:concentrated-puree": [
+      "en:puree"
     ],
     "en:concentrated-raspberry-juice": [
       "en:raspberry-juice"
@@ -3263,7 +3357,7 @@
     "en:concentrated-strawberry-puree": [
       "en:strawberry-puree"
     ],
-    "en:concentrated-tomato-purée": [
+    "en:concentrated-tomato-puree": [
       "en:tomato-concentrate"
     ],
     "en:concentrated-whey": [
@@ -3352,16 +3446,16 @@
     "en:cooked-lardoons": [
       "en:lardon"
     ],
-    "en:cooked-minced-beef-steak-with-10%-fat": [
+    "en:cooked-minced-beef-steak-with-10-fat": [
       "en:minced-beef"
     ],
-    "en:cooked-minced-beef-steak-with-15%-fat": [
+    "en:cooked-minced-beef-steak-with-15-fat": [
       "en:minced-beef"
     ],
-    "en:cooked-minced-beef-steak-with-20%-fat": [
+    "en:cooked-minced-beef-steak-with-20-fat": [
       "en:minced-beef"
     ],
-    "en:cooked-minced-beef-steak-with-5%-fat": [
+    "en:cooked-minced-beef-steak-with-5-fat": [
       "en:minced-beef"
     ],
     "en:cooked-parsnip": [
@@ -3434,11 +3528,23 @@
     "en:cooking-broth": [
       "en:broth"
     ],
+    "en:cooking-enhancer": [
+      "en:enhancer"
+    ],
     "en:cooking-water": [
       "en:water"
     ],
     "en:coppa": [
       "en:ham"
+    ],
+    "en:copper": [
+      "en:minerals"
+    ],
+    "en:copper-gluconate": [
+      "en:copper"
+    ],
+    "en:copper-lysine-complex": [
+      "en:copper"
     ],
     "en:corchorus-olitorius": [
       "en:plant"
@@ -3576,10 +3682,10 @@
     "en:cow-mozzarella": [
       "en:mozzarella"
     ],
-    "en:cow's-cheese-with-chives": [
+    "en:cow-s-cheese-with-chives": [
       "en:cow-cheese"
     ],
-    "en:cow's-milk": [
+    "en:cow-s-milk": [
       "en:milk"
     ],
     "en:cowpea": [
@@ -3634,28 +3740,28 @@
     "en:cream-sauce": [
       "en:sauce"
     ],
-    "en:cream-with-10%-milk-fat": [
+    "en:cream-with-10-milk-fat": [
       "en:cream"
     ],
-    "en:cream-with-12%-milk-fat": [
+    "en:cream-with-12-milk-fat": [
       "en:cream"
     ],
-    "en:cream-with-18%-milk-fat": [
+    "en:cream-with-18-milk-fat": [
       "en:cream"
     ],
-    "en:cream-with-20%-milk-fat": [
+    "en:cream-with-20-milk-fat": [
       "en:cream"
     ],
-    "en:cream-with-22%-milk-fat": [
+    "en:cream-with-22-milk-fat": [
       "en:cream"
     ],
-    "en:cream-with-25%-milk-fat": [
+    "en:cream-with-25-milk-fat": [
       "en:cream"
     ],
-    "en:cream-with-33%-milk-fat": [
+    "en:cream-with-33-milk-fat": [
       "en:cream"
     ],
-    "en:cream-with-36%-milk-fat": [
+    "en:cream-with-36-milk-fat": [
       "en:cream"
     ],
     "en:creamy-honey": [
@@ -3664,7 +3770,7 @@
     "en:creatine-monohydrate": [
       "en:creatine"
     ],
-    "en:crème-fraîche": [
+    "en:creme-fraiche": [
       "en:sour-cream"
     ],
     "en:cress": [
@@ -3691,7 +3797,7 @@
     "en:crude-corn-bran": [
       "en:maize-bran"
     ],
-    "en:crudités": [
+    "en:crudites": [
       "en:vegetable"
     ],
     "en:crunchy-peanut-butter": [
@@ -3701,7 +3807,7 @@
       "en:crushed-tomato"
     ],
     "en:crushed-tomato": [
-      "en:chopped-tomatoes"
+      "en:chopped-tomato"
     ],
     "en:crustacean": [
       "en:shellfish"
@@ -3736,6 +3842,12 @@
     ],
     "en:cumin-seeds": [
       "en:cumin"
+    ],
+    "en:cupric-carbonate": [
+      "en:copper"
+    ],
+    "en:cupric-citrate": [
+      "en:copper"
     ],
     "en:cupu-assu-oil": [
       "en:vegetable-fat"
@@ -3776,8 +3888,32 @@
     "en:cuttlefish": [
       "en:mollusc"
     ],
-    "en:d'anjou-pear": [
+    "en:cyanocobalamin": [
+      "en:vitamin-b12"
+    ],
+    "en:cystine-4": [
+      "en:amino-acids"
+    ],
+    "en:cytidine-monophosphate": [
+      "en:nucleotides"
+    ],
+    "en:d-alpha-tocopheryl-acetate": [
+      "en:vitamin-e"
+    ],
+    "en:d-alpha-tocopheryl-acid-succinate": [
+      "en:vitamin-e"
+    ],
+    "en:d-alpha-tocopheryl-polyethylene-glycol-1000-succinate": [
+      "en:vitamin-e"
+    ],
+    "en:d-anjou-pear": [
       "en:pear"
+    ],
+    "en:d-biotin": [
+      "en:biotin"
+    ],
+    "en:d-pantothenate-sodium": [
+      "en:pantothenic-acid"
     ],
     "en:daikon": [
       "en:radish"
@@ -3922,7 +4058,7 @@
       "en:seaweed"
     ],
     "en:dehydrated-sourdough": [
-      "en:sourdough"
+      "en:sourdough-starter"
     ],
     "en:dehydrated-soy-protein": [
       "en:soy-protein"
@@ -3956,7 +4092,7 @@
       "en:rye-sourdough"
     ],
     "en:devitalised-sourdough": [
-      "en:sourdough"
+      "en:sourdough-starter"
     ],
     "en:devitalised-wheat-sourdough": [
       "en:devitalised-sourdough",
@@ -3967,6 +4103,9 @@
     ],
     "en:dewlap": [
       "en:pork-meat"
+    ],
+    "en:dexpanthenol": [
+      "en:pantothenic-acid"
     ],
     "en:dextrinated-barley-flour": [
       "en:barley-flour"
@@ -3991,6 +4130,10 @@
     ],
     "en:dextrose-monohydrate": [
       "en:dextrose"
+    ],
+    "en:di-and-triphosphates": [
+      "en:e450",
+      "en:e451"
     ],
     "en:diced-tomatoes-in-tomato-juice": [
       "en:tomato"
@@ -4019,6 +4162,10 @@
       "en:dill",
       "en:vinegar"
     ],
+    "en:diphosphates-and-sodium-carbonates": [
+      "en:e450",
+      "en:e500"
+    ],
     "en:directly-squeezed-natural-pomegranate-juice": [
       "en:pomegranate-juice"
     ],
@@ -4028,6 +4175,15 @@
     "en:dishcloth": [
       "en:fruit-vegetable"
     ],
+    "en:disodium-guanosine-5-monophosphate": [
+      "en:e626"
+    ],
+    "en:disodium-inosine-5-monophosphate": [
+      "en:inosine-monophosphate"
+    ],
+    "en:disodium-uridine-monophosphate": [
+      "en:uridine-monophosphate"
+    ],
     "en:distant-scallop": [
       "en:scallop"
     ],
@@ -4036,6 +4192,9 @@
     ],
     "en:distilled-water": [
       "en:water"
+    ],
+    "en:dl-alpha-tocopheryl-acetate": [
+      "en:vitamin-e"
     ],
     "en:dobričić": [
       "en:varietal"
@@ -4131,7 +4290,7 @@
       "en:persimmon"
     ],
     "en:dried-kidney-beans": [
-      "en:red-beans"
+      "en:red-bean"
     ],
     "en:dried-lentils": [
       "en:lentils",
@@ -4199,8 +4358,8 @@
     "en:drumstick-pods": [
       "en:fruit-vegetable"
     ],
-    "en:dry-baker's-yeast": [
-      "en:baker's-yeast"
+    "en:dry-baker-s-yeast": [
+      "en:baker-s-yeast"
     ],
     "en:dry-cured-ham": [
       "en:ham"
@@ -4299,8 +4458,626 @@
       "en:durum-wheat-flour",
       "en:wholemeal-flour"
     ],
+    "en:e1001i": [
+      "en:e1001"
+    ],
+    "en:e1001ii": [
+      "en:e1001"
+    ],
+    "en:e1001iii": [
+      "en:e1001"
+    ],
+    "en:e1001iv": [
+      "en:e1001"
+    ],
+    "en:e1001v": [
+      "en:e1001"
+    ],
+    "en:e1001vi": [
+      "en:e1001"
+    ],
+    "en:e100i": [
+      "en:e100"
+    ],
+    "en:e100ii": [
+      "en:e100"
+    ],
+    "en:e101i": [
+      "en:e101"
+    ],
+    "en:e101ii": [
+      "en:e101"
+    ],
+    "en:e101iii": [
+      "en:e101"
+    ],
+    "en:e101iv": [
+      "en:e101"
+    ],
+    "en:e1100i": [
+      "en:e1100"
+    ],
+    "en:e1100ii": [
+      "en:e1100"
+    ],
+    "en:e1100iii": [
+      "en:e1100"
+    ],
+    "en:e1100iv": [
+      "en:e1100"
+    ],
+    "en:e1100v": [
+      "en:e1100"
+    ],
+    "en:e1100vi": [
+      "en:e1100"
+    ],
+    "en:e1101i": [
+      "en:e1101"
+    ],
+    "en:e1101ii": [
+      "en:e1101"
+    ],
+    "en:e1101iii": [
+      "en:e1101"
+    ],
+    "en:e1101iv": [
+      "en:e1101"
+    ],
+    "en:e1101v": [
+      "en:e1101"
+    ],
+    "en:e1101vi": [
+      "en:e1101"
+    ],
     "en:e1104": [
       "en:enzyme"
+    ],
+    "en:e140i": [
+      "en:e140"
+    ],
+    "en:e140ii": [
+      "en:e140"
+    ],
+    "en:e141i": [
+      "en:e141"
+    ],
+    "en:e141ii": [
+      "en:e141"
+    ],
+    "en:e160ai": [
+      "en:e160a"
+    ],
+    "en:e160aii": [
+      "en:e160a"
+    ],
+    "en:e160aiii": [
+      "en:e160a"
+    ],
+    "en:e160aiv": [
+      "en:e160a"
+    ],
+    "en:e160bi": [
+      "en:e160b"
+    ],
+    "en:e160bii": [
+      "en:e160b"
+    ],
+    "en:e160biii": [
+      "en:e160b"
+    ],
+    "en:e160ci": [
+      "en:e160c"
+    ],
+    "en:e160cii": [
+      "en:e160c"
+    ],
+    "en:e160di": [
+      "en:e160d"
+    ],
+    "en:e160dii": [
+      "en:e160d"
+    ],
+    "en:e160diii": [
+      "en:e160d"
+    ],
+    "en:e161bi": [
+      "en:e161b"
+    ],
+    "en:e161bii": [
+      "en:e161b"
+    ],
+    "en:e161biii": [
+      "en:e161b"
+    ],
+    "en:e161hi": [
+      "en:e161h"
+    ],
+    "en:e161hii": [
+      "en:e161h"
+    ],
+    "en:e163ii": [
+      "en:e163"
+    ],
+    "en:e163iii": [
+      "en:e163"
+    ],
+    "en:e163iv": [
+      "en:e163"
+    ],
+    "en:e163ix": [
+      "en:e163"
+    ],
+    "en:e163v": [
+      "en:e163"
+    ],
+    "en:e163vi": [
+      "en:e163"
+    ],
+    "en:e163vii": [
+      "en:e163"
+    ],
+    "en:e163viii": [
+      "en:e163"
+    ],
+    "en:e163x": [
+      "en:e163"
+    ],
+    "en:e163xi": [
+      "en:e163"
+    ],
+    "en:e170i": [
+      "en:e170"
+    ],
+    "en:e170ii": [
+      "en:e170"
+    ],
+    "en:e172i": [
+      "en:e172"
+    ],
+    "en:e172ii": [
+      "en:e172"
+    ],
+    "en:e172iii": [
+      "en:e172"
+    ],
+    "en:e261i": [
+      "en:e261"
+    ],
+    "en:e261ii": [
+      "en:e261"
+    ],
+    "en:e262i": [
+      "en:e262"
+    ],
+    "en:e262ii": [
+      "en:e262"
+    ],
+    "en:e304i": [
+      "en:e304"
+    ],
+    "en:e304ii": [
+      "en:e304"
+    ],
+    "en:e322a": [
+      "en:e322"
+    ],
+    "en:e322i": [
+      "en:e322"
+    ],
+    "en:e322ii": [
+      "en:e322"
+    ],
+    "en:e322iii": [
+      "en:e322"
+    ],
+    "en:e331i": [
+      "en:e331"
+    ],
+    "en:e331ii": [
+      "en:e331"
+    ],
+    "en:e331iii": [
+      "en:e331"
+    ],
+    "en:e332i": [
+      "en:e332"
+    ],
+    "en:e332ii": [
+      "en:e332"
+    ],
+    "en:e333i": [
+      "en:e333"
+    ],
+    "en:e333ii": [
+      "en:e333"
+    ],
+    "en:e333iii": [
+      "en:e333"
+    ],
+    "en:e335i": [
+      "en:e335"
+    ],
+    "en:e335ii": [
+      "en:e335"
+    ],
+    "en:e336i": [
+      "en:e336"
+    ],
+    "en:e336ii": [
+      "en:e336"
+    ],
+    "en:e339i": [
+      "en:e339"
+    ],
+    "en:e339iii": [
+      "en:e339"
+    ],
+    "en:e340i": [
+      "en:e340"
+    ],
+    "en:e340ii": [
+      "en:e340"
+    ],
+    "en:e340iii": [
+      "en:e340"
+    ],
+    "en:e341i": [
+      "en:e341"
+    ],
+    "en:e341ii": [
+      "en:e341"
+    ],
+    "en:e341iii": [
+      "en:e341"
+    ],
+    "en:e342i": [
+      "en:e342"
+    ],
+    "en:e342ii": [
+      "en:e342"
+    ],
+    "en:e343i": [
+      "en:e343"
+    ],
+    "en:e343ii": [
+      "en:e343"
+    ],
+    "en:e343iii": [
+      "en:e343"
+    ],
+    "en:e350i": [
+      "en:e350"
+    ],
+    "en:e350ii": [
+      "en:e350"
+    ],
+    "en:e351i": [
+      "en:e351"
+    ],
+    "en:e351ii": [
+      "en:e351"
+    ],
+    "en:e352i": [
+      "en:e352"
+    ],
+    "en:e352ii": [
+      "en:e352"
+    ],
+    "en:e364i": [
+      "en:e364"
+    ],
+    "en:e364ii": [
+      "en:e364"
+    ],
+    "en:e414a": [
+      "en:e414"
+    ],
+    "en:e418i": [
+      "en:e418"
+    ],
+    "en:e418ii": [
+      "en:e418"
+    ],
+    "en:e420i": [
+      "en:e420"
+    ],
+    "en:e420ii": [
+      "en:e420"
+    ],
+    "en:e425i": [
+      "en:e425"
+    ],
+    "en:e425ii": [
+      "en:e425"
+    ],
+    "en:e440a": [
+      "en:e440i"
+    ],
+    "en:e440aii": [
+      "en:e440a"
+    ],
+    "en:e440aiii": [
+      "en:e440a"
+    ],
+    "en:e440aiv": [
+      "en:e440a"
+    ],
+    "en:e440b": [
+      "en:e440ii"
+    ],
+    "en:e440i": [
+      "en:e440"
+    ],
+    "en:e440ii": [
+      "en:e440"
+    ],
+    "en:e445i": [
+      "en:e445"
+    ],
+    "en:e445ii": [
+      "en:e445"
+    ],
+    "en:e445iii": [
+      "en:e445"
+    ],
+    "en:e450i": [
+      "en:e450"
+    ],
+    "en:e450ii": [
+      "en:e450"
+    ],
+    "en:e450iii": [
+      "en:e450"
+    ],
+    "en:e450iv": [
+      "en:e450"
+    ],
+    "en:e450ix": [
+      "en:e450"
+    ],
+    "en:e450v": [
+      "en:e450"
+    ],
+    "en:e450vi": [
+      "en:e450"
+    ],
+    "en:e450vii": [
+      "en:e450"
+    ],
+    "en:e450viii": [
+      "en:e450"
+    ],
+    "en:e451i": [
+      "en:e451"
+    ],
+    "en:e451ii": [
+      "en:e451"
+    ],
+    "en:e451iii": [
+      "en:e451"
+    ],
+    "en:e452i": [
+      "en:e452"
+    ],
+    "en:e452ii": [
+      "en:e452"
+    ],
+    "en:e452iii": [
+      "en:e452"
+    ],
+    "en:e452iv": [
+      "en:e452"
+    ],
+    "en:e452v": [
+      "en:e452"
+    ],
+    "en:e452vi": [
+      "en:e452"
+    ],
+    "en:e460i": [
+      "en:e460"
+    ],
+    "en:e460ii": [
+      "en:e460"
+    ],
+    "en:e470ai": [
+      "en:e470a"
+    ],
+    "en:e470aii": [
+      "en:e470a"
+    ],
+    "en:e470aiii": [
+      "en:e470a"
+    ],
+    "en:e470i": [
+      "en:e470"
+    ],
+    "en:e470ii": [
+      "en:e470"
+    ],
+    "en:e470iii": [
+      "en:e470"
+    ],
+    "en:e481i": [
+      "en:e481"
+    ],
+    "en:e481ii": [
+      "en:e481"
+    ],
+    "en:e482i": [
+      "en:e482"
+    ],
+    "en:e482ii": [
+      "en:e482"
+    ],
+    "en:e490": [
+      "en:e1520"
+    ],
+    "en:e500i": [
+      "en:e500"
+    ],
+    "en:e500ii": [
+      "en:e500"
+    ],
+    "en:e500iii": [
+      "en:e500"
+    ],
+    "en:e501i": [
+      "en:e501"
+    ],
+    "en:e501ii": [
+      "en:e501"
+    ],
+    "en:e503i": [
+      "en:e503"
+    ],
+    "en:e503ii": [
+      "en:e503"
+    ],
+    "en:e504i": [
+      "en:e504"
+    ],
+    "en:e504ii": [
+      "en:e504"
+    ],
+    "en:e514i": [
+      "en:e514"
+    ],
+    "en:e514ii": [
+      "en:e514"
+    ],
+    "en:e515i": [
+      "en:e515"
+    ],
+    "en:e515ii": [
+      "en:e515"
+    ],
+    "en:e540": [
+      "en:e450vi"
+    ],
+    "en:e541i": [
+      "en:e541"
+    ],
+    "en:e541ii": [
+      "en:e541"
+    ],
+    "en:e544": [
+      "en:e452iv"
+    ],
+    "en:e545": [
+      "en:e452v"
+    ],
+    "en:e550i": [
+      "en:e550"
+    ],
+    "en:e550ii": [
+      "en:e550"
+    ],
+    "en:e553a": [
+      "en:e553"
+    ],
+    "en:e553ai": [
+      "en:e553a"
+    ],
+    "en:e553aii": [
+      "en:e553a"
+    ],
+    "en:e553b": [
+      "en:e553"
+    ],
+    "en:e553i": [
+      "en:e553"
+    ],
+    "en:e553ii": [
+      "en:e553"
+    ],
+    "en:e553iii": [
+      "en:e553"
+    ],
+    "en:e640i": [
+      "en:e640"
+    ],
+    "en:e640ii": [
+      "en:e640"
+    ],
+    "en:e900a": [
+      "en:e900"
+    ],
+    "en:e900b": [
+      "en:e900"
+    ],
+    "en:e905a": [
+      "en:e905"
+    ],
+    "en:e905b": [
+      "en:e905"
+    ],
+    "en:e905c": [
+      "en:e905"
+    ],
+    "en:e905ci": [
+      "en:e905c"
+    ],
+    "en:e905cii": [
+      "en:e905c"
+    ],
+    "en:e905d": [
+      "en:e905"
+    ],
+    "en:e905e": [
+      "en:e905"
+    ],
+    "en:e905f": [
+      "en:e905"
+    ],
+    "en:e905g": [
+      "en:e905"
+    ],
+    "en:e924": [
+      "en:e924a"
+    ],
+    "en:e927a": [
+      "en:e927"
+    ],
+    "en:e927b": [
+      "en:e927"
+    ],
+    "en:e931": [
+      "en:e941"
+    ],
+    "en:e952i": [
+      "en:e952"
+    ],
+    "en:e952ii": [
+      "en:e952"
+    ],
+    "en:e952iv": [
+      "en:e952"
+    ],
+    "en:e954i": [
+      "en:e954"
+    ],
+    "en:e954ii": [
+      "en:e954"
+    ],
+    "en:e954iii": [
+      "en:e954"
+    ],
+    "en:e954iv": [
+      "en:e954"
+    ],
+    "en:e965i": [
+      "en:e965"
+    ],
+    "en:e965ii": [
+      "en:e965"
+    ],
+    "en:e999i": [
+      "en:e999"
+    ],
+    "en:e999ii": [
+      "en:e999"
     ],
     "en:eating-orange": [
       "en:orange"
@@ -4397,6 +5174,9 @@
     "en:elderflower-extract": [
       "en:elderflower"
     ],
+    "en:elemental-iron": [
+      "en:iron"
+    ],
     "en:elk": [
       "en:game-animal"
     ],
@@ -4414,7 +5194,7 @@
     ],
     "en:emmer-flour": [
       "en:cereal-flour",
-      "en:emmer-wheat"
+      "en:emmer"
     ],
     "en:emu": [
       "en:poultry"
@@ -4443,6 +5223,9 @@
     "en:equisetum-arvense": [
       "en:plant"
     ],
+    "en:ergocalciferol": [
+      "en:vitamin-d"
+    ],
     "en:escolar": [
       "en:butterfish"
     ],
@@ -4454,9 +5237,6 @@
     ],
     "en:essential-orange-oil-flavour": [
       "en:orange-flavouring"
-    ],
-    "en:ethanol": [
-      "en:alcohol"
     ],
     "en:ethylvanillin": [
       "en:vanillin"
@@ -4477,7 +5257,7 @@
       "en:anchovy"
     ],
     "en:european-anglerfish-monkfish": [
-      "en:anglerfish"
+      "en:monkfish"
     ],
     "en:european-conger": [
       "en:fish",
@@ -4544,7 +5324,7 @@
       "en:green-bean"
     ],
     "en:extra-fine-sweat-peas": [
-      "fr:petits-pois-doux"
+      "en:sweet-peas"
     ],
     "en:extra-mature-cheddar": [
       "en:cheddar"
@@ -4660,10 +5440,46 @@
     "en:fermented-wheat-starch": [
       "en:wheat-starch"
     ],
+    "en:ferric-diphosphate": [
+      "en:iron"
+    ],
+    "en:ferric-orthophosphate": [
+      "en:iron"
+    ],
+    "en:ferric-pyrophosphate": [
+      "en:iron"
+    ],
+    "en:ferric-saccharate": [
+      "en:iron"
+    ],
+    "en:ferric-sodium-diphosphate": [
+      "en:iron"
+    ],
+    "en:ferric-sodium-edta": [
+      "en:iron"
+    ],
+    "en:ferrous-ammonium-phosphate": [
+      "en:iron"
+    ],
+    "en:ferrous-bisglycinate": [
+      "en:iron"
+    ],
+    "en:ferrous-citrate": [
+      "en:iron"
+    ],
+    "en:ferrous-gluconate-to-stabilize-color": [
+      "en:e579"
+    ],
+    "en:ferrous-l-pidolate": [
+      "en:iron"
+    ],
+    "en:ferrous-sulfate": [
+      "en:iron"
+    ],
     "en:feta": [
       "en:cheese"
     ],
-    "en:feta-cheese-from-ewe's-milk": [
+    "en:feta-cheese-from-ewe-s-milk": [
       "en:feta"
     ],
     "en:fiber-from-chicory-root-oligofructose": [
@@ -4688,7 +5504,7 @@
     "en:filling-with-pear": [
       "en:filling"
     ],
-    "en:filmjölk": [
+    "en:filmjolk": [
       "en:dairy"
     ],
     "en:filtered-water": [
@@ -4697,8 +5513,8 @@
     "en:filtered-whey-powder": [
       "en:whey-powder"
     ],
-    "en:fine-salt-from-guérande": [
-      "en:salt-from-guérande"
+    "en:fine-salt-from-guerande": [
+      "en:salt-from-guerande"
     ],
     "en:finegrained-non-iodized-sea-salt": [
       "en:finegrained-salt",
@@ -4729,7 +5545,7 @@
       "en:milk"
     ],
     "en:fish-gelatine": [
-      "en:gelatin"
+      "en:e428"
     ],
     "en:fish-meat": [
       "en:fish"
@@ -4805,9 +5621,9 @@
     "en:fleur-de-sel": [
       "en:sea-salt"
     ],
-    "en:fleur-de-sel-from-guérande": [
+    "en:fleur-de-sel-from-guerande": [
       "en:fleur-de-sel",
-      "en:salt-from-guérande"
+      "en:salt-from-guerande"
     ],
     "en:florida-avocado": [
       "en:avocado"
@@ -4827,6 +5643,18 @@
     ],
     "en:fluid-sweet-whey": [
       "en:sweet-whey"
+    ],
+    "en:fluoride": [
+      "en:minerals"
+    ],
+    "en:folacin": [
+      "en:folic-acid"
+    ],
+    "en:folate": [
+      "en:vitamins"
+    ],
+    "en:folic-acid": [
+      "en:folate"
     ],
     "en:fontal": [
       "en:fontina"
@@ -4858,7 +5686,7 @@
     "en:fortified-wheat-flour": [
       "en:wheat-flour"
     ],
-    "en:fourme-d'ambert": [
+    "en:fourme-d-ambert": [
       "en:blue-cheese",
       "en:cow-cheese"
     ],
@@ -4937,8 +5765,8 @@
       "en:fresh-herb"
     ],
     "en:fresh-basil-leaf": [
-      "en:fresh-basil",
-      "en:basil-leaf"
+      "en:basil-leaf",
+      "en:fresh-basil"
     ],
     "en:fresh-broad-bean-to-shell": [
       "en:broad-bean",
@@ -5027,7 +5855,7 @@
       "en:walnut"
     ],
     "en:fresh-yeast": [
-      "en:baker's-yeast"
+      "en:baker-s-yeast"
     ],
     "en:freshwater-bream": [
       "en:fish"
@@ -5105,14 +5933,17 @@
     ],
     "en:fruit-juices-and-purees-from-concentrate": [
       "en:fruit-juice-from-concentrate",
-      "fr:purées-de-fruits-à-base-de-concentrés"
+      "fr:purees-de-fruits-a-base-de-concentres"
     ],
     "en:fruit-pectin": [
       "en:e440"
     ],
-    "en:fruit-purée": [
+    "en:fruit-preservative": [
+      "en:preservative"
+    ],
+    "en:fruit-puree": [
       "en:fruit",
-      "en:purée"
+      "en:puree"
     ],
     "en:fruit-vegetable": [
       "en:vegetable"
@@ -5185,6 +6016,9 @@
     "en:gamay": [
       "en:varietal"
     ],
+    "en:game-animal": [
+      "en:animal"
+    ],
     "en:garam-masala": [
       "en:mixed-spices"
     ],
@@ -5253,10 +6087,10 @@
       "en:nectarine"
     ],
     "en:gelatin-powder": [
-      "en:gelatin"
+      "en:e428"
     ],
     "en:gelatin-sheet": [
-      "en:gelatin"
+      "en:e428"
     ],
     "en:genoese-basil": [
       "en:basil"
@@ -5282,7 +6116,7 @@
     "en:germinated-rice": [
       "en:rice"
     ],
-    "en:gewürztraminer": [
+    "en:gewurztraminer": [
       "en:varietal"
     ],
     "en:ghee": [
@@ -5331,7 +6165,7 @@
     "en:ginseng-root-extract": [
       "en:ginseng"
     ],
-    "en:glacé-cherry": [
+    "en:glace-cherry": [
       "en:cherry-preparation"
     ],
     "en:glass-noodle": [
@@ -5405,7 +6239,7 @@
     "en:goat-milk": [
       "en:milk"
     ],
-    "en:goat's-milk-yogurt": [
+    "en:goat-s-milk-yogurt": [
       "en:yogurt"
     ],
     "en:goji": [
@@ -5571,7 +6405,7 @@
     "en:grass-pea": [
       "en:pea"
     ],
-    "en:grass-pea-from-alvaiázere": [
+    "en:grass-pea-from-alvaiazere": [
       "en:grass-pea"
     ],
     "en:grated-emmental-cheese": [
@@ -5637,7 +6471,7 @@
       "en:cauliflower"
     ],
     "en:green-chili-paste": [
-      "en:green-chili"
+      "en:green-chili-pepper"
     ],
     "en:green-chili-pepper": [
       "en:chili-pepper"
@@ -5732,9 +6566,9 @@
     "en:grey-salt": [
       "en:sea-salt"
     ],
-    "en:grey-salt-from-guérande": [
-      "en:salt-from-guérande",
-      "en:sel-gris"
+    "en:grey-salt-from-guerande": [
+      "en:grey-salt",
+      "en:salt-from-guerande"
     ],
     "en:grey-sea-salt": [
       "en:sea-salt"
@@ -5809,8 +6643,8 @@
       "en:nutmeg"
     ],
     "en:ground-piedmont-hazelnut": [
-      "en:piedmont-hazelnut",
-      "en:ground-hazelnuts"
+      "en:ground-hazelnuts",
+      "en:piedmont-hazelnut"
     ],
     "en:ground-roasted-coffee": [
       "en:ground-coffee"
@@ -5827,27 +6661,20 @@
     "en:grouper": [
       "en:fish"
     ],
-    "en:grünkern": [
+    "en:grunkern": [
       "en:spelt"
     ],
-    "en:gruyère": [
+    "en:gruyere": [
       "en:cheese"
     ],
-    "en:gruyère-aop": [
-      "en:gruyère"
+    "en:gruyere-aop": [
+      "en:gruyere"
     ],
     "en:gruyere-pgi": [
-      "en:gruyère"
+      "en:gruyere"
     ],
     "en:guajillo-chili": [
       "en:chili-pepper"
-    ],
-    "en:guar-flour": [
-      "en:flour",
-      "en:guar-gum"
-    ],
-    "en:guar-gum": [
-      "en:tree-gum"
     ],
     "en:guarana": [
       "en:plant"
@@ -5957,6 +6784,9 @@
     "en:hazelnut-paste": [
       "en:hazelnut"
     ],
+    "en:heart-of-lettuce": [
+      "en:lettuce"
+    ],
     "en:heart-of-palm": [
       "en:shoot-vegetable"
     ],
@@ -6032,7 +6862,7 @@
     "en:high-oleic-sunflower-oil": [
       "en:sunflower-oil"
     ],
-    "en:high-oleic-sunflower-oil-(70%-and-over)": [
+    "en:high-oleic-sunflower-oil-70-and-over": [
       "en:high-oleic-sunflower-oil"
     ],
     "en:highly-fat-reduced-cocoa": [
@@ -6070,7 +6900,7 @@
     "en:honey-from-spain": [
       "en:honey"
     ],
-    "en:honey-from-the-gâtinais": [
+    "en:honey-from-the-gatinais": [
       "en:honey-from-france"
     ],
     "en:honey-from-the-provence": [
@@ -6178,6 +7008,7 @@
       "en:sesame-seeds"
     ],
     "en:hyacinth-bean": [
+      "en:legume",
       "en:pulse"
     ],
     "en:hydrogenated-coconut-oil": [
@@ -6290,6 +7121,9 @@
       "en:hydrolysed-vegetable-protein",
       "en:wheat-protein"
     ],
+    "en:hydroxocobalamin": [
+      "en:vitamin-b12"
+    ],
     "en:ice": [
       "en:water"
     ],
@@ -6320,13 +7154,13 @@
     ],
     "en:immature-winged-bean-seed": [
       "en:legume",
-      "en:winged-bean"
+      "en:winged-beans"
     ],
     "en:inactive-dough": [
       "en:dough"
     ],
     "en:inactive-sourdough": [
-      "en:sourdough"
+      "en:sourdough-starter"
     ],
     "en:inactive-wheat-sourdough": [
       "en:inactive-sourdough",
@@ -6362,6 +7196,9 @@
     "en:inflated-spelt": [
       "en:spelt"
     ],
+    "en:inosine-monophosphate": [
+      "en:nucleotides"
+    ],
     "en:instant-coffee": [
       "en:coffee"
     ],
@@ -6388,6 +7225,9 @@
       "en:invert-sugar",
       "en:sugar-syrup"
     ],
+    "en:iodine": [
+      "en:minerals"
+    ],
     "en:iodised-salt": [
       "en:salt"
     ],
@@ -6404,6 +7244,15 @@
     "en:irish-whiskey": [
       "en:whiskey"
     ],
+    "en:iron": [
+      "en:minerals"
+    ],
+    "en:iron-fumarate": [
+      "en:iron"
+    ],
+    "en:iron-salts": [
+      "en:iron"
+    ],
     "en:isomalto-oligosaccharide": [
       "en:oligosaccharides"
     ],
@@ -6414,7 +7263,7 @@
       "en:green-bell-pepper"
     ],
     "en:italian-pepper": [
-      "en:sweet-pepper"
+      "en:bell-pepper"
     ],
     "en:italian-raw-ham": [
       "en:raw-ham"
@@ -6589,21 +7438,15 @@
     "en:kohlrabi": [
       "en:cabbage"
     ],
-    "en:komatsuna": [
-      "en:cabbage"
-    ],
     "en:kombu": [
       "en:kelp"
     ],
     "en:kombucha-culture": [
       "en:microbial-culture"
     ],
-    "en:konjac": [
-      "en:plant"
-    ],
     "en:konjac-flour": [
-      "en:flour",
-      "en:konjac"
+      "en:e425",
+      "en:flour"
     ],
     "en:korean-chili-pepper": [
       "en:chili-pepper"
@@ -6624,10 +7467,13 @@
       "en:olive"
     ],
     "en:kosher-gelatin": [
-      "en:gelatin"
+      "en:e428"
     ],
     "en:kosher-salt": [
       "en:coarse-salt"
+    ],
+    "en:krill": [
+      "en:crustacean"
     ],
     "en:kumquat": [
       "en:fruit"
@@ -6641,6 +7487,78 @@
     ],
     "en:kvass-wort-concentrate": [
       "en:kvass-wort"
+    ],
+    "en:l-alanine": [
+      "en:amino-acids"
+    ],
+    "en:l-arginine": [
+      "en:amino-acids"
+    ],
+    "en:l-arginine-l-aspartate": [
+      "en:amino-acids"
+    ],
+    "en:l-ascorbyl-6-palmitate": [
+      "en:vitamin-c"
+    ],
+    "en:l-aspartic-acid": [
+      "en:amino-acids"
+    ],
+    "en:l-carnitine": [
+      "en:carnitine"
+    ],
+    "en:l-carnitine-l-tartrate": [
+      "en:carnitine"
+    ],
+    "en:l-citrulline": [
+      "en:amino-acids"
+    ],
+    "en:l-glutamine": [
+      "en:amino-acids"
+    ],
+    "en:l-histidine": [
+      "en:amino-acids"
+    ],
+    "en:l-isoleucine": [
+      "en:amino-acids"
+    ],
+    "en:l-lysine": [
+      "en:amino-acids"
+    ],
+    "en:l-lysine-acetate": [
+      "en:amino-acids"
+    ],
+    "en:l-lysine-l-aspartate": [
+      "en:amino-acids"
+    ],
+    "en:l-lysine-l-glutamate": [
+      "en:amino-acids"
+    ],
+    "en:l-methionine": [
+      "en:amino-acids"
+    ],
+    "en:l-ornithine": [
+      "en:amino-acids"
+    ],
+    "en:l-phenylalanine": [
+      "en:amino-acids"
+    ],
+    "en:l-proline": [
+      "en:amino-acids"
+    ],
+    "en:l-serine": [
+      "en:amino-acids"
+    ],
+    "en:l-threonine": [
+      "en:amino-acids"
+    ],
+    "en:l-tryptophan": [
+      "en:amino-acids"
+    ],
+    "en:l-tyrosine": [
+      "en:amino-acids"
+    ],
+    "en:l-valine": [
+      "en:amino-acids"
     ],
     "en:lactarius-sanguifluus": [
       "en:bloody-milk-cap"
@@ -6709,7 +7627,7 @@
     "en:lactose-free-quark": [
       "en:quark"
     ],
-    "en:laguiole-cheese-from-cow's-milk": [
+    "en:laguiole-cheese-from-cow-s-milk": [
       "en:cheese"
     ],
     "en:lamb": [
@@ -6797,7 +7715,7 @@
       "en:bacon"
     ],
     "en:large-eggs": [
-      "en:eggs"
+      "en:egg"
     ],
     "en:large-garden-peas": [
       "en:garden-peas"
@@ -6837,7 +7755,7 @@
       "en:vegetable"
     ],
     "en:leafy-balsam-pear-tips": [
-      "en:balsam-pear"
+      "en:bitter-melon"
     ],
     "en:leafy-tips-cowpeas": [
       "en:leaf-vegetable"
@@ -6868,9 +7786,6 @@
     ],
     "en:lemon-balm": [
       "en:herb"
-    ],
-    "en:lemon-beebrush": [
-      "en:plant"
     ],
     "en:lemon-cake-honey-preparation": [
       "en:preparation"
@@ -6987,7 +7902,7 @@
     "en:light-tuna": [
       "en:tuna"
     ],
-    "en:lightly-salted-80%-fat-butter": [
+    "en:lightly-salted-80-fat-butter": [
       "en:lightly-salted-butter"
     ],
     "en:lightly-salted-butter": [
@@ -7060,11 +7975,14 @@
     "en:linoleic-free-hydrogenated-soybean-shortening": [
       "en:hydrogenated-soybean-shortening"
     ],
-    "en:linoleic-sunflower-oil-(less-than-60%)": [
+    "en:linoleic-sunflower-oil-less-than-60": [
       "en:sunflower-oil"
     ],
     "en:linseed-oil": [
       "en:vegetable-oil"
+    ],
+    "en:lion-s-mane": [
+      "en:mushroom"
     ],
     "en:liqueur": [
       "en:alcohol"
@@ -7072,7 +7990,7 @@
     "en:liqueur-wine": [
       "en:wine"
     ],
-    "en:liquid-30%-fat-uht-cream": [
+    "en:liquid-30-fat-uht-cream": [
       "en:cream"
     ],
     "en:liquid-egg": [
@@ -7253,7 +8171,7 @@
     "en:maasdam": [
       "en:cheese"
     ],
-    "en:maasdam-type-firm-cheese-with-around-27%-fat": [
+    "en:maasdam-type-firm-cheese-with-around-27-fat": [
       "en:maasdam"
     ],
     "en:maca": [
@@ -7280,6 +8198,37 @@
     ],
     "en:madeira": [
       "en:liqueur-wine"
+    ],
+    "en:magnesium": [
+      "en:minerals"
+    ],
+    "en:magnesium-acetate": [
+      "en:magnesium"
+    ],
+    "en:magnesium-bisglycinate": [
+      "en:magnesium"
+    ],
+    "en:magnesium-glycerophosphate": [
+      "en:magnesium"
+    ],
+    "en:magnesium-l-aspartate": [
+      "en:magnesium"
+    ],
+    "en:magnesium-l-pidolate": [
+      "en:magnesium"
+    ],
+    "en:magnesium-malate": [
+      "en:magnesium"
+    ],
+    "en:magnesium-potassium-citrate": [
+      "en:magnesium",
+      "en:potassium"
+    ],
+    "en:magnesium-salts-of-citric-acid": [
+      "en:magnesium"
+    ],
+    "en:magnesium-salts-of-orthophosphoric-acid": [
+      "en:magnesium"
     ],
     "en:mahi-mahi": [
       "en:saltwater-fish"
@@ -7346,7 +8295,7 @@
     ],
     "en:malted-wholemeal-rye-flakes": [
       "en:malt",
-      "en:wholemeal-rye-flakes"
+      "en:whole-grain-rye-flakes"
     ],
     "en:malted-wholemeal-rye-flakes-and-flour": [
       "en:malted-wholemeal-rye-flakes",
@@ -7355,10 +8304,6 @@
     "en:malted-wholemeal-rye-flour": [
       "en:malt",
       "en:wholemeal-rye-flour"
-    ],
-    "en:maltitol-syrup": [
-      "en:maltitol",
-      "en:syrup"
     ],
     "en:maltose": [
       "en:sugar"
@@ -7392,6 +8337,30 @@
       "en:mandarin",
       "en:mandarin-peel"
     ],
+    "en:manganese": [
+      "en:minerals"
+    ],
+    "en:manganese-carbonate": [
+      "en:manganese"
+    ],
+    "en:manganese-chloride": [
+      "en:manganese"
+    ],
+    "en:manganese-citrate": [
+      "en:manganese"
+    ],
+    "en:manganese-gluconate": [
+      "en:manganese"
+    ],
+    "en:manganese-glycerophosphate": [
+      "en:manganese"
+    ],
+    "en:manganese-sulfate": [
+      "en:manganese"
+    ],
+    "en:manganous-oxide": [
+      "en:manganese"
+    ],
     "en:mango": [
       "en:fruit"
     ],
@@ -7409,7 +8378,7 @@
     ],
     "en:mango-puree": [
       "en:mango",
-      "en:purée"
+      "en:puree"
     ],
     "en:mango-puree-from-concentrate": [
       "en:mango-puree"
@@ -7645,6 +8614,9 @@
     "en:melted-powdered-cheese": [
       "en:melted-cheese"
     ],
+    "en:menaquinone": [
+      "en:vitamin-k"
+    ],
     "en:menhaden-fish-oil": [
       "en:fish-oil"
     ],
@@ -7656,6 +8628,9 @@
     ],
     "en:merlot": [
       "en:varietal"
+    ],
+    "en:methylcobalamin": [
+      "en:vitamin-b12"
     ],
     "en:microbial-coagulating-enzyme": [
       "en:coagulating-enzyme"
@@ -7898,7 +8873,7 @@
     ],
     "en:modified-tapioca-starch": [
       "en:modified-starch",
-      "en:tapioca-starch"
+      "en:tapioca"
     ],
     "en:modified-viscous-maize-starch": [
       "en:corn-starch"
@@ -7917,6 +8892,9 @@
     "en:mollusc": [
       "en:shellfish"
     ],
+    "en:molybdenum": [
+      "en:minerals"
+    ],
     "en:monk-fruit-extract": [
       "en:fruit-extract",
       "en:sweetener"
@@ -7926,6 +8904,9 @@
       "en:white-fish"
     ],
     "en:mono-and-diglycerides-of-fatty-acids-of-vegetable-origin": [
+      "en:e471"
+    ],
+    "en:mono-and-diglycerides-of-vegetable-fatty-acids": [
       "en:e471"
     ],
     "en:monosaccharide": [
@@ -7967,7 +8948,7 @@
     "en:mountain-spring-water": [
       "en:spring-water"
     ],
-    "en:mourvèdre": [
+    "en:mourvedre": [
       "en:varietal"
     ],
     "en:mozambique-tilapia": [
@@ -8106,14 +9087,17 @@
     "en:myrtle-leaf": [
       "en:plant"
     ],
+    "en:n-acetyl-l-cysteine": [
+      "en:amino-acids"
+    ],
+    "en:n-acetyl-l-methionine": [
+      "en:amino-acids"
+    ],
     "en:nameko": [
-      "en:pholiota"
+      "en:chestnut-mushroom"
     ],
     "en:nance": [
       "en:fruit"
-    ],
-    "en:napa-cabbage": [
-      "en:chinese-cabbage"
     ],
     "en:naranjilla": [
       "en:fruit"
@@ -8130,6 +9114,9 @@
     ],
     "en:natural-aniseed-aroma": [
       "en:natural-flavouring"
+    ],
+    "en:natural-antioxidant": [
+      "en:antioxidant"
     ],
     "en:natural-apple-flavouring": [
       "en:natural-flavouring"
@@ -8221,6 +9208,9 @@
     "en:natural-cola-flavouring": [
       "en:natural-flavouring"
     ],
+    "en:natural-colours": [
+      "en:colour"
+    ],
     "en:natural-crustaceans-flavouring": [
       "en:crustaceans-flavouring",
       "en:natural-flavouring"
@@ -8235,6 +9225,9 @@
     "en:natural-elderberry-flavouring": [
       "en:natural-flavouring"
     ],
+    "en:natural-emulsifier": [
+      "en:emulsifier"
+    ],
     "en:natural-eucalyptus-flavouring": [
       "en:natural-flavouring"
     ],
@@ -8243,6 +9236,9 @@
     ],
     "en:natural-fig-flavouring": [
       "en:natural-flavouring"
+    ],
+    "en:natural-firming-agent": [
+      "en:firming-agent"
     ],
     "en:natural-fish-flavouring": [
       "en:natural-flavouring"
@@ -8368,7 +9364,7 @@
       "en:natural-vanilla-flavouring"
     ],
     "en:natural-paprika-extract": [
-      "en:paprika-extract"
+      "en:e160c"
     ],
     "en:natural-paprika-flavor": [
       "en:natural-flavouring"
@@ -8406,6 +9402,9 @@
     ],
     "en:natural-poultry-flavouring": [
       "en:natural-flavouring"
+    ],
+    "en:natural-preservative": [
+      "en:preservative"
     ],
     "en:natural-raspberry-flavouring": [
       "en:natural-flavouring"
@@ -8448,7 +9447,7 @@
       "en:natural-flavouring"
     ],
     "en:natural-sourdough": [
-      "en:sourdough"
+      "en:sourdough-starter"
     ],
     "en:natural-spice-extract": [
       "en:spice-extract"
@@ -8461,6 +9460,9 @@
     ],
     "en:natural-spring-water": [
       "en:spring-water"
+    ],
+    "en:natural-stabilizer": [
+      "en:stabiliser"
     ],
     "en:natural-star-anise-aroma": [
       "en:natural-flavouring"
@@ -8483,6 +9485,9 @@
     ],
     "en:natural-tea-flavouring": [
       "en:natural-flavouring"
+    ],
+    "en:natural-thickener": [
+      "en:thickener"
     ],
     "en:natural-thyme-flavouring": [
       "en:natural-flavouring"
@@ -8546,7 +9551,7 @@
     "en:nettle-leaf": [
       "en:nettle"
     ],
-    "en:neufchâtel": [
+    "en:neufchatel": [
       "en:cheese"
     ],
     "en:new-potato": [
@@ -8560,7 +9565,7 @@
     ],
     "en:nibbed-and-ground-hazelnuts": [
       "en:ground-hazelnuts",
-      "fr:éclats-de-noisettes"
+      "fr:eclats-de-noisettes"
     ],
     "en:nielluccio": [
       "en:varietal"
@@ -8710,7 +9715,7 @@
       "en:oat"
     ],
     "en:oat-husk-fiber": [
-      "en:oat-fiber"
+      "en:oat-fibre"
     ],
     "en:oat-kernel": [
       "en:oat"
@@ -8784,7 +9789,7 @@
     "en:olive-oil": [
       "en:vegetable-oil"
     ],
-    "en:olive-paté": [
+    "en:olive-pate": [
       "en:black-olive"
     ],
     "en:olive-pomace-oil": [
@@ -9102,8 +10107,8 @@
     "en:organic-tomato-cubes-in-organic-tomato-juice": [
       "en:tomato-cubes"
     ],
-    "en:organic-tomato-purée": [
-      "en:tomato-purée"
+    "en:organic-tomato-puree": [
+      "en:tomato-puree"
     ],
     "en:organic-unrefined-cane-sugar": [
       "en:organic-cane-sugar",
@@ -9156,10 +10161,11 @@
       "en:fig"
     ],
     "en:pak-choi": [
+      "en:cabbage",
       "en:chinese-cabbage"
     ],
     "en:pale-brown-amaranth-seed": [
-      "en:amaranth"
+      "en:e123"
     ],
     "en:palm": [
       "en:palm-oil"
@@ -9246,20 +10252,17 @@
       "en:panna-cotta",
       "en:preparation"
     ],
+    "en:pantothenic-acid": [
+      "en:vitamins"
+    ],
     "en:papaya": [
       "en:fruit"
     ],
     "en:paprika": [
       "en:spice"
     ],
-    "en:paprika-extract": [
-      "en:vegetable-extract"
-    ],
     "en:paprika-flavouring": [
       "en:flavouring"
-    ],
-    "en:paprika-oleoresin": [
-      "en:paprika-extract"
     ],
     "en:paprika-or-bell-pepper": [
       "en:bell-pepper",
@@ -9275,8 +10278,8 @@
       "en:shrimp"
     ],
     "en:parboiled-italian-black-whole-grain-rice": [
-      "en:italian-rice",
       "en:parboiled-rice",
+      "en:rice-from-italy",
       "en:whole-grain-rice"
     ],
     "en:parboiled-long-grain-brown-rice": [
@@ -9284,8 +10287,8 @@
       "en:long-grain-parboiled-rice"
     ],
     "en:parboiled-organic-long-grain-rice": [
-      "en:organic-long-grain-rice",
-      "en:parboiled-long-grain-rice"
+      "en:long-grain-parboiled-rice",
+      "en:organic-long-grain-rice"
     ],
     "en:parboiled-rice": [
       "en:rice"
@@ -9340,7 +10343,7 @@
     "en:partially-hydrogenated-palm-oil": [
       "en:hydrogenated-palm-oil"
     ],
-    "en:partially-hydrogenated-soy-and-corn-industrial-shortening-(for-frying)": [
+    "en:partially-hydrogenated-soy-and-corn-industrial-shortening-for-frying": [
       "en:corn-oil",
       "en:hydrogenated-soybean-shortening",
       "en:industrial-shortening"
@@ -9381,7 +10384,8 @@
       "en:chili-pepper"
     ],
     "en:passion-fruit-flavouring": [
-      "en:flavouring"
+      "en:flavouring",
+      "en:natural-flavouring"
     ],
     "en:passion-fruit-juice": [
       "en:fruit-juice"
@@ -9396,7 +10400,7 @@
       "en:pasta"
     ],
     "en:pasteurised-egg-white-powder": [
-      "en:egg-white-powder"
+      "en:powdered-egg-white"
     ],
     "en:pasteurised-egg-yolk": [
       "en:egg-yolk"
@@ -9549,7 +10553,7 @@
     ],
     "en:pear-puree": [
       "en:pear",
-      "en:purée"
+      "en:puree"
     ],
     "en:pearl-barley": [
       "en:barley-groats"
@@ -9603,9 +10607,6 @@
       "en:pasta"
     ],
     "en:pepeao": [
-      "en:mushroom"
-    ],
-    "en:pepeiao": [
       "en:mushroom"
     ],
     "en:pepper": [
@@ -9662,10 +10663,6 @@
       "en:fruit-juice",
       "en:persimmon"
     ],
-    "en:peruvian-carob-gum": [
-      "en:e410",
-      "en:tree-gum"
-    ],
     "en:peruvian-scallop": [
       "en:scallop"
     ],
@@ -9676,7 +10673,7 @@
       "en:sauce"
     ],
     "en:petit-beurre": [
-      "en:biscuits"
+      "en:biscuit"
     ],
     "en:petit-manseng": [
       "en:varietal"
@@ -9693,11 +10690,20 @@
     "en:pheasant": [
       "en:poultry"
     ],
+    "en:phosphate": [
+      "en:minerals"
+    ],
+    "en:phosphor": [
+      "en:minerals"
+    ],
     "en:phyllo-dough": [
       "en:dough"
     ],
     "en:phyllo-dough-sheet": [
       "en:phyllo-dough"
+    ],
+    "en:phylloquinone": [
+      "en:vitamin-k"
     ],
     "en:pickled-cucumber": [
       "en:cucumber"
@@ -9716,8 +10722,8 @@
       "en:hazelnut"
     ],
     "en:piedmont-hazelnut-paste": [
-      "en:piedmont-hazelnut",
-      "en:hazelnut-paste"
+      "en:hazelnut-paste",
+      "en:piedmont-hazelnut"
     ],
     "en:pierogi": [
       "en:stuffed-pasta"
@@ -9772,7 +10778,7 @@
     "en:pineapple-juice-from-concentrate": [
       "en:pineapple-juice"
     ],
-    "en:pineapple-purée": [
+    "en:pineapple-puree": [
       "en:pineapple"
     ],
     "en:pineapple-segments": [
@@ -9883,8 +10889,8 @@
       "en:flavouring",
       "en:preparation"
     ],
-    "en:plain-goat's-milk-yogurt-with-around-5%-fat": [
-      "en:goat's-milk-yogurt"
+    "en:plain-goat-s-milk-yogurt-with-around-5-fat": [
+      "en:goat-s-milk-yogurt"
     ],
     "en:plain-greek-style-yogurt": [
       "en:greek-yogurt"
@@ -9958,9 +10964,6 @@
     "en:pollack": [
       "en:fish"
     ],
-    "en:polydextrose": [
-      "en:dextrose"
-    ],
     "en:pomace-brandy": [
       "en:alcohol"
     ],
@@ -9991,7 +10994,7 @@
     "en:pomelo-pulp": [
       "en:pomelo"
     ],
-    "en:pont-l'evêque": [
+    "en:pont-l-eveque": [
       "en:cheese"
     ],
     "en:popcorn": [
@@ -10055,7 +11058,7 @@
       "en:pork"
     ],
     "en:pork-gelatin": [
-      "en:gelatin",
+      "en:e428",
       "en:pork"
     ],
     "en:pork-heart": [
@@ -10129,11 +11132,21 @@
     "en:pot-barley": [
       "en:barley-groats"
     ],
+    "en:potassium": [
+      "en:minerals"
+    ],
+    "en:potassium-fluoride": [
+      "en:fluoride"
+    ],
+    "en:potassium-glycerophosphate": [
+      "en:potassium"
+    ],
     "en:potassium-iodide": [
+      "en:iodine",
       "en:salt"
     ],
-    "en:potassium-salt": [
-      "en:salt"
+    "en:potassium-salts-of-orthophosphoric-acid": [
+      "en:potassium"
     ],
     "en:potato": [
       "en:starchy-root-vegetable",
@@ -10217,9 +11230,6 @@
     "en:powdered-egg-white": [
       "en:egg-white"
     ],
-    "en:powdered-glucose-syrup": [
-      "en:glucose-syrup"
-    ],
     "en:powdered-lemon-zest": [
       "en:lemon-zest"
     ],
@@ -10270,7 +11280,7 @@
       "en:almond-paste"
     ],
     "en:prepacked-bearnaise-sauce": [
-      "en:béarnaise-sauce"
+      "en:bearnaise-sauce"
     ],
     "en:prepacked-burger-sauce": [
       "en:burger-sauce"
@@ -10313,6 +11323,9 @@
     ],
     "en:proteic-extruded-soy": [
       "en:soy-protein-product"
+    ],
+    "en:provitamin-a": [
+      "en:e160ai"
     ],
     "en:provolone": [
       "en:cheese"
@@ -10424,6 +11437,24 @@
     "en:puy-lentils": [
       "en:green-lentils"
     ],
+    "en:pyridoxamine": [
+      "en:vitamin-b6"
+    ],
+    "en:pyridoxamine-hydrochloride": [
+      "en:vitamin-b6"
+    ],
+    "en:pyridoxine": [
+      "en:vitamin-b6"
+    ],
+    "en:pyridoxine-5-phosphate": [
+      "en:vitamin-b6"
+    ],
+    "en:pyridoxine-dipalmitate": [
+      "en:vitamin-b6"
+    ],
+    "en:pyridoxine-hydrochloride": [
+      "en:vitamin-b6"
+    ],
     "en:quail": [
       "en:poultry"
     ],
@@ -10518,7 +11549,7 @@
       "en:rapeseed-protein"
     ],
     "en:rapeseed-lecithin": [
-      "en:e322(i)"
+      "en:e322i"
     ],
     "en:rapeseed-oil": [
       "en:vegetable-oil-and-fat"
@@ -10527,7 +11558,7 @@
       "en:plant-protein"
     ],
     "en:rapini": [
-      "en:brassica-rapa-l.",
+      "en:brassica-rapa-l",
       "en:cabbage"
     ],
     "en:ras-el-hanout": [
@@ -10598,7 +11629,7 @@
       "en:aubergine"
     ],
     "en:raw-balsam-pear-pods": [
-      "en:balsam-pear"
+      "en:bitter-melon"
     ],
     "en:raw-blanched-almonds": [
       "en:blanches-almonds"
@@ -10721,7 +11752,7 @@
       "en:gooseberry"
     ],
     "en:raw-green-anjou-pears": [
-      "en:d'anjou-pear"
+      "en:d-anjou-pear"
     ],
     "en:raw-ground-chicken": [
       "en:chicken"
@@ -10792,7 +11823,7 @@
     "en:raw-merguez-sausage": [
       "en:merguez"
     ],
-    "en:raw-minced-beef-steak-with-5%-fat": [
+    "en:raw-minced-beef-steak-with-5-fat": [
       "en:minced-beef"
     ],
     "en:raw-muscadine-grapes": [
@@ -10892,7 +11923,7 @@
       "en:raisin"
     ],
     "en:raw-red-anjou-pears": [
-      "en:d'anjou-pear"
+      "en:d-anjou-pear"
     ],
     "en:raw-rocket": [
       "en:rocket"
@@ -10936,10 +11967,10 @@
     "en:raw-tuna": [
       "en:tuna"
     ],
-    "en:raw-veal-(external-fat-only)": [
+    "en:raw-veal-external-fat-only": [
       "en:veal-meat"
     ],
-    "en:raw-veal-(seam-fat-only)": [
+    "en:raw-veal-seam-fat-only": [
       "en:veal-meat"
     ],
     "en:raw-venison": [
@@ -10966,7 +11997,7 @@
       "en:winged-beans"
     ],
     "en:raw-winged-bean-tuber": [
-      "en:tuber-vegetable",
+      "en:tuber",
       "en:winged-beans"
     ],
     "en:raw-yam": [
@@ -11056,12 +12087,12 @@
       "en:cheddar"
     ],
     "en:red-chili-paste": [
-      "en:red-chili"
+      "en:red-chili-pepper"
     ],
     "en:red-chili-pepper": [
       "en:chili-pepper"
     ],
-    "en:red-chili-purée": [
+    "en:red-chili-puree": [
       "en:red-chili-pepper"
     ],
     "en:red-currant-juice": [
@@ -11176,7 +12207,7 @@
     "en:redcurrant": [
       "en:berries"
     ],
-    "en:reduced-fat-maasdam-type-firm-cheese-with-around-14%-fat": [
+    "en:reduced-fat-maasdam-type-firm-cheese-with-around-14-fat": [
       "en:maasdam"
     ],
     "en:reduced-fat-mayonnaise": [
@@ -11187,6 +12218,9 @@
     ],
     "en:reduced-fat-sunflower-seed-flour": [
       "en:sunflower-seed-flour"
+    ],
+    "en:reduced-iron": [
+      "en:iron"
     ],
     "en:reduced-sodium-peanut-butter": [
       "en:peanut-butter"
@@ -11224,10 +12258,7 @@
     "en:refined-vegetable-oil": [
       "en:oil-and-fat"
     ],
-    "en:refined-wheat-flour": [
-      "en:wheat-flour"
-    ],
-    "en:refrigerated-30%-fat-thick-cream": [
+    "en:refrigerated-30-fat-thick-cream": [
       "en:cream"
     ],
     "en:refrigerated-panna-cotta": [
@@ -11240,7 +12271,7 @@
       "en:chickpea"
     ],
     "en:rehydrated-egg-white": [
-      "en:egg-white-powder"
+      "en:powdered-egg-white"
     ],
     "en:rehydrated-nuckwheat": [
       "en:buckwheat"
@@ -11282,6 +12313,15 @@
     ],
     "en:restructured-soya-flour": [
       "en:soya-flour"
+    ],
+    "en:retinol": [
+      "en:vitamin-a"
+    ],
+    "en:retinyl-acetate": [
+      "en:vitamin-a"
+    ],
+    "en:retinyl-palmitate": [
+      "en:vitamin-a"
     ],
     "en:rhizopus-culture": [
       "en:ferment",
@@ -11348,7 +12388,7 @@
     ],
     "en:rice-sourdough": [
       "en:rice",
-      "en:sourdough"
+      "en:sourdough-starter"
     ],
     "en:rice-sourdough-powder": [
       "en:rice-sourdough",
@@ -11401,7 +12441,7 @@
       "en:beef"
     ],
     "en:roasted-buckwheat-kasha": [
-      "en:buckwheat-kasha"
+      "en:kasha"
     ],
     "en:roasted-coffee": [
       "en:coffee"
@@ -11494,7 +12534,7 @@
     "en:rose-water": [
       "en:rose-petals"
     ],
-    "en:rosé-wine": [
+    "en:rose-wine": [
       "en:wine"
     ],
     "en:rosehip-fruit-peel": [
@@ -11546,13 +12586,10 @@
       "en:preparation",
       "en:rum-flavouring"
     ],
-    "en:runner-bean": [
-      "en:legume"
-    ],
     "en:rusk": [
       "en:bread"
     ],
-    "en:russell's-snapper": [
+    "en:russell-s-snapper": [
       "en:snapper"
     ],
     "en:russet-potatoes": [
@@ -11628,14 +12665,14 @@
     ],
     "en:rye-sourdough": [
       "en:rye",
-      "en:sourdough"
+      "en:sourdough-starter"
     ],
     "en:rye-sourdough-powder": [
       "en:rye-sourdough",
       "en:sourdough-powder"
     ],
-    "en:sablé": [
-      "en:biscuits"
+    "en:sable": [
+      "en:biscuit"
     ],
     "en:sablefish": [
       "en:saltwater-fish"
@@ -11741,10 +12778,10 @@
     "en:salt-from-camargue": [
       "en:sea-salt"
     ],
-    "en:salt-from-guérande": [
+    "en:salt-from-guerande": [
       "en:sea-salt"
     ],
-    "en:salt-from-ile-de-ré": [
+    "en:salt-from-ile-de-re": [
       "en:sea-salt"
     ],
     "en:salt-from-kłodawa": [
@@ -11753,7 +12790,7 @@
     "en:salt-from-noirmoutier": [
       "en:sea-salt"
     ],
-    "en:salt-from-salies-de-béarn": [
+    "en:salt-from-salies-de-bearn": [
       "en:rock-salt"
     ],
     "en:salt-from-the-alps": [
@@ -11818,7 +12855,7 @@
     ],
     "en:scalding-and-sourdough": [
       "en:scalding",
-      "en:sourdough"
+      "en:sourdough-starter"
     ],
     "en:scallop": [
       "en:mollusc"
@@ -11915,6 +12952,12 @@
     "en:selected-lactic-ferments": [
       "en:lactic-ferments"
     ],
+    "en:selenium": [
+      "en:minerals"
+    ],
+    "en:selenium-enriched-yeast": [
+      "en:selenium"
+    ],
     "en:semi-hard-and-hard-cheeses": [
       "en:hard-cheese",
       "en:semi-hard-cheeses"
@@ -11964,7 +13007,7 @@
       "en:semi-wholemeal-flour",
       "en:wheat-flour"
     ],
-    "en:sémillon": [
+    "en:semillon": [
       "en:varietal"
     ],
     "en:semolina": [
@@ -12014,7 +13057,7 @@
       "en:vegetable-oil"
     ],
     "en:sheathed-woodtuft": [
-      "en:pholiota"
+      "en:chestnut-mushroom"
     ],
     "en:sheep": [
       "en:animal"
@@ -12029,10 +13072,10 @@
     "en:sheep-rennet": [
       "en:coagulating-enzyme"
     ],
-    "en:sheep's-milk-cheese": [
+    "en:sheep-s-milk-cheese": [
       "en:cheese"
     ],
-    "en:sheep's-whey": [
+    "en:sheep-s-whey": [
       "en:whey"
     ],
     "en:sheeps-casing": [
@@ -12046,7 +13089,7 @@
     ],
     "en:sheeps-or-goat-milk": [
       "en:goat-milk",
-      "en:sheeps-milk"
+      "en:sheep-milk"
     ],
     "en:sheepshead": [
       "en:saltwater-fish"
@@ -12086,10 +13129,10 @@
       "en:vegetable-oil"
     ],
     "en:shortbread": [
-      "en:biscuits"
+      "en:biscuit"
     ],
     "en:shortbread-cookies-from-brittany": [
-      "en:shortbread-cookies"
+      "en:shortbread"
     ],
     "en:shortcrust-dough": [
       "en:dough"
@@ -12156,10 +13199,10 @@
       "en:soft-cheese"
     ],
     "en:skimmed-milk-yogurt-powder": [
-      "de:joghurtpulver"
+      "en:yogurt-powder"
     ],
     "en:skimmed-sheeps-milk": [
-      "en:sheeps-milk",
+      "en:sheep-milk",
       "en:skimmed-milk"
     ],
     "en:skimmed-soft-white-cheese": [
@@ -12194,7 +13237,7 @@
       "en:betel-leaves"
     ],
     "en:small-red-beans": [
-      "en:red-beans"
+      "en:red-bean"
     ],
     "en:small-white-beans": [
       "en:white-beans"
@@ -12286,14 +13329,47 @@
     "en:sockeye-salmon": [
       "en:salmon"
     ],
+    "en:sodium": [
+      "en:minerals"
+    ],
     "en:sodium-caseinate": [
       "en:caseinate"
     ],
-    "en:sodium-cyclamate": [
-      "en:cyclamate"
+    "en:sodium-chloride": [
+      "en:sodium"
+    ],
+    "en:sodium-citrate": [
+      "en:sodium"
+    ],
+    "en:sodium-fluoride": [
+      "en:fluoride"
+    ],
+    "en:sodium-hydrogen-selenite": [
+      "en:selenium"
+    ],
+    "en:sodium-iodate": [
+      "en:iodine"
     ],
     "en:sodium-iodide": [
       "en:salt"
+    ],
+    "en:sodium-molybdate": [
+      "en:molybdenum"
+    ],
+    "en:sodium-salts-of-amp": [
+      "en:adenosine-monophosphate"
+    ],
+    "en:sodium-salts-of-cmp": [
+      "en:cytidine-monophosphate"
+    ],
+    "en:sodium-salts-of-orthophosphoric-acid": [
+      "en:sodium"
+    ],
+    "en:sodium-selenate": [
+      "en:selenium"
+    ],
+    "en:sodium-selenite": [
+      "en:selenium"
     ],
     "en:soft-boiled-egg": [
       "en:boiled-egg"
@@ -12334,7 +13410,7 @@
     "en:solid-vegetable-fat-for-frying": [
       "en:vegetable-margarine"
     ],
-    "en:solid-yogurt-made-from-pasteurized-milk-with-3.2%-milk-fat": [
+    "en:solid-yogurt-made-from-pasteurized-milk-with-3-2-milk-fat": [
       "en:yogurt-from-pasteurized-milk-with-milk-fat"
     ],
     "en:soluble-corn-fiber": [
@@ -12370,11 +13446,8 @@
     "en:sour-cream": [
       "en:cream"
     ],
-    "en:sour-cream-&-chive-flavour-seasoning": [
+    "en:sour-cream-chive-flavour-seasoning": [
       "en:coating"
-    ],
-    "en:sourdough": [
-      "en:dough"
     ],
     "en:sourdough-powder": [
       "en:dehydrated-sourdough"
@@ -12416,16 +13489,16 @@
     "en:soy-protein": [
       "en:plant-protein"
     ],
-    "en:soy-protein-concentrate-(acid-wash)": [
+    "en:soy-protein-concentrate-acid-wash": [
       "en:soy-protein"
     ],
-    "en:soy-protein-concentrate-(alcohol-extraction)": [
+    "en:soy-protein-concentrate-alcohol-extraction": [
       "en:soy-protein"
     ],
     "en:soy-protein-isolate": [
       "en:soy-protein"
     ],
-    "en:soy-protein-isolate-(soy-protein-concentrate)": [
+    "en:soy-protein-isolate-soy-protein-concentrate": [
       "en:soy-protein"
     ],
     "en:soy-sauce": [
@@ -12525,7 +13598,7 @@
       "en:spelt"
     ],
     "en:spelt-sourdough": [
-      "en:sourdough",
+      "en:sourdough-starter",
       "en:spelt"
     ],
     "en:spelt-sourdough-powder": [
@@ -12551,7 +13624,7 @@
       "en:spinach"
     ],
     "en:spinach-or-amaranth": [
-      "en:amaranth",
+      "en:e123",
       "en:spinach"
     ],
     "en:spinach-powder": [
@@ -12569,7 +13642,7 @@
     "en:spiny-scorpionfish": [
       "en:rockfish"
     ],
-    "en:spirit--and-white-wine-vinegar": [
+    "en:spirit-and-white-wine-vinegar": [
       "en:spirit-vinegar",
       "en:white-wine-vinegar"
     ],
@@ -12702,8 +13775,8 @@
       "en:cream"
     ],
     "en:sterilized-uht-cream": [
-      "en:uht-cream",
-      "en:sterilized-cream"
+      "en:sterilized-cream",
+      "en:uht-cream"
     ],
     "en:stewed-pork": [
       "en:pork-meat"
@@ -12753,7 +13826,7 @@
       "en:preparation"
     ],
     "en:strawberry-puree": [
-      "en:purée",
+      "en:puree",
       "en:strawberry"
     ],
     "en:streptococcus-thermophilus": [
@@ -12844,6 +13917,9 @@
     "en:sukkary-dates": [
       "en:date"
     ],
+    "en:sulfates": [
+      "en:minerals"
+    ],
     "en:sultana": [
       "en:white-seedless-grape"
     ],
@@ -12883,7 +13959,7 @@
       "en:honey"
     ],
     "en:sunflower-lecithin": [
-      "en:e322(i)"
+      "en:e322i"
     ],
     "en:sunflower-oil": [
       "en:vegetable-oil"
@@ -12948,9 +14024,6 @@
     ],
     "en:sushi-rice": [
       "en:rice"
-    ],
-    "en:sustainable-palm-oil": [
-      "en:palm-oil"
     ],
     "en:swedish-bread": [
       "en:special-bread"
@@ -13102,15 +14175,12 @@
     "en:tamarind-paste": [
       "en:tamarind"
     ],
-    "en:tangerine": [
-      "en:mandarin"
-    ],
     "en:tangerine-juice": [
       "en:fruit-juice"
     ],
     "en:tangerine-oil": [
       "en:citrus-oil",
-      "en:tangerine"
+      "en:mandarin"
     ],
     "en:tangle": [
       "en:kelp"
@@ -13236,7 +14306,7 @@
     "en:thai-basil": [
       "en:basil"
     ],
-    "en:thaï-brown-rice": [
+    "en:thai-brown-rice": [
       "en:thai-rice"
     ],
     "en:thai-long-grain-rice": [
@@ -13244,6 +14314,15 @@
     ],
     "en:thai-rice": [
       "en:long-grain-rice"
+    ],
+    "en:thiamin": [
+      "en:vitamins"
+    ],
+    "en:thiamin-hydrochloride": [
+      "en:thiamin"
+    ],
+    "en:thiamin-mononitrate": [
+      "en:thiamin"
     ],
     "en:thistle": [
       "en:plant"
@@ -13317,12 +14396,12 @@
       "en:tomato"
     ],
     "en:tomato-pulp": [
-      "en:chopped-tomatoes"
+      "en:chopped-tomato"
     ],
     "en:tomato-pulp-with-juice": [
       "en:tomato-pulp"
     ],
-    "en:tomato-purée": [
+    "en:tomato-puree": [
       "en:tomato"
     ],
     "en:tomato-sauce": [
@@ -13470,18 +14549,18 @@
       "en:turmeric"
     ],
     "en:turnip": [
-      "en:brassica-rapa-l.",
+      "en:brassica-rapa-l",
       "en:taproot-vegetable"
     ],
     "en:turnip-green": [
       "en:root-vegetable"
     ],
     "en:turnip-rape": [
-      "en:brassica-rapa-l.",
+      "en:brassica-rapa-l",
       "en:root-vegetable"
     ],
     "en:turnip-rape-lecithin": [
-      "en:e322(i)"
+      "en:e322i"
     ],
     "en:turnip-rape-oil": [
       "en:vegetable-oil-and-fat"
@@ -13515,8 +14594,8 @@
       "en:coconut-oil"
     ],
     "en:unhydrogenated-palm-and-coconut-oil": [
-      "en:unhydrogenated-coconut-oil",
-      "en:unhydrogenated-palm-fat"
+      "en:non-hydrogenated-palm-fat",
+      "en:unhydrogenated-coconut-oil"
     ],
     "en:unprepared-canadian-bacon": [
       "en:bacon"
@@ -13561,6 +14640,9 @@
     "en:unsweetened-frozen-strawberry": [
       "en:strawberry"
     ],
+    "en:uridine-monophosphate": [
+      "en:nucleotides"
+    ],
     "en:valencia-peanut": [
       "en:peanut"
     ],
@@ -13600,7 +14682,7 @@
     "en:vanillin-flavour": [
       "en:flavouring"
     ],
-    "en:västerbotten-cheese": [
+    "en:vasterbotten-cheese": [
       "en:cheese"
     ],
     "en:veal": [
@@ -13705,9 +14787,6 @@
     "en:vine-leaf": [
       "en:leaf-vegetable"
     ],
-    "en:vine-spinach": [
-      "en:leaf-vegetable"
-    ],
     "en:vinegar-cucumbers": [
       "en:cucumber"
     ],
@@ -13741,12 +14820,41 @@
     "en:vital-wheat-gluten": [
       "en:wheat-gluten"
     ],
+    "en:vitamin-a": [
+      "en:vitamins"
+    ],
+    "en:vitamin-a-and-d": [
+      "en:vitamin-a",
+      "en:vitamin-d"
+    ],
+    "en:vitamin-a-and-d2": [
+      "en:ergocalciferol",
+      "en:vitamin-a-and-d"
+    ],
     "en:vitamin-and-mineral-blend": [
       "en:minerals",
       "en:vitamins"
     ],
+    "en:vitamin-b12": [
+      "en:vitamins"
+    ],
+    "en:vitamin-b6": [
+      "en:vitamins"
+    ],
+    "en:vitamin-b8": [
+      "en:biotin"
+    ],
+    "en:vitamin-c": [
+      "en:vitamins"
+    ],
+    "en:vitamin-d": [
+      "en:vitamins"
+    ],
     "en:vitamin-d-yeast": [
       "en:yeast"
+    ],
+    "en:vitamin-e": [
+      "en:vitamins"
     ],
     "en:vitamin-enhanced-whole-milk": [
       "en:whole-milk"
@@ -13759,6 +14867,12 @@
     ],
     "en:vitamin-enriched-skimmed-milk": [
       "en:skimmed-milk"
+    ],
+    "en:vitamin-k": [
+      "en:vitamins"
+    ],
+    "en:vitamin-k3": [
+      "en:vitamin-k"
     ],
     "en:vitis-vinifera": [
       "en:varietal"
@@ -13917,7 +15031,7 @@
       "en:wheat-flour"
     ],
     "en:wheat-flour-type-65": [
-      "fr:farine-de-blé-type-65"
+      "fr:farine-de-ble-type-65"
     ],
     "en:wheat-flour-type-850-semi-white": [
       "en:wheat-flour"
@@ -13975,7 +15089,7 @@
       "en:wheat"
     ],
     "en:wheat-sourdough": [
-      "en:sourdough",
+      "en:sourdough-starter",
       "en:wheat"
     ],
     "en:wheat-sourdough-powder": [
@@ -14041,9 +15155,6 @@
     "en:white-and-red-grape-juice": [
       "en:red-grape-juice",
       "en:white-grape-juice"
-    ],
-    "en:white-and-yellow-beeswax": [
-      "en:e901"
     ],
     "en:white-asparagus": [
       "en:asparagus"
@@ -14152,7 +15263,7 @@
       "en:black-gram"
     ],
     "en:white-lupin": [
-      "en:lupin"
+      "en:lupin-bean"
     ],
     "en:white-mulberry": [
       "en:mulberry"
@@ -14433,7 +15544,7 @@
       "en:wholemeal-rye"
     ],
     "en:whole-sheep-milk": [
-      "en:sheeps-milk"
+      "en:sheep-milk"
     ],
     "en:whole-sorghum-flour": [
       "en:sorghum-flour",
@@ -14470,6 +15581,7 @@
       "en:whole-wheat"
     ],
     "en:whole-wheat-kernels": [
+      "en:wheat-grain",
       "en:whole-wheat"
     ],
     "en:whole-yogurt": [
@@ -14495,7 +15607,7 @@
       "en:cereal"
     ],
     "en:wholemeal-cereal-flakes": [
-      "de:getreideflocken",
+      "en:cereal-flakes",
       "en:wholemeal-cereal"
     ],
     "en:wholemeal-flour": [
@@ -14567,12 +15679,12 @@
     "en:wildflower-honey": [
       "en:flower-honey"
     ],
-    "en:williams-pear-puree": [
-      "en:williams'-bon-chrétien-pear",
-      "en:pear-puree"
-    ],
-    "en:williams'-bon-chrétien-pear": [
+    "en:williams-bon-chretien-pear": [
       "en:pear"
+    ],
+    "en:williams-pear-puree": [
+      "en:pear-puree",
+      "en:williams-bon-chretien-pear"
     ],
     "en:wine": [
       "en:alcohol"
@@ -14597,13 +15709,13 @@
       "en:wort"
     ],
     "en:xanthan-gum-and-guar-gum": [
-      "en:guar-gum",
-      "en:xanthan-gum"
+      "en:e412",
+      "en:e415"
     ],
     "en:xylanase": [
       "en:enzyme"
     ],
-    "en:yacón": [
+    "en:yacon": [
       "en:plant"
     ],
     "en:yam": [
@@ -14661,7 +15773,7 @@
       "en:lentils"
     ],
     "en:yellow-lupin": [
-      "en:lupin"
+      "en:lupin-bean"
     ],
     "en:yellow-mung-dal": [
       "en:mung-dal"
@@ -14735,11 +15847,38 @@
     "en:yuzu": [
       "en:citrus-fruit"
     ],
-    "en:za'atar": [
+    "en:za-atar": [
       "en:herb"
     ],
     "en:zaatar": [
       "en:mixed-spices"
+    ],
+    "en:zinc": [
+      "en:minerals"
+    ],
+    "en:zinc-bisglycinate": [
+      "en:zinc"
+    ],
+    "en:zinc-carbonate": [
+      "en:zinc"
+    ],
+    "en:zinc-chloride": [
+      "en:zinc"
+    ],
+    "en:zinc-citrate": [
+      "en:zinc"
+    ],
+    "en:zinc-gluconate": [
+      "en:zinc"
+    ],
+    "en:zinc-lactate": [
+      "en:zinc"
+    ],
+    "en:zinc-oxide": [
+      "en:zinc"
+    ],
+    "en:zinc-sulfate": [
+      "en:zinc"
     ],
     "en:zinfandel": [
       "en:varietal"
@@ -14750,7 +15889,7 @@
     "en:zuppa-inglese-flavor-preparation": [
       "en:preparation"
     ],
-    "es:aceite-de-oliva-virgen-extra-de-lubrín": [
+    "es:aceite-de-oliva-virgen-extra-de-lubrin": [
       "en:extra-virgin-olive-oil"
     ],
     "es:aceite-hidrogenado-de-colza": [
@@ -14760,23 +15899,23 @@
     "es:azucar-caramelizado-en-polvo": [
       "en:caramelised-sugar"
     ],
-    "es:bifidobacterias-y-otros-fermentos-lácticos": [
+    "es:bifidobacterias-y-otros-fermentos-lacticos": [
       "en:bifidus",
-      "en:lactic-acid-bacteria"
+      "en:lactic-ferments"
     ],
     "es:chistorra": [
       "en:meat"
     ],
-    "es:concentrado-de-cártamo-con-efecto-colorante": [
+    "es:concentrado-de-cartamo-con-efecto-colorante": [
       "en:safflower-concentrate"
     ],
     "es:derivado-lacteo-en-polvo": [
       "en:dairy"
     ],
-    "es:espárragos-verdes-sin-pelar": [
+    "es:esparragos-verdes-sin-pelar": [
       "en:green-asparagus"
     ],
-    "es:fumé-de-perdiz": [
+    "es:fume-de-perdiz": [
       "en:partridge"
     ],
     "es:granada-variedada-mollar-de-elche": [
@@ -14792,7 +15931,7 @@
       "en:dairy",
       "en:margarine"
     ],
-    "es:plátano-de-canarias-i.g.p.": [
+    "es:platano-de-canarias-i-g-p": [
       "en:cavendish-banana"
     ],
     "es:queso-asiago-fresco": [
@@ -14804,7 +15943,7 @@
     "es:trocitos-de-pepitas-de-cacao-caramelizadas": [
       "en:cocoa-nibs"
     ],
-    "es:vinagre-de-alcohol-de-caña": [
+    "es:vinagre-de-alcohol-de-cana": [
       "en:alcohol-vinegar"
     ],
     "es:yerba-mate-elaborada-con-palo": [
@@ -14828,16 +15967,16 @@
       "en:grape",
       "en:strawberry"
     ],
-    "fi:muunnettu-maissi--ja-tapiokatärkkelys": [
+    "fi:muunnettu-maissi-ja-tapiokatärkkelys": [
       "en:modified-corn-starch",
       "en:modified-tapioca-starch"
     ],
-    "fi:omena--päärynä--ja-rypäletäysmehu-tiivisteestä": [
+    "fi:omena-päärynä-ja-rypäletäysmehu-tiivisteestä": [
       "en:concentrated-apple-juice",
       "en:concentrated-grape-juice",
-      "fr:jus-de-poire-concentré"
+      "en:pear-juice-concentrate"
     ],
-    "fi:rapsi--ja-auringonkukkaöljy": [
+    "fi:rapsi-ja-auringonkukkaöljy": [
       "en:rapeseed-oil",
       "en:sunflower-oil"
     ],
@@ -14850,7 +15989,7 @@
     "fi:ruokamakkara": [
       "en:meat"
     ],
-    "fi:rypäle--ja-vadelmatäysmehu-tiivisteestä": [
+    "fi:rypäle-ja-vadelmatäysmehu-tiivisteestä": [
       "en:grape-juice",
       "en:raspberry-juice"
     ],
@@ -14863,7 +16002,10 @@
     "fi:virikehäkkikanan-muna": [
       "en:eggs-from-caged-hens"
     ],
-    "fr:agrumes-à-base-de-concentré": [
+    "fr:agent-d-enrobage-carbonate-de-calcium": [
+      "en:e170i"
+    ],
+    "fr:agrumes-a-base-de-concentre": [
       "en:citrus-fruit"
     ],
     "fr:aiguillette-de-poulet": [
@@ -14887,7 +16029,7 @@
     "fr:algues-de-bretagne-nord": [
       "en:seaweed"
     ],
-    "fr:algues-réhydratées": [
+    "fr:algues-rehydratees": [
       "en:dehydrated-seaweed"
     ],
     "fr:amande-coque": [
@@ -14899,29 +16041,29 @@
     "fr:amandes-blanchies-en-poudre": [
       "en:blanches-almonds"
     ],
-    "fr:amandes-caramélisées": [
+    "fr:amandes-caramelisees": [
       "en:almond"
     ],
-    "fr:amandes-décortiquées": [
+    "fr:amandes-decortiquees": [
       "en:almond"
     ],
-    "fr:amarante-soufflé": [
-      "en:amaranth"
+    "fr:amarante-souffle": [
+      "en:e123"
     ],
-    "fr:amidon-transformé-de-mais-sans-ogm": [
+    "fr:amidon-transforme-de-mais-sans-ogm": [
       "en:modified-corn-starch",
       "en:non-gmo-corn-starch"
     ],
-    "fr:amidons-de-blé-et-de-pomme-de-terre": [
+    "fr:amidons-de-ble-et-de-pomme-de-terre": [
       "en:potato-starch",
       "en:starch"
     ],
-    "fr:amidons-modifiés-de-maïs-et-de-pomme-de-terre": [
+    "fr:amidons-modifies-de-mais-et-de-pomme-de-terre": [
       "en:corn-starch",
       "en:modified-starch",
       "en:potato-starch"
     ],
-    "fr:anéthol-de-badiane": [
+    "fr:anethol-de-badiane": [
       "en:star-anise"
     ],
     "fr:anneaux-de-calmar": [
@@ -14930,120 +16072,123 @@
     "fr:anneaux-de-calmar-blanchis": [
       "fr:anneaux-de-calmar"
     ],
-    "fr:arôme-de-gentiane": [
+    "fr:arome-de-gentiane": [
       "en:flavouring"
     ],
-    "fr:arôme-de-houblon": [
+    "fr:arome-de-houblon": [
       "en:flavouring"
     ],
-    "fr:arôme-dont-arôme-de-fumée": [
+    "fr:arome-dont-arome-de-fumee": [
       "en:flavouring",
       "en:smoke-flavouring"
     ],
-    "fr:arôme-identique-nature": [
+    "fr:arome-identique-nature": [
       "en:flavouring"
     ],
-    "fr:arôme-naturel-d'ananas": [
+    "fr:arome-naturel-d-ananas": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-d'estragon-avec-autres-arômes-naturels": [
+    "fr:arome-naturel-d-estragon-avec-autres-aromes-naturels": [
       "en:natural-tarragon-flavouring"
     ],
-    "fr:arôme-naturel-de-céleri": [
+    "fr:arome-naturel-de-celeri": [
       "en:celery",
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-céleri-rave": [
+    "fr:arome-naturel-de-celeri-rave": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-champignon": [
+    "fr:arome-naturel-de-champignon": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-citron-avec-autres-arômes-naturels": [
+    "fr:arome-naturel-de-citron-avec-autres-aromes-naturels": [
       "en:natural-flavouring",
       "en:natural-lemon-flavouring"
     ],
-    "fr:arôme-naturel-de-citron-citron-vert": [
+    "fr:arome-naturel-de-citron-citron-vert": [
       "en:natural-lemon-flavouring",
       "en:natural-lime-flavouring"
     ],
-    "fr:arôme-naturel-de-citron-vert-avec-autres-arômes-naturels": [
+    "fr:arome-naturel-de-citron-vert-avec-autres-aromes-naturels": [
       "en:natural-flavouring",
       "en:natural-lime-flavouring"
     ],
-    "fr:arôme-naturel-de-framboise-avec-autres-arômes-naturels": [
+    "fr:arome-naturel-de-framboise-avec-autres-aromes-naturels": [
       "en:natural-flavouring",
       "en:natural-lemon-flavouring"
     ],
-    "fr:arôme-naturel-de-gentiane": [
+    "fr:arome-naturel-de-gentiane": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-livèche": [
+    "fr:arome-naturel-de-liveche": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-moutarde": [
+    "fr:arome-naturel-de-moutarde": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-muscade": [
+    "fr:arome-naturel-de-muscade": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-noisette": [
+    "fr:arome-naturel-de-noisette": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-pamplemousse-avec-autres-arômes-naturels": [
+    "fr:arome-naturel-de-pamplemousse-avec-autres-aromes-naturels": [
       "en:natural-flavouring",
       "en:natural-lemon-flavouring"
     ],
-    "fr:arôme-naturel-de-plantes-aromatiques-avec-autres-arômes-naturels": [
+    "fr:arome-naturel-de-plantes-aromatiques-avec-autres-aromes-naturels": [
       "en:natural-flavouring-of-aromatic-plants"
     ],
-    "fr:arôme-naturel-de-poire-avec-d'autres-arômes-naturels": [
+    "fr:arome-naturel-de-poire-avec-d-autres-aromes-naturels": [
       "en:flavouring",
       "en:natural-pear-flavouring"
     ],
-    "fr:arôme-naturel-de-poivre-avec-autres-arômes-naturels": [
+    "fr:arome-naturel-de-poivre-avec-autres-aromes-naturels": [
       "en:natural-flavouring",
       "en:natural-pepper-flavouring"
     ],
-    "fr:arôme-naturel-de-pomme-avec-autres-arômes-naturels": [
+    "fr:arome-naturel-de-pomme-avec-autres-aromes-naturels": [
       "en:natural-apple-flavouring",
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-réglisse": [
+    "fr:arome-naturel-de-reglisse": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-romarin": [
+    "fr:arome-naturel-de-romarin": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-sucre-roux": [
+    "fr:arome-naturel-de-sucre-roux": [
       "en:natural-flavouring"
     ],
-    "fr:arôme-naturel-de-vanille-de-madagascar": [
+    "fr:arome-naturel-de-truffe": [
+      "en:natural-flavouring"
+    ],
+    "fr:arome-naturel-de-vanille-de-madagascar": [
       "en:natural-vanilla-flavouring"
     ],
-    "fr:arôme-naturel-de-vin-blanc": [
+    "fr:arome-naturel-de-vin-blanc": [
       "en:natural-flavouring"
     ],
-    "fr:arômes-naturels-d'agrumes-avec-autres-arômes-naturels": [
-      "en:with-other-natural-flavouring",
-      "fr:arôme-naturel-d'agrumes"
+    "fr:aromes-naturels-d-agrumes-avec-autres-aromes-naturels": [
+      "en:natural-citrus-flavouring",
+      "en:with-other-natural-flavouring"
     ],
-    "fr:arômes-naturels-de-réglisse": [
+    "fr:aromes-naturels-de-reglisse": [
       "en:natural-flavouring"
     ],
-    "fr:asperges-fraîches": [
+    "fr:asperges-fraiches": [
       "en:asparagus"
     ],
-    "fr:assaisonnement-d'huile-d'olive-extra-vierge-et-citron": [
+    "fr:assaisonnement-d-huile-d-olive-extra-vierge-et-citron": [
       "en:condiment"
     ],
-    "fr:assaisonnement-goût-fromage": [
+    "fr:assaisonnement-gout-fromage": [
       "en:condiment"
     ],
-    "fr:assaisonnement-goût-salé": [
+    "fr:assaisonnement-gout-sale": [
       "en:condiment"
     ],
-    "fr:aubergine-préfrite": [
+    "fr:aubergine-prefrite": [
       "en:aubergine"
     ],
     "fr:barde": [
@@ -15064,7 +16209,7 @@
     "fr:beurre-charentes-poitou": [
       "en:butter"
     ],
-    "fr:beurre-d'isigny-aop": [
+    "fr:beurre-d-isigny-aop": [
       "en:butter"
     ],
     "fr:beurre-de-baratte-demi-sel": [
@@ -15076,29 +16221,29 @@
     "fr:beurre-laitier": [
       "en:butter"
     ],
-    "fr:beurre-pasteurisé-doux": [
+    "fr:beurre-pasteurise-doux": [
       "en:pasteurized-butter"
     ],
-    "fr:beurre-salé-d'isigny": [
+    "fr:beurre-sale-d-isigny": [
       "en:salted-butter",
-      "fr:beurre-d'isigny-aop"
+      "fr:beurre-d-isigny-aop"
     ],
-    "fr:bière-blonde": [
+    "fr:biere-blonde": [
       "en:beer"
     ],
     "fr:bigarreaux-confits": [
       "en:sweet-cherry"
     ],
-    "fr:billettes-de-céréales": [
+    "fr:billettes-de-cereales": [
       "en:cereal"
     ],
-    "fr:blanc-d'oeuf-en-poudre-de-poules-élevées-au-sol": [
-      "en:egg-white-powder"
+    "fr:blanc-d-oeuf-en-poudre-de-poules-elevees-au-sol": [
+      "en:powdered-egg-white"
     ],
-    "fr:blanc-d'œuf-frais": [
+    "fr:blanc-d-oeuf-frais": [
       "en:egg-white"
     ],
-    "fr:blanc-d'œuf-liquide-pasteurisé": [
+    "fr:blanc-d-oeuf-liquide-pasteurise": [
       "en:liquid-egg-white"
     ],
     "fr:blanc-de-calmars": [
@@ -15107,19 +16252,19 @@
     "fr:blanc-de-poulet-cuit-de-qualite-superieure-traite-en-salaison-et-filet-interne-de-poulet": [
       "en:chicken-meat"
     ],
-    "fr:blancs-d'œufs-pasteurisés": [
+    "fr:blancs-d-oeufs-pasteurises": [
       "en:egg-white"
     ],
-    "fr:blé-dur-concassé": [
+    "fr:ble-dur-concasse": [
       "en:durum-wheat"
     ],
-    "fr:blé-dur-précuit-concassé": [
+    "fr:ble-dur-precuit-concasse": [
       "en:pre-cooked-durum-wheat"
     ],
-    "fr:blé-malté-concassé": [
+    "fr:ble-malte-concasse": [
       "en:malted-barley"
     ],
-    "fr:blé-malté-torréfié-concassé": [
+    "fr:ble-malte-torrefie-concasse": [
       "en:wheat-malt"
     ],
     "fr:bleuets": [
@@ -15139,54 +16284,54 @@
     "fr:bouillon-de-veau": [
       "en:broth"
     ],
-    "fr:boyau-collagénique": [
+    "fr:boyau-collagenique": [
       "en:collagen"
     ],
     "fr:boyau-naturel-de-porc": [
       "en:pork-collagen"
     ],
-    "fr:brandy-modifié": [
+    "fr:brandy-modifie": [
       "en:brandy"
     ],
     "fr:brochet": [
       "en:fish"
     ],
-    "fr:café-arabica-de-colombie-en-poudre": [
+    "fr:cafe-arabica-de-colombie-en-poudre": [
       "en:arabica-coffee"
     ],
-    "fr:café-arabica-décaféiné-torréfié": [
+    "fr:cafe-arabica-decafeine-torrefie": [
       "en:decaffeinated-coffee"
     ],
-    "fr:café-arabica-torréfié": [
+    "fr:cafe-arabica-torrefie": [
       "en:arabica-coffee"
     ],
-    "fr:café-doux-sans-caféine": [
+    "fr:cafe-doux-sans-cafeine": [
       "en:decaffeinated-coffee"
     ],
-    "fr:café-moulu-décaféiné": [
+    "fr:cafe-moulu-decafeine": [
       "en:decaffeinated-coffee",
       "en:ground-coffee"
     ],
-    "fr:café-moulu-en-capsules": [
+    "fr:cafe-moulu-en-capsules": [
       "en:ground-coffee"
     ],
-    "fr:café-moulu-en-dosettes-filtre": [
+    "fr:cafe-moulu-en-dosettes-filtre": [
       "en:ground-coffee"
     ],
-    "fr:café-moulu-pur-arabica": [
+    "fr:cafe-moulu-pur-arabica": [
       "en:arabica-coffee"
     ],
     "fr:cafe-moulu-pur-arabica-bio": [
-      "fr:café-moulu-pur-arabica"
+      "fr:cafe-moulu-pur-arabica"
     ],
-    "fr:café-moulu-sous-vide": [
+    "fr:cafe-moulu-sous-vide": [
       "en:ground-coffee"
     ],
-    "fr:café-soluble-décaféiné": [
+    "fr:cafe-soluble-decafeine": [
       "en:decaffeinated-coffee",
       "en:instant-coffee"
     ],
-    "fr:calmar-géant": [
+    "fr:calmar-geant": [
       "en:squid"
     ],
     "fr:canneloni": [
@@ -15198,7 +16343,7 @@
     "fr:carotte-parisienne": [
       "en:carrot"
     ],
-    "fr:carottes-déshydratées": [
+    "fr:carottes-deshydratees": [
       "en:carrot"
     ],
     "fr:carpaccio-de-boeuf": [
@@ -15207,13 +16352,13 @@
     "fr:carpe-de-dombes": [
       "en:carp"
     ],
-    "fr:céleri-rave-râpé": [
+    "fr:celeri-rave-rape": [
       "en:celeriac"
     ],
     "fr:cerneaux-de-noix-aop": [
       "en:walnut-kernel"
     ],
-    "fr:cerneaux-de-noix-du-dauphiné": [
+    "fr:cerneaux-de-noix-du-dauphine": [
       "en:walnut-kernel"
     ],
     "fr:cerneaux-de-noix-invalides": [
@@ -15228,7 +16373,7 @@
     "fr:chair-de-morue": [
       "en:cod"
     ],
-    "fr:chairs-d'escargots": [
+    "fr:chairs-d-escargots": [
       "en:snail"
     ],
     "fr:champagne-brut": [
@@ -15240,15 +16385,15 @@
     "fr:chanterelle": [
       "en:mushroom"
     ],
-    "fr:chapelure-de-blé": [
+    "fr:chapelure-de-ble": [
       "en:breadcrumbs"
     ],
-    "fr:châtaignes-d'ardèche-aop": [
+    "fr:chataignes-d-ardeche-aop": [
       "en:chestnut"
     ],
     "fr:cheddar-orange-fondu": [
       "en:melted-cheddar",
-      "fr:cheddar-orange"
+      "en:red-cheddar"
     ],
     "fr:chipolatas-aux-herbes": [
       "en:pork-meat"
@@ -15259,45 +16404,48 @@
     "fr:chocolat-au-lait-en-poudre": [
       "en:milk-chocolate"
     ],
-    "fr:chocolat-noir-à-70-de-cacao": [
+    "fr:chocolat-noir-a-70-de-cacao": [
       "en:dark-chocolate"
     ],
     "fr:chocolat-noir-de-couverture": [
       "en:chocolate-coating",
       "en:dark-chocolate"
     ],
-    "fr:chou-pommé": [
+    "fr:chou-pomme": [
       "en:cabbage"
     ],
-    "fr:chutes-de-saumon-fumé": [
+    "fr:chutes-de-saumon-fume": [
       "en:smoked-salmon"
     ],
-    "fr:clupea-harengus-pêché-en-atlantique-nord": [
+    "fr:clupea-harengus-peche-en-atlantique-nord": [
       "en:atlantic-herring"
+    ],
+    "fr:colorant-de-la-croute": [
+      "en:colour"
     ],
     "fr:compote-de-pommes": [
       "en:apple"
     ],
-    "fr:compote-de-pommes-allégée-en-sucres": [
+    "fr:compote-de-pommes-allegee-en-sucres": [
       "fr:compote-de-pommes"
     ],
-    "fr:comté-aop": [
-      "en:comté"
+    "fr:comte-aop": [
+      "en:comte"
     ],
-    "fr:concentré-d'hibiscus-et-de-carotte": [
+    "fr:concentre-d-hibiscus-et-de-carotte": [
       "en:carrot",
       "en:roselle-flower"
     ],
-    "fr:concentré-de-betterave": [
+    "fr:concentre-de-betterave": [
       "en:beetroot"
     ],
-    "fr:concentré-de-citrouille": [
+    "fr:concentre-de-citrouille": [
       "en:pumpkin"
     ],
-    "fr:concentré-de-sureau": [
+    "fr:concentre-de-sureau": [
       "en:elderberry"
     ],
-    "fr:concentré-salin-liquide": [
+    "fr:concentre-salin-liquide": [
       "en:salt"
     ],
     "fr:cornet-biscuit": [
@@ -15312,91 +16460,94 @@
     "fr:courgettes-en-rondelles": [
       "en:courgette"
     ],
-    "fr:crème-de-riz": [
+    "fr:creme-de-riz": [
       "en:rice"
     ],
-    "fr:crème-épaisse": [
+    "fr:creme-epaisse": [
       "en:cream"
     ],
-    "fr:crème-fleurette": [
+    "fr:creme-fleurette": [
       "en:cream"
     ],
-    "fr:crème-fraîche-légère-epaisse": [
+    "fr:creme-fraiche-legere-epaisse": [
       "en:light-cream"
     ],
-    "fr:crème-fraîche-liquide": [
+    "fr:creme-fraiche-liquide": [
       "en:cream"
     ],
-    "fr:crevettes-décortiquées": [
+    "fr:crevettes-decortiquees": [
       "en:shrimp"
     ],
-    "fr:crevettes-entières-crues": [
+    "fr:crevettes-entieres-crues": [
       "en:shrimp"
     ],
-    "fr:crevettes-tropicale-décortiqué-crue": [
+    "fr:crevettes-tropicale-decortique-crue": [
       "en:deep-sea-shrimp"
     ],
-    "fr:décor-au-cacao-maigre": [
+    "fr:decor-au-cacao-maigre": [
       "en:coating"
+    ],
+    "fr:denree-alimentaire-colorante": [
+      "en:colour"
     ],
     "fr:dextrose-de-tapioca": [
       "en:dextrose"
     ],
-    "fr:eau-de-source-st-benoît": [
+    "fr:eau-de-source-st-benoit": [
       "en:spring-water"
     ],
-    "fr:eau-de-source-st-benoît-gazéifiée": [
+    "fr:eau-de-source-st-benoit-gazeifiee": [
       "en:carbonated-spring-water"
     ],
     "fr:eau-de-vie-de-vin": [
       "en:eau-de-vie"
     ],
-    "fr:eau-minérale-naturelle-de-spa-gazéifiée": [
-      "fr:eau-minérale-naturelle-gazéifiée"
+    "fr:eau-minerale-naturelle-de-spa-gazeifiee": [
+      "fr:eau-minerale-naturelle-gazeifiee"
     ],
-    "fr:eau-minérale-naturelle-gazéifiée": [
+    "fr:eau-minerale-naturelle-gazeifiee": [
       "en:carbonated-natural-mineral-water"
     ],
-    "fr:eau-minérale-naturelle-renforcée-au-gaz-de-la-source": [
+    "fr:eau-minerale-naturelle-renforcee-au-gaz-de-la-source": [
       "en:carbonated-natural-mineral-water"
     ],
-    "fr:échine-de-porc": [
+    "fr:echine-de-porc": [
       "en:pork-meat"
     ],
-    "fr:éclats-de-fèves-de-cacao-torréfiés": [
+    "fr:eclats-de-feves-de-cacao-torrefies": [
       "en:cocoa-nibs"
     ],
-    "fr:éclats-de-gaufrettes": [
+    "fr:eclats-de-gaufrettes": [
       "en:neapolitan-wafer"
     ],
-    "fr:éclats-de-noisettes": [
+    "fr:eclats-de-noisettes": [
       "en:hazelnut"
     ],
-    "fr:écorces-d'agrumes": [
+    "fr:ecorces-d-agrumes": [
       "en:citrus-fruit"
     ],
-    "fr:écorces-de-grenade": [
+    "fr:ecorces-de-grenade": [
       "en:pomegranate"
     ],
-    "fr:écorces-de-pamplemousse": [
+    "fr:ecorces-de-pamplemousse": [
       "en:grapefruit"
     ],
     "fr:emmental-de-savoie-igp": [
       "en:emmental-from-france"
     ],
-    "fr:emmental-français-râpé": [
+    "fr:emmental-francais-rape": [
       "en:grated-emmental-cheese"
     ],
-    "fr:epaule-séchée-de-porc": [
+    "fr:epaule-sechee-de-porc": [
       "en:pork-shoulder"
     ],
-    "fr:épices-moulues": [
+    "fr:epices-moulues": [
       "en:spice"
     ],
-    "fr:épinards-déshydratés": [
+    "fr:epinards-deshydrates": [
       "en:spinach"
     ],
-    "fr:épinards-hachés": [
+    "fr:epinards-haches": [
       "en:spinach"
     ],
     "fr:escalopes-de-dinde": [
@@ -15405,19 +16556,19 @@
     "fr:estomac-et-pied-de-bovin": [
       "en:beef-meat"
     ],
-    "fr:extrait-d'huître": [
+    "fr:extrait-d-huitre": [
       "en:oyster"
     ],
-    "fr:extrait-de-céleri": [
+    "fr:extrait-de-celeri": [
       "en:celery"
     ],
-    "fr:extrait-de-crustacé": [
+    "fr:extrait-de-crustace": [
       "en:crustacean"
     ],
-    "fr:extrait-de-légumes": [
+    "fr:extrait-de-legumes": [
       "en:vegetable"
     ],
-    "fr:extrait-de-malte-d'orge-houblonné": [
+    "fr:extrait-de-malte-d-orge-houblonne": [
       "en:barley-malt-extract"
     ],
     "fr:extrait-de-poisson": [
@@ -15426,7 +16577,7 @@
     "fr:extrait-de-poulet": [
       "en:chicken"
     ],
-    "fr:extrait-de-vin-blanc-distillé": [
+    "fr:extrait-de-vin-blanc-distille": [
       "en:white-wine-extract"
     ],
     "fr:extrait-naturel-de-citron": [
@@ -15438,34 +16589,34 @@
     "fr:extrait-naturel-de-pomelo": [
       "en:pomelo"
     ],
-    "fr:extraits-naturels-d'orange": [
+    "fr:extraits-naturels-d-orange": [
       "en:orange-extract"
     ],
     "fr:extraits-naturels-et-aromates": [
       "en:herb"
     ],
-    "fr:extraits-végétaux-à-pouvoir-colorant": [
+    "fr:extraits-vegetaux-a-pouvoir-colorant": [
       "en:vegetable-extract"
     ],
-    "fr:farine-complète-de-blé-amidonnier": [
+    "fr:farine-complete-de-ble-amidonnier": [
       "en:wholemeal-flour"
     ],
-    "fr:farine-d'épeautre-type-110": [
+    "fr:farine-d-epeautre-type-110": [
       "en:spelt-flour"
     ],
-    "fr:farine-de-blé-complète-type-110": [
+    "fr:farine-de-ble-complete-type-110": [
       "en:wheat-flour"
     ],
-    "fr:farine-de-blé-malté-torréfié": [
+    "fr:farine-de-ble-malte-torrefie": [
       "en:malted-wheat-flour"
     ],
-    "fr:farine-de-blé-semi-complète-type-80": [
+    "fr:farine-de-ble-semi-complete-type-80": [
       "en:spelt-flour"
     ],
-    "fr:farine-de-blé-type-55": [
+    "fr:farine-de-ble-type-55": [
       "en:wheat-flour"
     ],
-    "fr:farine-de-blé-type-65": [
+    "fr:farine-de-ble-type-65": [
       "en:wheat-flour"
     ],
     "fr:farine-de-froment-t55": [
@@ -15474,27 +16625,27 @@
     "fr:farine-de-froment-t65": [
       "en:wheat-flour"
     ],
-    "fr:farine-de-germes-de-blé-stabilisé": [
+    "fr:farine-de-germes-de-ble-stabilise": [
       "en:wheat-flour"
     ],
-    "fr:farine-de-gonflement-de-blé": [
+    "fr:farine-de-gonflement-de-ble": [
       "en:wheat-flour"
     ],
     "fr:farine-de-graines-de-caroube-et-farine-de-graines-de-guar": [
       "en:carob-seed-flour",
-      "en:guar-flour"
+      "en:e412"
     ],
-    "fr:farine-de-pépins-de-raisin": [
+    "fr:farine-de-pepins-de-raisin": [
       "en:grape-seed"
     ],
     "fr:farine-de-petits-pois": [
       "en:garden-peas"
     ],
-    "fr:farine-de-pois-cassés": [
+    "fr:farine-de-pois-casses": [
       "en:green-split-pea",
       "en:pea-flour"
     ],
-    "fr:farine-de-seigle-complète-type-130": [
+    "fr:farine-de-seigle-complete-type-130": [
       "en:rye-flour-type-130"
     ],
     "fr:farine-mi-blanche": [
@@ -15513,13 +16664,13 @@
     "fr:feuille-de-chene-verte": [
       "en:oak-leaf-lettuce"
     ],
-    "fr:feuilles-de-frêne": [
+    "fr:feuilles-de-frene": [
       "en:plant"
     ],
-    "fr:feuilles-de-mûres-douces": [
+    "fr:feuilles-de-mures-douces": [
       "en:plant"
     ],
-    "fr:feuilles-de-mûrier": [
+    "fr:feuilles-de-murier": [
       "en:plant"
     ],
     "fr:feuilles-de-verveine": [
@@ -15528,7 +16679,7 @@
     "fr:fibres-de-betterave": [
       "en:beetroot"
     ],
-    "fr:fibres-végétales-d'oligofructose": [
+    "fr:fibres-vegetales-d-oligofructose": [
       "en:oligofructose"
     ],
     "fr:filet-de-cabillaud": [
@@ -15540,7 +16691,7 @@
     "fr:filet-de-poulet-jaune": [
       "en:chicken-fillet"
     ],
-    "fr:filet-de-poulet-traité-en-salaison-cuit": [
+    "fr:filet-de-poulet-traite-en-salaison-cuit": [
       "en:chicken-fillet"
     ],
     "fr:filet-de-sole-tropicale": [
@@ -15549,11 +16700,11 @@
     "fr:filet-et-pointe-de-porc": [
       "en:pork-meat"
     ],
-    "fr:filet-reconstitué-de-sole-tropicale": [
+    "fr:filet-reconstitue-de-sole-tropicale": [
       "fr:filet-de-sole-tropicale"
     ],
     "fr:filets-de-chinchards": [
-      "en:horse"
+      "en:horse-mackerel"
     ],
     "fr:filets-de-maquereaux-espagnols": [
       "en:chub-mackerel"
@@ -15567,22 +16718,22 @@
     "fr:flageolets-verts-extra-fins": [
       "en:green-flageolets"
     ],
-    "fr:flocons-d'épeautre": [
+    "fr:flocons-d-epeautre": [
       "en:spelt"
     ],
     "fr:flocons-de-pomme": [
       "en:apple"
     ],
-    "fr:flocons-de-pomme-de-terre-réhydratés": [
+    "fr:flocons-de-pomme-de-terre-rehydrates": [
       "en:potato-flakes"
     ],
-    "fr:foie-gras-d'oie": [
+    "fr:foie-gras-d-oie": [
       "en:goose-liver"
     ],
     "fr:foie-gras-de-canard-du-sud-ouest": [
       "en:duck-foie-gras"
     ],
-    "fr:fromage-à-pâte-pressée-cuite": [
+    "fr:fromage-a-pate-pressee-cuite": [
       "en:cheese"
     ],
     "fr:fromage-au-lait-cru": [
@@ -15591,61 +16742,61 @@
     "fr:fromage-au-lait-cru-de-vache": [
       "en:cow-cheese"
     ],
-    "fr:fromage-au-lait-de-vache-bio-thermisé": [
+    "fr:fromage-au-lait-de-vache-bio-thermise": [
       "en:cow-cheese"
     ],
-    "fr:fromage-au-lait-de-vache-pasteurisé": [
+    "fr:fromage-au-lait-de-vache-pasteurise": [
       "en:cow-cheese"
     ],
-    "fr:fromage-au-lait-pasteurisé": [
+    "fr:fromage-au-lait-pasteurise": [
       "en:cheese"
     ],
     "fr:fromage-blanc-frais": [
       "en:fromage-blanc"
     ],
-    "fr:fromage-de-brebis-au-lait-pasteurisé": [
-      "en:sheep's-milk-cheese"
+    "fr:fromage-de-brebis-au-lait-pasteurise": [
+      "en:sheep-s-milk-cheese"
     ],
-    "fr:fromage-de-chèvre-au-lait-pasteurisé": [
+    "fr:fromage-de-chevre-au-lait-pasteurise": [
       "en:goat-cheese"
     ],
-    "fr:fromage-de-chèvre-frais": [
+    "fr:fromage-de-chevre-frais": [
       "en:goat-cheese"
     ],
-    "fr:fromage-frais-à-0%-de-matière-grasse": [
+    "fr:fromage-frais-a-0-de-matiere-grasse": [
       "en:soft-white-cheese"
     ],
-    "fr:fromage-frais-à-la-ciboulette": [
+    "fr:fromage-frais-a-la-ciboulette": [
       "en:soft-white-cheese"
     ],
-    "fr:fromage-frais-au-lait-demi-écrémé": [
+    "fr:fromage-frais-au-lait-demi-ecreme": [
       "en:soft-white-cheese"
     ],
-    "fr:fromage-frais-au-lait-demi-écrémé-pasteurisé": [
+    "fr:fromage-frais-au-lait-demi-ecreme-pasteurise": [
       "en:soft-white-cheese"
     ],
-    "fr:fromage-frais-au-lait-pasteurisé": [
+    "fr:fromage-frais-au-lait-pasteurise": [
       "en:soft-white-cheese"
     ],
-    "fr:fromage-regato-végétarien": [
+    "fr:fromage-regato-vegetarien": [
       "en:regato"
     ],
-    "fr:fromages-râpées-séchés": [
+    "fr:fromages-rapees-seches": [
       "en:cheese"
     ],
-    "fr:fructose-de-blé": [
+    "fr:fructose-de-ble": [
       "en:fructose"
     ],
-    "fr:fruits-à-cidre-de-normandie": [
+    "fr:fruits-a-cidre-de-normandie": [
       "en:cider-apples"
     ],
     "fr:fumet-de-poisson": [
       "en:fish"
     ],
-    "fr:fumet-de-poisson-aromatisé": [
+    "fr:fumet-de-poisson-aromatise": [
       "fr:fumet-de-poisson"
     ],
-    "fr:fumet-de-poissons-de-la-méditerranée": [
+    "fr:fumet-de-poissons-de-la-mediterranee": [
       "fr:fumet-de-poisson"
     ],
     "fr:galette-de-riz": [
@@ -15654,26 +16805,26 @@
     "fr:gambas-cuites": [
       "en:deep-sea-shrimp"
     ],
-    "fr:garniture-de-céleri": [
+    "fr:garniture-de-celeri": [
       "en:celery"
     ],
-    "fr:gélatine-de-volaille": [
-      "en:gelatin",
+    "fr:gelatine-de-volaille": [
+      "en:e428",
       "en:poultry"
     ],
-    "fr:gélatine-non-porcine": [
-      "en:gelatin"
+    "fr:gelatine-non-porcine": [
+      "en:e428"
     ],
-    "fr:gésier-de-canard-maigre-traités-en-salaison": [
+    "fr:gesier-de-canard-maigre-traites-en-salaison": [
       "en:duck-gizzard"
     ],
-    "fr:glucose-de-blé": [
+    "fr:glucose-de-ble": [
       "en:glucose"
     ],
-    "fr:graines-grillées": [
+    "fr:graines-grillees": [
       "en:seed"
     ],
-    "fr:grains-de-blé-dur-précuits": [
+    "fr:grains-de-ble-dur-precuits": [
       "en:pre-cooked-durum-wheat"
     ],
     "fr:graisse-de-porc": [
@@ -15682,16 +16833,16 @@
     "fr:gras-et-couenne-de-porc": [
       "en:pork-meat"
     ],
-    "fr:gros-œufs-de-poules-élevées-en-plein-air": [
+    "fr:gros-oeufs-de-poules-elevees-en-plein-air": [
       "en:free-range-chicken-eggs"
     ],
-    "fr:haricots-blancs-précuits": [
+    "fr:haricots-blancs-precuits": [
       "en:white-beans"
     ],
-    "fr:haricots-blancs-réhydratés": [
+    "fr:haricots-blancs-rehydrates": [
       "en:white-beans"
     ],
-    "fr:haricots-blancs-secs-trempés": [
+    "fr:haricots-blancs-secs-trempes": [
       "en:white-beans"
     ],
     "fr:haricots-chevriers-verts": [
@@ -15703,28 +16854,28 @@
     "fr:haricots-mogettes": [
       "en:white-beans"
     ],
-    "fr:haricots-mogettes-de-vendée": [
+    "fr:haricots-mogettes-de-vendee": [
       "fr:haricots-mogettes"
     ],
-    "fr:haricots-rouges-précuits": [
-      "en:red-beans"
+    "fr:haricots-rouges-precuits": [
+      "en:red-bean"
     ],
-    "fr:haricots-rouges-réhydratés": [
-      "en:red-beans"
+    "fr:haricots-rouges-rehydrates": [
+      "en:red-bean"
     ],
-    "fr:haricots-rouges-secs-trempés": [
+    "fr:haricots-rouges-secs-trempes": [
       "en:dried-kidney-beans"
     ],
-    "fr:haricots-verts-coupés": [
+    "fr:haricots-verts-coupes": [
       "en:green-bean"
     ],
     "fr:haut-de-cuisse-de-poulet": [
       "en:chicken-meat"
     ],
-    "fr:huile-d'olive-chemlali-extra-vierge": [
+    "fr:huile-d-olive-chemlali-extra-vierge": [
       "en:extra-virgin-olive-oil"
     ],
-    "fr:huile-d'olive-de-catégorie-supérieure": [
+    "fr:huile-d-olive-de-categorie-superieure": [
       "en:olive-oil"
     ],
     "fr:huile-de-coco-vierge-biologique": [
@@ -15733,13 +16884,13 @@
     "fr:huile-de-colza-vierge": [
       "en:colza-oil"
     ],
-    "fr:huile-de-noix-de-coco-totalement-hydrogénée-et-non-hydrogénée": [
+    "fr:huile-de-noix-de-coco-totalement-hydrogenee-et-non-hydrogenee": [
       "en:coconut-oil"
     ],
-    "fr:huile-de-soja-entièrement-raffinée": [
+    "fr:huile-de-soja-entierement-raffinee": [
       "en:soya-oil"
     ],
-    "fr:huile-de-tournesol-oléique-désodorisée": [
+    "fr:huile-de-tournesol-oleique-desodorisee": [
       "en:sunflower-oil"
     ],
     "fr:huile-de-tournesol-vierge": [
@@ -15754,63 +16905,63 @@
     "fr:huile-essentielle-de-poivre": [
       "en:essential-oil"
     ],
-    "fr:huile-végétale-raffinée": [
+    "fr:huile-vegetale-raffinee": [
       "en:vegetable-oil"
     ],
     "fr:huile-vierge-de-noix": [
       "en:walnut-oil"
     ],
-    "fr:huiles-d'amande-et-de-noisette": [
+    "fr:huiles-d-amande-et-de-noisette": [
       "en:almond-oil",
       "en:hazelnut-oil"
     ],
-    "fr:huiles-végétales-de-tournesol-et-de-colza": [
+    "fr:huiles-vegetales-de-tournesol-et-de-colza": [
       "en:colza-oil",
       "en:sunflower-oil"
     ],
-    "fr:infusion-de-thé-noir-concentrée": [
+    "fr:infusion-de-the-noir-concentree": [
       "en:black-tea"
     ],
     "fr:jambon-cuit-choix": [
       "en:cooked-ham"
     ],
-    "fr:jambon-cuit-choix-fumé": [
+    "fr:jambon-cuit-choix-fume": [
       "fr:jambon-cuit-choix"
     ],
-    "fr:jambon-cuit-de-qualité-supérieure-avec-couenne-jambon-de-porc": [
+    "fr:jambon-cuit-de-qualite-superieure-avec-couenne-jambon-de-porc": [
       "en:superior-cooked-ham"
     ],
     "fr:jambon-cuit-standard": [
       "en:cooked-ham"
     ],
-    "fr:jambon-de-dinde-cuit-standard-goût-fumé": [
+    "fr:jambon-de-dinde-cuit-standard-gout-fume": [
       "en:turkey-meat"
     ],
     "fr:jambon-de-porc-frais": [
       "en:ham"
     ],
-    "fr:jambon-de-porc-français": [
+    "fr:jambon-de-porc-francais": [
       "en:ham"
     ],
-    "fr:jambon-de-porc-issu-d'animaux-nourris-sans-ogm": [
+    "fr:jambon-de-porc-issu-d-animaux-nourris-sans-ogm": [
       "en:ham"
     ],
     "fr:jarret-avant-de-porc": [
       "en:pork-meat"
     ],
-    "fr:jarret-de-porc-désossé": [
+    "fr:jarret-de-porc-desosse": [
       "en:pork-knuckle"
     ],
-    "fr:jaune-d'oeuf-de-poules-élevées-au-sol": [
+    "fr:jaune-d-oeuf-de-poules-elevees-au-sol": [
       "en:egg-yolk"
     ],
-    "fr:jaune-d'œuf-frais": [
+    "fr:jaune-d-oeuf-frais": [
       "en:egg-yolk"
     ],
-    "fr:jaune-d'œuf-liquide-pasteurisé": [
+    "fr:jaune-d-oeuf-liquide-pasteurise": [
       "en:liquid-egg-yolk"
     ],
-    "fr:jaune-d'œuf-salé": [
+    "fr:jaune-d-oeuf-sale": [
       "en:egg-yolk"
     ],
     "fr:jeunes-pousses-de-laitue-rouge": [
@@ -15819,59 +16970,59 @@
     "fr:jeunes-pousses-de-laitue-verte": [
       "en:lettuce"
     ],
-    "fr:jus-concentré-d'os-et-de-viande-de-bœuf": [
-      "fr:jus-de-cuisson-de-viande-de-bœuf"
+    "fr:jus-concentre-d-os-et-de-viande-de-boeuf": [
+      "fr:jus-de-cuisson-de-viande-de-boeuf"
     ],
-    "fr:jus-concentré-de-céleri-et-de-carotte": [
+    "fr:jus-concentre-de-celeri-et-de-carotte": [
       "en:carrot-juice",
       "en:celery"
     ],
-    "fr:jus-concentré-de-fruits-rouges": [
+    "fr:jus-concentre-de-fruits-rouges": [
       "en:fruit-juice-concentrate"
     ],
-    "fr:jus-concentré-de-tomate": [
+    "fr:jus-concentre-de-tomate": [
       "en:tomato-juice"
     ],
-    "fr:jus-d'oignon-concentré": [
+    "fr:jus-d-oignon-concentre": [
       "en:onion"
     ],
-    "fr:jus-d'orange-et-autres-agrumes-à-base-de-concentrés": [
+    "fr:jus-d-orange-et-autres-agrumes-a-base-de-concentres": [
       "en:citrus-fruit",
       "en:orange-juice"
     ],
-    "fr:jus-d'orange-igp-valencia": [
+    "fr:jus-d-orange-igp-valencia": [
       "en:orange-juice"
     ],
-    "fr:jus-de-céleri-rave-concentré": [
+    "fr:jus-de-celeri-rave-concentre": [
       "en:celeriac"
     ],
-    "fr:jus-de-citron-bio-concentré": [
+    "fr:jus-de-citron-bio-concentre": [
       "en:lemon-juice-from-concentrate"
     ],
-    "fr:jus-de-clémentine": [
+    "fr:jus-de-clementine": [
       "en:clementine",
       "en:fruit-juice"
     ],
-    "fr:jus-de-cuisson-de-viande-de-bœuf": [
+    "fr:jus-de-cuisson-de-viande-de-boeuf": [
       "en:beef"
     ],
     "fr:jus-de-cuisson-de-volaille": [
       "en:poultry"
     ],
-    "fr:jus-de-fruits-rouges-à-base-de-concentrés": [
+    "fr:jus-de-fruits-rouges-a-base-de-concentres": [
       "en:fruit-juice-from-concentrate"
     ],
-    "fr:jus-de-légumes-concentrés": [
+    "fr:jus-de-legumes-concentres": [
       "en:vegetable"
     ],
     "fr:jus-de-moules": [
       "en:mussel"
     ],
-    "fr:jus-de-mûre-à-base-de-jus-concentré": [
+    "fr:jus-de-mure-a-base-de-jus-concentre": [
       "en:blackberry",
       "en:juice"
     ],
-    "fr:jus-de-pêche-blanche-à-base-de-concentré": [
+    "fr:jus-de-peche-blanche-a-base-de-concentre": [
       "en:peach-juice-from-concentrate",
       "en:white-peach"
     ],
@@ -15881,54 +17032,54 @@
     "fr:jus-de-raisin-blanc-sauvignon": [
       "en:white-grape-juice"
     ],
-    "fr:jus-de-raisin-concentré-rectifié": [
+    "fr:jus-de-raisin-concentre-rectifie": [
       "en:concentrated-grape-juice"
     ],
     "fr:jus-de-raisin-rouge-syrah": [
       "en:red-grape-juice"
     ],
-    "fr:jus-de-tomate-à-partir-de-concentré": [
+    "fr:jus-de-tomate-a-partir-de-concentre": [
       "en:tomato-juice"
     ],
-    "fr:jus-et-purée-de-pomme": [
+    "fr:jus-et-puree-de-pomme": [
       "en:apple-juice",
       "en:apple-puree"
     ],
-    "fr:jus-et-purée-de-pomme-biologiques": [
-      "fr:jus-et-purée-de-pomme"
+    "fr:jus-et-puree-de-pomme-biologiques": [
+      "fr:jus-et-puree-de-pomme"
     ],
-    "fr:lactose-et-minéraux-du-lait": [
+    "fr:lactose-et-mineraux-du-lait": [
       "en:lactose",
       "en:milk-minerals"
     ],
-    "fr:lactosérum-partiellement-déminéralisé": [
+    "fr:lactoserum-partiellement-demineralise": [
       "en:demineralised-whey"
     ],
-    "fr:lait-de-brebis-thermisé": [
-      "en:sheeps-milk"
+    "fr:lait-de-brebis-thermise": [
+      "en:sheep-milk"
     ],
     "fr:lait-de-montagne": [
       "en:milk"
     ],
-    "fr:lait-demi-écrémé-uht": [
+    "fr:lait-demi-ecreme-uht": [
       "en:semi-skimmed-milk"
     ],
-    "fr:lait-écrémé-à-base-de-poudre-de-lait": [
+    "fr:lait-ecreme-a-base-de-poudre-de-lait": [
       "en:milk-powder"
     ],
-    "fr:légumes-et-jus-de-cuisson-de-légumes": [
+    "fr:legumes-et-jus-de-cuisson-de-legumes": [
       "en:vegetable"
     ],
-    "fr:lentilles-réhydratées": [
+    "fr:lentilles-rehydratees": [
       "en:lentils"
     ],
-    "fr:lentilles-rouges-décortiquées": [
+    "fr:lentilles-rouges-decortiquees": [
       "en:red-lentils"
     ],
     "fr:lentilles-vertes-du-berry": [
       "en:green-lentils"
     ],
-    "fr:lentilles-vertes-précuites": [
+    "fr:lentilles-vertes-precuites": [
       "en:green-lentils"
     ],
     "fr:lentillons": [
@@ -15938,35 +17089,35 @@
       "en:brown-flax-seeds",
       "en:golden-flax-seeds"
     ],
-    "fr:longe-de-porc-traitée-en-salaison": [
+    "fr:longe-de-porc-traitee-en-salaison": [
       "en:pork-loin"
     ],
     "fr:loup": [
       "en:fish"
     ],
-    "fr:maasdam-râpé": [
+    "fr:maasdam-rape": [
       "en:maasdam"
     ],
     "fr:magret-de-canard-du-sud-ouest": [
       "en:duck-breast"
     ],
-    "fr:maigre-de-tête-de-porc": [
+    "fr:maigre-de-tete-de-porc": [
       "en:pork-meat"
     ],
     "fr:maigre-et-gras-de-porc": [
       "en:pork-meat"
     ],
-    "fr:maïs-doux-en-grains": [
+    "fr:mais-doux-en-grains": [
       "en:corn-kernel",
       "en:sweetcorn"
     ],
-    "fr:maïs-doux-en-grains-sans-ogm": [
-      "fr:maïs-doux-en-grains"
+    "fr:mais-doux-en-grains-sans-ogm": [
+      "fr:mais-doux-en-grains"
     ],
-    "fr:maïs-moulu": [
+    "fr:mais-moulu": [
       "en:cornmeal"
     ],
-    "fr:maltodextrine-fumée": [
+    "fr:maltodextrine-fumee": [
       "en:maltodextrin"
     ],
     "fr:manchons-de-canard-du-sud-ouest": [
@@ -15975,10 +17126,10 @@
     "fr:manchons-de-poulet": [
       "en:chicken-meat"
     ],
-    "fr:mangue-importée-en-avion": [
+    "fr:mangue-importee-en-avion": [
       "en:mango"
     ],
-    "fr:mangue-importée-en-bateau": [
+    "fr:mangue-importee-en-bateau": [
       "en:mango"
     ],
     "fr:marinade-barbecue": [
@@ -15993,32 +17144,32 @@
     "fr:marrons-ue": [
       "fr:marron"
     ],
-    "fr:matières-grasses-végétales-de-colza": [
+    "fr:matieres-grasses-vegetales-de-colza": [
       "en:vegetable-fat"
     ],
-    "fr:mélange-de-café-arabica": [
+    "fr:melange-de-cafe-arabica": [
       "en:arabica-coffee"
     ],
-    "fr:mélange-de-pâtes-alimentaires-cuisinées": [
+    "fr:melange-de-pates-alimentaires-cuisinees": [
       "en:pasta"
     ],
-    "fr:mélanges-de-miels-d'acacia-originaires-et-non-originaires-de-l'union-européenne": [
+    "fr:melanges-de-miels-d-acacia-originaires-et-non-originaires-de-l-union-europeenne": [
       "en:acacia-honey",
-      "fr:mélange-de-miels-originaires-et-non-originaires-de-l'ue"
+      "en:blend-of-eu-and-non-eu-honeys"
     ],
     "fr:miel-baies-roses": [
       "en:honey"
     ],
-    "fr:miel-crémeux-bio": [
+    "fr:miel-cremeux-bio": [
       "en:creamy-honey"
     ],
-    "fr:miel-d'acacia-des-forets-preservées-d'europe": [
+    "fr:miel-d-acacia-des-forets-preservees-d-europe": [
       "en:acacia-honey"
     ],
-    "fr:miel-d'oranger-biologique": [
+    "fr:miel-d-oranger-biologique": [
       "en:orange-blossom-honey"
     ],
-    "fr:miel-d'oranger-d'espagne": [
+    "fr:miel-d-oranger-d-espagne": [
       "en:orange-blossom-honey"
     ],
     "fr:miel-de-bourdaine": [
@@ -16033,24 +17184,24 @@
     "fr:miel-de-campagne": [
       "en:honey"
     ],
-    "fr:miel-de-carotte-récolté-dans-le-gatinais": [
+    "fr:miel-de-carotte-recolte-dans-le-gatinais": [
       "en:honey",
-      "fr:miel-du-gâtinais"
+      "en:honey-from-the-gatinais"
     ],
     "fr:miel-de-carotte-sauvage": [
       "en:honey"
     ],
-    "fr:miel-de-châtaignier": [
+    "fr:miel-de-chataignier": [
       "en:honey"
     ],
-    "fr:miel-de-châtaignier-origine-france": [
+    "fr:miel-de-chataignier-origine-france": [
       "en:honey-from-france",
-      "fr:miel-de-châtaignier"
+      "fr:miel-de-chataignier"
     ],
     "fr:miel-de-citronnier": [
       "en:honey"
     ],
-    "fr:miel-de-citronnier-d'espagne": [
+    "fr:miel-de-citronnier-d-espagne": [
       "en:honey-from-spain",
       "fr:miel-de-citronnier"
     ],
@@ -16058,7 +17209,7 @@
       "en:flower-honey",
       "en:honey-from-france"
     ],
-    "fr:miel-de-foret-d'italie": [
+    "fr:miel-de-foret-d-italie": [
       "en:forest-honey"
     ],
     "fr:miel-de-foret-de-france": [
@@ -16086,7 +17237,7 @@
     "fr:miel-de-maquis-de-printemps": [
       "en:honey"
     ],
-    "fr:miel-de-montagne-d'espagne": [
+    "fr:miel-de-montagne-d-espagne": [
       "en:honey-from-spain",
       "en:mountain-honey"
     ],
@@ -16107,42 +17258,42 @@
     "fr:miel-de-sapin": [
       "en:honey"
     ],
-    "fr:miel-de-sapin-récolté-en-france": [
+    "fr:miel-de-sapin-recolte-en-france": [
       "en:honey-from-france",
       "fr:miel-de-sapin"
     ],
-    "fr:miel-de-sarrasin-récolté-dans-le-loiret": [
+    "fr:miel-de-sarrasin-recolte-dans-le-loiret": [
       "en:honey",
       "en:honey-from-france"
     ],
-    "fr:miel-de-thym-d'espagne": [
-      "en:thyme-honey",
-      "en:honey-from-spain"
+    "fr:miel-de-thym-d-espagne": [
+      "en:honey-from-spain",
+      "en:thyme-honey"
     ],
     "fr:miel-de-tilleul-de-picardie": [
       "en:honey-from-france",
-      "fr:miel-de-tilleul"
+      "en:linden-honey"
     ],
     "fr:miel-et-propolis-verte": [
       "en:honey"
     ],
-    "fr:miel-italien-d'acacia": [
+    "fr:miel-italien-d-acacia": [
       "en:acacia-honey"
     ],
     "fr:miel-toutes-fleurs": [
       "en:flower-honey"
     ],
-    "fr:mono--et-diglycerides-d'acides-gras-de-palme": [
+    "fr:mono-et-diglycerides-d-acides-gras-de-colza": [
       "en:mono-and-diglycerides-of-fatty-acids-of-vegetable-origin"
     ],
-    "fr:mono--et-diglycérides-d'acides-gras-et-stéaroyl-2-lactylate-de-sodium": [
+    "fr:mono-et-diglycerides-d-acides-gras-de-palme": [
+      "en:mono-and-diglycerides-of-fatty-acids-of-vegetable-origin"
+    ],
+    "fr:mono-et-diglycerides-d-acides-gras-et-stearoyl-2-lactylate-de-sodium": [
       "en:e471",
-      "en:sodium-stearoyl-2-lactylate"
+      "en:e481"
     ],
-    "fr:mono-et-diglycérides-d'acides-gras-de-colza": [
-      "en:mono-and-diglycerides-of-fatty-acids-of-vegetable-origin"
-    ],
-    "fr:monodiglycérides-de-colza": [
+    "fr:monodiglycerides-de-colza": [
       "en:colza-oil"
     ],
     "fr:morceaux-de-foie-gras-de-canard": [
@@ -16157,161 +17308,161 @@
     "fr:morceaux-de-nougatine-aux-amandes": [
       "en:crocant"
     ],
-    "fr:morilles-séchées": [
-      "en:morels"
+    "fr:morilles-sechees": [
+      "en:morel"
     ],
     "fr:moules-cuites": [
       "en:mussel"
     ],
-    "fr:moules-du-pacifique-décoquillées-cuites": [
+    "fr:moules-du-pacifique-decoquillees-cuites": [
       "fr:moules-cuites"
     ],
-    "fr:moules-glazurées": [
+    "fr:moules-glazurees": [
       "en:mussel"
     ],
-    "fr:moût-de-raisin-concentré-et-cuit": [
+    "fr:mout-de-raisin-concentre-et-cuit": [
       "en:concentrated-grape-must",
       "en:cooked-grape-must"
     ],
-    "fr:moût-de-raisin-concentré-rectifié": [
+    "fr:mout-de-raisin-concentre-rectifie": [
       "en:concentrated-grape-must"
     ],
-    "fr:moutarde-à-l'ancienne": [
+    "fr:moutarde-a-l-ancienne": [
       "en:mustard"
     ],
     "fr:muscat-sec": [
       "en:varietal"
     ],
-    "fr:mytilus-edulis-pêchées-en-atlantique-nord": [
+    "fr:mytilus-edulis-pechees-en-atlantique-nord": [
       "en:blue-mussel"
     ],
     "fr:noisettes-avec-peau": [
       "en:hazelnut"
     ],
-    "fr:noisettes-décortiquées": [
+    "fr:noisettes-decortiquees": [
       "en:hazelnut"
     ],
     "fr:noisettes-en-poudre-avec-peau": [
       "fr:noisettes-avec-peau"
     ],
-    "fr:noisettes-entières-torréfiées": [
-      "fr:noisettes-entières"
+    "fr:noisettes-entieres-torrefiees": [
+      "en:hazelnut-kernel"
     ],
     "fr:noix-de-jambon-de-porc": [
       "en:pork-meat"
     ],
-    "fr:œuf-entier-d'élevage-au-sol": [
+    "fr:oeuf-entier-d-elevage-au-sol": [
       "en:whole-egg"
     ],
-    "fr:oeuf-entier-issu-de-poules-elevées-en-plein-air": [
+    "fr:oeuf-entier-issu-de-poules-elevees-en-plein-air": [
       "en:whole-egg"
     ],
-    "fr:oeuf-entier-liquide-pasteurisé-salé": [
+    "fr:oeuf-entier-liquide-pasteurise-sale": [
       "en:liquid-whole-egg"
     ],
-    "fr:œuf-moyen-de-poule-élevé-en-plein-air-sans-antibiotiques": [
+    "fr:oeuf-moyen-de-poule-eleve-en-plein-air-sans-antibiotiques": [
       "en:free-range-chicken-eggs"
     ],
-    "fr:oeufs-de-cabillaud-salés-et-fumés": [
+    "fr:oeufs-de-cabillaud-sales-et-fumes": [
       "en:smoked-cod-roe"
     ],
-    "fr:œufs-de-catégorie-a-de-poules-élevées-en-plein-air": [
+    "fr:oeufs-de-categorie-a-de-poules-elevees-en-plein-air": [
       "en:category-a-eggs",
       "en:free-range-chicken-eggs"
     ],
     "fr:oeufs-de-lompe-noirs": [
-      "fr:œufs-de-lompe"
+      "fr:oeufs-de-lompe"
     ],
     "fr:oeufs-de-lompe-rouges": [
-      "fr:œufs-de-lompe"
+      "fr:oeufs-de-lompe"
     ],
-    "fr:oeufs-de-poules-élevées-en-cage-de-categorie-a": [
+    "fr:oeufs-de-poules-elevees-en-cage-de-categorie-a": [
       "en:category-a-eggs",
       "en:eggs-from-caged-hens"
     ],
-    "fr:œufs-de-poules-élevées-en-plein-air-calibre-moyen": [
+    "fr:oeufs-de-poules-elevees-en-plein-air-calibre-moyen": [
       "en:free-range-chicken-eggs"
     ],
-    "fr:œufs-entiers-extra-frais": [
+    "fr:oeufs-entiers-extra-frais": [
       "en:whole-fresh-eggs"
     ],
-    "fr:oeufs-entiers-reconstitués": [
+    "fr:oeufs-entiers-reconstitues": [
       "en:whole-egg"
     ],
-    "fr:œufs-extra-frais": [
+    "fr:oeufs-extra-frais": [
       "en:fresh-egg"
     ],
-    "fr:oeufs-frais-datés-du-jour-de-ponte-de-poules-élevées-en-cage": [
+    "fr:oeufs-frais-dates-du-jour-de-ponte-de-poules-elevees-en-cage": [
       "en:eggs-from-caged-hens"
     ],
-    "fr:œufs-frais-de-poule": [
+    "fr:oeufs-frais-de-poule": [
       "en:chicken-egg"
     ],
-    "fr:oeufs-frais-de-poule-élevées-en-plein-air": [
+    "fr:oeufs-frais-de-poule-elevees-en-plein-air": [
       "en:free-range-chicken-eggs"
     ],
-    "fr:oeufs-frais-de-poules-élevées-en-cage": [
+    "fr:oeufs-frais-de-poules-elevees-en-cage": [
       "en:eggs-from-caged-hens"
     ],
-    "fr:œufs-frais-de-poules-élevées-en-plein-air": [
+    "fr:oeufs-frais-de-poules-elevees-en-plein-air": [
       "en:fresh-egg"
     ],
     "fr:oignon-et-ail-en-poudre": [
       "en:garlic",
       "en:onion"
     ],
-    "fr:oignon-préfrit-à-l'huile-de-tournesol": [
+    "fr:oignon-prefrit-a-l-huile-de-tournesol": [
       "en:pre-fried-onions"
     ],
-    "fr:oléisol®": [
+    "fr:oleisol": [
       "en:sunflower-oil"
     ],
     "fr:olives-noires-avec-noyau": [
       "en:black-olive"
     ],
-    "fr:olives-noires-confites-entières": [
+    "fr:olives-noires-confites-entieres": [
       "en:black-olive"
     ],
-    "fr:orange-à-jus": [
+    "fr:orange-a-jus": [
       "en:orange"
     ],
     "fr:os-et-viande-de-poulet": [
       "en:chicken-meat"
     ],
-    "fr:paillettes-d'algues": [
+    "fr:paillettes-d-algues": [
       "en:seaweed"
     ],
     "fr:pain-de-mie": [
       "en:special-bread"
     ],
-    "fr:pain-de-mie-au-son-de-blé": [
+    "fr:pain-de-mie-au-son-de-ble": [
       "en:special-bread"
     ],
-    "fr:pain-de-mie-aux-céréales": [
+    "fr:pain-de-mie-aux-cereales": [
       "en:special-bread"
     ],
     "fr:pain-de-mie-complet": [
       "en:special-bread"
     ],
-    "fr:pain-spécial-bretzel": [
+    "fr:pain-special-bretzel": [
       "en:special-bread"
     ],
-    "fr:pain-spécial-cuit": [
+    "fr:pain-special-cuit": [
       "en:special-bread"
     ],
-    "fr:pain-spécial-de-campagne": [
+    "fr:pain-special-de-campagne": [
       "en:special-bread"
     ],
-    "fr:pain-spécial-viennois": [
+    "fr:pain-special-viennois": [
       "en:special-bread"
     ],
     "fr:palette-de-porc": [
       "en:pork-meat"
     ],
-    "fr:palmiste-totalement-hydrogénée": [
+    "fr:palmiste-totalement-hydrogenee": [
       "en:palm-kernel-oil"
     ],
-    "fr:palourdes-précuites": [
+    "fr:palourdes-precuites": [
       "en:clam"
     ],
     "fr:papaye-rouge": [
@@ -16323,49 +17474,49 @@
     "fr:parmigiano-reggiano-aop": [
       "en:parmigiano-reggiano"
     ],
-    "fr:pâte-crue": [
+    "fr:pate-crue": [
       "en:dough"
     ],
-    "fr:pâte-de-praliné": [
+    "fr:pate-de-praline": [
       "en:preparation"
     ],
-    "fr:pâte-feuilletée": [
+    "fr:pate-feuilletee": [
       "en:dough"
     ],
-    "fr:pâtes-alimentaires-aux-oeufs-cuites": [
+    "fr:pates-alimentaires-aux-oeufs-cuites": [
       "en:pasta"
     ],
-    "fr:pâtes-alimentaires-de-semoule-de-blé-dur-de-qualité-supérieure": [
+    "fr:pates-alimentaires-de-semoule-de-ble-dur-de-qualite-superieure": [
       "en:durum-wheat-semolina-pasta"
     ],
-    "fr:pâtes-aux-œufs-aux-épinards": [
+    "fr:pates-aux-oeufs-aux-epinards": [
       "en:egg-pasta"
     ],
-    "fr:pâtes-fraiches-farcies-cuites": [
+    "fr:pates-fraiches-farcies-cuites": [
       "en:stuffed-pasta"
     ],
-    "fr:pavés-de-saumon": [
+    "fr:paves-de-saumon": [
       "en:salmon"
     ],
-    "fr:pêche-au-sirop": [
+    "fr:peche-au-sirop": [
       "en:peach"
     ],
-    "fr:pépites-de-chocolat-au-lait": [
+    "fr:pepites-de-chocolat-au-lait": [
       "en:milk-chocolate"
     ],
-    "fr:pétales-de-bleuet": [
+    "fr:petales-de-bleuet": [
       "fr:bleuets"
     ],
-    "fr:pétales-de-tournesol": [
+    "fr:petales-de-tournesol": [
       "en:sunflower"
     ],
-    "fr:pétanielle-noire-de-nice": [
-      "en:poulard-wheat"
+    "fr:petanielle-noire-de-nice": [
+      "en:rivet-wheat"
     ],
     "fr:petits-pois-fins": [
       "en:garden-peas"
     ],
-    "fr:pièces-de-tête-de-porc": [
+    "fr:pieces-de-tete-de-porc": [
       "en:pork-meat"
     ],
     "fr:pignons-de-cedre": [
@@ -16383,38 +17534,38 @@
     "fr:pin-sylvestre": [
       "en:plant"
     ],
-    "fr:plantes-aromatiques-déshydratées": [
+    "fr:plantes-aromatiques-deshydratees": [
       "en:herb"
     ],
-    "fr:plantes-aromatiques-et-épices-dont-herbes-aromatiques": [
+    "fr:plantes-aromatiques-et-epices-dont-herbes-aromatiques": [
       "en:herbs-and-spices"
     ],
     "fr:plasma-de-porc": [
       "en:pork-by-product"
     ],
-    "fr:pois-chiches-secs-trempés": [
+    "fr:pois-chiches-secs-trempes": [
       "en:chickpea"
     ],
-    "fr:poissons-entiers-pêchés-en-méditerranée": [
+    "fr:poissons-entiers-peches-en-mediterranee": [
       "en:fish"
     ],
-    "fr:poissons-et-crustacés-mis-en-œuvre": [
+    "fr:poissons-et-crustaces-mis-en-oeuvre": [
       "en:crustacean",
       "en:fish"
     ],
     "fr:pomelo-ruby-red": [
       "en:red-pomelo"
     ],
-    "fr:pommes-d'aquitaine": [
+    "fr:pommes-d-aquitaine": [
       "en:apple"
     ],
-    "fr:pommes-de-terre-de-consommation-à-chair-ferme": [
+    "fr:pommes-de-terre-de-consommation-a-chair-ferme": [
       "en:potato"
     ],
-    "fr:pommes-de-terre-de-consommation-à-chair-ferme-bio": [
-      "fr:pommes-de-terre-de-consommation-à-chair-ferme"
+    "fr:pommes-de-terre-de-consommation-a-chair-ferme-bio": [
+      "fr:pommes-de-terre-de-consommation-a-chair-ferme"
     ],
-    "fr:pommes-de-terre-préfrites": [
+    "fr:pommes-de-terre-prefrites": [
       "en:potato"
     ],
     "fr:pommes-en-poudre": [
@@ -16423,67 +17574,67 @@
     "fr:poudre-au-beurre": [
       "en:butter"
     ],
-    "fr:poulard-d'australie": [
-      "en:poulard-wheat"
+    "fr:poulard-d-australie": [
+      "en:rivet-wheat"
     ],
-    "fr:poulard-d'auvergne": [
-      "en:poulard-wheat"
+    "fr:poulard-d-auvergne": [
+      "en:rivet-wheat"
     ],
-    "fr:poulet-rôti-traité-en-salaison": [
-      "fr:poulet-traité-en-salaison"
+    "fr:poulet-roti-traite-en-salaison": [
+      "fr:poulet-traite-en-salaison"
     ],
-    "fr:poulet-traité-en-salaison": [
+    "fr:poulet-traite-en-salaison": [
       "en:chicken-meat"
     ],
     "fr:poulpe-en-lamelles": [
       "en:octopus"
     ],
-    "fr:praliné-aux-amandes-et-aux-noisettes": [
+    "fr:praline-aux-amandes-et-aux-noisettes": [
       "en:preparation"
     ],
-    "fr:préparation-à-base-de-filets-de-poulet-traités-en-salaison": [
-      "fr:filet-de-poulet-traité-en-salaison-cuit"
+    "fr:preparation-a-base-de-filets-de-poulet-traites-en-salaison": [
+      "fr:filet-de-poulet-traite-en-salaison-cuit"
     ],
-    "fr:préparation-à-base-de-surimi": [
+    "fr:preparation-a-base-de-surimi": [
       "en:surimi"
     ],
-    "fr:préparation-d'épices": [
+    "fr:preparation-d-epices": [
       "en:spice"
     ],
-    "fr:préparation-de-matières-grasses-végétales": [
+    "fr:preparation-de-matieres-grasses-vegetales": [
       "en:vegetable-fat"
     ],
-    "fr:préparation-de-tomates-décongelée": [
+    "fr:preparation-de-tomates-decongelee": [
       "en:tomato-sauce"
     ],
-    "fr:préparation-déshydratée-pour-sauce": [
+    "fr:preparation-deshydratee-pour-sauce": [
       "en:sauce"
     ],
-    "fr:préparation-fromagère": [
+    "fr:preparation-fromagere": [
       "en:cheese"
     ],
-    "fr:préparation-viande-hachée-de-boeuf": [
+    "fr:preparation-viande-hachee-de-boeuf": [
       "en:minced-beef"
     ],
-    "fr:produit-à-base-de-viande-de-poulet": [
+    "fr:produit-a-base-de-viande-de-poulet": [
       "en:chicken-meat"
     ],
-    "fr:protéines-de-blé-déshydratées": [
+    "fr:proteines-de-ble-deshydratees": [
       "en:wheat-protein"
     ],
-    "fr:protéines-de-blé-partiellement-hydrolysées": [
+    "fr:proteines-de-ble-partiellement-hydrolysees": [
       "en:wheat-protein"
     ],
-    "fr:protéines-de-lait-en-poudre": [
+    "fr:proteines-de-lait-en-poudre": [
       "en:milk-proteins"
     ],
-    "fr:protéines-de-sang-de-porc": [
+    "fr:proteines-de-sang-de-porc": [
       "en:pork-by-product"
     ],
-    "fr:protéines-de-soja-i.p": [
+    "fr:proteines-de-soja-i-p": [
       "en:soy-protein"
     ],
-    "fr:protéines-solubles-de-lait": [
+    "fr:proteines-solubles-de-lait": [
       "en:milk-proteins"
     ],
     "fr:pulpe-de-fruits": [
@@ -16492,83 +17643,83 @@
     "fr:pulpe-de-homard": [
       "en:american-lobster"
     ],
-    "fr:pulpe-de-saumon-fumé": [
+    "fr:pulpe-de-saumon-fume": [
       "en:salmon"
     ],
-    "fr:pulpe-de-tomates-avec-morceaux-et-purée-de-tomates": [
-      "en:chopped-tomatoes",
-      "en:tomato-purée"
+    "fr:pulpe-de-tomates-avec-morceaux-et-puree-de-tomates": [
+      "en:chopped-tomato",
+      "en:tomato-puree"
     ],
     "fr:pur-boeuf": [
       "en:beef"
     ],
-    "fr:pur-jus-de-pommes-à-cidre-de-bretagne": [
+    "fr:pur-jus-de-pommes-a-cidre-de-bretagne": [
       "en:squeezed-apple-juice"
     ],
-    "fr:purée-d'abricots-bergeron": [
-      "en:bergeron-apricot",
-      "en:apricot-puree"
+    "fr:puree-d-abricots-bergeron": [
+      "en:apricot-puree",
+      "en:bergeron-apricot"
     ],
-    "fr:purée-de-citron-sucrée": [
+    "fr:puree-de-citron-sucree": [
       "en:lemon-puree"
     ],
-    "fr:purée-de-framboise-concentrée": [
+    "fr:puree-de-framboise-concentree": [
       "en:raspberry-puree"
     ],
-    "fr:purée-de-fruits": [
+    "fr:puree-de-fruits": [
       "en:fruit",
-      "en:purée"
+      "en:puree"
     ],
-    "fr:purée-de-pommes-concentrée": [
-      "en:apple-purée"
+    "fr:puree-de-pommes-concentree": [
+      "en:apple-puree"
     ],
-    "fr:purée-de-pommes-françaises": [
-      "en:apple-purée"
+    "fr:puree-de-pommes-francaises": [
+      "en:apple-puree"
     ],
-    "fr:purée-de-tomate-mi-réduite": [
-      "en:tomato-purée"
+    "fr:puree-de-tomate-mi-reduite": [
+      "en:tomato-puree"
     ],
-    "fr:purée-de-tomates-mi-réduite-reconstituée": [
-      "fr:purée-de-tomate-mi-réduite"
+    "fr:puree-de-tomates-mi-reduite-reconstituee": [
+      "fr:puree-de-tomate-mi-reduite"
     ],
-    "fr:purée-de-tomates-reconstituée": [
-      "en:tomato-purée"
+    "fr:puree-de-tomates-reconstituee": [
+      "en:tomato-puree"
     ],
-    "fr:purée-de-tomates-triple-concentrée": [
-      "en:tomato-purée"
+    "fr:puree-de-tomates-triple-concentree": [
+      "en:tomato-puree"
     ],
-    "fr:purée-et-jus-de-mangue-concentrés": [
+    "fr:puree-et-jus-de-mangue-concentres": [
       "en:concentrated-mango-juice",
       "en:mango-puree"
     ],
-    "fr:purée-et-pulpe-de-tomates": [
+    "fr:puree-et-pulpe-de-tomates": [
       "en:tomato-pulp",
-      "en:tomato-purée"
+      "en:tomato-puree"
     ],
-    "fr:purée-et-puré-concentrée-de-mangue": [
+    "fr:puree-et-pure-concentree-de-mangue": [
       "en:concentrated-mango-puree",
       "en:mango-puree"
     ],
-    "fr:purée-et-purée-concentrée": [
-      "en:concentrated-purée",
-      "en:purée"
+    "fr:puree-et-puree-concentree": [
+      "en:concentrated-puree",
+      "en:puree"
     ],
-    "fr:purées-de-fruits-à-base-de-concentrés": [
-      "fr:purée-de-fruits"
+    "fr:purees-de-fruits-a-base-de-concentres": [
+      "fr:puree-de-fruits"
     ],
-    "fr:quartiers-d'œufs-durs": [
+    "fr:quartiers-d-oeufs-durs": [
       "en:hard-boiled-egg"
     ],
     "fr:queues-de-crevettes": [
       "en:shrimp"
     ],
-    "fr:queues-de-crevettes-décortiquées": [
+    "fr:queues-de-crevettes-decortiquees": [
       "fr:queues-de-crevettes"
     ],
-    "fr:raisins-secs-réhydratés": [
+    "fr:raisins-secs-rehydrates": [
       "en:raisin"
     ],
-    "fr:raviolis-farcis-aux-légumes": [
+    "fr:raviolis-farcis-aux-legumes": [
       "en:ravioli"
     ],
     "fr:reblochon-aop": [
@@ -16580,15 +17731,15 @@
     "fr:ricotta-de-brebis": [
       "en:ricotta"
     ],
-    "fr:riz-arborio-long-grain-de-qualité-supérieure": [
+    "fr:riz-arborio-long-grain-de-qualite-superieure": [
       "en:arborio-rice",
       "en:long-grain-rice"
     ],
-    "fr:riz-basmati-long-grain-naturellement-parfumé": [
+    "fr:riz-basmati-long-grain-naturellement-parfume": [
       "en:long-grain-basmati-rice",
-      "fr:riz-long-grain-naturellement-parfumé"
+      "fr:riz-long-grain-naturellement-parfume"
     ],
-    "fr:riz-basmati-précuit": [
+    "fr:riz-basmati-precuit": [
       "en:basmati-rice",
       "en:parboiled-rice"
     ],
@@ -16596,20 +17747,20 @@
       "en:thai-rice",
       "en:white-rice"
     ],
-    "fr:riz-complet-étuvé": [
+    "fr:riz-complet-etuve": [
       "en:brown-rice",
       "en:parboiled-rice"
     ],
     "fr:riz-de-camargue-long-blanc-biologique": [
       "en:camargue-long-grain-white-rice"
     ],
-    "fr:riz-long-grain-naturellement-parfumé": [
+    "fr:riz-long-grain-naturellement-parfume": [
       "en:long-grain-rice"
     ],
-    "fr:riz-long-italien-étuvé": [
-      "en:parboiled-long-grain-rice"
+    "fr:riz-long-italien-etuve": [
+      "en:long-grain-parboiled-rice"
     ],
-    "fr:riz-long-parfumé": [
+    "fr:riz-long-parfume": [
       "en:long-grain-rice"
     ],
     "fr:riz-long-pour-risotto": [
@@ -16619,57 +17770,57 @@
     "fr:riz-long-semi-complet": [
       "en:long-grain-rice"
     ],
-    "fr:riz-long-semi-complet-issu-de-l'agriculture-biologique": [
+    "fr:riz-long-semi-complet-issu-de-l-agriculture-biologique": [
       "en:organic-long-grain-rice",
       "fr:riz-long-semi-complet"
     ],
-    "fr:riz-pour-risotto-étuvé": [
+    "fr:riz-pour-risotto-etuve": [
       "en:parboiled-rice",
       "en:risotto-rice"
     ],
-    "fr:riz-précuit": [
+    "fr:riz-precuit": [
       "en:rice"
     ],
-    "fr:riz-riceberry-mélangé": [
+    "fr:riz-riceberry-melange": [
       "en:rice"
     ],
     "fr:riz-rond-de-camargue": [
       "en:camargue-rice"
     ],
-    "fr:riz-rouge-complet-thaï-au-jasmin": [
+    "fr:riz-rouge-complet-thai-au-jasmin": [
       "en:thai-rice"
     ],
     "fr:riz-rouge-long-complet": [
       "en:red-rice"
     ],
-    "fr:riz-thaï-complet-étuvé": [
-      "en:thaï-brown-rice",
-      "en:thaï-rice",
-      "en:parboiled-rice"
+    "fr:riz-thai-complet-etuve": [
+      "en:parboiled-rice",
+      "en:thai-brown-rice",
+      "en:thai-rice"
     ],
-    "fr:riz-thaï-hom-mali-demi-complet-étuvé": [
+    "fr:riz-thai-hom-mali-demi-complet-etuve": [
       "en:hom-mali-rice",
       "en:parboiled-rice"
     ],
-    "fr:riz-thaï-long-grain-de-qualité-supérieure": [
+    "fr:riz-thai-long-grain-de-qualite-superieure": [
       "en:thai-long-grain-rice"
     ],
     "fr:rognons-de-porc": [
       "en:pork-meat"
     ],
-    "fr:rooibos-d'afrique-du-sud": [
+    "fr:rooibos-d-afrique-du-sud": [
       "en:rooibos"
     ],
     "fr:rosettte-de-lyon": [
       "en:pork-meat"
     ],
-    "fr:salade-composée": [
+    "fr:salade-composee": [
       "en:salad"
     ],
     "fr:sang-frais-de-porc": [
       "en:pork-by-product"
     ],
-    "fr:sauce-au-café": [
+    "fr:sauce-au-cafe": [
       "en:sauce"
     ],
     "fr:sauce-au-vinaigre-balsamique": [
@@ -16681,7 +17832,7 @@
     "fr:sauce-blanche": [
       "en:sauce"
     ],
-    "fr:sauce-tomate-cuisinée": [
+    "fr:sauce-tomate-cuisinee": [
       "en:tomato-sauce"
     ],
     "fr:sauce-tomate-cuite": [
@@ -16696,10 +17847,10 @@
     "fr:saucisses-de-toulouse": [
       "en:pork-sausage"
     ],
-    "fr:saucisses-de-toulouse-grillées": [
+    "fr:saucisses-de-toulouse-grillees": [
       "fr:saucisses-de-toulouse"
     ],
-    "fr:saucisses-pur-porc-fumées": [
+    "fr:saucisses-pur-porc-fumees": [
       "en:pork-sausage"
     ],
     "fr:saucisson-de-porc": [
@@ -16709,61 +17860,61 @@
     "fr:saumon-cuit": [
       "en:salmon"
     ],
-    "fr:sébaste-du-nord-crue": [
+    "fr:sebaste-du-nord-crue": [
       "en:fish"
     ],
-    "fr:semoule-blanche-de-blé-dur": [
+    "fr:semoule-blanche-de-ble-dur": [
       "en:durum-wheat-semolina"
     ],
-    "fr:semoule-blanche-de-blé-dur-biologique-de-sicile": [
-      "fr:semoule-de-blé-dur-blanche-biologique"
+    "fr:semoule-blanche-de-ble-dur-biologique-de-sicile": [
+      "fr:semoule-de-ble-dur-blanche-biologique"
     ],
-    "fr:semoule-de-blé-dur-blanche-biologique": [
-      "fr:semoule-blanche-de-blé-dur"
+    "fr:semoule-de-ble-dur-blanche-biologique": [
+      "fr:semoule-blanche-de-ble-dur"
     ],
-    "fr:semoule-de-blé-dur-précuite": [
+    "fr:semoule-de-ble-dur-precuite": [
       "en:durum-wheat-semolina"
     ],
-    "fr:semoule-de-blé-tendre": [
+    "fr:semoule-de-ble-tendre": [
       "en:wheat-semolina"
     ],
-    "fr:semoule-de-maïs-précuite": [
+    "fr:semoule-de-mais-precuite": [
       "en:cornmeal"
     ],
-    "fr:sésame-complet": [
+    "fr:sesame-complet": [
       "en:sesame"
     ],
-    "fr:sésame-doré": [
+    "fr:sesame-dore": [
       "en:sesame"
     ],
     "fr:sirop-de-candi": [
       "en:disaccharide"
     ],
-    "fr:sirop-de-glucose-caramélisé": [
+    "fr:sirop-de-glucose-caramelise": [
       "en:glucose-syrup"
     ],
-    "fr:sirop-de-malt-d'orge-déshydraté": [
+    "fr:sirop-de-malt-d-orge-deshydrate": [
       "en:barley-malt-syrup"
     ],
-    "fr:sirop-de-sucre-inverti-cristallisé": [
+    "fr:sirop-de-sucre-inverti-cristallise": [
       "en:invert-sugar-syrup"
     ],
     "fr:sirop-de-sucres-issus-de-fruits": [
       "en:sugar-syrup"
     ],
-    "fr:sole-entière-vidée": [
+    "fr:sole-entiere-videe": [
       "en:sole"
     ],
-    "fr:sorbitols-et-glycérol": [
+    "fr:sorbitols-et-glycerol": [
       "en:e420"
     ],
     "fr:sous-produit-du-boeuf": [
       "en:beef"
     ],
-    "fr:steak-haché-pur-boeuf": [
+    "fr:steak-hache-pur-boeuf": [
       "en:meat-patty"
     ],
-    "fr:suc-de-réglisse": [
+    "fr:suc-de-reglisse": [
       "en:liquorice-extract"
     ],
     "fr:sucre-mi-blanc-de-canne": [
@@ -16778,52 +17929,52 @@
     "fr:sucres-extraits-de-fruits": [
       "en:sugar"
     ],
-    "fr:surimi-à-base-de-protéines-de-muscles-de-poisson": [
+    "fr:surimi-a-base-de-proteines-de-muscles-de-poisson": [
       "en:surimi"
     ],
-    "fr:teff-soufflé": [
+    "fr:teff-souffle": [
       "en:teff"
     ],
-    "fr:têtes-et-pinces-de-langoustines": [
+    "fr:tetes-et-pinces-de-langoustines": [
       "en:spiny-lobster"
     ],
-    "fr:thé-noir-darjeeling": [
+    "fr:the-noir-darjeeling": [
       "en:black-tea"
     ],
-    "fr:thé-vert-au-jasmin": [
+    "fr:the-vert-au-jasmin": [
       "en:green-tea"
     ],
-    "fr:thé-vert-d'indonésie": [
+    "fr:the-vert-d-indonesie": [
       "en:green-tea"
     ],
     "fr:tissu-conjonctif-de-porc": [
       "en:pork"
     ],
-    "fr:tomates-entières-pelées": [
+    "fr:tomates-entieres-pelees": [
       "en:peeled-tomatoes"
     ],
-    "fr:tomates-pelées-concassées-au-jus": [
+    "fr:tomates-pelees-concassees-au-jus": [
       "en:crushed-peeled-tomato"
     ],
-    "fr:tomates-séchées-réhydratées": [
+    "fr:tomates-sechees-rehydratees": [
       "en:dried-tomatoes"
     ],
-    "fr:tomates-semi-séchées": [
+    "fr:tomates-semi-sechees": [
       "en:tomato"
     ],
-    "fr:tomates-semi-séchées-marinées": [
-      "fr:tomates-semi-séchées"
+    "fr:tomates-semi-sechees-marinees": [
+      "fr:tomates-semi-sechees"
     ],
     "fr:vanille-bourbon-naturelle-en-gousse": [
       "en:bourbon-vanilla-beans"
     ],
-    "fr:variété-willamette": [
+    "fr:variete-willamette": [
       "en:raspberry"
     ],
-    "fr:ventrèches-de-thon": [
+    "fr:ventreches-de-thon": [
       "en:tuna"
     ],
-    "fr:vermicelle-de-pois-réhydraté": [
+    "fr:vermicelle-de-pois-rehydrate": [
       "fr:vermicelle-de-pois"
     ],
     "fr:vermicelles-cuits": [
@@ -16832,10 +17983,10 @@
     "fr:viande-bovine-de-race-charolaise": [
       "en:beef-meat"
     ],
-    "fr:viande-bovine-fraîche-protégée-sous-vide": [
+    "fr:viande-bovine-fraiche-protegee-sous-vide": [
       "en:beef-meat"
     ],
-    "fr:viande-bovine-hachée": [
+    "fr:viande-bovine-hachee": [
       "en:beef-meat"
     ],
     "fr:viande-bovine-halal": [
@@ -16856,7 +18007,7 @@
     "fr:viande-de-dinde-halal": [
       "en:turkey-meat"
     ],
-    "fr:viande-de-dinde-traitée-en-salaison": [
+    "fr:viande-de-dinde-traitee-en-salaison": [
       "en:turkey-meat"
     ],
     "fr:viande-de-haut-de-cuisse-de-poulet-sans-peau": [
@@ -16868,44 +18019,44 @@
     "fr:viande-de-porc-cuite": [
       "en:pork-meat"
     ],
-    "fr:viande-de-porc-traitée-en-salaison": [
+    "fr:viande-de-porc-traitee-en-salaison": [
       "en:pork-meat"
     ],
-    "fr:viande-de-porc-traitée-en-salaison-et-précuite": [
-      "fr:viande-de-porc-traitée-en-salaison"
+    "fr:viande-de-porc-traitee-en-salaison-et-precuite": [
+      "fr:viande-de-porc-traitee-en-salaison"
     ],
-    "fr:viande-de-poulet-rôtie": [
+    "fr:viande-de-poulet-rotie": [
       "en:chicken-meat"
     ],
-    "fr:viande-de-poulet-traitée-en-salaison": [
-      "fr:poulet-traité-en-salaison"
+    "fr:viande-de-poulet-traitee-en-salaison": [
+      "fr:poulet-traite-en-salaison"
     ],
-    "fr:viande-de-poulet-traitée-en-salaison-cuite": [
+    "fr:viande-de-poulet-traitee-en-salaison-cuite": [
       "en:chicken-meat"
     ],
-    "fr:viande-de-poulet-traitée-en-salaison-et-précuite": [
-      "fr:viande-de-poulet-traitée-en-salaison"
+    "fr:viande-de-poulet-traitee-en-salaison-et-precuite": [
+      "fr:viande-de-poulet-traitee-en-salaison"
     ],
-    "fr:viande-de-volaille-traitée-en-salaison": [
+    "fr:viande-de-volaille-traitee-en-salaison": [
       "en:poultry-meat"
     ],
     "fr:viande-et-gras-de-mouton": [
-      "en:sheeps-fat",
-      "en:sheeps-meat"
+      "en:mutton",
+      "en:sheeps-fat"
     ],
     "fr:viande-et-gras-de-porc": [
       "en:pork-meat"
     ],
-    "fr:viande-hachée": [
+    "fr:viande-hachee": [
       "en:meat"
     ],
-    "fr:vin-aromatisé": [
+    "fr:vin-aromatise": [
       "en:wine"
     ],
-    "fr:vin-blanc-modifié": [
+    "fr:vin-blanc-modifie": [
       "en:white-wine"
     ],
-    "fr:vin-blanc-réduit": [
+    "fr:vin-blanc-reduit": [
       "en:white-wine"
     ],
     "fr:vin-cremant-de-loire-aop": [
@@ -16914,20 +18065,20 @@
     "fr:vin-de-france": [
       "en:wine"
     ],
-    "fr:yaourt-brassé-sucré": [
+    "fr:yaourt-brasse-sucre": [
       "en:yogurt"
     ],
-    "fr:yaourt-britannique-à-faible-teneur-en-matières-grasses": [
+    "fr:yaourt-britannique-a-faible-teneur-en-matieres-grasses": [
       "en:british-yogurt",
-      "en:low-fat-yogurt"
+      "en:skimmed-yogurt"
     ],
-    "fr:yogourt-partiellement-écrémé": [
+    "fr:yogourt-partiellement-ecreme": [
       "en:yogurt"
     ],
     "hr:dekofeinizirani-ekstrakt-kave": [
       "en:decaffeinated-coffee"
     ],
-    "hr:l.casei-431": [
+    "hr:l-casei-431": [
       "en:lactobacillus-casei"
     ],
     "hr:pšenično-brašno-1850": [
@@ -16974,7 +18125,7 @@
       "en:shrimp"
     ],
     "la:morchella-conica": [
-      "en:morels"
+      "en:morel"
     ],
     "la:morchella-esculenta": [
       "en:common-morel"
@@ -17031,7 +18182,7 @@
     "nl:kokospulp": [
       "en:coconut"
     ],
-    "nl:maïspoeder": [
+    "nl:maispoeder": [
       "en:corn"
     ],
     "nl:moutmeel": [
@@ -17044,7 +18195,6 @@
       "en:barn-eggs"
     ],
     "nl:scharrelei-eiwitpoeder": [
-      "en:egg-white-powder",
       "en:powdered-egg-white"
     ],
     "nl:scharrelkipeiwit": [
@@ -17062,7 +18212,7 @@
     "nl:speltstroop": [
       "en:syrup"
     ],
-    "nl:tarwe--of-tapiocadextrose": [
+    "nl:tarwe-of-tapiocadextrose": [
       "en:wheat-dextrose",
       "fr:dextrose-de-tapioca"
     ],
@@ -17080,9 +18230,6 @@
     ],
     "nl:vrije-uitloopei-eiwitpoeder": [
       "en:powdered-egg-white"
-    ],
-    "nl:vrije-uitloopeiwitpoeder": [
-      "en:egg-white-powder"
     ],
     "nl:winterpeen": [
       "en:carrot"
@@ -17104,6 +18251,10 @@
     ],
     "pl:pęczak-obtaczany": [
       "en:hulled-barley"
+    ],
+    "ro:difosfati-si-trifosfati-de-sodiu": [
+      "en:e450i",
+      "en:e451i"
     ],
     "ru:закваска-на-кефирных-грибках": [
       "en:lactic-ferments"
@@ -17656,7 +18807,7 @@
     },
     "en:maple-syrup": {
       "en": "maple syrup",
-      "fr": "sirop d’érable"
+      "fr": "sirop d'érable"
     },
     "en:margarine": {
       "en": "Margarine",
@@ -18100,7 +19251,7 @@
     },
     "en:tuna-in-oil": {
       "en": "Tuna in oil",
-      "fr": "Thon à l’huile"
+      "fr": "Thon à l'huile"
     },
     "en:turkey": {
       "en": "turkey",

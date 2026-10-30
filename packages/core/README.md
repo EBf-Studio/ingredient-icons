@@ -67,7 +67,7 @@ findIcon("en:unicorn-steak")  // undefined: show your own placeholder
 
 ## No icon of its own? It borrows its parent's
 
-Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **265 icons cover 2,802 ingredients**.
+Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **265 icons cover 2,843 ingredients**.
 
 <p>
   <code>en:fleur-de-sel</code> → <code>en:sea-salt</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_salt.png" width="40" alt="" align="center"> <code>en:salt</code><br>
@@ -75,6 +75,14 @@ Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea 
 </p>
 
 Try it with any ingredient [on the website](https://ingredient-icons.vercel.app).
+
+The taxonomy is pinned to one [openfoodfacts-server release](https://github.com/openfoodfacts/openfoodfacts-server/releases), exported as `TAXONOMY_RELEASE` (and its commit as `TAXONOMY_COMMIT`). If your own Open Food Facts data comes from a release too, a test can check that both match, so your ids are the ones the package knows:
+
+```ts
+import { TAXONOMY_RELEASE } from "@ingredient-icons/core"
+
+expect(TAXONOMY_RELEASE).toBe("v2.118.0")
+```
 
 ## What's in the package
 

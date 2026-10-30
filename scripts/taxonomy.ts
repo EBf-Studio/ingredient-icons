@@ -1,96 +1,90 @@
 // Pins the Open Food Facts ingredient taxonomy and writes taxonomy.json: every
 // entry's parents (so an id without an icon can fall back on an ancestor's) and
 // the English and French names of the ids that have an icon.
-// Run: bun run taxonomy (after a build that adds icons)
+// Run: bun run taxonomy [tag] (after a build that adds icons; defaults to the latest release)
+//
+// The source is ingredients.json from the food-taxonomies-json.tgz asset of an
+// openfoodfacts-server release: the taxonomy Open Food Facts parses itself, with
+// parents already resolved to ids. The recipe repository reads the same asset:
+// move both to a new release together, so their ids stay the same.
 
-import { readFile, writeFile } from "node:fs/promises"
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises"
+import { tmpdir } from "node:os"
+import path from "node:path"
 
 import type { Manifest } from "./layout"
 
 const REPO = "openfoodfacts/openfoodfacts-server"
-const FILE = "taxonomies/food/ingredients.txt"
+const ASSET = "food-taxonomies-json.tgz"
+const FILE = "ingredients.json"
 const LOCALES = ["en", "fr"] as const
 
-interface Entry {
-  id: string
-  parents: string[]
-  names: Map<string, string>
+interface Release {
+  tag_name: string
+  assets: { name: string; browser_download_url: string; digest: string | null }[]
 }
 
-// Same slugs as Open Food Facts for the names in this taxonomy: lowercase, spaces as hyphens.
-const toId = (locale: string, name: string) => `${locale}:${name.toLowerCase().replace(/\s+/g, "-")}`
+type Taxonomy = Record<string, { parents?: string[]; name?: Record<string, string> }>
 
-/** Entries are blocks separated by blank lines: "< parent" lines, then "xx: name, synonym…" lines. */
-export function parseTaxonomy(content: string) {
-  const entries: Entry[] = []
-  let current: Entry | null = null
-  const flush = () => {
-    if (current?.id) entries.push(current)
-    current = null
-  }
-  for (const rawLine of content.split("\n")) {
-    const line = rawLine.trim()
-    // Comments also sit inside entries ("# de: Gurke" amid cucumber's names): only a blank line ends one.
-    if (line.startsWith("#")) continue
-    if (line === "") {
-      flush()
-      continue
-    }
-    if (line.startsWith("stopwords:") || line.startsWith("synonyms:")) continue
-    current ??= { id: "", parents: [], names: new Map() }
-    if (line.startsWith("<")) {
-      // "< en: Smoked bacon" names the parent: it becomes the id that entry gets.
-      const [locale, ...name] = line.slice(1).split(":")
-      const parentName = name.join(":").trim()
-      if (locale?.trim() && parentName) current.parents.push(toId(locale.trim(), parentName))
-      continue
-    }
-    const colon = line.indexOf(":")
-    if (colon === -1) continue
-    const key = line.slice(0, colon).trim()
-    if (!/^[a-z]{2,3}$/.test(key)) continue
-    const name = line.slice(colon + 1).split(",")[0]?.trim()
-    if (!name) continue
-    current.names.set(key, name)
-    if (!current.id) current.id = toId(key, name)
-  }
-  flush()
-  return entries
+const github = async <T>(endpoint: string): Promise<T> => {
+  const response = await fetch(`https://api.github.com/repos/${REPO}/${endpoint}`)
+  if (!response.ok) throw new Error(`GitHub API ${endpoint}: ${response.status}`)
+  return (await response.json()) as T
 }
 
-if (import.meta.main) {
-  const commits = await fetch(`https://api.github.com/repos/${REPO}/commits?path=${FILE}&per_page=1`)
-  if (!commits.ok) throw new Error(`GitHub API: ${commits.status}`)
-  const [latest] = (await commits.json()) as { sha: string }[]
-  if (!latest) throw new Error(`No commit touches ${FILE}`)
-  const { sha } = latest
-  const content = await (await fetch(`https://raw.githubusercontent.com/${REPO}/${sha}/${FILE}`)).text()
-  const entries = parseTaxonomy(content)
-  const byId = new Map(entries.map((entry) => [entry.id, entry]))
+const sha256 = (data: Uint8Array) => new Bun.CryptoHasher("sha256").update(data).digest("hex")
 
-  const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
-  const unknown = Object.keys(manifest.icons).filter((id) => !byId.has(id))
+const tag = process.argv[2]
+const release = await github<Release>(tag ? `releases/tags/${tag}` : "releases/latest")
+const asset = release.assets.find((a) => a.name === ASSET)
+if (!asset) throw new Error(`${release.tag_name} has no ${ASSET}`)
+if (!asset.digest?.startsWith("sha256:")) throw new Error(`${ASSET} of ${release.tag_name} has no sha256 digest`)
+const { sha: commit } = await github<{ sha: string }>(`commits/${release.tag_name}`)
 
-  const parents: Record<string, string[]> = {}
-  for (const entry of [...entries].sort((a, b) => a.id.localeCompare(b.id)))
-    if (entry.parents.length) parents[entry.id] = entry.parents
+const download = await fetch(asset.browser_download_url)
+if (!download.ok) throw new Error(`${asset.browser_download_url}: ${download.status}`)
+const archive = new Uint8Array(await download.arrayBuffer())
+if (`sha256:${sha256(archive)}` !== asset.digest) throw new Error(`${ASSET} does not match its digest ${asset.digest}`)
 
-  const names: Record<string, Partial<Record<(typeof LOCALES)[number], string>>> = {}
-  for (const id of Object.keys(manifest.icons).sort()) {
-    const entry = byId.get(id)
-    if (!entry) continue
-    names[id] = Object.fromEntries(LOCALES.flatMap((l) => (entry.names.has(l) ? [[l, entry.names.get(l)!]] : [])))
+const dir = await mkdtemp(path.join(tmpdir(), "taxonomy-"))
+const content = await (async () => {
+  try {
+    await writeFile(path.join(dir, ASSET), archive)
+    const tar = Bun.spawnSync(["tar", "-xzOf", path.join(dir, ASSET), `./${FILE}`], { stderr: "pipe" })
+    if (tar.exitCode !== 0) throw new Error(`tar: ${tar.stderr.toString()}`)
+    return tar.stdout
+  } finally {
+    await rm(dir, { recursive: true, force: true })
   }
+})()
+const entries: Taxonomy = JSON.parse(content.toString())
 
-  const taxonomy = {
-    source: "Open Food Facts ingredients taxonomy",
-    url: `https://github.com/${REPO}/blob/${sha}/${FILE}`,
-    commit: sha,
-    license: "ODbL-1.0",
-    parents,
-    names,
-  }
-  await writeFile("taxonomy.json", `${JSON.stringify(taxonomy, null, 2)}\n`)
-  console.log(`${entries.length} taxonomy entries at ${sha.slice(0, 7)}, ${Object.keys(names).length} named`)
-  if (unknown.length) console.log(`Not in the taxonomy: ${unknown.join(" ")}`)
+const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
+const unknown = Object.keys(manifest.icons).filter((id) => !entries[id])
+
+const parents: Record<string, string[]> = {}
+for (const id of Object.keys(entries).sort((a, b) => a.localeCompare(b))) {
+  const entryParents = entries[id]!.parents
+  if (entryParents?.length) parents[id] = entryParents
 }
+
+const names: Record<string, Partial<Record<(typeof LOCALES)[number], string>>> = {}
+for (const id of Object.keys(manifest.icons).sort()) {
+  const name = entries[id]?.name
+  if (!name) continue
+  names[id] = Object.fromEntries(LOCALES.flatMap((l) => (name[l] ? [[l, name[l]]] : [])))
+}
+
+const taxonomy = {
+  source: "Open Food Facts ingredients taxonomy",
+  release: release.tag_name,
+  commit,
+  url: asset.browser_download_url,
+  sha256: sha256(content),
+  license: "ODbL-1.0",
+  parents,
+  names,
+}
+await writeFile("taxonomy.json", `${JSON.stringify(taxonomy, null, 2)}\n`)
+console.log(`${Object.keys(entries).length} taxonomy entries in ${release.tag_name}, ${Object.keys(names).length} named`)
+if (unknown.length) console.log(`Not in the taxonomy: ${unknown.join(" ")}`)

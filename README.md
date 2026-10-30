@@ -76,7 +76,7 @@ findIcon("en:unicorn-steak")  // undefined: show your own placeholder
 
 ## No icon of its own? It borrows its parent's
 
-Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **265 icons cover 2,802 ingredients**.
+Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **265 icons cover 2,843 ingredients**.
 
 <p>
   <code>en:fleur-de-sel</code> → <code>en:sea-salt</code> → <img src="icons/png/128/en_salt.png" width="40" alt="" align="center"> <code>en:salt</code><br>
@@ -135,10 +135,12 @@ The icons are built from private sources (raw images and prompts). With them che
 ```sh
 bun install
 bun run build      # cut-out, every size and format, manifest.json, .out/review.html
-bun run taxonomy   # pins the Open Food Facts taxonomy, writes taxonomy.json
+bun run taxonomy   # pins the latest Open Food Facts release (or a tag), writes taxonomy.json
 bun run check      # types, files against the manifest, ids against the taxonomy
 bun run docs       # the website (apps/docs) on http://localhost:3000
 ```
+
+`taxonomy.json` comes from `ingredients.json` in the `food-taxonomies-json.tgz` asset of an [openfoodfacts-server release](https://github.com/openfoodfacts/openfoodfacts-server/releases), checked against its digest. The recipe app reads the same asset: move both repositories to a new release together, so their ids stay the same.
 
 The website is a Fumadocs app in `apps/docs`: home page, documentation in `apps/docs/content/docs`, and a page per icon. It reads `manifest.json`, `taxonomy.json` and `icons/` from the repository, so a new batch shows up on the next deploy. On Vercel, set the project's root directory to `apps/docs`.
 

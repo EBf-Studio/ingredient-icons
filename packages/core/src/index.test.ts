@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 
-import { CDN_URL, findIcon, iconName, iconPath, iconUrl, ids } from "./index"
+import { CDN_URL, findIcon, iconName, iconPath, iconUrl, ids, TAXONOMY_COMMIT, TAXONOMY_RELEASE } from "./index"
 
 describe("findIcon", () => {
   test("an id with its own icon", () => {
@@ -9,6 +9,11 @@ describe("findIcon", () => {
 
   test("an id without one takes its closest ancestor's", () => {
     expect(findIcon("en:cherry-tomato")).toEqual({ id: "en:tomato", file: "en_tomato", exact: false })
+  })
+
+  test("a parent Open Food Facts names by a synonym still leads up the taxonomy", () => {
+    // ingredients.txt writes "< en: sheeps milk"; the entry is en:sheep-milk.
+    expect(findIcon("en:whole-sheep-milk")).toEqual({ id: "en:milk", file: "en_milk", exact: false })
   })
 
   test("an unknown id has none", () => {
@@ -30,4 +35,9 @@ test("names come from the taxonomy", () => {
 
 test("every id ships", () => {
   expect(ids.length).toBeGreaterThan(200)
+})
+
+test("the taxonomy release is exported with its commit", () => {
+  expect(TAXONOMY_RELEASE).toMatch(/^v\d+\.\d+\.\d+$/)
+  expect(TAXONOMY_COMMIT).toMatch(/^[0-9a-f]{40}$/)
 })

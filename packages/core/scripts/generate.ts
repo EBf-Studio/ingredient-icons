@@ -9,7 +9,7 @@ const pkg = path.resolve(import.meta.dir, "..")
 
 const manifest: { style: number; sizes: { webp: number[] }; icons: Record<string, { file: string }> } =
   JSON.parse(await readFile(path.join(root, "manifest.json"), "utf8"))
-const taxonomy: { commit: string; parents: Record<string, string[]>; names: Record<string, Record<string, string>> } =
+const taxonomy: { release: string; commit: string; parents: Record<string, string[]>; names: Record<string, Record<string, string>> } =
   JSON.parse(await readFile(path.join(root, "taxonomy.json"), "utf8"))
 const { version } = JSON.parse(await readFile(path.join(pkg, "package.json"), "utf8"))
 
@@ -22,6 +22,7 @@ await writeFile(
 export const VERSION = ${json(version)}
 export const STYLE = ${manifest.style}
 export const SIZES = ${json(manifest.sizes.webp)} as const
+export const TAXONOMY_RELEASE = ${json(taxonomy.release)}
 export const TAXONOMY_COMMIT = ${json(taxonomy.commit)}
 /** File name of each id that has its own icon. */
 export const FILES: Readonly<Record<string, string>> = ${json(files)}
