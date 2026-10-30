@@ -62,4 +62,4 @@ const src = icon?.exact ? iconUrl(id) : undefined
 
 ## Pinned taxonomy
 
-The package pins the taxonomy to one release of the Open Food Facts server, whose commit is exported as `TAXONOMY_COMMIT`. A new id added to Open Food Facts after that release has no parents yet in the package, so it only gets an icon if it has one of its own. Updates come with new releases.
+The package pins the taxonomy to one release of the Open Food Facts server, exported as `TAXONOMY_RELEASE` (`TAXONOMY_COMMIT` is its commit). A new id added to Open Food Facts after that release has no parents yet in the package, so it only gets an icon if it has one of its own. Updates come with new releases.

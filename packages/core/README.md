@@ -76,6 +76,14 @@ Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea 
 
 Try it with any ingredient [on the website](https://ingredient-icons.vercel.app).
 
+The taxonomy is pinned to one [openfoodfacts-server release](https://github.com/openfoodfacts/openfoodfacts-server/releases), exported as `TAXONOMY_RELEASE` (and its commit as `TAXONOMY_COMMIT`). If your own Open Food Facts data comes from a release too, a test can check that both match, so your ids are the ones the package knows:
+
+```ts
+import { TAXONOMY_RELEASE } from "@ingredient-icons/core"
+
+expect(TAXONOMY_RELEASE).toBe("v2.118.0")
+```
+
 ## What's in the package
 
 Transparent WebP in 64, 128 and 256 px, under `icons/webp/{size}/`. 128 px covers a 40 pt icon on a 3× screen; 256 px covers almost everything else. Names come in English and French, from Open Food Facts.

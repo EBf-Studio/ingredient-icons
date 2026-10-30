@@ -7,7 +7,7 @@ icon: Braces
 ```ts
 import {
   findIcon, iconPath, iconUrl, iconName,
-  ids, sizes, CDN_URL, VERSION, STYLE, TAXONOMY_COMMIT,
+  ids, sizes, CDN_URL, VERSION, STYLE, TAXONOMY_RELEASE, TAXONOMY_COMMIT,
   type Icon, type IconSize,
 } from "@ingredient-icons/core"
 ```
@@ -87,7 +87,8 @@ iconName("en:shallot", "fr") // "échalote"
     CDN_URL: { type: 'string', description: 'jsDelivr URL of the package, pinned to its version. The default baseUrl.' },
     VERSION: { type: 'string', description: 'Version of the installed package.' },
     STYLE: { type: 'number', description: 'Version of the drawing style. It changes when icons are redrawn in a new style.' },
-    TAXONOMY_COMMIT: { type: 'string', description: 'Open Food Facts commit the parents and names come from.' },
+    TAXONOMY_RELEASE: { type: 'string', description: 'openfoodfacts-server release the parents and names come from: "v2.118.0". Compare it with the release your own Open Food Facts data comes from.' },
+    TAXONOMY_COMMIT: { type: 'string', description: 'Commit of that release.' },
   }}
 />
 

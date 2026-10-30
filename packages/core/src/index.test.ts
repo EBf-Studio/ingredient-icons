@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 
-import { CDN_URL, findIcon, iconName, iconPath, iconUrl, ids } from "./index"
+import { CDN_URL, findIcon, iconName, iconPath, iconUrl, ids, TAXONOMY_COMMIT, TAXONOMY_RELEASE } from "./index"
 
 describe("findIcon", () => {
   test("an id with its own icon", () => {
@@ -35,4 +35,9 @@ test("names come from the taxonomy", () => {
 
 test("every id ships", () => {
   expect(ids.length).toBeGreaterThan(200)
+})
+
+test("the taxonomy release is exported with its commit", () => {
+  expect(TAXONOMY_RELEASE).toMatch(/^v\d+\.\d+\.\d+$/)
+  expect(TAXONOMY_COMMIT).toMatch(/^[0-9a-f]{40}$/)
 })

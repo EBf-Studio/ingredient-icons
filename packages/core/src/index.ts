@@ -1,6 +1,6 @@
 import { FILES, NAMES, PARENTS, SIZES, VERSION } from "./data.js"
 
-export { STYLE, TAXONOMY_COMMIT, VERSION } from "./data.js"
+export { STYLE, TAXONOMY_COMMIT, TAXONOMY_RELEASE, VERSION } from "./data.js"
 
 /** Sizes shipped in the package, in pixels, as square WebP files. */
 export type IconSize = (typeof SIZES)[number]
