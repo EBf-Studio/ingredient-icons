@@ -20,7 +20,7 @@ File names are ids with `:` replaced by `_`.
 
 - **From Open Food Facts products.** The [product API](https://openfoodfacts.github.io/openfoodfacts-server/api/) returns `ingredients[].id` with these ids.
 - **From your own ingredient list.** Map each of your ingredients to an id once, by hand or with the [taxonomy file](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/food/ingredients.txt), and store it. The [gallery](/icons) shows the id of every icon.
-- **From other languages.** The taxonomy also has ids such as `fr:crème-fraîche-liquide`. They have parents like any other, so the fallback works on them too: that one gets the cream icon.
+- **From other languages.** The taxonomy also has ids such as `fr:creme-fraiche-liquide`. They have parents like any other, so the fallback works on them too: that one gets the cream icon.
 
 ## Fallback
 
@@ -28,7 +28,7 @@ The taxonomy knows that fleur de sel is a sea salt, and that sea salt is a salt.
 
 <Resolves id="en:fleur-de-sel" />
 <Resolves id="en:basmati-rice" />
-<Resolves id="en:napa-cabbage" />
+<Resolves id="en:chinese-cabbage" />
 
 That is how <Total /> icons cover <Resolvable /> taxonomy ids.
 

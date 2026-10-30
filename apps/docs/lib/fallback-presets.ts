@@ -4,7 +4,7 @@ export const FALLBACK_PRESETS = [
   'en:fleur-de-sel',
   'en:basmati-rice',
   'en:extra-virgin-olive-oil',
-  'en:napa-cabbage',
+  'en:chinese-cabbage',
   'en:lardon',
   'en:wheat-tortilla',
   'en:smoked-paprika',
