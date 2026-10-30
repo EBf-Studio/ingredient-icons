@@ -67,7 +67,7 @@ findIcon("en:unicorn-steak")  // undefined: show your own placeholder
 
 ## No icon of its own? It borrows its parent's
 
-Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **265 icons cover 2,802 ingredients**.
+Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **265 icons cover 2,843 ingredients**.
 
 <p>
   <code>en:fleur-de-sel</code> → <code>en:sea-salt</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_salt.png" width="40" alt="" align="center"> <code>en:salt</code><br>

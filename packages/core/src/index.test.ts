@@ -11,6 +11,11 @@ describe("findIcon", () => {
     expect(findIcon("en:cherry-tomato")).toEqual({ id: "en:tomato", file: "en_tomato", exact: false })
   })
 
+  test("a parent Open Food Facts names by a synonym still leads up the taxonomy", () => {
+    // ingredients.txt writes "< en: sheeps milk"; the entry is en:sheep-milk.
+    expect(findIcon("en:whole-sheep-milk")).toEqual({ id: "en:milk", file: "en_milk", exact: false })
+  })
+
   test("an unknown id has none", () => {
     expect(findIcon("en:not-an-ingredient")).toBeUndefined()
   })
