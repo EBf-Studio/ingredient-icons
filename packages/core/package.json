@@ -1,6 +1,6 @@
 {
   "name": "@ingredient-icons/core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Soft 3D icons for cooking ingredients, keyed by the Open Food Facts taxonomy, with ancestor fallback",
   "license": "(MIT AND CC0-1.0 AND ODbL-1.0)",
   "type": "module",
