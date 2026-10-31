@@ -8,7 +8,7 @@ describe("findIcon", () => {
   })
 
   test("an id without one takes its closest ancestor's", () => {
-    expect(findIcon("en:cherry-tomato")).toEqual({ id: "en:tomato", file: "en_tomato", exact: false })
+    expect(findIcon("en:peeled-tomatoes")).toEqual({ id: "en:tomato", file: "en_tomato", exact: false })
   })
 
   test("a parent Open Food Facts names by a synonym still leads up the taxonomy", () => {

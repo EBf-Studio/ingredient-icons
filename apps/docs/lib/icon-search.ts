@@ -34,7 +34,7 @@ export function indexIcons<T extends SearchableIcon>(icons: T[]): IconIndexEntry
 
 /**
  * Icons whose name starts with the query first, then names containing it, then icons
- * reached through an alias ("cherry tomato" finds the tomato, `via` says why).
+ * reached through an alias ("peeled tomatoes" finds the tomato, `via` says why).
  */
 export function matchIcons<T extends SearchableIcon>(index: IconIndexEntry<T>[], query: string) {
   const needle = fold(query);
