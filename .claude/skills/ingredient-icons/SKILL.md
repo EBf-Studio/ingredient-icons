@@ -42,7 +42,7 @@ Report: the new raws, the regenerated ones, the subjects rewritten and why, what
 
 ### Regenerating an existing icon
 
-Same steps, with three changes: skip `impact`; in step 2, edit the slug's existing subject instead of appending one; in the reviewer brief, give the current icon as `today` and ask for a candidate better than it (criterion 5 becomes "better than today"). After 2 failed retries, put that slug's line back as it was (`git -C $SRC diff subjects.json` shows it), `bun run pick --discard <slug>`, and keep the current raw: a published icon never loses its subject.
+Same steps, with three changes: skip `impact`; in step 2, edit the slug's existing subject instead of appending one; in the reviewer brief, give the current icon as `today` (`<checkout>/icons/png/128/<file>.png`) and ask for a candidate better than it (criterion 5 becomes "better than today"). After 2 failed retries, put that slug's line back as it was (`git -C $SRC diff subjects.json` shows it), `bun run pick --discard <slug>`, and keep the current raw: a published icon never loses its subject.
 
 ## Stage 2: publish
 
