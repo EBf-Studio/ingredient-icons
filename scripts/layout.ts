@@ -13,6 +13,13 @@ export const iconPath = (format: Format, size: number, file: string) =>
 
 /** "en:olive-oil" → "en_olive-oil": file names can't hold a colon on every system. */
 export const fileName = (id: string) => id.replace(":", "_")
+export const idOf = (file: string) => file.replace("_", ":")
+
+/** A candidate waiting in the sources' inbox/: `<file>.<n>.<jpg|png>` (en:honey, candidate 2 → en_honey.2.jpg). */
+export function parseCandidate(name: string) {
+  const match = /^(.+)\.(\d+)\.(jpe?g|png)$/i.exec(name)
+  return match ? { name, file: match[1]!, n: Number(match[2]) } : undefined
+}
 
 /**
  * The private sources checkout: raw/, subjects.json, style.txt, inbox/.

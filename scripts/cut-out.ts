@@ -1,5 +1,8 @@
 import sharp from "sharp"
 
+/** Side of the output square, relative to the object's larger side. */
+export const PADDING = 1.04
+
 /**
  * Removes the generated background and returns the object as a transparent square PNG,
  * at the raw image's resolution, with a small margin.
@@ -14,12 +17,7 @@ export async function cutOut(file: string) {
   const { width: w, height: h } = info
   const n = w * h
 
-  const border: number[][] = [[], [], []]
-  for (let y = 0; y < h; y++)
-    for (let x = 0; x < w; x++)
-      if (x < 8 || y < 8 || x >= w - 8 || y >= h - 8)
-        for (let c = 0; c < 3; c++) border[c]!.push(data[(y * w + x) * 3 + c]!)
-  const bg = border.map((values) => values.sort((a, b) => a - b)[values.length >> 1]!)
+  const bg = borderChannels(data, w, h).map(median)
 
   const distance = new Float32Array(n)
   const alpha = new Float32Array(n)
@@ -78,12 +76,24 @@ export async function cutOut(file: string) {
     .trim({ threshold: 1 })
     .png()
     .toBuffer({ resolveWithObject: true })
-  const side = Math.round(Math.max(trimmed.info.width, trimmed.info.height) * 1.04)
+  const side = Math.round(Math.max(trimmed.info.width, trimmed.info.height) * PADDING)
   return sharp(trimmed.data)
     .resize(side, side, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
     .toBuffer()
 }
+
+/** The pixels of the image's 8 px border, one array per channel, from raw RGB data. */
+export function borderChannels(data: Buffer, w: number, h: number) {
+  const border: number[][] = [[], [], []]
+  for (let y = 0; y < h; y++)
+    for (let x = 0; x < w; x++)
+      if (x < 8 || y < 8 || x >= w - 8 || y >= h - 8)
+        for (let c = 0; c < 3; c++) border[c]!.push(data[(y * w + x) * 3 + c]!)
+  return border
+}
+
+export const median = (values: number[]) => [...values].sort((a, b) => a - b)[values.length >> 1]!
 
 function* neighbours(i: number, w: number, h: number) {
   const x = i % w

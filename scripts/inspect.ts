@@ -1,5 +1,7 @@
 import sharp from "sharp"
 
+import { PADDING, borderChannels, median } from "./cut-out"
+
 /** What the reviewer is told about a candidate besides the picture. */
 export interface Inspection {
   /** Share of the cut-out's opaque pixels close to the background colour: background left in the object. */
@@ -19,19 +21,15 @@ const PINK_DISTANCE = 50
  * (thin fronds, glass) deserves a close look, not an automatic rejection.
  * The dill candidates with pink tips left after cut-out measured 0.2%.
  */
-export const LIMITS = { pinkShare: 0.0015, backgroundNoise: 6, minFill: 0.45, edgePixels: 40 }
+const LIMITS = { pinkShare: 0.0015, backgroundNoise: 6, minFill: 0.45, edgePixels: 40 }
 
 /** Measures a raw candidate (`file`) and its cut-out (`master`, as returned by cutOut). */
 export async function inspect(file: string, master: Buffer): Promise<Inspection> {
   const { data, info } = await sharp(file).removeAlpha().raw().toBuffer({ resolveWithObject: true })
   const { width: w, height: h } = info
 
-  const border: number[][] = [[], [], []]
-  for (let y = 0; y < h; y++)
-    for (let x = 0; x < w; x++)
-      if (x < 8 || y < 8 || x >= w - 8 || y >= h - 8)
-        for (let c = 0; c < 3; c++) border[c]!.push(data[(y * w + x) * 3 + c]!)
-  const bg = border.map((values) => [...values].sort((a, b) => a - b)[values.length >> 1]!)
+  const border = borderChannels(data, w, h)
+  const bg = border.map(median)
   const backgroundNoise = Math.max(
     ...border.map((values) => {
       const mean = values.reduce((s, v) => s + v, 0) / values.length
@@ -59,7 +57,7 @@ export async function inspect(file: string, master: Buffer): Promise<Inspection>
     if (d < PINK_DISTANCE) pink++
   }
   const pinkShare = opaque ? pink / opaque : 0
-  const fill = cut.info.width / 1.04 / Math.max(w, h)
+  const fill = cut.info.width / PADDING / Math.max(w, h)
 
   const flags: string[] = []
   if (pinkShare > LIMITS.pinkShare) flags.push("magenta in object")
