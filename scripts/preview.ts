@@ -29,7 +29,7 @@ const candidates = names
   .flatMap((name) => parseCandidate(name) ?? [])
   .filter((c) => !only.size || only.has(c.file))
   .sort((a, b) => a.file.localeCompare(b.file) || a.n - b.n)
-if (unmatched.length) console.log(`⚠ Not named <file>.<n>.<jpg|png>, skipped: ${unmatched.join(" ")}`)
+if (unmatched.length) console.log(`⚠ Not named <file>.<n>.<jpg|png|webp>, skipped: ${unmatched.join(" ")}`)
 if (!candidates.length) {
   console.error(`No candidates in ${inbox}`)
   process.exit(1)

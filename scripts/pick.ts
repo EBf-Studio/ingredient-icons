@@ -11,7 +11,8 @@ import { fileName, parseCandidate, sourcesDir } from "./layout"
 
 const sources = sourcesDir()
 const inbox = path.join(sources, "inbox")
-const candidates = (await readdir(inbox).catch(() => [] as string[])).flatMap((name) => parseCandidate(name) ?? [])
+const names = (await readdir(inbox).catch(() => [] as string[])).filter((name) => !name.startsWith("."))
+const candidates = names.flatMap((name) => parseCandidate(name) ?? [])
 const subjects = new Set(
   (JSON.parse(await readFile(path.join(sources, "subjects.json"), "utf8")) as { slug: string }[]).map((s) => s.slug),
 )
@@ -29,6 +30,14 @@ const picks = (discardAt === -1 ? args : args.slice(0, discardAt)).map((arg) => 
   if (!chosen) throw new Error(`No candidate ${n} for ${slug} in ${inbox}`)
   return { slug, chosen }
 })
+const twice = picks.map((p) => p.slug).filter((slug, i, all) => all.indexOf(slug) !== i)
+if (twice.length) throw new Error(`Picked twice: ${twice.join(" ")}`)
+for (const { chosen } of picks)
+  await sharp(path.join(inbox, chosen.name))
+    .stats()
+    .catch(() => {
+      throw new Error(`${chosen.name} is not a readable image`)
+    })
 if (!picks.length && !discards.length) {
   console.error("Usage: bun run pick en:honey=2 en:dill=1 [--discard en:oregano …]")
   process.exit(1)
@@ -46,6 +55,6 @@ const cleared = new Set([...picks.map((p) => p.slug), ...discards].map(fileName)
 for (const c of candidates) if (cleared.has(c.file)) await rm(path.join(inbox, c.name))
 if (discards.length) console.log(`Discarded the candidates of ${discards.join(" ")}`)
 
-const left = candidates.filter((c) => !cleared.has(c.file)).length
-console.log(left ? `${left} candidates left in inbox/` : "inbox/ is empty")
+const left = names.length - candidates.filter((c) => cleared.has(c.file)).length
+console.log(left ? `${left} files left in inbox/` : "inbox/ is empty")
 if (picks.length) console.log("Next: commit and push ingredient-icons-sources (raw/ and subjects.json)")

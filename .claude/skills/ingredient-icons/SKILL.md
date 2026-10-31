@@ -37,7 +37,7 @@ A stage ends with its own report; the next stage starts only on the user's reque
 
 7. **Push the sources.** In `$SRC`: `git add raw subjects.json`, one commit for the batch (`🍱 Add <n> raws for <what>`), `git push origin main`. This step is the point of the batch: a raw that only lives on this machine is lost with it. Done when `git -C $SRC status --porcelain` is empty and `git -C $SRC rev-list --count @{upstream}..HEAD` prints 0.
 
-Report: the new raws, the subjects rewritten and why, what was dropped, the commit, and how many raws wait for a publish:
+Report: the new raws, the regenerated ones, the subjects rewritten and why, what was dropped, the commit, and how many new raws wait for a publish (regenerated raws wait too: list them):
 `comm -23 <(jq -r '.[].slug' $SRC/subjects.json | sort) <(git show origin/main:manifest.json | jq -r '.icons | keys[]' | sort) | wc -l`
 
 ### Regenerating an existing icon

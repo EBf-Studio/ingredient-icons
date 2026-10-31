@@ -17,9 +17,9 @@ export const idOf = (file: string) => file.replace("_", ":")
 
 export const sha256 = (data: string | Uint8Array) => new Bun.CryptoHasher("sha256").update(data).digest("hex")
 
-/** A candidate waiting in the sources' inbox/: `<file>.<n>.<jpg|png>` (en:honey, candidate 2 → en_honey.2.jpg). */
+/** A candidate waiting in the sources' inbox/: `<file>.<n>.<jpg|png|webp>` (en:honey, candidate 2 → en_honey.2.jpg). */
 export function parseCandidate(name: string) {
-  const match = /^(.+)\.(\d+)\.(jpe?g|png)$/i.exec(name)
+  const match = /^(.+)\.(\d+)\.(jpe?g|png|webp)$/i.exec(name)
   return match ? { name, file: match[1]!, n: Number(match[2]) } : undefined
 }
 
