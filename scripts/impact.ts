@@ -1,11 +1,15 @@
 // What adding icons for some ids would change, before generating them: whether each
 // id exists in the taxonomy, what it shows today, and which ids would switch to it.
+// "Today" counts the raws already in the sources but not published yet.
 // A generic icon (en:seed) can take over ids it draws badly (pepper, sesame): read the takeovers.
 // Run: bun run impact en:yuzu en:seed …
 
-import { readFile } from "node:fs/promises"
+import { existsSync } from "node:fs"
+import { mkdir, readFile, writeFile } from "node:fs/promises"
+import path from "node:path"
 
-import type { Manifest } from "./layout"
+import { fileName, sourcesDir, type Manifest } from "./layout"
+import { downloadTaxonomy, type Entries } from "./off"
 
 const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
 const { parents, release }: { parents: Record<string, string[]>; release: string } = JSON.parse(
@@ -17,9 +21,25 @@ if (!proposed.length) {
   process.exit(1)
 }
 
-const known = new Set([...Object.keys(parents), ...Object.values(parents).flat()])
-const current = new Set(Object.keys(manifest.icons))
-const next = new Set([...current, ...proposed.filter((id) => known.has(id))])
+const published = new Set(Object.keys(manifest.icons))
+const pending = new Set<string>()
+try {
+  const sources = sourcesDir()
+  const subjects: { slug: string }[] = JSON.parse(await readFile(path.join(sources, "subjects.json"), "utf8"))
+  for (const { slug } of subjects)
+    if (!published.has(slug) && existsSync(path.join(sources, "raw", `${fileName(slug)}.png`))) pending.add(slug)
+} catch {
+  console.log("⚠ Sources not found: raws not published yet are not counted")
+}
+const current = new Set([...published, ...pending])
+
+// taxonomy.json only lists entries in the parent graph: look the others up in the pinned release.
+const inGraph = new Set([...Object.keys(parents), ...Object.values(parents).flat()])
+const outside = proposed.filter((id) => !inGraph.has(id))
+const entries = outside.length ? await pinnedEntries() : {}
+const exists = (id: string) => inGraph.has(id) || Object.hasOwn(entries, id)
+
+const next = new Set([...current, ...proposed.filter(exists)])
 
 /** Same breadth-first walk as findIcon in packages/core. */
 function iconOf(id: string, icons: Set<string>) {
@@ -48,8 +68,9 @@ for (const id of universe(next)) {
 }
 
 for (const id of proposed) {
-  if (!known.has(id)) console.log(`✗ ${id}: not in the taxonomy (${release})`)
-  else if (current.has(id)) console.log(`✗ ${id}: already has an icon`)
+  if (!exists(id)) console.log(`✗ ${id}: not in the Open Food Facts taxonomy ${release}`)
+  else if (published.has(id)) console.log(`✗ ${id}: already has an icon (to regenerate it, edit its subject)`)
+  else if (pending.has(id)) console.log(`✗ ${id}: already has a raw, waiting to be published`)
   else {
     const today = iconOf(id, current)
     const { gained = [], takenOver = [] } = changes.get(id) ?? {}
@@ -59,3 +80,14 @@ for (const id of proposed) {
   }
 }
 console.log(`\nIcons ${current.size} → ${next.size}, ingredients covered ${covered(current)} → ${covered(next)}`)
+if (pending.size) console.log(`(counting ${pending.size} raws not published yet)`)
+
+/** Every entry of the pinned release, downloaded once into .out/. */
+async function pinnedEntries(): Promise<Entries> {
+  const cache = path.join(".out", `taxonomy-${release}.json`)
+  if (existsSync(cache)) return JSON.parse(await readFile(cache, "utf8"))
+  const { entries } = await downloadTaxonomy(release)
+  await mkdir(".out", { recursive: true })
+  await writeFile(cache, JSON.stringify(entries))
+  return entries
+}

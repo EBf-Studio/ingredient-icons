@@ -1,34 +1,35 @@
 // Prepares the review of freshly generated candidates, before any of them reaches raw/:
-// cuts out every image of the sources' inbox/, measures what a reviewer can't
-// judge reliably by eye, and draws contact sheets to look at.
+// cuts out every image of the sources' inbox/, flags what a pixel count catches better
+// than an eye, and draws contact sheets to look at.
 // Run: bun run preview [slug…] (default: every candidate in inbox/)
-//
-// inbox/ holds `<file>.<n>.<jpg|png>` (en:honey, candidate 2 → en_honey.2.jpg).
-// Writes .out/preview/sheet-<k>.png (a few slugs per sheet, every candidate side by
-// side) and .out/preview/report.json, and prints one line per candidate.
+// Writes .out/preview/sheet-<k>.png and prints one line per candidate.
 
-import { mkdir, readdir, rm, writeFile } from "node:fs/promises"
+import { mkdir, readdir, rm } from "node:fs/promises"
 import { availableParallelism } from "node:os"
 import path from "node:path"
 import sharp, { type OverlayOptions } from "sharp"
 
 import { cutOut } from "./cut-out"
-import { fileName, sourcesDir } from "./layout"
 import { inspect, type Inspection } from "./inspect"
+import { fileName, idOf, parseCandidate, sourcesDir } from "./layout"
+import { pool } from "./pool"
 
 const OUT = ".out/preview"
-const SLUGS_PER_SHEET = 6
+const LINES_PER_SHEET = 6
+const CANDIDATES_PER_LINE = 2
 const CELL = 192
 const TINY = 24
 const ZOOM = 4
 
 const inbox = path.join(sourcesDir(), "inbox")
 const only = new Set(process.argv.slice(2).map(fileName))
-const candidates = (await readdir(inbox).catch(() => []))
-  .map((name) => ({ name, match: /^(.+)\.(\d+)\.(jpe?g|png)$/i.exec(name) }))
-  .filter(({ match }) => match && (!only.size || only.has(match[1]!)))
-  .map(({ name, match }) => ({ name, file: match![1]!, n: Number(match![2]) }))
+const names = (await readdir(inbox).catch(() => [] as string[])).filter((name) => !name.startsWith("."))
+const unmatched = names.filter((name) => !parseCandidate(name))
+const candidates = names
+  .flatMap((name) => parseCandidate(name) ?? [])
+  .filter((c) => !only.size || only.has(c.file))
   .sort((a, b) => a.file.localeCompare(b.file) || a.n - b.n)
+if (unmatched.length) console.log(`⚠ Not named <file>.<n>.<jpg|png>, skipped: ${unmatched.join(" ")}`)
 if (!candidates.length) {
   console.error(`No candidates in ${inbox}`)
   process.exit(1)
@@ -37,61 +38,61 @@ if (!candidates.length) {
 await rm(OUT, { recursive: true, force: true })
 await mkdir(OUT, { recursive: true })
 
-type Result = (typeof candidates)[number] & Inspection & { master: Buffer }
+type Result = (typeof candidates)[number] & ((Inspection & { master: Buffer }) | { flags: ["unreadable"]; master?: undefined })
 const results: Result[] = []
-const queue = [...candidates]
-await Promise.all(
-  Array.from({ length: Math.min(availableParallelism(), queue.length) }, async () => {
-    for (let c = queue.shift(); c; c = queue.shift()) {
-      const file = path.join(inbox, c.name)
-      const master = await cutOut(file)
-      results.push({ ...c, ...(await inspect(file, master)), master })
-    }
-  }),
-)
+await pool(candidates, availableParallelism(), async (c) => {
+  const file = path.join(inbox, c.name)
+  try {
+    const master = await cutOut(file)
+    results.push({ ...c, ...(await inspect(file, master)), master })
+  } catch {
+    results.push({ ...c, flags: ["unreadable"] })
+  }
+})
 results.sort((a, b) => a.file.localeCompare(b.file) || a.n - b.n)
 
-const bySlug = Map.groupBy(results, (r) => r.file)
-const slugs = [...bySlug.keys()]
-const sheets: string[] = []
-for (let k = 0; k * SLUGS_PER_SHEET < slugs.length; k++) {
-  const file = path.join(OUT, `sheet-${k + 1}.png`)
-  await drawSheet(slugs.slice(k * SLUGS_PER_SHEET, (k + 1) * SLUGS_PER_SHEET), file)
-  sheets.push(path.resolve(file))
+// Lines of candidates, a slug's lines kept on one sheet.
+const lines = [...Map.groupBy(results, (r) => r.file).values()].map((group) =>
+  Array.from({ length: Math.ceil(group.length / CANDIDATES_PER_LINE) }, (_, i) =>
+    group.slice(i * CANDIDATES_PER_LINE, (i + 1) * CANDIDATES_PER_LINE),
+  ),
+)
+const sheets: Result[][][] = [[]]
+for (const slugLines of lines) {
+  if (sheets.at(-1)!.length && sheets.at(-1)!.length + slugLines.length > LINES_PER_SHEET) sheets.push([])
+  sheets.at(-1)!.push(...slugLines)
+}
+const files: string[] = []
+for (const [k, sheet] of sheets.entries()) {
+  const file = path.resolve(OUT, `sheet-${k + 1}.png`)
+  await drawSheet(sheet, file)
+  files.push(file)
 }
 
-const report = results.map(({ master, ...r }) => ({
-  slug: r.file.replace("_", ":"),
-  candidate: r.n,
-  file: path.join(inbox, r.name),
-  flags: r.flags,
-  pinkShare: r.pinkShare,
-  backgroundNoise: r.backgroundNoise,
-  fill: r.fill,
-}))
-await writeFile(path.join(OUT, "report.json"), `${JSON.stringify(report, null, 2)}\n`)
+for (const r of results) {
+  const measures = r.master ? `  (magenta ${(r.pinkShare * 100).toFixed(2)}%, fill ${Math.round(r.fill * 100)}%)` : ""
+  console.log(`${idOf(r.file)} #${r.n}  ${r.flags.length ? `⚠ ${r.flags.join(", ")}` : "ok"}${measures}`)
+}
+console.log(`\n${results.length} candidates for ${lines.length} slugs. Sheets:\n${files.join("\n")}`)
 
-for (const r of report)
-  console.log(`${r.slug} #${r.candidate}  ${r.flags.length ? `⚠ ${r.flags.join(", ")}` : "ok"}  (pink ${(r.pinkShare * 100).toFixed(2)}%, fill ${Math.round(r.fill * 100)}%)`)
-console.log(`\n${results.length} candidates for ${slugs.length} slugs. Sheets:\n${sheets.join("\n")}`)
-
-/** One row per slug: label, then per candidate the raw, the cut-out on light and dark, and the cut-out at 24 px. */
-async function drawSheet(files: string[], out: string) {
-  const perRow = Math.max(...files.map((f) => bySlug.get(f)!.length))
+/** Per candidate: the raw, the cut-out on light and dark, and the cut-out at 24 px enlarged. The slug starts its first line. */
+async function drawSheet(sheetLines: Result[][], out: string) {
   const label = 200
   const block = CELL * 3 + TINY * ZOOM + 4 * 8
-  const rowHeight = CELL + 36
-  const width = label + perRow * (block + 16)
-  const height = files.length * rowHeight + 8
+  const lineHeight = CELL + 36
+  const width = label + CANDIDATES_PER_LINE * (block + 16)
+  const height = sheetLines.length * lineHeight + 8
   const layers: OverlayOptions[] = []
   const texts: string[] = []
 
-  for (const [row, f] of files.entries()) {
-    const y = 8 + row * rowHeight
-    texts.push(text(12, y + 24, f.replace("_", ":"), 18, 700))
-    for (const [col, r] of bySlug.get(f)!.entries()) {
+  for (const [row, line] of sheetLines.entries()) {
+    const y = 8 + row * lineHeight
+    if (line[0]!.n === Math.min(...results.filter((r) => r.file === line[0]!.file).map((r) => r.n)))
+      texts.push(text(12, y + 24, idOf(line[0]!.file), 18, 700))
+    for (const [col, r] of line.entries()) {
       let x = label + col * (block + 16)
       texts.push(text(x, y + CELL + 24, `#${r.n}  ${r.flags.length ? `⚠ ${r.flags.join(", ")}` : "ok"}`, 15, 600, r.flags.length ? "#c0392b" : "#2e6b45"))
+      if (!r.master) continue
       layers.push({ input: await sharp(path.join(inbox, r.name)).resize(CELL, CELL).png().toBuffer(), left: x, top: y })
       x += CELL + 8
       for (const bg of ["#f7f4ee", "#201e1b"]) {
