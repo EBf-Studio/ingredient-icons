@@ -4,6 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "bun scripts/build.ts",
+    "preview": "bun scripts/preview.ts",
+    "pick": "bun scripts/pick.ts",
+    "impact": "bun scripts/impact.ts",
     "taxonomy": "bun scripts/taxonomy.ts",
     "check": "tsc --noEmit && bun scripts/check.ts && bun run --cwd packages/core build && bun test",
     "docs": "bun run --cwd apps/docs dev"
