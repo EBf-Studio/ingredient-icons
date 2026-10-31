@@ -1,7 +1,8 @@
 // Pins the Open Food Facts ingredient taxonomy and writes taxonomy.json: every
 // entry's parents (so an id without an icon can fall back on an ancestor's) and
 // the English and French names of the ids that have an icon.
-// Run: bun run taxonomy [tag] (after a build that adds icons; defaults to the latest release)
+// Run: bun run taxonomy (after a build that adds icons; keeps the release already pinned in taxonomy.json)
+//      bun run taxonomy <tag | latest> (moves to another release: move the recipe repository with it)
 //
 // The source is ingredients.json from the food-taxonomies-json.tgz asset of an
 // openfoodfacts-server release: the taxonomy Open Food Facts parses itself, with
@@ -34,8 +35,11 @@ const github = async <T>(endpoint: string): Promise<T> => {
 
 const sha256 = (data: Uint8Array) => new Bun.CryptoHasher("sha256").update(data).digest("hex")
 
-const tag = process.argv[2]
-const release = await github<Release>(tag ? `releases/tags/${tag}` : "releases/latest")
+const pinned = await readFile("taxonomy.json", "utf8")
+  .then((text) => (JSON.parse(text) as { release?: string }).release)
+  .catch(() => undefined)
+const tag = process.argv[2] ?? pinned
+const release = await github<Release>(!tag || tag === "latest" ? "releases/latest" : `releases/tags/${tag}`)
 const asset = release.assets.find((a) => a.name === ASSET)
 if (!asset) throw new Error(`${release.tag_name} has no ${ASSET}`)
 if (!asset.digest?.startsWith("sha256:")) throw new Error(`${ASSET} of ${release.tag_name} has no sha256 digest`)
