@@ -8,15 +8,15 @@
 </p>
 
 <p align="center">
-  <b>265 soft 3D icons for recipe apps, keyed by the Open Food Facts taxonomy.</b><br>
+  <b>314 soft 3D icons for recipe apps, keyed by the Open Food Facts taxonomy.</b><br>
   Shallots, crème fraîche, salt and pepper each get their own, and anything else borrows its closest parent's.
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@ingredient-icons/core"><img alt="npm" src="https://img.shields.io/npm/v/@ingredient-icons/core?color=2e6b45&label=npm"></a>
   <a href="LICENSE-ICONS"><img alt="License: CC0" src="https://img.shields.io/badge/license-CC0-2e6b45"></a>
-  <a href="https://ingredient-icons.vercel.app/icons"><img alt="Icons" src="https://img.shields.io/badge/icons-265-df4a2f"></a>
-  <a href="https://ingredient-icons.vercel.app"><img alt="Coverage" src="https://img.shields.io/badge/ingredients%20covered-2%2C802-df4a2f"></a>
+  <a href="https://ingredient-icons.vercel.app/icons"><img alt="Icons" src="https://img.shields.io/badge/icons-314-df4a2f"></a>
+  <a href="https://ingredient-icons.vercel.app"><img alt="Coverage" src="https://img.shields.io/badge/ingredients%20covered-3%2C748-df4a2f"></a>
 </p>
 
 <p align="center">
@@ -76,7 +76,7 @@ findIcon("en:unicorn-steak")  // undefined: show your own placeholder
 
 ## No icon of its own? It borrows its parent's
 
-Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **265 icons cover 2,843 ingredients**.
+Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **314 icons cover 3,748 ingredients**.
 
 <p>
   <code>en:fleur-de-sel</code> → <code>en:sea-salt</code> → <img src="icons/png/128/en_salt.png" width="40" alt="" align="center"> <code>en:salt</code><br>

@@ -18317,6 +18317,10 @@
       "en": "baking powder",
       "fr": "levure chimique"
     },
+    "en:balsamic-vinegar": {
+      "en": "balsamic vinegar",
+      "fr": "vinaigre balsamique"
+    },
     "en:banana": {
       "en": "banana",
       "fr": "banane"
@@ -18332,6 +18336,10 @@
     "en:beaufort": {
       "en": "Beaufort",
       "fr": "beaufort aop"
+    },
+    "en:beef-broth": {
+      "en": "beef broth",
+      "fr": "bouillon de bœuf"
     },
     "en:beef-meat": {
       "en": "beef meat",
@@ -18401,6 +18409,10 @@
       "en": "buckwheat flour",
       "fr": "farine de sarrasin"
     },
+    "en:bulgur": {
+      "en": "bulgur",
+      "fr": "boulghour"
+    },
     "en:butter": {
       "en": "butter",
       "fr": "beurre"
@@ -18417,6 +18429,9 @@
       "en": "cabbage",
       "fr": "chou"
     },
+    "en:camembert": {
+      "en": "camembert"
+    },
     "en:capers": {
       "en": "capers",
       "fr": "câpre"
@@ -18432,6 +18447,10 @@
     "en:carrot": {
       "en": "carrot",
       "fr": "carotte"
+    },
+    "en:cashew-nuts": {
+      "en": "cashew nuts",
+      "fr": "noix de cajou"
     },
     "en:cauliflower": {
       "en": "cauliflower",
@@ -18457,9 +18476,17 @@
       "en": "cheddar",
       "fr": "fromage cheddar"
     },
+    "en:cheese": {
+      "en": "cheese",
+      "fr": "fromage"
+    },
     "en:cherry": {
       "en": "cherry",
       "fr": "cerise"
+    },
+    "en:cherry-tomato": {
+      "en": "cherry tomato",
+      "fr": "tomate cerise"
     },
     "en:chervil": {
       "en": "chervil",
@@ -18485,6 +18512,10 @@
       "en": "chicken liver",
       "fr": "foie de poulet"
     },
+    "en:chicken-thigh": {
+      "en": "chicken thigh",
+      "fr": "cuisse de poulet"
+    },
     "en:chicken-wing": {
       "en": "chicken wing",
       "fr": "aile de poulet"
@@ -18505,6 +18536,9 @@
       "en": "chives",
       "fr": "ciboulette"
     },
+    "en:chorizo": {
+      "en": "chorizo"
+    },
     "en:cinnamon": {
       "en": "cinnamon",
       "fr": "cannelle"
@@ -18524,6 +18558,10 @@
     "en:cocoa-powder": {
       "en": "cocoa powder",
       "fr": "poudre de cacao"
+    },
+    "en:coconut": {
+      "en": "coconut",
+      "fr": "noix de coco"
     },
     "en:coconut-flour": {
       "en": "coconut flour",
@@ -18549,6 +18587,10 @@
       "en": "coriander",
       "fr": "coriandre"
     },
+    "en:coriander-seed": {
+      "en": "coriander seed",
+      "fr": "graine de coriandre"
+    },
     "en:cornmeal": {
       "en": "cornmeal",
       "fr": "semoule de maïs"
@@ -18573,6 +18615,10 @@
       "en": "cream",
       "fr": "Crème"
     },
+    "en:cream-cheese": {
+      "en": "cream cheese",
+      "fr": "fromage à la crème"
+    },
     "en:cucumber": {
       "en": "cucumber",
       "fr": "concombre"
@@ -18589,6 +18635,10 @@
       "en": "curry paste",
       "fr": "pâte de curry"
     },
+    "en:curry-powder": {
+      "en": "curry powder",
+      "fr": "curry en poudre"
+    },
     "en:dandelion": {
       "en": "dandelion",
       "fr": "pissenlit"
@@ -18596,6 +18646,13 @@
     "en:dark-chocolate": {
       "en": "dark chocolate",
       "fr": "chocolat noir"
+    },
+    "en:dill": {
+      "en": "dill",
+      "fr": "aneth"
+    },
+    "en:dried-tomatoes": {
+      "en": "dried tomatoes"
     },
     "en:duck": {
       "en": "duck",
@@ -18645,6 +18702,14 @@
       "en": "fig",
       "fr": "figue"
     },
+    "en:fish": {
+      "en": "fish",
+      "fr": "poisson"
+    },
+    "en:fish-sauce": {
+      "en": "fish sauce",
+      "fr": "sauce poisson"
+    },
     "en:flour": {
       "en": "flour",
       "fr": "farine"
@@ -18660,6 +18725,10 @@
     "en:fromage-blanc": {
       "en": "fromage blanc",
       "fr": "fromage blanc"
+    },
+    "en:fruit": {
+      "en": "fruit",
+      "fr": "fruit"
     },
     "en:garlic": {
       "en": "garlic",
@@ -18701,6 +18770,10 @@
       "en": "green bean",
       "fr": "haricot vert"
     },
+    "en:green-olive": {
+      "en": "green olive",
+      "fr": "olive verte"
+    },
     "en:green-pepper": {
       "en": "green pepper",
       "fr": "poivre vert"
@@ -18713,9 +18786,16 @@
       "en": "ham",
       "fr": "jambon"
     },
+    "en:harissa": {
+      "en": "harissa"
+    },
     "en:hazelnut": {
       "en": "hazelnut",
       "fr": "noisette"
+    },
+    "en:herb": {
+      "en": "herb",
+      "fr": "herbe"
     },
     "en:herbes-de-provence": {
       "en": "herbes de Provence",
@@ -18725,6 +18805,10 @@
       "en": "herring",
       "fr": "hareng"
     },
+    "en:honey": {
+      "en": "honey",
+      "fr": "miel"
+    },
     "en:horseradish": {
       "en": "horseradish",
       "fr": "raifort"
@@ -18732,6 +18816,10 @@
     "en:hot-sauce": {
       "en": "hot sauce",
       "fr": "sauce chili"
+    },
+    "en:hummus": {
+      "en": "hummus",
+      "fr": "houmous"
     },
     "en:icing-sugar": {
       "en": "icing sugar",
@@ -18745,9 +18833,21 @@
       "en": "juniper berry",
       "fr": "baies de genièvre"
     },
+    "en:kale": {
+      "en": "kale",
+      "fr": "chou frisé"
+    },
     "en:kefir": {
       "en": "kefir",
       "fr": "kéfir"
+    },
+    "en:ketchup": {
+      "en": "ketchup",
+      "fr": "ketchup"
+    },
+    "en:kiwifruit": {
+      "en": "kiwifruit",
+      "fr": "kiwi"
     },
     "en:lamb": {
       "en": "lamb",
@@ -18889,6 +18989,10 @@
       "en": "noodle",
       "fr": "nouilles"
     },
+    "en:nut": {
+      "en": "nut",
+      "fr": "fruits à coque"
+    },
     "en:nutmeg": {
       "en": "nutmeg",
       "fr": "muscade"
@@ -18925,9 +19029,17 @@
       "en": "orange marmalade",
       "fr": "marmelade d'orange"
     },
+    "en:oregano": {
+      "en": "oregano",
+      "fr": "origan"
+    },
     "en:oyster": {
       "en": "oyster",
       "fr": "huître"
+    },
+    "en:pak-choi": {
+      "en": "pak choi",
+      "fr": "bok choy"
     },
     "en:paprika": {
       "en": "paprika",
@@ -18949,6 +19061,10 @@
       "en": "pasta",
       "fr": "pâtes alimentaires"
     },
+    "en:pastry": {
+      "en": "pastry",
+      "fr": "pâte à tarte"
+    },
     "en:pea": {
       "en": "pea",
       "fr": "pois"
@@ -18956,6 +19072,10 @@
     "en:peach": {
       "en": "peach",
       "fr": "pêche"
+    },
+    "en:peanut": {
+      "en": "peanut",
+      "fr": "arachides"
     },
     "en:peanut-butter": {
       "en": "peanut butter",
@@ -18969,9 +19089,25 @@
       "en": "pear",
       "fr": "poire"
     },
+    "en:pecorino": {
+      "en": "Pecorino",
+      "fr": "pecorino"
+    },
     "en:penne": {
       "en": "penne",
       "fr": "penne"
+    },
+    "en:pepper": {
+      "en": "pepper",
+      "fr": "poivre"
+    },
+    "en:pesto": {
+      "en": "pesto",
+      "fr": "sauce pesto"
+    },
+    "en:pine-nuts": {
+      "en": "pine nuts",
+      "fr": "pignon de pin"
     },
     "en:pineapple": {
       "en": "pineapple",
@@ -18980,6 +19116,10 @@
     "en:pink-peppercorn": {
       "en": "pink peppercorn",
       "fr": "poivre rose"
+    },
+    "en:pistachio-nuts": {
+      "en": "pistachio nuts",
+      "fr": "pistache"
     },
     "en:pita": {
       "en": "pita",
@@ -19017,6 +19157,10 @@
       "en": "potato",
       "fr": "pomme de terre"
     },
+    "en:pulse": {
+      "en": "pulse",
+      "fr": "légumineuse sèche"
+    },
     "en:pumpkin": {
       "en": "pumpkin",
       "fr": "courge"
@@ -19049,6 +19193,10 @@
       "en": "raw ham",
       "fr": "jambon cru"
     },
+    "en:red-bean": {
+      "en": "red bean",
+      "fr": "haricot rouge"
+    },
     "en:red-cabbage": {
       "en": "red cabbage",
       "fr": "chou rouge"
@@ -19061,6 +19209,10 @@
       "en": "red wine",
       "fr": "vin rouge"
     },
+    "en:red-wine-vinegar": {
+      "en": "red wine vinegar",
+      "fr": "vinaigre de vin rouge"
+    },
     "en:rhubarb": {
       "en": "rhubarb",
       "fr": "rhubarbe"
@@ -19068,6 +19220,10 @@
     "en:rice": {
       "en": "rice",
       "fr": "riz"
+    },
+    "en:rice-vinegar": {
+      "en": "rice vinegar",
+      "fr": "vinaigre de riz"
     },
     "en:ricotta": {
       "en": "ricotta",
@@ -19109,13 +19265,24 @@
       "en": "sardine",
       "fr": "sardine"
     },
+    "en:sauce": {
+      "en": "sauce",
+      "fr": "sauce"
+    },
     "en:sauerkraut": {
       "en": "sauerkraut",
       "fr": "choucroute"
     },
+    "en:sausage": {
+      "en": "sausage"
+    },
     "en:scallop": {
       "en": "scallop",
       "fr": "noix de saint-jacques"
+    },
+    "en:seed": {
+      "en": "seed",
+      "fr": "graine"
     },
     "en:seitan": {
       "en": "seitan",
@@ -19124,6 +19291,14 @@
     "en:semolina-flour": {
       "en": "semolina flour",
       "fr": "farine de semoule"
+    },
+    "en:sesame": {
+      "en": "sesame",
+      "fr": "sésame"
+    },
+    "en:sesame-oil": {
+      "en": "sesame oil",
+      "fr": "huile de sésame"
     },
     "en:shallot": {
       "en": "shallot",
@@ -19164,6 +19339,10 @@
     "en:spelt-flour": {
       "en": "spelt flour",
       "fr": "farine d'épeautre"
+    },
+    "en:spice": {
+      "en": "spice",
+      "fr": "épice"
     },
     "en:spinach": {
       "en": "spinach",
@@ -19241,6 +19420,9 @@
       "en": "tomato sauce",
       "fr": "sauce tomate"
     },
+    "en:tortilla": {
+      "en": "tortilla"
+    },
     "en:trout": {
       "en": "trout",
       "fr": "truite"
@@ -19256,6 +19438,10 @@
     "en:turkey": {
       "en": "turkey",
       "fr": "dinde"
+    },
+    "en:turmeric": {
+      "en": "turmeric",
+      "fr": "curcuma"
     },
     "en:turnip": {
       "en": "turnip",
@@ -19304,6 +19490,10 @@
     "en:watercress": {
       "en": "watercress",
       "fr": "Cresson de fontaine"
+    },
+    "en:white-beans": {
+      "en": "white beans",
+      "fr": "haricots blancs"
     },
     "en:white-pepper": {
       "en": "white pepper",
