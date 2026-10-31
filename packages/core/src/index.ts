@@ -14,7 +14,7 @@ export interface Icon {
   id: string
   /** File name without extension: "en_shallot". */
   file: string
-  /** False when the icon is an ancestor's: cherry tomatoes get the tomato. */
+  /** False when the icon is an ancestor's: peeled tomatoes get the tomato. */
   exact: boolean
 }
 

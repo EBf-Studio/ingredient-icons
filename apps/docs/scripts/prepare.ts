@@ -99,7 +99,7 @@ const icons = Object.entries(manifest.icons)
   }))
   .map((icon) => ({
     ...icon,
-    // Readable English names of the ids that borrow this icon, for search: "cherry tomato" finds the tomato.
+    // Readable English names of the ids that borrow this icon, for search: "peeled tomatoes" finds the tomato.
     aliases: icon.fallbacks.filter((f) => f.startsWith("en:")).map((f) => f.slice(3).replaceAll("-", " ")),
   }))
   .sort((a, b) => a.en.localeCompare(b.en))

@@ -66,7 +66,7 @@ def find_icon(id: str) -> str | None:
         level = [p for c in level for p in parents.get(c, []) if not (p in seen or seen.add(p))]
     return None
 
-find_icon("en:cherry-tomato")  # "en_tomato"
+find_icon("en:peeled-tomatoes")  # "en_tomato"
 ```
 
 </Tab>

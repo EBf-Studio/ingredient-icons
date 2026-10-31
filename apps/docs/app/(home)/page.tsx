@@ -63,7 +63,7 @@ export function Ingredient({ id, quantity, name }) {
 
 const urlCode = `import { findIcon, iconUrl } from "${packageName}"
 
-iconUrl("en:cherry-tomato")
+iconUrl("en:peeled-tomatoes")
 // https://cdn.jsdelivr.net/npm/${packageName}@${version}/icons/webp/128/en_tomato.webp
 
 iconUrl("en:shallot", { size: 256, baseUrl: "https://cdn.example.com/ingredients" })

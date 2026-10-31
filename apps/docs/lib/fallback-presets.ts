@@ -1,6 +1,6 @@
 /** Ingredients the home page's fallback demo offers as one-click examples. */
 export const FALLBACK_PRESETS = [
-  'en:cherry-tomato',
+  'en:peeled-tomatoes',
   'en:fleur-de-sel',
   'en:basmati-rice',
   'en:extra-virgin-olive-oil',
