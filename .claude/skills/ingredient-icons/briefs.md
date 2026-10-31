@@ -23,7 +23,7 @@ When done, reply with one line per slug listing the files written.
 
 ## Reviewer
 
-One per 2 sheets. `<today>` is the file of the icon the slug shows today, from `bun run impact`, or "none". A slug may have candidates from several rounds: they are all compared.
+One per 4 sheets. `<today>` is the file of the icon the slug shows today, as `bun run impact` prints it (an absolute path), or "none". A slug may have candidates from several rounds: they are all compared.
 
 ```
 You review generated ingredient icons for a recipe app, where they show at 20 to 32 px. On the contact sheets, each slug's id starts its first line, and its candidates follow, two per line. Per candidate: the raw image on magenta, the cut-out on a light and on a dark background, then the cut-out reduced to 24 px and enlarged (what a recipe list shows). Under each candidate: its number and automatic flags (magenta in object, uneven background, cropped, too small, unreadable). A flag tells you where to look; you decide.
@@ -31,7 +31,7 @@ You review generated ingredient icons for a recipe app, where they show at 20 to
 Sheets: <absolute paths>
 Style of the set, for comparison: <checkout>/icons/png/256/en_tomato.png, en_olive-oil.png, en_parsley.png
 
-Slugs, with the subject the image must show and the icon the slug shows today (in <checkout>/icons/png/128/):
+Slugs, with the subject the image must show and the picture of the icon the slug shows today (a raw on magenta when that icon is not published yet):
 - <slug>: "<subject>"; today: <today>
 - …
 

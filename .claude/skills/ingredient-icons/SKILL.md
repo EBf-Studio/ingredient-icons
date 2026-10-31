@@ -19,7 +19,7 @@ A stage ends with its own report; the next stage starts only on the user's reque
 
 ## Stage 1: batch
 
-1. **List.** `git -C $SRC pull --ff-only`, then propose ids to the user and run `bun run impact <ids…>` on them. It counts the raws not published yet as already there. Keep the ids marked ✓. Read every takeover: a generic icon (`en:seed`) takes over ids it may draw badly (`en:pepper`, `en:sesame`), and the fix is to add the better parent too, or drop the generic. Look at the icon each id shows today (`icons/png/128/<file>.png`): the new icon must read differently at 24 px (`en:chicken` is a drumstick, so `en:chicken-thigh` is a thigh without one). Done when the user has validated the list.
+1. **List.** `git -C $SRC pull --ff-only`, then propose ids to the user and run `bun run impact <ids…>` on them. It counts the raws not published yet as already there. Keep the ids marked ✓. Read every takeover: a generic icon (`en:seed`) takes over ids it may draw badly (`en:pepper`, `en:sesame`), and the fix is to add the better parent too, or drop the generic. Look at the icon each id shows today (`impact` prints its file): the new icon must read differently at 24 px (`en:chicken` is a drumstick, so `en:chicken-thigh` is a thigh without one). Done when the user has validated the list.
 
 2. **Subjects.** Append one `{ "slug", "subject" }` per id at the end of `$SRC/subjects.json`, in the file's one-line-per-entry format, without reformatting the rest. A subject is one sentence: the object, its colours and the one or two features that identify it. The background is magenta, so:
    - describe pink or purple things by a neighbouring hue (pink peppercorns: coral-red; a red onion: deep red-purple);
@@ -27,11 +27,11 @@ A stage ends with its own report; the next stage starts only on the user's reque
    - put powders, liquids and grains in their typical plain container (bowl, bottle, jar).
    Done when every validated id has its subject.
 
-3. **Generate.** Split the slugs in groups of about 10, one Grok subagent per group, up to 5 at once, with the brief in [briefs.md](briefs.md#grok) and 2 candidates per slug. `delegate_task` with `target: { providerInstanceId: "grok", model: "grok-4.7", options: { reasoningEffort: "low" } }` and `runtimeMode: "full-access"`. Done when `$SRC/inbox/` holds the asked number of candidates for every slug (count the files; Grok's report is not the check).
+3. **Generate.** Split the slugs in groups of about 10, one Grok subagent per group, up to 5 at once, with the brief in [briefs.md](briefs.md#grok) and 2 candidates per slug. `delegate_task` with `target: { providerInstanceId: "grok", model: "grok-4.7", options: { reasoningEffort: "low" } }` and `runtimeMode: "full-access"`. Done when every slug has 2 more files in `$SRC/inbox/` than before this round (count the files; Grok's report is not the check).
 
 4. **Preview.** `bun run preview` (or `bun run preview <slugs…>`). It cuts out every candidate, flags what a pixel count catches better than an eye (magenta in object, uneven background, cropped, too small, unreadable) and draws `.out/preview/sheet-<k>.png`. A flag asks for a close look, not a rejection: about 5% of the accepted icons carry one.
 
-5. **Review.** One Sonnet reviewer per 2 sheets, all launched in a single message so they run in parallel: Agent tool, `model: "sonnet"`, `run_in_background: false`, with the brief in [briefs.md](briefs.md#reviewer). Done when every slug has a verdict line.
+5. **Review.** One Sonnet reviewer per 4 sheets, all launched in a single message so they run in parallel: Agent tool, `model: "sonnet"`, `run_in_background: false`, with the brief in [briefs.md](briefs.md#reviewer). Done when every slug has a verdict line.
 
 6. **Pick.** `bun run pick en:honey=2 en:oregano=1 …` for every PICK: the candidate becomes `$SRC/raw/<file>.png` and the slug's other candidates are deleted. For every REJECT, rewrite the subject from the reviewer's reason, then back to step 3 with those slugs only: the new candidates join the old ones in `inbox/`, so the next review compares them all. After 2 retries, pick the best candidate seen, or drop the slug (`bun run pick --discard <slug>` and remove its subject), and tell the user. Done when `inbox/` is empty and every subject has its raw.
 
@@ -42,7 +42,7 @@ Report: the new raws, the subjects rewritten and why, what was dropped, the comm
 
 ### Regenerating an existing icon
 
-Same steps, with three changes: skip `impact`; in step 2, edit the slug's existing subject instead of appending one; in the reviewer brief, give the current icon as `today` and ask for a candidate better than it (criterion 5 becomes "better than today"). After 2 failed retries, restore the subject (`git -C $SRC checkout subjects.json`) and keep the current raw: a published icon never loses its subject.
+Same steps, with three changes: skip `impact`; in step 2, edit the slug's existing subject instead of appending one; in the reviewer brief, give the current icon as `today` and ask for a candidate better than it (criterion 5 becomes "better than today"). After 2 failed retries, put that slug's line back as it was (`git -C $SRC diff subjects.json` shows it), `bun run pick --discard <slug>`, and keep the current raw: a published icon never loses its subject.
 
 ## Stage 2: publish
 

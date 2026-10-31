@@ -137,7 +137,7 @@ bun install
 bun run preview    # contact sheets and checks for the candidates in the sources' inbox/
 bun run pick en:honey=2    # moves a chosen candidate to the sources' raw/
 bun run impact en:yuzu     # what new icons would change in the fallbacks, before generating them
-bun run build      # cut-out, every size and format, manifest.json, .out/review.html (only changed raws; --force for all)
+bun run build      # cut-out, every size and format, manifest.json, .out/review.html (only changed raws; --force for all, --prune to remove icons)
 bun run taxonomy   # writes taxonomy.json from the pinned Open Food Facts release (or a tag, or latest)
 bun run check      # types, files against the manifest, ids against the taxonomy
 bun run docs       # the website (apps/docs) on http://localhost:3000

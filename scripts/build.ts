@@ -20,11 +20,11 @@ import {
   STYLE_VERSION,
   fileName,
   iconPath,
+  sha256,
   sourcesDir,
   type Format,
   type Manifest,
 } from "./layout"
-import { sha256 } from "./off"
 import { pool } from "./pool"
 
 const RESIZE = { kernel: "lanczos3" } as const
@@ -54,10 +54,8 @@ const lock: Lock = await readFile(LOCK, "utf8").then(JSON.parse, () => ({ pipeli
 const published: Manifest = await readFile("manifest.json", "utf8").then(JSON.parse, () => ({ icons: {} }))
 // Everything that decides the output: a change rebuilds every icon.
 const pipeline = sha256(
-  new TextEncoder().encode(
-    (await readFile(new URL("./cut-out.ts", import.meta.url), "utf8")) +
-      JSON.stringify({ RESIZE, ENCODING, SIZES, sharp: sharp.versions }),
-  ),
+  (await readFile(new URL("./cut-out.ts", import.meta.url), "utf8")) +
+    JSON.stringify({ RESIZE, ENCODING, SIZES, sharp: sharp.versions }),
 )
 
 const ids: string[] = []

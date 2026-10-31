@@ -5,6 +5,8 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import path from "node:path"
 
+import { sha256 } from "./layout"
+
 const REPO = "openfoodfacts/openfoodfacts-server"
 const ASSET = "food-taxonomies-json.tgz"
 const FILE = "ingredients.json"
@@ -21,8 +23,6 @@ const github = async <T>(endpoint: string): Promise<T> => {
   if (!response.ok) throw new Error(`GitHub API ${endpoint}: ${response.status}`)
   return (await response.json()) as T
 }
-
-export const sha256 = (data: Uint8Array) => new Bun.CryptoHasher("sha256").update(data).digest("hex")
 
 /** The release taxonomy.json is pinned to, if any. */
 export async function pinnedRelease() {

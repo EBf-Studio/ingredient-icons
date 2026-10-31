@@ -23,14 +23,21 @@ if (!proposed.length) {
 
 const published = new Set(Object.keys(manifest.icons))
 const pending = new Set<string>()
-try {
-  const sources = sourcesDir()
+const sources = (() => {
+  try {
+    return sourcesDir()
+  } catch {
+    console.log("⚠ Sources not found: raws not published yet are not counted")
+  }
+})()
+if (sources) {
   const subjects: { slug: string }[] = JSON.parse(await readFile(path.join(sources, "subjects.json"), "utf8"))
   for (const { slug } of subjects)
     if (!published.has(slug) && existsSync(path.join(sources, "raw", `${fileName(slug)}.png`))) pending.add(slug)
-} catch {
-  console.log("⚠ Sources not found: raws not published yet are not counted")
 }
+/** Where to look at the icon an id shows: the published icon, or the raw of one not published yet. */
+const picture = (id: string) =>
+  pending.has(id) ? `${id} (not published: ${path.join(sources!, "raw", `${fileName(id)}.png`)})` : `${id} (${path.resolve("icons/png/128", `${fileName(id)}.png`)})`
 const current = new Set([...published, ...pending])
 
 // taxonomy.json only lists entries in the parent graph: look the others up in the pinned release.
@@ -74,7 +81,7 @@ for (const id of proposed) {
   else {
     const today = iconOf(id, current)
     const { gained = [], takenOver = [] } = changes.get(id) ?? {}
-    console.log(`✓ ${id}: today ${today ? `→ ${today}` : "no icon"}; +${gained.length} ids without an icon, ${takenOver.length} taken over from another icon`)
+    console.log(`✓ ${id}: today ${today ? `→ ${picture(today)}` : "no icon"}; +${gained.length} ids without an icon, ${takenOver.length} taken over from another icon`)
     for (const line of takenOver.slice(0, 12)) console.log(`    ${line}`)
     if (takenOver.length > 12) console.log(`    … and ${takenOver.length - 12} more`)
   }
