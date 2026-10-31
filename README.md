@@ -130,15 +130,19 @@ New icons ship in batches. [Open an issue](https://github.com/EBf-Studio/ingredi
 
 ## Development
 
-The icons are built from private sources (raw images and prompts). With them checked out next to this repository:
+The icons are built from private sources (raw images and prompts), checked out next to this repository (or set `INGREDIENT_ICONS_SOURCES`):
 
 ```sh
 bun install
-bun run build      # cut-out, every size and format, manifest.json, .out/review.html
-bun run taxonomy   # pins the latest Open Food Facts release (or a tag), writes taxonomy.json
+bun run preview    # contact sheets and checks for the candidates in the sources' inbox/
+bun run pick en:honey=2   # moves a chosen candidate to the sources' raw/
+bun run build      # cut-out, every size and format, manifest.json, .out/review.html (only changed raws; --force for all)
+bun run taxonomy   # writes taxonomy.json from the pinned Open Food Facts release (or a tag, or latest)
 bun run check      # types, files against the manifest, ids against the taxonomy
 bun run docs       # the website (apps/docs) on http://localhost:3000
 ```
+
+`build.lock.json` records the raw each icon was built from, so a build only redoes the icons whose raw changed. The whole process of a new batch, from the list of ingredients to the pull request, is in [`.claude/skills/ingredient-icons`](.claude/skills/ingredient-icons/SKILL.md).
 
 `taxonomy.json` comes from `ingredients.json` in the `food-taxonomies-json.tgz` asset of an [openfoodfacts-server release](https://github.com/openfoodfacts/openfoodfacts-server/releases), checked against its digest. The recipe app reads the same asset: move both repositories to a new release together, so their ids stay the same.
 
