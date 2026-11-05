@@ -43,7 +43,7 @@ interface Lock {
 const force = process.argv.includes("--force")
 const prune = process.argv.includes("--prune")
 const sources = sourcesDir()
-warnOutOfSync(sources)
+checkSources(sources)
 
 const subjects: { slug: string }[] = JSON.parse(await readFile(path.join(sources, "subjects.json"), "utf8"))
 const duplicates = subjects.map((s) => s.slug).filter((slug, i, all) => all.indexOf(slug) !== i)
@@ -135,10 +135,22 @@ function rawPath(id: string) {
   return path.join(sources, "raw", `${fileName(id)}.png`)
 }
 
-/** The icons are only as safe as their raws, and only as fresh as the checkout they're built from. */
-function warnOutOfSync(dir: string) {
+/**
+ * The icons are only as safe as their raws, and only as fresh as the checkout they're built from.
+ * A batch lives on the same branch name in both repositories (bun run batch start): building
+ * from another batch's branch would publish raws nobody reviewed here.
+ */
+function checkSources(dir: string) {
   const git = (...args: string[]) =>
     Bun.spawnSync(["git", "-C", dir, ...args], { timeout: 20_000 }).stdout.toString().trim()
+  if (!Bun.spawnSync(["git", "-C", dir, "rev-parse", "--git-dir"]).success)
+    throw new Error(`${dir} is not a git checkout: clone ingredient-icons-sources there`)
+  const ours = Bun.spawnSync(["git", "branch", "--show-current"]).stdout.toString().trim()
+  const theirs = git("branch", "--show-current")
+  if (!theirs || (theirs !== "main" && theirs !== ours))
+    throw new Error(
+      `ingredient-icons-sources is on ${theirs || "a detached HEAD"}, this checkout on ${ours}: build from the batch's own branch (bun run batch start)`,
+    )
   git("fetch", "--quiet")
   const dirty = git("status", "--porcelain", "--", "raw", "subjects.json")
   const ahead = git("rev-list", "--count", "@{upstream}..HEAD")

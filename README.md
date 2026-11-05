@@ -134,16 +134,21 @@ The icons are built from private sources (raw images and prompts), checked out n
 
 ```sh
 bun install
+bun run batch start        # the sources' branch of this branch's name (a batch lives on one name in both)
+bun run impact en:yuzu     # what new icons would change in the fallbacks, before generating them
+bun run subject en:yuzu "…"    # adds or replaces a subject in the sources' subjects.json
 bun run preview    # contact sheets and checks for the candidates in the sources' inbox/
 bun run pick en:honey=2    # moves a chosen candidate to the sources' raw/
-bun run impact en:yuzu     # what new icons would change in the fallbacks, before generating them
+bun run batch save "…"     # commits and pushes the sources' branch
 bun run build      # cut-out, every size and format, manifest.json, .out/review.html (only changed raws; --force for all, --prune to remove icons)
+bun run sheet      # the review sheet of the icons that differ from origin/main, for the pull request
+bun run batch finish       # once the pull request is approved: the sources' branch into main, then the pull request merged
 bun run taxonomy   # writes taxonomy.json from the pinned Open Food Facts release (or a tag, or latest)
 bun run check      # types, files against the manifest, ids against the taxonomy
 bun run docs       # the website (apps/docs) on http://localhost:3000
 ```
 
-`build.lock.json` records the raw each icon was built from, so a build only redoes the icons whose raw changed. The whole process of a new batch, from the list of ingredients to the pull request, is in [`.claude/skills/ingredient-icons`](.claude/skills/ingredient-icons/SKILL.md).
+`build.lock.json` records the raw each icon was built from, so a build only redoes the icons whose raw changed. A batch reaches `main` of either repository only once its icons are approved in the pull request, so `main` of the sources holds exactly the raws of the published icons. The whole process, from the list of ingredients to the merge, is in [`.claude/skills/ingredient-icons`](.claude/skills/ingredient-icons/SKILL.md).
 
 `taxonomy.json` comes from `ingredients.json` in the `food-taxonomies-json.tgz` asset of an [openfoodfacts-server release](https://github.com/openfoodfacts/openfoodfacts-server/releases), checked against its digest. The recipe app reads the same asset: move both repositories to a new release together, so their ids stay the same.
 

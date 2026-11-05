@@ -1,15 +1,18 @@
 // Prepares the review of freshly generated candidates, before any of them reaches raw/:
 // cuts out every image of the sources' inbox/, flags what a pixel count catches better
-// than an eye, and draws contact sheets to look at.
+// than an eye, and draws contact sheets to look at, with the icon each slug shows on main.
 // Run: bun run preview [slug…] (default: every candidate in inbox/)
 // Writes .out/preview/sheet-<k>.png and prints one line per candidate.
 
+import { existsSync } from "node:fs"
 import { mkdir, readdir, rm } from "node:fs/promises"
 import { availableParallelism } from "node:os"
 import path from "node:path"
 import sharp, { type OverlayOptions } from "sharp"
 
 import { cutOut } from "./cut-out"
+import { LIGHT, DARK, TINY, ZOOM, onBackground, text, tinyZoomed } from "./draw"
+import { onMain } from "./fallback"
 import { inspect, type Inspection } from "./inspect"
 import { fileName, idOf, parseCandidate, sourcesDir } from "./layout"
 import { pool } from "./pool"
@@ -18,10 +21,14 @@ const OUT = ".out/preview"
 const LINES_PER_SHEET = 6
 const CANDIDATES_PER_LINE = 2
 const CELL = 192
-const TINY = 24
-const ZOOM = 4
+const TODAY = 96
 
-const inbox = path.join(sourcesDir(), "inbox")
+const sources = sourcesDir()
+const inbox = path.join(sources, "inbox")
+// Grok's working directory is this checkout: a relative inbox/ lands here, out of the sources.
+const stray = path.resolve("inbox")
+if (stray !== inbox && existsSync(stray))
+  console.log(`⚠ ${stray} exists: candidates written there are not reviewed. Move them to ${inbox}, then delete it`)
 const only = new Set(process.argv.slice(2).map(fileName))
 const names = (await readdir(inbox).catch(() => [] as string[])).filter((name) => !name.startsWith("."))
 const unmatched = names.filter((name) => !parseCandidate(name))
@@ -50,6 +57,7 @@ await pool(candidates, availableParallelism(), async (c) => {
   }
 })
 results.sort((a, b) => a.file.localeCompare(b.file) || a.n - b.n)
+const main = await onMain()
 
 // Lines of candidates, a slug's lines kept on one sheet.
 const lines = [...Map.groupBy(results, (r) => r.file).values()].map((group) =>
@@ -87,25 +95,24 @@ async function drawSheet(sheetLines: Result[][], out: string) {
 
   for (const [row, line] of sheetLines.entries()) {
     const y = 8 + row * lineHeight
-    if (line[0]!.n === Math.min(...results.filter((r) => r.file === line[0]!.file).map((r) => r.n)))
-      texts.push(text(12, y + 24, idOf(line[0]!.file), 18, 700))
+    const id = idOf(line[0]!.file)
+    if (line[0]!.n === Math.min(...results.filter((r) => r.file === line[0]!.file).map((r) => r.n))) {
+      texts.push(text(12, y + 24, id, 18, 700))
+      const shown = main.shown(id)
+      if (shown) layers.push({ input: await onBackground(shown.image, TODAY, LIGHT), left: 12, top: y + 40 })
+      texts.push(text(12, y + 40 + TODAY + 20, shown ? `today: ${shown.id}` : "today: no icon", 13, 500, "#6b665e"))
+    }
     for (const [col, r] of line.entries()) {
       let x = label + col * (block + 16)
       texts.push(text(x, y + CELL + 24, `#${r.n}  ${r.flags.length ? `⚠ ${r.flags.join(", ")}` : "ok"}`, 15, 600, r.flags.length ? "#c0392b" : "#2e6b45"))
       if (!r.master) continue
       layers.push({ input: await sharp(path.join(inbox, r.name)).resize(CELL, CELL).png().toBuffer(), left: x, top: y })
       x += CELL + 8
-      for (const bg of ["#f7f4ee", "#201e1b"]) {
+      for (const bg of [LIGHT, DARK]) {
         layers.push({ input: await onBackground(r.master, CELL, bg), left: x, top: y })
         x += CELL + 8
       }
-      // What 24 px actually leaves, enlarged without smoothing.
-      const tiny = await sharp(r.master).resize(TINY, TINY).png().toBuffer()
-      const zoomed = await sharp(await onBackground(tiny, TINY, "#f7f4ee"))
-        .resize(TINY * ZOOM, TINY * ZOOM, { kernel: "nearest" })
-        .png()
-        .toBuffer()
-      layers.push({ input: zoomed, left: x, top: y + (CELL - TINY * ZOOM) / 2 })
+      layers.push({ input: await tinyZoomed(r.master), left: x, top: y + (CELL - TINY * ZOOM) / 2 })
     }
   }
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">${texts.join("")}</svg>`
@@ -114,17 +121,4 @@ async function drawSheet(sheetLines: Result[][], out: string) {
     .composite(layers)
     .png()
     .toFile(out)
-}
-
-async function onBackground(image: Buffer, size: number, background: string) {
-  return sharp(image)
-    .resize(size, size, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .flatten({ background })
-    .png()
-    .toBuffer()
-}
-
-function text(x: number, y: number, content: string, size: number, weight: number, fill = "#201e1b") {
-  const escaped = content.replace(/&/g, "&amp;").replace(/</g, "&lt;")
-  return `<text x="${x}" y="${y}" font-family="Helvetica, Arial, sans-serif" font-size="${size}" font-weight="${weight}" fill="${fill}">${escaped}</text>`
 }
