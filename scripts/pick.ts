@@ -57,4 +57,4 @@ if (discards.length) console.log(`Discarded the candidates of ${discards.join(" 
 
 const left = names.length - candidates.filter((c) => cleared.has(c.file)).length
 console.log(left ? `${left} files left in inbox/` : "inbox/ is empty")
-if (picks.length) console.log("Next: commit and push ingredient-icons-sources (raw/ and subjects.json)")
+if (picks.length) console.log('Next: bun run batch save "<message>" (commits and pushes the batch\'s branch of the sources)')
