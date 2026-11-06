@@ -45,6 +45,9 @@
     "bacon": {
       "file": "bacon"
     },
+    "baking": {
+      "file": "baking"
+    },
     "baking-powder": {
       "file": "baking-powder"
     },
@@ -165,6 +168,9 @@
     "celery-salt": {
       "file": "celery-salt"
     },
+    "charcuterie": {
+      "file": "charcuterie"
+    },
     "cheddar": {
       "file": "cheddar"
     },
@@ -234,6 +240,9 @@
     "cod": {
       "file": "cod"
     },
+    "condiments": {
+      "file": "condiments"
+    },
     "coriander": {
       "file": "coriander"
     },
@@ -282,14 +291,23 @@
     "curry-powder": {
       "file": "curry-powder"
     },
+    "dairy": {
+      "file": "dairy"
+    },
     "dark-chocolate": {
       "file": "dark-chocolate"
+    },
+    "desserts": {
+      "file": "desserts"
     },
     "dill": {
       "file": "dill"
     },
     "dried-thyme": {
       "file": "dried-thyme"
+    },
+    "drinks": {
+      "file": "drinks"
     },
     "duck": {
       "file": "duck"
@@ -354,6 +372,9 @@
     "gouda": {
       "file": "gouda"
     },
+    "grains": {
+      "file": "grains"
+    },
     "grana-padano": {
       "file": "grana-padano"
     },
@@ -401,6 +422,9 @@
     },
     "icing-sugar": {
       "file": "icing-sugar"
+    },
+    "jams-and-spreads": {
+      "file": "jams-and-spreads"
     },
     "jerusalem-artichoke": {
       "file": "jerusalem-artichoke"
@@ -528,6 +552,9 @@
     "nuts-and-seeds": {
       "file": "nuts-and-seeds"
     },
+    "oils-and-fats": {
+      "file": "oils-and-fats"
+    },
     "okra": {
       "file": "okra"
     },
@@ -605,6 +632,9 @@
     },
     "pizza-dough": {
       "file": "pizza-dough"
+    },
+    "plant-proteins": {
+      "file": "plant-proteins"
     },
     "plum": {
       "file": "plum"
@@ -705,6 +735,9 @@
     "salt": {
       "file": "salt"
     },
+    "salts": {
+      "file": "salts"
+    },
     "sardine": {
       "file": "sardine"
     },
@@ -762,6 +795,9 @@
     "spelt-flour": {
       "file": "spelt-flour"
     },
+    "spice-blends": {
+      "file": "spice-blends"
+    },
     "spices": {
       "file": "spices"
     },
@@ -788,6 +824,9 @@
     },
     "sugar": {
       "file": "sugar"
+    },
+    "sugars": {
+      "file": "sugars"
     },
     "sumac": {
       "file": "sumac"

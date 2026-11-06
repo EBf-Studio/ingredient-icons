@@ -1,5 +1,5 @@
 {
-  "release": "55b7261a61575e16",
+  "release": "416fc1e3c9ab6a18",
   "license": "CC0-1.0",
   "entries": {
     "acai-berry": {"parent":"fruits","family":"fruits","names":{"fr":{"name":"baie d'açaï","synonyms":["Acai","Açaï","açai"]},"en":{"name":"açai berry","synonyms":["acai","acai berry","acai fruit","assai","açaí","açaí berry","açaí fruit"]},"de":{"name":"Assai","synonyms":["Acai"]},"pt":{"name":"açaí","synonyms":[]}}},
