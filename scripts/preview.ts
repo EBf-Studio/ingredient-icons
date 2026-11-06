@@ -14,7 +14,7 @@ import { cutOut } from "./cut-out"
 import { LIGHT, DARK, TINY, ZOOM, onBackground, text, tinyZoomed } from "./draw"
 import { onMain } from "./fallback"
 import { inspect, type Inspection } from "./inspect"
-import { fileName, idOf, parseCandidate, sourcesDir } from "./layout"
+import { parseCandidate, sourcesDir } from "./layout"
 import { pool } from "./pool"
 
 const OUT = ".out/preview"
@@ -29,7 +29,7 @@ const inbox = path.join(sources, "inbox")
 const stray = path.resolve("inbox")
 if (stray !== inbox && existsSync(stray))
   console.log(`⚠ ${stray} exists: candidates written there are not reviewed. Move them to ${inbox}, then delete it`)
-const only = new Set(process.argv.slice(2).map(fileName))
+const only = new Set(process.argv.slice(2))
 const names = (await readdir(inbox).catch(() => [] as string[])).filter((name) => !name.startsWith("."))
 const unmatched = names.filter((name) => !parseCandidate(name))
 const candidates = names
@@ -79,7 +79,7 @@ for (const [k, sheet] of sheets.entries()) {
 
 for (const r of results) {
   const measures = r.master ? `  (magenta ${(r.pinkShare * 100).toFixed(2)}%, fill ${Math.round(r.fill * 100)}%)` : ""
-  console.log(`${idOf(r.file)} #${r.n}  ${r.flags.length ? `⚠ ${r.flags.join(", ")}` : "ok"}${measures}`)
+  console.log(`${r.file} #${r.n}  ${r.flags.length ? `⚠ ${r.flags.join(", ")}` : "ok"}${measures}`)
 }
 console.log(`\n${results.length} candidates for ${lines.length} slugs. Sheets:\n${files.join("\n")}`)
 
@@ -95,7 +95,7 @@ async function drawSheet(sheetLines: Result[][], out: string) {
 
   for (const [row, line] of sheetLines.entries()) {
     const y = 8 + row * lineHeight
-    const id = idOf(line[0]!.file)
+    const id = line[0]!.file
     if (line[0]!.n === Math.min(...results.filter((r) => r.file === line[0]!.file).map((r) => r.n))) {
       texts.push(text(12, y + 24, id, 18, 700))
       const shown = main.shown(id)

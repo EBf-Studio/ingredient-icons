@@ -1,8 +1,8 @@
 {
   "name": "@ingredient-icons/core",
   "version": "0.4.0",
-  "description": "Soft 3D icons for cooking ingredients, keyed by the Open Food Facts taxonomy, with ancestor fallback",
-  "license": "(MIT AND CC0-1.0 AND ODbL-1.0)",
+  "description": "Soft 3D icons for cooking ingredients, keyed by ingredient catalog ids, with a CC0 snapshot of the catalog",
+  "license": "(MIT AND CC0-1.0)",
   "type": "module",
   "exports": {
     ".": {
@@ -10,11 +10,12 @@
       "default": "./dist/index.js"
     },
     "./icons/*": "./icons/*",
+    "./catalog.json": "./catalog.json",
     "./package.json": "./package.json"
   },
-  "files": ["dist", "icons", "LICENSE", "LICENSE-ICONS", "NOTICE"],
+  "files": ["dist", "icons", "catalog.json", "LICENSE", "LICENSE-ICONS", "NOTICE"],
   "sideEffects": false,
-  "keywords": ["icons", "ingredients", "food", "recipe", "open-food-facts", "emoji"],
+  "keywords": ["icons", "ingredients", "food", "recipe", "emoji"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EBf-Studio/ingredient-icons.git",

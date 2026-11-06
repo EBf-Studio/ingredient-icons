@@ -10,7 +10,7 @@
 
 import path from "node:path"
 
-import { fileName, sha256, sourcesDir } from "./layout"
+import { sha256, sourcesDir } from "./layout"
 
 const sources = sourcesDir()
 const SHORT = 60_000
@@ -146,12 +146,12 @@ function requireInSync(commit: string, ref: string, open: boolean) {
   const lock: Record<string, string> = JSON.parse(git("show", `${commit}:build.lock.json`)).raws
   const subjects: { slug: string }[] = JSON.parse(src("show", `${ref}:subjects.json`))
   const raws = new Set(src("ls-tree", "--name-only", ref, "raw/").split("\n").map((file) => path.basename(file)))
-  const expected = new Set(subjects.map((s) => s.slug).filter((id) => raws.has(`${fileName(id)}.png`)))
+  const expected = new Set(subjects.map((s) => s.slug).filter((id) => raws.has(`${id}.png`)))
   const problems: string[] = []
   for (const id of expected) {
     if (!Object.hasOwn(lock, id)) problems.push(`${id}: raw not built`)
     else {
-      const raw = spawn(["git", "-C", sources, "show", `${ref}:raw/${fileName(id)}.png`])
+      const raw = spawn(["git", "-C", sources, "show", `${ref}:raw/${id}.png`])
       if (!raw.success || sha256(raw.stdout) !== lock[id]) problems.push(`${id}: icon built from another raw`)
     }
   }

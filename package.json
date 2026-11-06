@@ -10,7 +10,7 @@
     "subject": "bun scripts/subject.ts",
     "batch": "bun scripts/batch.ts",
     "sheet": "bun scripts/sheet.ts",
-    "taxonomy": "bun scripts/taxonomy.ts",
+    "catalog": "bun scripts/catalog.ts",
     "check": "tsc --noEmit && bun scripts/check.ts && bun run --cwd packages/core build && bun test",
     "docs": "bun run --cwd apps/docs dev"
   },

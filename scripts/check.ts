@@ -1,23 +1,25 @@
-// Checks that the manifest, the icon files and the taxonomy agree:
+// Checks that the manifest, the icon files and the catalog agree:
 // every icon exists in every format and size, no file is orphaned,
-// and every id is an Open Food Facts taxonomy entry, except the reserved generic icon.
+// every id is a catalog entry (except the reserved generic icon),
+// and every family and the generic icon have an icon.
 // Run: bun run check (CI runs it on every push)
 
 import { readFile, readdir } from "node:fs/promises"
 import path from "node:path"
 
-import { GENERIC_ID, ICONS_DIR, SIZES, fileName, iconPath, type Format, type Manifest } from "./layout"
+import { families, readCatalog } from "./catalog"
+import { GENERIC_ID, ICONS_DIR, SIZES, iconPath, type Format, type Manifest } from "./layout"
 
 const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
-const taxonomy: { names: Record<string, unknown> } = JSON.parse(
-  await readFile("taxonomy.json", "utf8"),
-)
+const catalog = await readCatalog()
 const errors: string[] = []
 
 for (const [id, { file }] of Object.entries(manifest.icons)) {
-  if (file !== fileName(id)) errors.push(`${id}: file should be ${fileName(id)}`)
-  if (id !== GENERIC_ID && !taxonomy.names[id]) errors.push(`${id}: not in the Open Food Facts taxonomy`)
+  if (file !== id) errors.push(`${id}: file should be ${id}`)
+  if (id !== GENERIC_ID && !Object.hasOwn(catalog.entries, id)) errors.push(`${id}: not in the catalog ${catalog.release}`)
 }
+for (const id of [...families(catalog), GENERIC_ID])
+  if (!Object.hasOwn(manifest.icons, id)) errors.push(`${id}: ${id === GENERIC_ID ? "the generic icon" : "a family"} has no icon`)
 
 const files = new Set(Object.values(manifest.icons).map(({ file }) => file))
 for (const format of Object.keys(SIZES) as Format[])

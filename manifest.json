@@ -15,980 +15,896 @@
   },
   "path": "icons/{format}/{size}/{file}.{format}",
   "icons": {
-    "en:aioli": {
-      "file": "en_aioli"
+    "aioli": {
+      "file": "aioli"
     },
-    "en:allspice": {
-      "file": "en_allspice"
+    "allspice": {
+      "file": "allspice"
     },
-    "en:almond": {
-      "file": "en_almond"
+    "almond": {
+      "file": "almond"
     },
-    "en:apple": {
-      "file": "en_apple"
+    "apple": {
+      "file": "apple"
     },
-    "en:apricot": {
-      "file": "en_apricot"
+    "apricot": {
+      "file": "apricot"
     },
-    "en:artichoke": {
-      "file": "en_artichoke"
+    "artichoke": {
+      "file": "artichoke"
     },
-    "en:asparagus": {
-      "file": "en_asparagus"
+    "asparagus": {
+      "file": "asparagus"
     },
-    "en:aubergine": {
-      "file": "en_aubergine"
+    "aubergine": {
+      "file": "aubergine"
     },
-    "en:avocado": {
-      "file": "en_avocado"
+    "avocado": {
+      "file": "avocado"
     },
-    "en:bacon": {
-      "file": "en_bacon"
+    "bacon": {
+      "file": "bacon"
     },
-    "en:baking-powder": {
-      "file": "en_baking-powder"
+    "baking-powder": {
+      "file": "baking-powder"
     },
-    "en:balsamic-vinegar": {
-      "file": "en_balsamic-vinegar"
+    "balsamic-vinegar": {
+      "file": "balsamic-vinegar"
     },
-    "en:banana": {
-      "file": "en_banana"
+    "banana": {
+      "file": "banana"
     },
-    "en:basil": {
-      "file": "en_basil"
+    "basil": {
+      "file": "basil"
     },
-    "en:bay-leaf": {
-      "file": "en_bay-leaf"
+    "bay-leaf": {
+      "file": "bay-leaf"
     },
-    "en:beaufort": {
-      "file": "en_beaufort"
+    "beef": {
+      "file": "beef"
     },
-    "en:beef-broth": {
-      "file": "en_beef-broth"
+    "beef-stock": {
+      "file": "beef-stock"
     },
-    "en:beef-meat": {
-      "file": "en_beef-meat"
+    "beetroot": {
+      "file": "beetroot"
     },
-    "en:beetroot": {
-      "file": "en_beetroot"
+    "belgian-endive": {
+      "file": "belgian-endive"
     },
-    "en:bell-pepper": {
-      "file": "en_bell-pepper"
+    "bell-pepper": {
+      "file": "bell-pepper"
     },
-    "en:biscuit": {
-      "file": "en_biscuit"
+    "black-bean": {
+      "file": "black-bean"
     },
-    "en:black-bean": {
-      "file": "en_black-bean"
+    "black-grape": {
+      "file": "black-grape"
     },
-    "en:black-olive": {
-      "file": "en_black-olive"
+    "black-olive": {
+      "file": "black-olive"
     },
-    "en:black-pepper": {
-      "file": "en_black-pepper"
+    "black-pepper": {
+      "file": "black-pepper"
     },
-    "en:blueberry": {
-      "file": "en_blueberry"
+    "blue-cheese": {
+      "file": "blue-cheese"
     },
-    "en:bread": {
-      "file": "en_bread"
+    "blueberry": {
+      "file": "blueberry"
     },
-    "en:breadcrumbs": {
-      "file": "en_breadcrumbs"
+    "breadcrumbs": {
+      "file": "breadcrumbs"
     },
-    "en:brie": {
-      "file": "en_brie"
+    "breads": {
+      "file": "breads"
     },
-    "en:broad-bean": {
-      "file": "en_broad-bean"
+    "brie": {
+      "file": "brie"
     },
-    "en:broccoli": {
-      "file": "en_broccoli"
+    "broad-bean": {
+      "file": "broad-bean"
     },
-    "en:brown-rice": {
-      "file": "en_brown-rice"
+    "broccoli": {
+      "file": "broccoli"
     },
-    "en:brown-sugar": {
-      "file": "en_brown-sugar"
+    "brown-rice": {
+      "file": "brown-rice"
     },
-    "en:brussels-sprouts": {
-      "file": "en_brussels-sprouts"
+    "brown-sugar": {
+      "file": "brown-sugar"
     },
-    "en:buckwheat-flour": {
-      "file": "en_buckwheat-flour"
+    "brussels-sprout": {
+      "file": "brussels-sprout"
     },
-    "en:bulgur": {
-      "file": "en_bulgur"
+    "bulgur": {
+      "file": "bulgur"
     },
-    "en:butter": {
-      "file": "en_butter"
+    "butter": {
+      "file": "butter"
     },
-    "en:buttermilk": {
-      "file": "en_buttermilk"
+    "butter-bean": {
+      "file": "butter-bean"
     },
-    "en:butternut-squash": {
-      "file": "en_butternut-squash"
+    "buttermilk": {
+      "file": "buttermilk"
     },
-    "en:cabbage": {
-      "file": "en_cabbage"
+    "butternut-squash": {
+      "file": "butternut-squash"
     },
-    "en:camembert": {
-      "file": "en_camembert"
+    "cabbage": {
+      "file": "cabbage"
     },
-    "en:capers": {
-      "file": "en_capers"
+    "camembert": {
+      "file": "camembert"
     },
-    "en:caraway": {
-      "file": "en_caraway"
+    "capers": {
+      "file": "capers"
     },
-    "en:cardamom": {
-      "file": "en_cardamom"
+    "caraway-seed": {
+      "file": "caraway-seed"
     },
-    "en:carrot": {
-      "file": "en_carrot"
+    "cardamom": {
+      "file": "cardamom"
     },
-    "en:cashew-nuts": {
-      "file": "en_cashew-nuts"
+    "carrot": {
+      "file": "carrot"
     },
-    "en:cauliflower": {
-      "file": "en_cauliflower"
+    "cashew-nut": {
+      "file": "cashew-nut"
     },
-    "en:cayenne-pepper": {
-      "file": "en_cayenne-pepper"
+    "cauliflower": {
+      "file": "cauliflower"
     },
-    "en:celeriac": {
-      "file": "en_celeriac"
+    "cayenne-pepper": {
+      "file": "cayenne-pepper"
     },
-    "en:celery": {
-      "file": "en_celery"
+    "celeriac": {
+      "file": "celeriac"
     },
-    "en:celery-salt": {
-      "file": "en_celery-salt"
+    "celery": {
+      "file": "celery"
     },
-    "en:cheddar": {
-      "file": "en_cheddar"
+    "celery-salt": {
+      "file": "celery-salt"
     },
-    "en:cheese": {
-      "file": "en_cheese"
+    "cheddar": {
+      "file": "cheddar"
     },
-    "en:cherry": {
-      "file": "en_cherry"
+    "cheeses": {
+      "file": "cheeses"
     },
-    "en:cherry-tomato": {
-      "file": "en_cherry-tomato"
+    "cherry": {
+      "file": "cherry"
     },
-    "en:chervil": {
-      "file": "en_chervil"
+    "cherry-tomato": {
+      "file": "cherry-tomato"
     },
-    "en:chia-seed": {
-      "file": "en_chia-seed"
+    "chervil": {
+      "file": "chervil"
     },
-    "en:chicken": {
-      "file": "en_chicken"
+    "chia-seeds": {
+      "file": "chia-seeds"
     },
-    "en:chicken-breast": {
-      "file": "en_chicken-breast"
+    "chicken": {
+      "file": "chicken"
     },
-    "en:chicken-broth": {
-      "file": "en_chicken-broth"
+    "chicken-breast": {
+      "file": "chicken-breast"
     },
-    "en:chicken-fillet": {
-      "file": "en_chicken-fillet"
+    "chicken-stock": {
+      "file": "chicken-stock"
     },
-    "en:chicken-liver": {
-      "file": "en_chicken-liver"
+    "chicken-thigh": {
+      "file": "chicken-thigh"
     },
-    "en:chicken-thigh": {
-      "file": "en_chicken-thigh"
+    "chicken-wing": {
+      "file": "chicken-wing"
     },
-    "en:chicken-wing": {
-      "file": "en_chicken-wing"
+    "chickpea": {
+      "file": "chickpea"
     },
-    "en:chickpea": {
-      "file": "en_chickpea"
+    "chicory": {
+      "file": "chicory"
     },
-    "en:chicory": {
-      "file": "en_chicory"
+    "chili-pepper": {
+      "file": "chili-pepper"
     },
-    "en:chili-pepper": {
-      "file": "en_chili-pepper"
+    "chives": {
+      "file": "chives"
     },
-    "en:chives": {
-      "file": "en_chives"
+    "chopped-tomatoes": {
+      "file": "chopped-tomatoes"
     },
-    "en:chopped-tomato": {
-      "file": "en_chopped-tomato"
+    "chorizo": {
+      "file": "chorizo"
     },
-    "en:chorizo": {
-      "file": "en_chorizo"
+    "cinnamon": {
+      "file": "cinnamon"
     },
-    "en:cinnamon": {
-      "file": "en_cinnamon"
+    "clove": {
+      "file": "clove"
     },
-    "en:clam": {
-      "file": "en_clam"
+    "cocoa-powder": {
+      "file": "cocoa-powder"
     },
-    "en:clementine": {
-      "file": "en_clementine"
+    "coconut": {
+      "file": "coconut"
     },
-    "en:clove": {
-      "file": "en_clove"
+    "coconut-milk": {
+      "file": "coconut-milk"
     },
-    "en:cocoa-powder": {
-      "file": "en_cocoa-powder"
+    "cod": {
+      "file": "cod"
     },
-    "en:coconut": {
-      "file": "en_coconut"
+    "coriander": {
+      "file": "coriander"
     },
-    "en:coconut-flour": {
-      "file": "en_coconut-flour"
+    "coriander-seed": {
+      "file": "coriander-seed"
     },
-    "en:coconut-milk": {
-      "file": "en_coconut-milk"
+    "cornmeal": {
+      "file": "cornmeal"
     },
-    "en:coconut-oil": {
-      "file": "en_coconut-oil"
+    "cottage-cheese": {
+      "file": "cottage-cheese"
     },
-    "en:cod": {
-      "file": "en_cod"
+    "courgette": {
+      "file": "courgette"
     },
-    "en:cooked-tagliatelle": {
-      "file": "en_cooked-tagliatelle"
+    "couscous": {
+      "file": "couscous"
     },
-    "en:coriander": {
-      "file": "en_coriander"
+    "crab": {
+      "file": "crab"
     },
-    "en:coriander-seed": {
-      "file": "en_coriander-seed"
+    "cream": {
+      "file": "cream"
     },
-    "en:corn": {
-      "file": "en_corn"
+    "cream-cheese": {
+      "file": "cream-cheese"
     },
-    "en:cornmeal": {
-      "file": "en_cornmeal"
+    "creme-fraiche": {
+      "file": "creme-fraiche"
     },
-    "en:cottage-cheese": {
-      "file": "en_cottage-cheese"
+    "cucumber": {
+      "file": "cucumber"
     },
-    "en:courgette": {
-      "file": "en_courgette"
+    "cumin": {
+      "file": "cumin"
     },
-    "en:couscous": {
-      "file": "en_couscous"
+    "cured-ham": {
+      "file": "cured-ham"
     },
-    "en:crab": {
-      "file": "en_crab"
+    "cured-sausage": {
+      "file": "cured-sausage"
     },
-    "en:cream": {
-      "file": "en_cream"
+    "curry-paste": {
+      "file": "curry-paste"
     },
-    "en:cream-cheese": {
-      "file": "en_cream-cheese"
+    "curry-powder": {
+      "file": "curry-powder"
     },
-    "en:cucumber": {
-      "file": "en_cucumber"
+    "dark-chocolate": {
+      "file": "dark-chocolate"
     },
-    "en:cumin": {
-      "file": "en_cumin"
+    "dill": {
+      "file": "dill"
     },
-    "en:cured-sausage": {
-      "file": "en_cured-sausage"
+    "dried-thyme": {
+      "file": "dried-thyme"
     },
-    "en:curry-paste": {
-      "file": "en_curry-paste"
+    "duck": {
+      "file": "duck"
     },
-    "en:curry-powder": {
-      "file": "en_curry-powder"
+    "dulce-de-leche": {
+      "file": "dulce-de-leche"
     },
-    "en:dandelion": {
-      "file": "en_dandelion"
+    "eggs": {
+      "file": "eggs"
     },
-    "en:dark-chocolate": {
-      "file": "en_dark-chocolate"
+    "emmental": {
+      "file": "emmental"
     },
-    "en:dill": {
-      "file": "en_dill"
+    "fennel": {
+      "file": "fennel"
     },
-    "en:dough": {
-      "file": "en_dough"
+    "fennel-seed": {
+      "file": "fennel-seed"
     },
-    "en:dried-thyme": {
-      "file": "en_dried-thyme"
+    "fenugreek": {
+      "file": "fenugreek"
     },
-    "en:dried-tomatoes": {
-      "file": "en_dried-tomatoes"
+    "feta": {
+      "file": "feta"
     },
-    "en:duck": {
-      "file": "en_duck"
+    "fig": {
+      "file": "fig"
     },
-    "en:dulce-de-leche": {
-      "file": "en_dulce-de-leche"
+    "fish": {
+      "file": "fish"
     },
-    "en:edam": {
-      "file": "en_edam"
+    "fish-sauce": {
+      "file": "fish-sauce"
     },
-    "en:egg": {
-      "file": "en_egg"
+    "flour": {
+      "file": "flour"
     },
-    "en:egg-yolk": {
-      "file": "en_egg-yolk"
+    "fresh-pasta": {
+      "file": "fresh-pasta"
     },
-    "en:emmental": {
-      "file": "en_emmental"
+    "fromage-blanc": {
+      "file": "fromage-blanc"
     },
-    "en:endive": {
-      "file": "en_endive"
+    "fruits": {
+      "file": "fruits"
     },
-    "en:fennel": {
-      "file": "en_fennel"
-    },
-    "en:fennel-seed": {
-      "file": "en_fennel-seed"
-    },
-    "en:fenugreek": {
-      "file": "en_fenugreek"
-    },
-    "en:feta": {
-      "file": "en_feta"
-    },
-    "en:fig": {
-      "file": "en_fig"
-    },
-    "en:fish": {
-      "file": "en_fish"
-    },
-    "en:fish-sauce": {
-      "file": "en_fish-sauce"
-    },
-    "en:flour": {
-      "file": "en_flour"
-    },
-    "en:fresh-cream": {
-      "file": "en_fresh-cream"
-    },
-    "en:fresh-pasta": {
-      "file": "en_fresh-pasta"
-    },
-    "en:fromage-blanc": {
-      "file": "en_fromage-blanc"
-    },
-    "en:fruit": {
-      "file": "en_fruit"
-    },
-    "en:garlic": {
-      "file": "en_garlic"
-    },
-    "en:ghee": {
-      "file": "en_ghee"
-    },
-    "en:ginger": {
-      "file": "en_ginger"
-    },
-    "en:goat-cheese": {
-      "file": "en_goat-cheese"
-    },
-    "en:goose": {
-      "file": "en_goose"
-    },
-    "en:gorgonzola": {
-      "file": "en_gorgonzola"
-    },
-    "en:gouda": {
-      "file": "en_gouda"
-    },
-    "en:grana-padano": {
-      "file": "en_grana-padano"
-    },
-    "en:grape": {
-      "file": "en_grape"
-    },
-    "en:green-bean": {
-      "file": "en_green-bean"
-    },
-    "en:green-olive": {
-      "file": "en_green-olive"
-    },
-    "en:green-pepper": {
-      "file": "en_green-pepper"
-    },
-    "en:halloumi": {
-      "file": "en_halloumi"
-    },
-    "en:ham": {
-      "file": "en_ham"
-    },
-    "en:harissa": {
-      "file": "en_harissa"
-    },
-    "en:hazelnut": {
-      "file": "en_hazelnut"
-    },
-    "en:herb": {
-      "file": "en_herb"
-    },
-    "en:herbes-de-provence": {
-      "file": "en_herbes-de-provence"
-    },
-    "en:herring": {
-      "file": "en_herring"
-    },
-    "en:honey": {
-      "file": "en_honey"
-    },
-    "en:horseradish": {
-      "file": "en_horseradish"
-    },
-    "en:hot-sauce": {
-      "file": "en_hot-sauce"
-    },
-    "en:hummus": {
-      "file": "en_hummus"
-    },
-    "en:icing-sugar": {
-      "file": "en_icing-sugar"
-    },
-    "en:jerusalem-artichoke": {
-      "file": "en_jerusalem-artichoke"
-    },
-    "en:juniper-berry": {
-      "file": "en_juniper-berry"
-    },
-    "en:kale": {
-      "file": "en_kale"
-    },
-    "en:kefir": {
-      "file": "en_kefir"
-    },
-    "en:ketchup": {
-      "file": "en_ketchup"
-    },
-    "en:kiwifruit": {
-      "file": "en_kiwifruit"
-    },
-    "en:lamb": {
-      "file": "en_lamb"
-    },
-    "en:lard": {
-      "file": "en_lard"
-    },
-    "en:lasagne": {
-      "file": "en_lasagne"
-    },
-    "en:leek": {
-      "file": "en_leek"
-    },
-    "en:lemon": {
-      "file": "en_lemon"
-    },
-    "en:lemongrass": {
-      "file": "en_lemongrass"
-    },
-    "en:lentils": {
-      "file": "en_lentils"
-    },
-    "en:lettuce": {
-      "file": "en_lettuce"
-    },
-    "en:lima-bean": {
-      "file": "en_lima-bean"
-    },
-    "en:lime": {
-      "file": "en_lime"
-    },
-    "en:lobster": {
-      "file": "en_lobster"
-    },
-    "en:lovage": {
-      "file": "en_lovage"
-    },
-    "en:mackerel": {
-      "file": "en_mackerel"
-    },
-    "en:mango": {
-      "file": "en_mango"
-    },
-    "en:maple-syrup": {
-      "file": "en_maple-syrup"
-    },
-    "en:margarine": {
-      "file": "en_margarine"
-    },
-    "en:marjoram": {
-      "file": "en_marjoram"
-    },
-    "en:mascarpone": {
-      "file": "en_mascarpone"
-    },
-    "en:mayonnaise": {
-      "file": "en_mayonnaise"
-    },
-    "en:meat": {
-      "file": "en_meat"
-    },
-    "en:meatball": {
-      "file": "en_meatball"
-    },
-    "en:melon": {
-      "file": "en_melon"
-    },
-    "en:milk": {
-      "file": "en_milk"
-    },
-    "en:minced-beef": {
-      "file": "en_minced-beef"
-    },
-    "en:mint": {
-      "file": "en_mint"
-    },
-    "en:miso": {
-      "file": "en_miso"
-    },
-    "en:mozzarella": {
-      "file": "en_mozzarella"
-    },
-    "en:mung-bean": {
-      "file": "en_mung-bean"
-    },
-    "en:munster": {
-      "file": "en_munster"
-    },
-    "en:mushroom": {
-      "file": "en_mushroom"
-    },
-    "en:mussel": {
-      "file": "en_mussel"
-    },
-    "en:mustard": {
-      "file": "en_mustard"
-    },
-    "en:mutton": {
-      "file": "en_mutton"
-    },
-    "en:nettle": {
-      "file": "en_nettle"
-    },
-    "en:noodle": {
-      "file": "en_noodle"
-    },
-    "en:nut": {
-      "file": "en_nut"
-    },
-    "en:nutmeg": {
-      "file": "en_nutmeg"
-    },
-    "en:oat-flakes": {
-      "file": "en_oat-flakes"
-    },
-    "en:octopus": {
-      "file": "en_octopus"
-    },
-    "en:okra": {
-      "file": "en_okra"
-    },
-    "en:olive-oil": {
-      "file": "en_olive-oil"
-    },
-    "en:onion": {
-      "file": "en_onion"
-    },
-    "en:orange": {
-      "file": "en_orange"
-    },
-    "en:orange-blossom-water": {
-      "file": "en_orange-blossom-water"
-    },
-    "en:orange-marmalade": {
-      "file": "en_orange-marmalade"
-    },
-    "en:oregano": {
-      "file": "en_oregano"
-    },
-    "en:oyster": {
-      "file": "en_oyster"
-    },
-    "en:pak-choi": {
-      "file": "en_pak-choi"
-    },
-    "en:paprika": {
-      "file": "en_paprika"
-    },
-    "en:parmigiano-reggiano": {
-      "file": "en_parmigiano-reggiano"
-    },
-    "en:parsley": {
-      "file": "en_parsley"
-    },
-    "en:parsnip": {
-      "file": "en_parsnip"
-    },
-    "en:pasta": {
-      "file": "en_pasta"
-    },
-    "en:pastry": {
-      "file": "en_pastry"
-    },
-    "en:pea": {
-      "file": "en_pea"
-    },
-    "en:peach": {
-      "file": "en_peach"
-    },
-    "en:peanut": {
-      "file": "en_peanut"
-    },
-    "en:peanut-butter": {
-      "file": "en_peanut-butter"
-    },
-    "en:peanut-oil": {
-      "file": "en_peanut-oil"
-    },
-    "en:pear": {
-      "file": "en_pear"
-    },
-    "en:pecorino": {
-      "file": "en_pecorino"
-    },
-    "en:penne": {
-      "file": "en_penne"
-    },
-    "en:pepper": {
-      "file": "en_pepper"
-    },
-    "en:pesto": {
-      "file": "en_pesto"
-    },
-    "en:pine-nuts": {
-      "file": "en_pine-nuts"
-    },
-    "en:pineapple": {
-      "file": "en_pineapple"
-    },
-    "en:pink-peppercorn": {
-      "file": "en_pink-peppercorn"
-    },
-    "en:pistachio-nuts": {
-      "file": "en_pistachio-nuts"
-    },
-    "en:pita": {
-      "file": "en_pita"
-    },
-    "en:pizza-dough": {
-      "file": "en_pizza-dough"
-    },
-    "en:plum": {
-      "file": "en_plum"
-    },
-    "en:pomegranate": {
-      "file": "en_pomegranate"
-    },
-    "en:pork": {
-      "file": "en_pork"
-    },
-    "en:pork-belly": {
-      "file": "en_pork-belly"
-    },
-    "en:pork-loin": {
-      "file": "en_pork-loin"
-    },
-    "en:pork-meat": {
-      "file": "en_pork-meat"
-    },
-    "en:pork-shoulder": {
-      "file": "en_pork-shoulder"
-    },
-    "en:potato": {
-      "file": "en_potato"
-    },
-    "en:poultry-broth": {
-      "file": "en_poultry-broth"
-    },
-    "en:pulse": {
-      "file": "en_pulse"
-    },
-    "en:pumpkin": {
-      "file": "en_pumpkin"
-    },
-    "en:pumpkin-seed": {
-      "file": "en_pumpkin-seed"
-    },
-    "en:quinoa": {
-      "file": "en_quinoa"
-    },
-    "en:radicchio": {
-      "file": "en_radicchio"
-    },
-    "en:radish": {
-      "file": "en_radish"
-    },
-    "en:raisin": {
-      "file": "en_raisin"
-    },
-    "en:raspberry": {
-      "file": "en_raspberry"
-    },
-    "en:raw-ham": {
-      "file": "en_raw-ham"
-    },
-    "en:red-bean": {
-      "file": "en_red-bean"
-    },
-    "en:red-cabbage": {
-      "file": "en_red-cabbage"
-    },
-    "en:red-onion": {
-      "file": "en_red-onion"
-    },
-    "en:red-wine": {
-      "file": "en_red-wine"
-    },
-    "en:red-wine-vinegar": {
-      "file": "en_red-wine-vinegar"
-    },
-    "en:rhubarb": {
-      "file": "en_rhubarb"
-    },
-    "en:rice": {
-      "file": "en_rice"
-    },
-    "en:rice-vinegar": {
-      "file": "en_rice-vinegar"
-    },
-    "en:ricotta": {
-      "file": "en_ricotta"
-    },
-    "en:rocket": {
-      "file": "en_rocket"
-    },
-    "en:romaine-lettuce": {
-      "file": "en_romaine-lettuce"
-    },
-    "en:roquefort": {
-      "file": "en_roquefort"
-    },
-    "en:rose-water": {
-      "file": "en_rose-water"
-    },
-    "en:rosemary": {
-      "file": "en_rosemary"
-    },
-    "en:rye-flour": {
-      "file": "en_rye-flour"
-    },
-    "en:sage": {
-      "file": "en_sage"
-    },
-    "en:salad": {
-      "file": "en_salad"
-    },
-    "en:salmon": {
-      "file": "en_salmon"
-    },
-    "en:salt": {
-      "file": "en_salt"
-    },
-    "en:sardine": {
-      "file": "en_sardine"
-    },
-    "en:sauce": {
-      "file": "en_sauce"
-    },
-    "en:sauerkraut": {
-      "file": "en_sauerkraut"
-    },
-    "en:sausage": {
-      "file": "en_sausage"
-    },
-    "en:scallop": {
-      "file": "en_scallop"
-    },
-    "en:seed": {
-      "file": "en_seed"
-    },
-    "en:seitan": {
-      "file": "en_seitan"
-    },
-    "en:semolina": {
-      "file": "en_semolina"
-    },
-    "en:semolina-flour": {
-      "file": "en_semolina-flour"
-    },
-    "en:sesame": {
-      "file": "en_sesame"
-    },
-    "en:sesame-oil": {
-      "file": "en_sesame-oil"
-    },
-    "en:shallot": {
-      "file": "en_shallot"
-    },
-    "en:shrimp": {
-      "file": "en_shrimp"
-    },
-    "en:smoked-salmon": {
-      "file": "en_smoked-salmon"
-    },
-    "en:smoked-sausage": {
-      "file": "en_smoked-sausage"
-    },
-    "en:snow-pea": {
-      "file": "en_snow-pea"
-    },
-    "en:sole": {
-      "file": "en_sole"
-    },
-    "en:sorrel": {
-      "file": "en_sorrel"
-    },
-    "en:soy-sauce": {
-      "file": "en_soy-sauce"
-    },
-    "en:spaghetti": {
-      "file": "en_spaghetti"
-    },
-    "en:spelt-flour": {
-      "file": "en_spelt-flour"
-    },
-    "en:spice": {
-      "file": "en_spice"
-    },
-    "en:spinach": {
-      "file": "en_spinach"
-    },
-    "en:spring-onion": {
-      "file": "en_spring-onion"
-    },
-    "en:squid": {
-      "file": "en_squid"
-    },
-    "en:star-anise": {
-      "file": "en_star-anise"
-    },
-    "en:strawberry": {
-      "file": "en_strawberry"
-    },
-    "en:strawberry-jam": {
-      "file": "en_strawberry-jam"
-    },
-    "en:sugar": {
-      "file": "en_sugar"
-    },
-    "en:sumac": {
-      "file": "en_sumac"
-    },
-    "en:sunflower-oil": {
-      "file": "en_sunflower-oil"
-    },
-    "en:sunflower-seed": {
-      "file": "en_sunflower-seed"
-    },
-    "en:sweet-potato": {
-      "file": "en_sweet-potato"
-    },
-    "en:sweetcorn": {
-      "file": "en_sweetcorn"
-    },
-    "en:tahini": {
-      "file": "en_tahini"
-    },
-    "en:tarragon": {
-      "file": "en_tarragon"
-    },
-    "en:thyme": {
-      "file": "en_thyme"
-    },
-    "en:tofu": {
-      "file": "en_tofu"
-    },
-    "en:tomato": {
-      "file": "en_tomato"
-    },
-    "en:tomato-concentrate": {
-      "file": "en_tomato-concentrate"
-    },
-    "en:tomato-sauce": {
-      "file": "en_tomato-sauce"
-    },
-    "en:tortilla": {
-      "file": "en_tortilla"
-    },
-    "en:trout": {
-      "file": "en_trout"
-    },
-    "en:tuna": {
-      "file": "en_tuna"
-    },
-    "en:tuna-in-oil": {
-      "file": "en_tuna-in-oil"
-    },
-    "en:turkey": {
-      "file": "en_turkey"
-    },
-    "en:turmeric": {
-      "file": "en_turmeric"
-    },
-    "en:turnip": {
-      "file": "en_turnip"
-    },
-    "en:vanilla": {
-      "file": "en_vanilla"
-    },
-    "en:veal": {
-      "file": "en_veal"
-    },
-    "en:vegetable": {
-      "file": "en_vegetable"
-    },
-    "en:vegetable-broth": {
-      "file": "en_vegetable-broth"
-    },
-    "en:venison": {
-      "file": "en_venison"
-    },
-    "en:vinegar": {
-      "file": "en_vinegar"
-    },
-    "en:walnut": {
-      "file": "en_walnut"
-    },
-    "en:walnut-oil": {
-      "file": "en_walnut-oil"
-    },
-    "en:wasabi": {
-      "file": "en_wasabi"
-    },
-    "en:water": {
-      "file": "en_water"
-    },
-    "en:watercress": {
-      "file": "en_watercress"
-    },
-    "en:white-beans": {
-      "file": "en_white-beans"
-    },
-    "en:white-pepper": {
-      "file": "en_white-pepper"
-    },
-    "en:white-wine": {
-      "file": "en_white-wine"
-    },
-    "en:white-wine-vinegar": {
-      "file": "en_white-wine-vinegar"
-    },
-    "en:whole-wheat-flour": {
-      "file": "en_whole-wheat-flour"
-    },
-    "en:wild-rice": {
-      "file": "en_wild-rice"
-    },
-    "en:yeast": {
-      "file": "en_yeast"
-    },
-    "en:yogurt": {
-      "file": "en_yogurt"
+    "garlic": {
+      "file": "garlic"
     },
     "generic": {
       "file": "generic"
+    },
+    "ghee": {
+      "file": "ghee"
+    },
+    "ginger": {
+      "file": "ginger"
+    },
+    "goat-cheese": {
+      "file": "goat-cheese"
+    },
+    "gouda": {
+      "file": "gouda"
+    },
+    "grana-padano": {
+      "file": "grana-padano"
+    },
+    "green-bean": {
+      "file": "green-bean"
+    },
+    "green-olive": {
+      "file": "green-olive"
+    },
+    "green-peppercorn": {
+      "file": "green-peppercorn"
+    },
+    "halloumi": {
+      "file": "halloumi"
+    },
+    "ham": {
+      "file": "ham"
+    },
+    "harissa": {
+      "file": "harissa"
+    },
+    "hazelnut": {
+      "file": "hazelnut"
+    },
+    "herbes-de-provence": {
+      "file": "herbes-de-provence"
+    },
+    "herbs": {
+      "file": "herbs"
+    },
+    "honey": {
+      "file": "honey"
+    },
+    "horseradish": {
+      "file": "horseradish"
+    },
+    "hot-sauce": {
+      "file": "hot-sauce"
+    },
+    "hummus": {
+      "file": "hummus"
+    },
+    "icing-sugar": {
+      "file": "icing-sugar"
+    },
+    "jerusalem-artichoke": {
+      "file": "jerusalem-artichoke"
+    },
+    "juniper-berry": {
+      "file": "juniper-berry"
+    },
+    "kale": {
+      "file": "kale"
+    },
+    "kefir": {
+      "file": "kefir"
+    },
+    "ketchup": {
+      "file": "ketchup"
+    },
+    "kiwi": {
+      "file": "kiwi"
+    },
+    "lamb": {
+      "file": "lamb"
+    },
+    "lasagne-sheets": {
+      "file": "lasagne-sheets"
+    },
+    "leek": {
+      "file": "leek"
+    },
+    "legumes": {
+      "file": "legumes"
+    },
+    "lemon": {
+      "file": "lemon"
+    },
+    "lemongrass": {
+      "file": "lemongrass"
+    },
+    "lentil": {
+      "file": "lentil"
+    },
+    "lettuce": {
+      "file": "lettuce"
+    },
+    "lime": {
+      "file": "lime"
+    },
+    "lobster": {
+      "file": "lobster"
+    },
+    "mackerel": {
+      "file": "mackerel"
+    },
+    "mandarin": {
+      "file": "mandarin"
+    },
+    "mango": {
+      "file": "mango"
+    },
+    "maple-syrup": {
+      "file": "maple-syrup"
+    },
+    "margarine": {
+      "file": "margarine"
+    },
+    "marjoram": {
+      "file": "marjoram"
+    },
+    "marmalade": {
+      "file": "marmalade"
+    },
+    "mascarpone": {
+      "file": "mascarpone"
+    },
+    "mayonnaise": {
+      "file": "mayonnaise"
+    },
+    "meatball": {
+      "file": "meatball"
+    },
+    "meats": {
+      "file": "meats"
+    },
+    "melon": {
+      "file": "melon"
+    },
+    "milk": {
+      "file": "milk"
+    },
+    "minced-beef": {
+      "file": "minced-beef"
+    },
+    "mint": {
+      "file": "mint"
+    },
+    "miso": {
+      "file": "miso"
+    },
+    "mixed-nuts": {
+      "file": "mixed-nuts"
+    },
+    "mixed-salad-leaves": {
+      "file": "mixed-salad-leaves"
+    },
+    "mountain-cheese": {
+      "file": "mountain-cheese"
+    },
+    "mozzarella": {
+      "file": "mozzarella"
+    },
+    "mushrooms": {
+      "file": "mushrooms"
+    },
+    "mussel": {
+      "file": "mussel"
+    },
+    "mustard": {
+      "file": "mustard"
+    },
+    "noodles": {
+      "file": "noodles"
+    },
+    "nutmeg": {
+      "file": "nutmeg"
+    },
+    "nuts-and-seeds": {
+      "file": "nuts-and-seeds"
+    },
+    "okra": {
+      "file": "okra"
+    },
+    "olive-oil": {
+      "file": "olive-oil"
+    },
+    "onion": {
+      "file": "onion"
+    },
+    "orange": {
+      "file": "orange"
+    },
+    "oregano": {
+      "file": "oregano"
+    },
+    "oyster": {
+      "file": "oyster"
+    },
+    "pak-choi": {
+      "file": "pak-choi"
+    },
+    "paprika": {
+      "file": "paprika"
+    },
+    "parmesan": {
+      "file": "parmesan"
+    },
+    "parsley": {
+      "file": "parsley"
+    },
+    "parsnip": {
+      "file": "parsnip"
+    },
+    "pasta": {
+      "file": "pasta"
+    },
+    "pea": {
+      "file": "pea"
+    },
+    "peach": {
+      "file": "peach"
+    },
+    "peanut": {
+      "file": "peanut"
+    },
+    "peanut-butter": {
+      "file": "peanut-butter"
+    },
+    "pear": {
+      "file": "pear"
+    },
+    "pecorino": {
+      "file": "pecorino"
+    },
+    "penne": {
+      "file": "penne"
+    },
+    "peppercorn": {
+      "file": "peppercorn"
+    },
+    "pesto": {
+      "file": "pesto"
+    },
+    "pine-nuts": {
+      "file": "pine-nuts"
+    },
+    "pineapple": {
+      "file": "pineapple"
+    },
+    "pistachio": {
+      "file": "pistachio"
+    },
+    "pita-bread": {
+      "file": "pita-bread"
+    },
+    "pizza-dough": {
+      "file": "pizza-dough"
+    },
+    "plum": {
+      "file": "plum"
+    },
+    "pomegranate": {
+      "file": "pomegranate"
+    },
+    "pork": {
+      "file": "pork"
+    },
+    "pork-belly": {
+      "file": "pork-belly"
+    },
+    "pork-loin": {
+      "file": "pork-loin"
+    },
+    "pork-shoulder": {
+      "file": "pork-shoulder"
+    },
+    "potato": {
+      "file": "potato"
+    },
+    "poultry": {
+      "file": "poultry"
+    },
+    "prawn": {
+      "file": "prawn"
+    },
+    "puff-pastry": {
+      "file": "puff-pastry"
+    },
+    "pumpkin": {
+      "file": "pumpkin"
+    },
+    "pumpkin-seed": {
+      "file": "pumpkin-seed"
+    },
+    "quinoa": {
+      "file": "quinoa"
+    },
+    "radicchio": {
+      "file": "radicchio"
+    },
+    "radish": {
+      "file": "radish"
+    },
+    "raisins": {
+      "file": "raisins"
+    },
+    "raspberry": {
+      "file": "raspberry"
+    },
+    "red-cabbage": {
+      "file": "red-cabbage"
+    },
+    "red-kidney-bean": {
+      "file": "red-kidney-bean"
+    },
+    "red-onion": {
+      "file": "red-onion"
+    },
+    "red-wine": {
+      "file": "red-wine"
+    },
+    "red-wine-vinegar": {
+      "file": "red-wine-vinegar"
+    },
+    "rhubarb": {
+      "file": "rhubarb"
+    },
+    "rice": {
+      "file": "rice"
+    },
+    "rice-vinegar": {
+      "file": "rice-vinegar"
+    },
+    "ricotta": {
+      "file": "ricotta"
+    },
+    "rocket": {
+      "file": "rocket"
+    },
+    "rolled-oats": {
+      "file": "rolled-oats"
+    },
+    "romaine-lettuce": {
+      "file": "romaine-lettuce"
+    },
+    "rosemary": {
+      "file": "rosemary"
+    },
+    "sage": {
+      "file": "sage"
+    },
+    "salmon": {
+      "file": "salmon"
+    },
+    "salt": {
+      "file": "salt"
+    },
+    "sardine": {
+      "file": "sardine"
+    },
+    "sauces": {
+      "file": "sauces"
+    },
+    "sauerkraut": {
+      "file": "sauerkraut"
+    },
+    "sausage": {
+      "file": "sausage"
+    },
+    "scallop": {
+      "file": "scallop"
+    },
+    "seafood": {
+      "file": "seafood"
+    },
+    "seitan": {
+      "file": "seitan"
+    },
+    "semolina": {
+      "file": "semolina"
+    },
+    "sesame-oil": {
+      "file": "sesame-oil"
+    },
+    "sesame-seeds": {
+      "file": "sesame-seeds"
+    },
+    "shallot": {
+      "file": "shallot"
+    },
+    "smoked-salmon": {
+      "file": "smoked-salmon"
+    },
+    "smoked-sausage": {
+      "file": "smoked-sausage"
+    },
+    "snow-pea": {
+      "file": "snow-pea"
+    },
+    "sole": {
+      "file": "sole"
+    },
+    "sorrel": {
+      "file": "sorrel"
+    },
+    "soy-sauce": {
+      "file": "soy-sauce"
+    },
+    "spaghetti": {
+      "file": "spaghetti"
+    },
+    "spelt-flour": {
+      "file": "spelt-flour"
+    },
+    "spices": {
+      "file": "spices"
+    },
+    "spinach": {
+      "file": "spinach"
+    },
+    "spring-onion": {
+      "file": "spring-onion"
+    },
+    "squid": {
+      "file": "squid"
+    },
+    "star-anise": {
+      "file": "star-anise"
+    },
+    "stocks": {
+      "file": "stocks"
+    },
+    "strawberry": {
+      "file": "strawberry"
+    },
+    "strawberry-jam": {
+      "file": "strawberry-jam"
+    },
+    "sugar": {
+      "file": "sugar"
+    },
+    "sumac": {
+      "file": "sumac"
+    },
+    "sunflower-oil": {
+      "file": "sunflower-oil"
+    },
+    "sunflower-seeds": {
+      "file": "sunflower-seeds"
+    },
+    "sweet-potato": {
+      "file": "sweet-potato"
+    },
+    "sweetcorn": {
+      "file": "sweetcorn"
+    },
+    "tagliatelle": {
+      "file": "tagliatelle"
+    },
+    "tahini": {
+      "file": "tahini"
+    },
+    "tarragon": {
+      "file": "tarragon"
+    },
+    "thyme": {
+      "file": "thyme"
+    },
+    "tofu": {
+      "file": "tofu"
+    },
+    "tomato": {
+      "file": "tomato"
+    },
+    "tomato-paste": {
+      "file": "tomato-paste"
+    },
+    "tomato-sauce": {
+      "file": "tomato-sauce"
+    },
+    "tortilla": {
+      "file": "tortilla"
+    },
+    "trout": {
+      "file": "trout"
+    },
+    "tuna": {
+      "file": "tuna"
+    },
+    "tuna-in-oil": {
+      "file": "tuna-in-oil"
+    },
+    "turkey": {
+      "file": "turkey"
+    },
+    "turmeric": {
+      "file": "turmeric"
+    },
+    "turnip": {
+      "file": "turnip"
+    },
+    "vanilla": {
+      "file": "vanilla"
+    },
+    "veal": {
+      "file": "veal"
+    },
+    "vegetable-stock": {
+      "file": "vegetable-stock"
+    },
+    "vegetables": {
+      "file": "vegetables"
+    },
+    "venison": {
+      "file": "venison"
+    },
+    "vinegars": {
+      "file": "vinegars"
+    },
+    "virgin-coconut-oil": {
+      "file": "virgin-coconut-oil"
+    },
+    "walnut": {
+      "file": "walnut"
+    },
+    "wasabi": {
+      "file": "wasabi"
+    },
+    "water": {
+      "file": "water"
+    },
+    "watercress": {
+      "file": "watercress"
+    },
+    "white-bean": {
+      "file": "white-bean"
+    },
+    "white-pepper": {
+      "file": "white-pepper"
+    },
+    "white-wine": {
+      "file": "white-wine"
+    },
+    "white-wine-vinegar": {
+      "file": "white-wine-vinegar"
+    },
+    "whole-wheat-flour": {
+      "file": "whole-wheat-flour"
+    },
+    "wild-rice": {
+      "file": "wild-rice"
+    },
+    "yeast": {
+      "file": "yeast"
+    },
+    "yogurt": {
+      "file": "yogurt"
     }
   }
 }

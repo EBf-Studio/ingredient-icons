@@ -1,13 +1,13 @@
 // Moves the chosen candidates from the sources' inbox/ to raw/, as PNG, and clears
 // the other candidates of those slugs. --discard clears a slug's candidates without
 // picking any (a slug dropped from the batch).
-// Run: bun run pick en:honey=2 en:dill=1 [--discard en:oregano …]
+// Run: bun run pick honey=2 dill=1 [--discard oregano …]
 
 import { readFile, readdir, rm } from "node:fs/promises"
 import path from "node:path"
 import sharp from "sharp"
 
-import { GENERIC_ID, fileName, parseCandidate, sourcesDir } from "./layout"
+import { parseCandidate, sourcesDir } from "./layout"
 
 const sources = sourcesDir()
 const inbox = path.join(sources, "inbox")
@@ -21,12 +21,12 @@ const args = process.argv.slice(2)
 const discardAt = args.indexOf("--discard")
 const discards = discardAt === -1 ? [] : args.slice(discardAt + 1)
 const picks = (discardAt === -1 ? args : args.slice(0, discardAt)).map((arg) => {
-  const match = new RegExp(`^(${GENERIC_ID}|[a-z]{2}:[^=]+)=(\\d+)$`).exec(arg)
+  const match = /^([a-z0-9-]+)=(\d+)$/.exec(arg)
   if (!match) throw new Error(`Expected <slug>=<candidate>, got ${arg}`)
   const slug = match[1]!
   const n = Number(match[2])
   if (!subjects.has(slug)) throw new Error(`${slug} is not in subjects.json`)
-  const chosen = candidates.find((c) => c.file === fileName(slug) && c.n === n)
+  const chosen = candidates.find((c) => c.file === slug && c.n === n)
   if (!chosen) throw new Error(`No candidate ${n} for ${slug} in ${inbox}`)
   return { slug, chosen }
 })
@@ -39,7 +39,7 @@ for (const { chosen } of picks)
       throw new Error(`${chosen.name} is not a readable image`)
     })
 if (!picks.length && !discards.length) {
-  console.error("Usage: bun run pick en:honey=2 en:dill=1 [--discard en:oregano …]")
+  console.error("Usage: bun run pick honey=2 dill=1 [--discard oregano …]")
   process.exit(1)
 }
 
@@ -48,10 +48,10 @@ for (const { slug, chosen } of picks) {
   await sharp(path.join(inbox, chosen.name))
     .removeAlpha()
     .png()
-    .toFile(path.join(sources, "raw", `${fileName(slug)}.png`))
-  console.log(`${slug}: candidate ${chosen.n} → raw/${fileName(slug)}.png`)
+    .toFile(path.join(sources, "raw", `${slug}.png`))
+  console.log(`${slug}: candidate ${chosen.n} → raw/${slug}.png`)
 }
-const cleared = new Set([...picks.map((p) => p.slug), ...discards].map(fileName))
+const cleared = new Set([...picks.map((p) => p.slug), ...discards])
 for (const c of candidates) if (cleared.has(c.file)) await rm(path.join(inbox, c.name))
 if (discards.length) console.log(`Discarded the candidates of ${discards.join(" ")}`)
 

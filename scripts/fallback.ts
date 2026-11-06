@@ -1,26 +1,8 @@
-// Which icon an id shows: its own, else the nearest parent's. Same breadth-first walk
-// as findIcon in packages/core, over taxonomy.json's parent graph.
+// What origin/main shows today, for the review sheets: which icon each id falls back on is
+// iconOf in catalog.ts, over the catalog's parents.
 
-import { readFile } from "node:fs/promises"
-
-import { fileName, iconPath, type Manifest } from "./layout"
-
-export type Parents = Record<string, string[]>
-
-export async function readTaxonomy(): Promise<{ parents: Parents; release: string }> {
-  return JSON.parse(await readFile("taxonomy.json", "utf8"))
-}
-
-export function iconOf(id: string, icons: Set<string>, parents: Parents) {
-  let level = [id]
-  const seen = new Set(level)
-  for (let depth = 0; depth <= 6 && level.length; depth++) {
-    const hit = level.find((candidate) => icons.has(candidate))
-    if (hit) return hit
-    level = level.flatMap((candidate) => (parents[candidate] ?? []).filter((p) => !seen.has(p) && seen.add(p)))
-  }
-  return undefined
-}
+import { iconOf, readCatalog } from "./catalog"
+import { iconPath, type Manifest } from "./layout"
 
 /**
  * What origin/main shows today, read from git rather than from this checkout, whose
@@ -42,14 +24,14 @@ export async function onMain() {
   const manifest: Manifest = json("manifest.json")
   const lock: { raws: Record<string, string> } = json("build.lock.json")
   const icons = new Set(Object.keys(manifest.icons))
-  const { parents } = await readTaxonomy()
+  const catalog = await readCatalog()
   return {
     icons,
     raws: lock.raws,
     /** The icon an id shows on main, and its 256 px picture. */
     shown(id: string) {
-      const hit = iconOf(id, icons, parents)
-      const image = hit && show(iconPath("png", 256, fileName(hit)))
+      const hit = iconOf(id, icons, catalog)
+      const image = hit && show(iconPath("png", 256, hit))
       return hit && image ? { id: hit, image: Buffer.from(image) } : undefined
     },
   }

@@ -1,36 +1,24 @@
 import { describe, expect, test } from "bun:test"
 
-import { CDN_URL, findIcon, GENERIC_ID, iconName, iconPath, iconUrl, ids, TAXONOMY_COMMIT, TAXONOMY_RELEASE } from "./index"
+import catalog from "../catalog.json"
+import { CATALOG_RELEASE, CDN_URL, GENERIC_ID, iconPath, iconUrl, ids } from "./index"
 
-describe("findIcon", () => {
-  test("an id with its own icon", () => {
-    expect(findIcon("en:shallot")).toEqual({ id: "en:shallot", file: "en_shallot", exact: true })
-  })
-
-  test("an id without one takes its closest ancestor's", () => {
-    expect(findIcon("en:peeled-tomatoes")).toEqual({ id: "en:tomato", file: "en_tomato", exact: false })
-  })
-
-  test("a parent Open Food Facts names by a synonym still leads up the taxonomy", () => {
-    // ingredients.txt writes "< en: sheeps milk"; the entry is en:sheep-milk.
-    expect(findIcon("en:whole-sheep-milk")).toEqual({ id: "en:milk", file: "en_milk", exact: false })
-  })
-
-  test("an unknown id has none", () => {
-    expect(findIcon("en:not-an-ingredient")).toBeUndefined()
-  })
-})
-
-test("paths and URLs point at the WebP file of the size asked", () => {
-  expect(iconPath("en:shallot")).toBe("icons/webp/128/en_shallot.webp")
-  expect(iconUrl("en:shallot", { size: 64 })).toBe(`${CDN_URL}/icons/webp/64/en_shallot.webp`)
-  expect(iconUrl("en:shallot", { baseUrl: "https://example.com/i/" })).toBe(
-    "https://example.com/i/icons/webp/128/en_shallot.webp",
+test("paths and URLs point at the WebP file of the size asked, named by catalog id", () => {
+  expect(iconPath("shallot")).toBe("icons/webp/128/shallot.webp")
+  expect(iconUrl("shallot", { size: 64 })).toBe(`${CDN_URL}/icons/webp/64/shallot.webp`)
+  expect(iconUrl("shallot", { baseUrl: "https://example.com/i/" })).toBe(
+    "https://example.com/i/icons/webp/128/shallot.webp",
   )
 })
 
-test("names come from the taxonomy", () => {
-  expect(iconName("en:shallot", "fr")).toBe("échalote")
+test("a family has its own icon", () => {
+  expect(iconPath("cheeses")).toBe("icons/webp/128/cheeses.webp")
+})
+
+test("an id without its own icon has none: no fallback in the package", () => {
+  expect(iconPath("acorn-squash")).toBeUndefined()
+  expect(iconPath("en:shallot")).toBeUndefined()
+  expect(iconUrl("unicorn-steak")).toBeUndefined()
 })
 
 describe("the generic icon", () => {
@@ -39,28 +27,27 @@ describe("the generic icon", () => {
     expect(ids).toContain(GENERIC_ID)
   })
 
-  test("is found, with its path and URL", () => {
-    expect(findIcon(GENERIC_ID)).toEqual({ id: "generic", file: "generic", exact: true })
-    expect(iconPath(GENERIC_ID, 64)).toBe("icons/webp/64/generic.webp")
-    expect(iconUrl(GENERIC_ID)).toBe(`${CDN_URL}/icons/webp/128/generic.webp`)
-  })
-
-  test("is what to show for an id nothing matches: findIcon leaves that choice to the caller", () => {
-    expect(findIcon("en:not-an-ingredient")).toBeUndefined()
-    expect(iconUrl("en:not-an-ingredient") ?? iconUrl(GENERIC_ID)).toBe(`${CDN_URL}/icons/webp/128/generic.webp`)
-  })
-
-  test("is named in both locales", () => {
-    expect(iconName(GENERIC_ID)).toBe("Ingredient")
-    expect(iconName(GENERIC_ID, "fr")).toBe("Ingrédient")
+  test("is what to show for an id that has no icon", () => {
+    expect(iconUrl("unicorn-steak") ?? iconUrl(GENERIC_ID)).toBe(
+      `${CDN_URL}/icons/webp/128/generic.webp`,
+    )
   })
 })
 
-test("every id ships", () => {
-  expect(ids.length).toBeGreaterThan(200)
-})
+describe("the catalog snapshot", () => {
+  test("ships with the package, from the release it exports", () => {
+    expect(catalog.release).toBe(CATALOG_RELEASE)
+    expect(catalog.license).toBe("CC0-1.0")
+  })
 
-test("the taxonomy release is exported with its commit", () => {
-  expect(TAXONOMY_RELEASE).toMatch(/^v\d+\.\d+\.\d+$/)
-  expect(TAXONOMY_COMMIT).toMatch(/^[0-9a-f]{40}$/)
+  test("keys every icon, the generic one aside", () => {
+    for (const id of ids) if (id !== GENERIC_ID) expect(catalog.entries).toHaveProperty([id])
+  })
+
+  test("gives each catalog ingredient its parent, its family and its names", () => {
+    expect(catalog.entries["shallot"]).toMatchObject({
+      family: "vegetables",
+      names: { en: { name: "shallot" }, fr: { name: "échalote" } },
+    })
+  })
 })

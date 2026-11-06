@@ -10,7 +10,7 @@ import sharp, { type OverlayOptions } from "sharp"
 
 import { DARK, LIGHT, TINY, ZOOM, onBackground, text, tinyZoomed } from "./draw"
 import { onMain } from "./fallback"
-import { fileName, iconPath } from "./layout"
+import { iconPath } from "./layout"
 
 const OUT = ".out/sheet"
 const ROWS_PER_SHEET = 12
@@ -74,7 +74,7 @@ async function drawSheet(rows: string[], out: string) {
       texts.push(text(x[2]! + 30, y + CELL / 2 + 5, "removed", 13, 600, "#a0522d"))
       continue
     }
-    const icon = iconPath("png", 256, fileName(id))
+    const icon = iconPath("png", 256, id)
     layers.push({ input: await onBackground(icon, CELL, LIGHT), left: x[2]!, top: y })
     layers.push({ input: await onBackground(icon, CELL, DARK), left: x[3]!, top: y })
     layers.push({ input: await tinyZoomed(icon), left: x[4]!, top: y + (CELL - TINY * ZOOM) / 2 })

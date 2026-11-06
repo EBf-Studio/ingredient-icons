@@ -18,7 +18,6 @@ import {
   PATH_TEMPLATE,
   SIZES,
   STYLE_VERSION,
-  fileName,
   iconPath,
   sha256,
   sourcesDir,
@@ -62,7 +61,7 @@ const ids: string[] = []
 const missing: string[] = []
 const raws: Lock["raws"] = {}
 for (const { slug: id } of [...subjects].sort((a, b) => a.slug.localeCompare(b.slug))) {
-  if (!rawFiles.has(`${fileName(id)}.png`)) missing.push(id)
+  if (!rawFiles.has(`${id}.png`)) missing.push(id)
   else {
     ids.push(id)
     raws[id] = sha256(await readFile(rawPath(id)))
@@ -77,7 +76,7 @@ if (dropped.length && !prune)
   )
 
 const outputs = (id: string) =>
-  (Object.keys(SIZES) as Format[]).flatMap((format) => SIZES[format].map((size) => iconPath(format, size, fileName(id))))
+  (Object.keys(SIZES) as Format[]).flatMap((format) => SIZES[format].map((size) => iconPath(format, size, id)))
 const stale = ids.filter(
   (id) => force || lock.pipeline !== pipeline || lock.raws[id] !== raws[id] || !outputs(id).every((file) => existsSync(file)),
 )
@@ -92,13 +91,13 @@ await pool(stale, availableParallelism(), async (id) => {
     for (const size of SIZES[format]) {
       const resized = sharp(master).resize(size, size, RESIZE)
       const out = format === "png" ? resized.png(ENCODING.png) : resized.webp(ENCODING.webp)
-      await out.toFile(iconPath(format, size, fileName(id)))
+      await out.toFile(iconPath(format, size, id))
     }
   if (++done % 25 === 0) console.log(`${done}/${stale.length}`)
 })
 
 // Files of icons that no longer have a subject or a raw, and folders of formats or sizes no longer built.
-const files = new Set(ids.map(fileName))
+const files = new Set(ids)
 const removed: string[] = []
 for (const format of await readdir(ICONS_DIR)) {
   const sizes: readonly number[] = SIZES[format as Format] ?? []
@@ -117,7 +116,7 @@ for (const format of await readdir(ICONS_DIR)) {
   }
 }
 
-const icons: Manifest["icons"] = Object.fromEntries(ids.map((id) => [id, { file: fileName(id) }]))
+const icons: Manifest["icons"] = Object.fromEntries(ids.map((id) => [id, { file: id }]))
 const manifest: Manifest = { style: STYLE_VERSION, sizes: SIZES, path: PATH_TEMPLATE, icons }
 await writeFile("manifest.json", `${JSON.stringify(manifest, null, 2)}\n`)
 await writeFile(LOCK, `${JSON.stringify({ pipeline, raws } satisfies Lock, null, 2)}\n`)
@@ -132,7 +131,7 @@ if (missing.length) console.log(`${missing.length} subjects without a raw: ${mis
 console.log(`Review (${stale.length ? "rebuilt icons" : "every icon"}): ${path.resolve(".out/review.html")}`)
 
 function rawPath(id: string) {
-  return path.join(sources, "raw", `${fileName(id)}.png`)
+  return path.join(sources, "raw", `${id}.png`)
 }
 
 /**
@@ -163,7 +162,7 @@ function checkSources(dir: string) {
 /** Each icon large, in a list row and inline in text, on light and dark backgrounds. */
 function reviewPage(ids: string[]) {
   const card = (id: string) => {
-    const src = `../${iconPath("webp", 256, fileName(id))}`
+    const src = `../${iconPath("webp", 256, id)}`
     return `<figure><img class="big" src="${src}"><figcaption><img class="row" src="${src}">${id}</figcaption><p>in text <img class="inline" src="${src}"> ${id.slice(id.indexOf(":") + 1)}</p></figure>`
   }
   const grid = ids.map(card).join("")
