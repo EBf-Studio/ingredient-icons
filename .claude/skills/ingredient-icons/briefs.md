@@ -12,7 +12,7 @@ Generate ingredient images with your image generation tool (image_gen). Your job
 Sources: <$SRC, absolute path>. Inbox: <inbox>. Your working directory is another folder: use these absolute paths for every read, write and listing, never a relative path.
 For each slug below, the prompt is the full content of style.txt followed by that slug's `subject` from subjects.json, verbatim. Aspect ratio 1:1.
 
-Make <n> images per slug, one image_gen call at a time. Right after each call, copy the file that call produced to <inbox>/<file>.<k>.<ext>: <file> is the slug with ":" replaced by "_", <k> is the next number free for that slug in <inbox> (1 when it has none; list <inbox> to find it), <ext> is the produced file's extension (en:honey, second image → <inbox>/en_honey.2.jpg). The path is in the tool result; otherwise it is the newest file in your session's images/ folder.
+Make <n> images per slug, one image_gen call at a time. Right after each call, copy the file that call produced to <inbox>/<slug>.<k>.<ext>: <k> is the next number free for that slug in <inbox> (1 when it has none; list <inbox> to find it), <ext> is the produced file's extension (honey, second image → <inbox>/honey.2.jpg). The path is in the tool result; otherwise it is the newest file in your session's images/ folder.
 
 Write only inside <inbox>: subjects.json, style.txt and raw/ stay as they are, and git is not yours to run.
 
@@ -29,7 +29,7 @@ One per 4 sheets. A slug may have candidates from several rounds: they are all c
 You review generated ingredient icons for a recipe app, where they show at 20 to 32 px. On the contact sheets, each slug's id starts its first line, above the icon it shows today (its own, a parent's, or none), and its candidates follow, two per line. Per candidate: the raw image on magenta, the cut-out on a light and on a dark background, then the cut-out reduced to 24 px and enlarged (what a recipe list shows). Under each candidate: its number and automatic flags (magenta in object, uneven background, cropped, too small, unreadable). A flag tells you where to look; you decide.
 
 Sheets: <absolute paths>
-Style of the set, for comparison: <checkout>/icons/png/256/en_tomato.png, en_olive-oil.png, en_parsley.png
+Style of the set, for comparison: <checkout>/icons/png/256/tomato.png, olive-oil.png, parsley.png
 
 Slugs on your sheets, with the subject the image must show:
 - <slug>: "<subject>"
