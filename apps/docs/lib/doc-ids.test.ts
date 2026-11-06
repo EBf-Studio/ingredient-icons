@@ -4,7 +4,7 @@
 import { describe, expect, test } from 'bun:test';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { findIcon, ids } from '@ingredient-icons/core';
+import { findIcon, GENERIC_ID, ids } from '@ingredient-icons/core';
 import { FALLBACK_PRESETS } from './fallback-presets';
 
 const content = path.join(import.meta.dir, '../content/docs');
@@ -23,7 +23,7 @@ describe('ids cited in the docs', () => {
 
   test('<IconRow> ids have their own icon', () => {
     for (const { file, list } of cited(/<IconRow ids=\{\[([^\]]+)\]\}/g))
-      for (const [, id] of list.matchAll(/"([^"]+)"/g)) expect({ file, id, own: ids.includes(id!) }).toEqual({ file, id, own: true });
+      for (const [, id] of list.matchAll(/"([^"]+)"/g)) expect({ file, id, own: id !== GENERIC_ID && ids.includes(id!) }).toEqual({ file, id, own: true });
   });
 
   test('fallback presets find an icon', () => {

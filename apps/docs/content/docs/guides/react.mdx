@@ -4,7 +4,7 @@ description: An ingredient icon component for React and React DOM.
 icon: Atom
 ---
 
-The package has no React dependency: `iconUrl` returns a string you put in an `<img>`. A small component of your own keeps sizes and placeholders in one place.
+The package has no React dependency: `iconUrl` returns a string you put in an `<img>`. A small component of your own keeps sizes and the fallback to the generic icon in one place.
 
 ## A typed component
 
@@ -27,7 +27,8 @@ function fileSize(size: number): IconSize {
 
 export function IngredientIcon({ id, size = 40 }: Props) {
   // An ingredient the taxonomy cannot place gets the generic icon, a paper grocery bag.
-  const src = iconUrl(id, { size: fileSize(size) }) ?? iconUrl(GENERIC_ID, { size: fileSize(size) })!
+  const options = { size: fileSize(size) }
+  const src = iconUrl(id, options) ?? iconUrl(GENERIC_ID, options)!
   return <img src={src} alt="" width={size} height={size} loading="lazy" decoding="async" />
 }
 ```

@@ -61,7 +61,7 @@ export function Ingredient({ id, quantity, name }) {
   )
 }`;
 
-const urlCode = `import { findIcon, iconUrl } from "${packageName}"
+const urlCode = `import { findIcon, GENERIC_ID, iconUrl } from "${packageName}"
 
 iconUrl("en:peeled-tomatoes")
 // https://cdn.jsdelivr.net/npm/${packageName}@${version}/icons/webp/128/en_tomato.webp
@@ -70,7 +70,10 @@ iconUrl("en:shallot", { size: 256, baseUrl: "https://cdn.example.com/ingredients
 // https://cdn.example.com/ingredients/icons/webp/256/en_shallot.webp
 
 findIcon("en:unicorn-steak")
-// undefined: show your own placeholder`;
+// undefined: the fallback is yours
+
+iconUrl("en:unicorn-steak") ?? iconUrl(GENERIC_ID)
+// the generic icon, a paper grocery bag`;
 
 const LADDER = [64, 128, 256, 512] as const;
 

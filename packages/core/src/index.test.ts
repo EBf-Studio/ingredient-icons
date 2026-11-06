@@ -46,6 +46,7 @@ describe("the generic icon", () => {
   })
 
   test("is what to show for an id nothing matches: findIcon leaves that choice to the caller", () => {
+    expect(findIcon("en:not-an-ingredient")).toBeUndefined()
     expect(iconUrl("en:not-an-ingredient") ?? iconUrl(GENERIC_ID)).toBe(`${CDN_URL}/icons/webp/128/generic.webp`)
   })
 

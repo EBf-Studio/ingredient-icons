@@ -1,7 +1,7 @@
 // What adding icons for some ids would change, before generating them: whether each
 // id exists in the taxonomy, what it shows today, and which ids would switch to it.
 // "Today" counts the raws already in the sources but not published yet.
-// A generic icon (en:seed) can take over ids it draws badly (pepper, sesame): read the takeovers.
+// A broad icon (en:seed) can take over ids it draws badly (pepper, sesame): read the takeovers.
 // The reserved generic icon (GENERIC_ID) is no taxonomy entry and nothing falls back on it: skipped.
 // Run: bun run impact en:yuzu en:seed …
 

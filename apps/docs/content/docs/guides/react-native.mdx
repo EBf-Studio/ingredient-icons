@@ -19,9 +19,9 @@ import { Image } from "expo-image"
 import { GENERIC_ID, iconUrl } from "@ingredient-icons/core"
 
 export function IngredientIcon({ id, size = 40 }: { id: string; size?: number }) {
-  const file = size <= 42 ? 128 : 256
+  const options = { size: size <= 42 ? 128 : 256 } as const
   // An ingredient the taxonomy cannot place gets the generic icon, a paper grocery bag.
-  const uri = iconUrl(id, { size: file }) ?? iconUrl(GENERIC_ID, { size: file })!
+  const uri = iconUrl(id, options) ?? iconUrl(GENERIC_ID, options)!
   return (
     <Image
       source={{ uri }}
