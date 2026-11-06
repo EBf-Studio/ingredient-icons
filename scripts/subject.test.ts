@@ -29,6 +29,10 @@ describe("setSubject", () => {
     expect(setSubject(file, "en:pošip", "a bunch of white grapes").added).toBe(true)
   })
 
+  test("accepts the reserved generic id, which is not an Open Food Facts one", () => {
+    expect(setSubject(file, "generic", "a paper grocery bag").added).toBe(true)
+  })
+
   test("refuses a file whose slug is already there twice, or not one entry per line", () => {
     const twice = file.replace("en:onion", "en:tomato")
     expect(() => setSubject(twice, "en:tomato", "a green tomato")).toThrow("more than once")

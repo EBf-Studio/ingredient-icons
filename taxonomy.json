@@ -18508,6 +18508,10 @@
       "en": "chicken broth",
       "fr": "Bouillon de poulet"
     },
+    "en:chicken-fillet": {
+      "en": "chicken fillet",
+      "fr": "filet de poulet"
+    },
     "en:chicken-liver": {
       "en": "chicken liver",
       "fr": "foie de poulet"
@@ -18535,6 +18539,10 @@
     "en:chives": {
       "en": "chives",
       "fr": "ciboulette"
+    },
+    "en:chopped-tomato": {
+      "en": "chopped tomato",
+      "fr": "tomate concassée"
     },
     "en:chorizo": {
       "en": "chorizo"
@@ -18590,6 +18598,10 @@
     "en:coriander-seed": {
       "en": "coriander seed",
       "fr": "graine de coriandre"
+    },
+    "en:corn": {
+      "en": "corn",
+      "fr": "maïs"
     },
     "en:cornmeal": {
       "en": "cornmeal",
@@ -18650,6 +18662,14 @@
     "en:dill": {
       "en": "dill",
       "fr": "aneth"
+    },
+    "en:dough": {
+      "en": "dough",
+      "fr": "pâte"
+    },
+    "en:dried-thyme": {
+      "en": "dried thyme",
+      "fr": "thym déshydraté"
     },
     "en:dried-tomatoes": {
       "en": "dried tomatoes"
@@ -19137,6 +19157,10 @@
       "en": "pomegranate",
       "fr": "grenade"
     },
+    "en:pork": {
+      "en": "pork",
+      "fr": "porc"
+    },
     "en:pork-belly": {
       "en": "pork belly",
       "fr": "ventre de porc"
@@ -19156,6 +19180,10 @@
     "en:potato": {
       "en": "potato",
       "fr": "pomme de terre"
+    },
+    "en:poultry-broth": {
+      "en": "poultry broth",
+      "fr": "bouillon de volaille"
     },
     "en:pulse": {
       "en": "pulse",
@@ -19233,6 +19261,10 @@
       "en": "rocket",
       "fr": "roquette"
     },
+    "en:romaine-lettuce": {
+      "en": "romaine lettuce",
+      "fr": "laitue romaine"
+    },
     "en:roquefort": {
       "en": "roquefort",
       "fr": "Roquefort au lait cru de Brebis"
@@ -19252,6 +19284,10 @@
     "en:sage": {
       "en": "sage",
       "fr": "sauge"
+    },
+    "en:salad": {
+      "en": "salad",
+      "fr": "salade"
     },
     "en:salmon": {
       "en": "salmon",
@@ -19287,6 +19323,10 @@
     "en:seitan": {
       "en": "seitan",
       "fr": "seitan"
+    },
+    "en:semolina": {
+      "en": "semolina",
+      "fr": "Semoule"
     },
     "en:semolina-flour": {
       "en": "semolina flour",

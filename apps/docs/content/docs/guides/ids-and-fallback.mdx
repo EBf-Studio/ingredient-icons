@@ -45,6 +45,14 @@ findIcon("en:not-an-ingredient")
 // undefined
 ```
 
+`findIcon` never guesses past the taxonomy: when it returns `undefined`, the fallback is yours. The package ships one for that case, the generic icon (a cluster of fresh ingredients), under the reserved id `GENERIC_ID`:
+
+```ts
+import { GENERIC_ID, iconUrl } from "@ingredient-icons/core"
+
+const src = iconUrl(id) ?? iconUrl(GENERIC_ID)!
+```
+
 ### How the walk works
 
 - It goes **level by level**: all parents first, then all grandparents. An ingredient with two parents gets the icon of whichever parent comes first in the taxonomy.

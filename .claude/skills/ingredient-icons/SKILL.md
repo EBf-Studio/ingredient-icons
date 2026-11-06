@@ -23,7 +23,7 @@ A stage ends with its own report; the next starts only on the user's request. Ne
 
 1. **Branches.** `bun run batch start`: checks the sources are clean and on `main`, updates it, and creates and pushes the sources' branch of this branch's name (or resumes it). `build` refuses to run while the sources are on another batch's branch.
 
-2. **List.** Propose ids to the user and run `bun run impact <ids…>` on them. Keep the ids marked ✓. Read every takeover: a generic icon (`en:seed`) takes over ids it may draw badly (`en:pepper`, `en:sesame`), and the fix is to add the better parent too, or drop the generic. Look at the icon each id shows today (`impact` prints its file): the new icon must read differently at 24 px (`en:chicken` is a drumstick, so `en:chicken-thigh` is a thigh without one). Done when the user has validated the list.
+2. **List.** Propose ids to the user and run `bun run impact <ids…>` on them. Keep the ids marked ✓. Read every takeover: a broad icon (`en:seed`) takes over ids it may draw badly (`en:pepper`, `en:sesame`), and the fix is to add the better parent too, or drop the broad one. Look at the icon each id shows today (`impact` prints its file): the new icon must read differently at 24 px (`en:chicken` is a drumstick, so `en:chicken-thigh` is a thigh without one). Done when the user has validated the list.
 
 3. **Subjects.** `bun run subject <id> "<sentence>"` per id: it adds the line to `$SRC/subjects.json`, or replaces that id's, and leaves the rest of the file as it is. A subject is one sentence: the object, its colours and the one or two features that identify it. The background is magenta, so:
    - describe pink or purple things by a neighbouring hue (pink peppercorns: coral-red; a red onion: deep red-purple);

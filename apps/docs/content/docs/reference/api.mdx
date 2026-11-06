@@ -7,7 +7,7 @@ icon: Braces
 ```ts
 import {
   findIcon, iconPath, iconUrl, iconName,
-  ids, sizes, CDN_URL, VERSION, STYLE, TAXONOMY_RELEASE, TAXONOMY_COMMIT,
+  GENERIC_ID, ids, sizes, CDN_URL, VERSION, STYLE, TAXONOMY_RELEASE, TAXONOMY_COMMIT,
   type Icon, type IconSize,
 } from "@ingredient-icons/core"
 ```
@@ -18,7 +18,7 @@ import {
 function findIcon(id: string): Icon | undefined
 ```
 
-The icon of an Open Food Facts ingredient id, or of its closest ancestor in the taxonomy when it has none of its own. `undefined` when no ancestor within six levels has one. See [Ids and fallback](/docs/guides/ids-and-fallback).
+The icon of an Open Food Facts ingredient id, or of its closest ancestor in the taxonomy when it has none of its own. `undefined` when no ancestor within six levels has one: the fallback is yours to pick, such as the generic icon (`GENERIC_ID`). See [Ids and fallback](/docs/guides/ids-and-fallback).
 
 ```ts
 findIcon("en:peeled-tomatoes") // { id: "en:tomato", file: "en_tomato", exact: false }
@@ -72,7 +72,7 @@ iconPath("en:shallot", 64) // "icons/webp/64/en_shallot.webp"
 function iconName(id: string, locale?: "en" | "fr"): string | undefined
 ```
 
-Name of an id that has its own icon, from the Open Food Facts taxonomy. `locale` defaults to `"en"`. No fallback: `undefined` for ids without an icon. See [Names](/docs/guides/names).
+Name of an id that has its own icon, from the Open Food Facts taxonomy. `locale` defaults to `"en"`. No fallback: `undefined` for ids without an icon. `"Ingredient"` (`"Ingrédient"`) for `GENERIC_ID`. See [Names](/docs/guides/names).
 
 ```ts
 iconName("en:shallot", "fr") // "échalote"
@@ -82,7 +82,8 @@ iconName("en:shallot", "fr") // "échalote"
 
 <TypeTable
   type={{
-    ids: { type: 'readonly string[]', description: 'Every id that has its own icon.' },
+    GENERIC_ID: { type: 'string', description: 'Id of the generic icon, a cluster of fresh ingredients: "generic". Not an Open Food Facts id. Show it for an ingredient findIcon cannot place: iconUrl(id) ?? iconUrl(GENERIC_ID).' },
+    ids: { type: 'readonly string[]', description: 'Every id that has its own icon, GENERIC_ID included.' },
     sizes: { type: 'readonly IconSize[]', description: 'Sizes shipped in the package: [64, 128, 256].' },
     CDN_URL: { type: 'string', description: 'jsDelivr URL of the package, pinned to its version. The default baseUrl.' },
     VERSION: { type: 'string', description: 'Version of the installed package.' },

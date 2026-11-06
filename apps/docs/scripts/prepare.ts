@@ -18,6 +18,8 @@ const taxonomy: { commit: string; parents: Record<string, string[]>; names: Reco
 const manifest: { icons: Record<string, { file: string }> } = JSON.parse(
   await readFile(path.join(root, "manifest.json"), "utf8"),
 )
+// The generic icon is no ingredient: out of the gallery, the search and the counts.
+delete manifest.icons[core.GENERIC_ID]
 const { version } = JSON.parse(await readFile(path.join(root, "packages/core/package.json"), "utf8"))
 
 // Gallery sections, in display order. An icon goes to the first section one of its

@@ -64,11 +64,14 @@ Ask for an ingredient that has no icon, and you get its closest ancestor's:
 <Resolves id="en:peeled-tomatoes" />
 
 ```ts
+import { GENERIC_ID, iconUrl } from "@ingredient-icons/core"
+
 iconUrl("en:peeled-tomatoes") // …/icons/webp/128/en_tomato.webp
 iconUrl("en:unicorn-steak") // undefined
+iconUrl("en:unicorn-steak") ?? iconUrl(GENERIC_ID) // …/icons/webp/128/generic.webp
 ```
 
-`iconUrl` returns `undefined` when neither the id nor any of its ancestors has an icon. Show a placeholder of your own, or nothing.
+`iconUrl` returns `undefined` when neither the id nor any of its ancestors has an icon. Show the generic icon (`GENERIC_ID`, a cluster of fresh ingredients), a placeholder of your own, or nothing.
 
 </Step>
 
@@ -78,7 +81,7 @@ iconUrl("en:unicorn-steak") // undefined
 
 <Cards>
   <Card title="Ids and fallback" href="/docs/guides/ids-and-fallback">Where ids come from, and how the fallback walks the taxonomy.</Card>
-  <Card title="React" href="/docs/guides/react">A typed component with sizes and a placeholder.</Card>
+  <Card title="React" href="/docs/guides/react">A typed component with sizes and the generic icon.</Card>
   <Card title="React Native" href="/docs/guides/react-native">With Expo Image and its disk cache.</Card>
   <Card title="API reference" href="/docs/reference/api">Every function and constant.</Card>
 </Cards>

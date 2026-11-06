@@ -7,7 +7,7 @@ import { readFile, readdir, rm } from "node:fs/promises"
 import path from "node:path"
 import sharp from "sharp"
 
-import { fileName, parseCandidate, sourcesDir } from "./layout"
+import { GENERIC_ID, fileName, parseCandidate, sourcesDir } from "./layout"
 
 const sources = sourcesDir()
 const inbox = path.join(sources, "inbox")
@@ -21,7 +21,7 @@ const args = process.argv.slice(2)
 const discardAt = args.indexOf("--discard")
 const discards = discardAt === -1 ? [] : args.slice(discardAt + 1)
 const picks = (discardAt === -1 ? args : args.slice(0, discardAt)).map((arg) => {
-  const match = /^([a-z]{2}:[^=]+)=(\d+)$/.exec(arg)
+  const match = new RegExp(`^(${GENERIC_ID}|[a-z]{2}:[^=]+)=(\\d+)$`).exec(arg)
   if (!match) throw new Error(`Expected <slug>=<candidate>, got ${arg}`)
   const slug = match[1]!
   const n = Number(match[2])

@@ -16,11 +16,12 @@ The package is plain JavaScript with no native code: it works in Expo Go and bar
 
 ```tsx title="components/IngredientIcon.tsx"
 import { Image } from "expo-image"
-import { iconUrl } from "@ingredient-icons/core"
+import { GENERIC_ID, iconUrl } from "@ingredient-icons/core"
 
 export function IngredientIcon({ id, size = 40 }: { id: string; size?: number }) {
-  const uri = iconUrl(id, { size: size <= 42 ? 128 : 256 })
-  if (!uri) return null
+  const options = { size: size <= 42 ? 128 : 256 } as const
+  // An ingredient the taxonomy cannot place gets the generic icon, a cluster of fresh ingredients.
+  const uri = iconUrl(id, options) ?? iconUrl(GENERIC_ID, options)!
   return (
     <Image
       source={{ uri }}
