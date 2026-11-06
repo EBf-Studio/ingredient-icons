@@ -1,42 +1,21 @@
 // The catalog snapshot: Marmalade's ingredient catalog (ids, parents, families, names), whose ids
 // key every icon. catalog.json ships with each release, CC0.
-// Run: bun run catalog — rewrites catalog.json from the build output of @marmalade/ingredient-catalog
+// Run: bun run catalog (rewrites catalog.json from the build output of @marmalade/ingredient-catalog
 // in a checkout of the recipe repository: $INGREDIENT_CATALOG (the package's folder), else
-// ../recipe/packages/ingredient-catalog. Run `bun run codegen` in that folder first.
+// ../recipe/packages/ingredient-catalog; run `bun run codegen` in that folder first).
 
 import { existsSync } from "node:fs"
 import { readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 
+import type { Catalog, CatalogNames } from "../packages/core/src/catalog"
+
 export const CATALOG_FILE = "catalog.json"
-
-/** Name and synonyms in one language. */
-export interface Names {
-  name?: string
-  synonyms: string[]
-}
-
-export interface CatalogEntry {
-  /** The catalog ingredient or family it falls under; none for a family. */
-  parent?: string
-  /** The family at the top of its parents; none for a family. */
-  family?: string
-  /** Per language (fr, en, es, it, de, pt): fr and en reviewed, the others from Wikidata. */
-  names: Partial<Record<string, Names>>
-}
-
-export interface Catalog {
-  /** The catalog release identifier, a hash of the catalog's content. */
-  release: string
-  license: "CC0-1.0"
-  /** Every family and catalog ingredient, by id. */
-  entries: Record<string, CatalogEntry>
-}
 
 /** What the snapshot reads of a catalog build (dist/data.js): its other fields stay out. */
 export interface CatalogBuild {
   release: string
-  entries: readonly { id: string; parent?: string; names: Partial<Record<string, Names>> }[]
+  entries: readonly { id: string; parent?: string; names: Partial<Record<string, CatalogNames>> }[]
 }
 
 /** The snapshot of a catalog build: ids, parents, families and names, sorted by id. */
