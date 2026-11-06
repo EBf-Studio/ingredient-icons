@@ -5,14 +5,14 @@
 import { readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 
-import { sourcesDir } from "./layout"
+import { GENERIC_ID, sourcesDir } from "./layout"
 
 const entry = (slug: string, subject: string) => `  { "slug": ${JSON.stringify(slug)}, "subject": ${JSON.stringify(subject)} }`
 
 /** subjects.json with that slug's subject set: its own line replaced, or a new last line. */
 export function setSubject(text: string, slug: string, subject: string) {
   // Taxonomy ids keep accents and other letters (en:pošip), never spaces, quotes or colons.
-  if (!/^[a-z]{2}:[^\s":,]+$/u.test(slug)) throw new Error(`Not an Open Food Facts id: ${slug}`)
+  if (slug !== GENERIC_ID && !/^[a-z]{2}:[^\s":,]+$/u.test(slug)) throw new Error(`Not an Open Food Facts id: ${slug}`)
   if (!subject.trim() || /\n/.test(subject)) throw new Error("The subject is one sentence on one line")
   const lines = text.split("\n")
   const at = lines.findIndex((line) => line.includes(`"slug": ${JSON.stringify(slug)},`))

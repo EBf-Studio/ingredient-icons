@@ -11,6 +11,12 @@ export const PATH_TEMPLATE = `${ICONS_DIR}/{format}/{size}/{file}.{format}`
 export const iconPath = (format: Format, size: number, file: string) =>
   path.join(ICONS_DIR, format, String(size), `${file}.${format}`)
 
+/**
+ * The icon to show for an ingredient that cannot be placed at all. A reserved id, not an
+ * Open Food Facts one: the scripts that check an id against the taxonomy let it through.
+ */
+export const GENERIC_ID = "generic" // the same as GENERIC_ID in packages/core
+
 /** "en:olive-oil" → "en_olive-oil": file names can't hold a colon on every system. */
 export const fileName = (id: string) => id.replace(":", "_")
 export const idOf = (file: string) => file.replace("_", ":")

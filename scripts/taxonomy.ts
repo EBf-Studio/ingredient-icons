@@ -11,14 +11,14 @@
 
 import { readFile, writeFile } from "node:fs/promises"
 
-import type { Manifest } from "./layout"
+import { GENERIC_ID, type Manifest } from "./layout"
 import { downloadTaxonomy, pinnedRelease } from "./off"
 
 const LOCALES = ["en", "fr"] as const
 
 const { release, commit, url, sha256, entries } = await downloadTaxonomy(process.argv[2] ?? (await pinnedRelease()))
 const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
-const unknown = Object.keys(manifest.icons).filter((id) => !entries[id])
+const unknown = Object.keys(manifest.icons).filter((id) => id !== GENERIC_ID && !entries[id])
 
 const parents: Record<string, string[]> = {}
 for (const id of Object.keys(entries).sort((a, b) => a.localeCompare(b))) {

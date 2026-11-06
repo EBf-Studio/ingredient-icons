@@ -2,6 +2,7 @@
 // id exists in the taxonomy, what it shows today, and which ids would switch to it.
 // "Today" counts the raws already in the sources but not published yet.
 // A generic icon (en:seed) can take over ids it draws badly (pepper, sesame): read the takeovers.
+// The reserved generic icon (GENERIC_ID) is no taxonomy entry and nothing falls back on it: skipped.
 // Run: bun run impact en:yuzu en:seed …
 
 import { existsSync } from "node:fs"
@@ -9,13 +10,15 @@ import { mkdir, readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 
 import { iconOf, readTaxonomy } from "./fallback"
-import { fileName, sourcesDir, type Manifest } from "./layout"
+import { GENERIC_ID, fileName, sourcesDir, type Manifest } from "./layout"
 import { downloadTaxonomy, type Entries } from "./off"
 
 const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
 const { parents, release } = await readTaxonomy()
-const proposed = process.argv.slice(2)
-if (!proposed.length) {
+const args = process.argv.slice(2)
+if (args.includes(GENERIC_ID)) console.log(`- ${GENERIC_ID}: reserved id, not an ingredient: nothing falls back on it, skipped`)
+const proposed = args.filter((id) => id !== GENERIC_ID)
+if (!args.length) {
   console.error("Usage: bun run impact en:yuzu en:seed …")
   process.exit(1)
 }
@@ -47,7 +50,7 @@ const exists = (id: string) => inGraph.has(id) || Object.hasOwn(entries, id)
 
 const next = new Set([...current, ...proposed.filter(exists)])
 
-const universe = (icons: Set<string>) => new Set([...Object.keys(parents), ...icons])
+const universe = (icons: Set<string>) => new Set([...Object.keys(parents), ...icons].filter((id) => id !== GENERIC_ID))
 const covered = (icons: Set<string>) => [...universe(icons)].filter((id) => iconOf(id, icons, parents)).length
 
 const changes = new Map<string, { gained: string[]; takenOver: string[] }>()
@@ -73,7 +76,9 @@ for (const id of proposed) {
     if (takenOver.length > 12) console.log(`    … and ${takenOver.length - 12} more`)
   }
 }
-console.log(`\nIcons ${current.size} → ${next.size}, ingredients covered ${covered(current)} → ${covered(next)}`)
+const ingredientIcons = (icons: Set<string>) => icons.size - Number(icons.has(GENERIC_ID))
+if (proposed.length)
+  console.log(`\nIcons ${ingredientIcons(current)} → ${ingredientIcons(next)}, ingredients covered ${covered(current)} → ${covered(next)}`)
 if (pending.size) console.log(`(counting ${pending.size} raws not published yet)`)
 
 /** Every entry of the pinned release, downloaded once into .out/. */

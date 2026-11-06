@@ -6,7 +6,14 @@ export { STYLE, TAXONOMY_COMMIT, TAXONOMY_RELEASE, VERSION } from "./data.js"
 export type IconSize = (typeof SIZES)[number]
 export const sizes: readonly IconSize[] = SIZES
 
-/** Every Open Food Facts id that has its own icon. */
+/**
+ * Id of the generic icon: a paper grocery bag, for an ingredient that cannot be placed
+ * at all. Not an Open Food Facts id. Show it when `findIcon` returns undefined:
+ * `iconUrl(id) ?? iconUrl(GENERIC_ID)`.
+ */
+export const GENERIC_ID = "generic"
+
+/** Every id that has its own icon: Open Food Facts ids, plus `GENERIC_ID`. */
 export const ids: readonly string[] = Object.keys(FILES)
 
 export interface Icon {
@@ -22,7 +29,8 @@ const MAX_DEPTH = 6
 
 /**
  * The icon of an Open Food Facts ingredient id ("en:shallot"), or of its closest
- * ancestor in the taxonomy when it has none of its own.
+ * ancestor in the taxonomy when it has none of its own. Undefined when neither has one:
+ * the caller picks the fallback, such as the generic icon (`GENERIC_ID`).
  */
 export function findIcon(id: string): Icon | undefined {
   let level = [id]
@@ -62,7 +70,9 @@ export function iconUrl(id: string, { size = 128, baseUrl = CDN_URL }: { size?: 
   return relative && `${baseUrl.replace(/\/$/, "")}/${relative}`
 }
 
-/** Name of an id that has an icon, from the Open Food Facts taxonomy. */
+const GENERIC_NAMES = { en: "Ingredient", fr: "Ingrédient" } as const
+
+/** Name of an id that has an icon, from the Open Food Facts taxonomy ("Ingredient" for `GENERIC_ID`). */
 export function iconName(id: string, locale: "en" | "fr" = "en"): string | undefined {
-  return NAMES[id]?.[locale]
+  return id === GENERIC_ID ? GENERIC_NAMES[locale] : NAMES[id]?.[locale]
 }

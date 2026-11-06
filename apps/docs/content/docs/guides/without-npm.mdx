@@ -104,4 +104,4 @@ fun findIcon(id: String, files: Map<String, String>, parents: Map<String, List<S
 </Tab>
 </Tabs>
 
-The file name goes into `manifest.json`'s `path` template: `icons/{format}/{size}/{file}.{format}`.
+The file name goes into `manifest.json`'s `path` template: `icons/{format}/{size}/{file}.{format}`. When the walk finds nothing, show the generic icon, a paper grocery bag: its file is `generic` (`icons/png/128/generic.png`).

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 
-import { CDN_URL, findIcon, iconName, iconPath, iconUrl, ids, TAXONOMY_COMMIT, TAXONOMY_RELEASE } from "./index"
+import { CDN_URL, findIcon, GENERIC_ID, iconName, iconPath, iconUrl, ids, TAXONOMY_COMMIT, TAXONOMY_RELEASE } from "./index"
 
 describe("findIcon", () => {
   test("an id with its own icon", () => {
@@ -31,6 +31,28 @@ test("paths and URLs point at the WebP file of the size asked", () => {
 
 test("names come from the taxonomy", () => {
   expect(iconName("en:shallot", "fr")).toBe("échalote")
+})
+
+describe("the generic icon", () => {
+  test("has a reserved id, which ships with the others", () => {
+    expect(GENERIC_ID).toBe("generic")
+    expect(ids).toContain(GENERIC_ID)
+  })
+
+  test("is found, with its path and URL", () => {
+    expect(findIcon(GENERIC_ID)).toEqual({ id: "generic", file: "generic", exact: true })
+    expect(iconPath(GENERIC_ID, 64)).toBe("icons/webp/64/generic.webp")
+    expect(iconUrl(GENERIC_ID)).toBe(`${CDN_URL}/icons/webp/128/generic.webp`)
+  })
+
+  test("is what to show for an id nothing matches: findIcon leaves that choice to the caller", () => {
+    expect(iconUrl("en:not-an-ingredient") ?? iconUrl(GENERIC_ID)).toBe(`${CDN_URL}/icons/webp/128/generic.webp`)
+  })
+
+  test("is named in both locales", () => {
+    expect(iconName(GENERIC_ID)).toBe("Ingredient")
+    expect(iconName(GENERIC_ID, "fr")).toBe("Ingrédient")
+  })
 })
 
 test("every id ships", () => {
