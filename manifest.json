@@ -78,9 +78,6 @@
     "black-bean": {
       "file": "black-bean"
     },
-    "black-grape": {
-      "file": "black-grape"
-    },
     "black-olive": {
       "file": "black-olive"
     },
@@ -360,14 +357,17 @@
     "grana-padano": {
       "file": "grana-padano"
     },
+    "grape": {
+      "file": "grape"
+    },
     "green-bean": {
       "file": "green-bean"
     },
+    "green-bell-pepper": {
+      "file": "green-bell-pepper"
+    },
     "green-olive": {
       "file": "green-olive"
-    },
-    "green-peppercorn": {
-      "file": "green-peppercorn"
     },
     "halloumi": {
       "file": "halloumi"
