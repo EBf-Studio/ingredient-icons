@@ -23,10 +23,10 @@ The icons are plain files in the [GitHub repository](https://github.com/EBf-Stud
     </Folder>
   </Folder>
   <File name="manifest.json" />
-  <File name="taxonomy.json" />
+  <File name="catalog.json" />
 </Files>
 
-PNG is the canonical format, and the only one in 512 px. WebP is the same image, smaller, for the web and React Native.
+PNG is the canonical format, and the only one in 512 px. WebP is the same image, smaller, for the web and React Native. `manifest.json` lists the ids that have an icon, `catalog.json` the ingredient catalog: see [the file formats](/docs/reference/files).
 
 ```sh
 git clone --depth 1 https://github.com/EBf-Studio/ingredient-icons.git
@@ -39,14 +39,14 @@ The repository grows with every batch of icons: `--depth 1` skips the history.
 jsDelivr serves any file of the repository:
 
 ```txt
-https://cdn.jsdelivr.net/gh/EBf-Studio/ingredient-icons@main/icons/png/256/en_shallot.png
+https://cdn.jsdelivr.net/gh/EBf-Studio/ingredient-icons@main/icons/png/256/shallot.png
 ```
 
 Replace `main` with a commit hash to pin the files.
 
 ## Finding an icon
 
-Look the id up in `manifest.json`. When it has none, walk up its parents in `taxonomy.json` and take the first ancestor that has one. See [the file formats](/docs/reference/files).
+Look the id up in `manifest.json`. When it has none, follow `parent` in `catalog.json` and take the first ancestor that has one: the ingredient's family comes last. When nothing on the way has an icon, show the generic one.
 
 <Tabs items={["Python", "Swift", "Kotlin"]}>
 <Tab value="Python">
@@ -54,35 +54,36 @@ Look the id up in `manifest.json`. When it has none, walk up its parents in `tax
 ```python title="icons.py"
 import json
 
-manifest = json.load(open("manifest.json"))["icons"]
-parents = json.load(open("taxonomy.json"))["parents"]
+icons = json.load(open("manifest.json"))["icons"]
+entries = json.load(open("catalog.json"))["entries"]
 
-def find_icon(id: str) -> str | None:
-    level, seen = [id], {id}
-    for _ in range(7):
-        for candidate in level:
-            if candidate in manifest:
-                return manifest[candidate]["file"]
-        level = [p for c in level for p in parents.get(c, []) if not (p in seen or seen.add(p))]
-    return None
+def icon_for(id: str) -> str:
+    seen, at = set(), id
+    while at is not None and at not in seen:
+        if at in icons:
+            return icons[at]["file"]
+        seen.add(at)
+        at = entries.get(at, {}).get("parent")
+    return "generic"
 
-find_icon("en:peeled-tomatoes")  # "en_tomato"
+icon_for("extra-virgin-olive-oil")  # "olive-oil"
 ```
 
 </Tab>
 <Tab value="Swift">
 
 ```swift title="IngredientIcons.swift"
-struct Manifest: Decodable { let icons: [String: Entry]; struct Entry: Decodable { let file: String } }
-struct Taxonomy: Decodable { let parents: [String: [String]] }
+struct Manifest: Decodable { let icons: [String: Icon]; struct Icon: Decodable { let file: String } }
+struct Catalog: Decodable { let entries: [String: Entry]; struct Entry: Decodable { let parent: String? } }
 
-func findIcon(_ id: String, manifest: Manifest, taxonomy: Taxonomy) -> String? {
-    var level = [id], seen: Set = [id]
-    for _ in 0...6 {
-        if let hit = level.lazy.compactMap({ manifest.icons[$0]?.file }).first { return hit }
-        level = level.flatMap { taxonomy.parents[$0] ?? [] }.filter { seen.insert($0).inserted }
+func iconFor(_ id: String, manifest: Manifest, catalog: Catalog) -> String {
+    var at: String? = id
+    var seen = Set<String>()
+    while let current = at, seen.insert(current).inserted {
+        if let icon = manifest.icons[current] { return icon.file }
+        at = catalog.entries[current]?.parent
     }
-    return nil
+    return "generic"
 }
 ```
 
@@ -90,18 +91,18 @@ func findIcon(_ id: String, manifest: Manifest, taxonomy: Taxonomy) -> String? {
 <Tab value="Kotlin">
 
 ```kotlin title="IngredientIcons.kt"
-fun findIcon(id: String, files: Map<String, String>, parents: Map<String, List<String>>): String? {
-    var level = listOf(id)
-    val seen = mutableSetOf(id)
-    repeat(7) {
-        level.firstNotNullOfOrNull { files[it] }?.let { return it }
-        level = level.flatMap { parents[it].orEmpty() }.filter { seen.add(it) }
+fun iconFor(id: String, files: Map<String, String>, parents: Map<String, String>): String {
+    val seen = mutableSetOf<String>()
+    var at: String? = id
+    while (at != null && seen.add(at)) {
+        files[at]?.let { return it }
+        at = parents[at]
     }
-    return null
+    return "generic"
 }
 ```
 
 </Tab>
 </Tabs>
 
-The file name goes into `manifest.json`'s `path` template: `icons/{format}/{size}/{file}.{format}`. When the walk finds nothing, show the generic icon, a cluster of fresh ingredients: its file is `generic` (`icons/png/128/generic.png`).
+The file name goes into `manifest.json`'s `path` template: `icons/{format}/{size}/{file}.{format}`. The generic icon, a cluster of fresh ingredients, has the file `generic` (`icons/png/128/generic.png`).

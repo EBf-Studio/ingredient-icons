@@ -15,7 +15,7 @@ const docs = defineDocs({
       remarkStructureOptions: {
         // Keep these tags in the search index (Fumadocs' defaults plus the numbers that
         // app/api/search/route.ts spells out), instead of dropping them from the text.
-        filterElement: (node) => ['File', 'TypeTable', 'Callout', 'Card', 'Total', 'Resolvable'].includes(node.name ?? ''),
+        filterElement: (node) => ['File', 'TypeTable', 'Callout', 'Card', 'Total', 'Covered', 'CatalogSize', 'FamilyCount'].includes(node.name ?? ''),
       },
     }),
     postprocess: {

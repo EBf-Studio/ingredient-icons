@@ -2,16 +2,15 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { ImageResponse } from 'next/og';
 import { total } from '@/lib/icons';
+import { OG_ICONS } from '@/lib/showcase';
 
 export const alt = 'Ingredient Icons: an icon for every ingredient';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const FILES = ['en_avocado', 'en_tomato', 'en_shallot', 'en_brie', 'en_lemon', 'en_basil', 'en_salmon', 'en_garlic', 'en_strawberry'];
-
 export default async function Image() {
   const sources = await Promise.all(
-    FILES.map(async (file) => {
+    OG_ICONS.map(async (file) => {
       const data = await readFile(path.join(process.cwd(), 'public/icons/png/256', `${file}.png`));
       return `data:image/png;base64,${data.toString('base64')}`;
     }),

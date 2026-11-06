@@ -38,4 +38,4 @@ export function getPageImageUrl(page: { slugs: string[]; locale?: string }) {
 }
 
 /** The ingredient used as the site logo and favicon. */
-export const logoFile = 'en_avocado';
+export const logoFile = 'avocado';

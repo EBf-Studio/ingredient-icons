@@ -1,4 +1,3 @@
-import { findIcon } from '@ingredient-icons/core';
 import { ServerCodeBlock } from 'fumadocs-ui/components/codeblock.rsc';
 import {
   CodeBlockTab,
@@ -13,80 +12,62 @@ import { MotionToggle } from '@/components/home/motion-toggle';
 import { Shelf } from '@/components/home/shelf';
 import { IconImage } from '@/components/icon-image';
 import { InstallCommand } from '@/components/install-command';
-import { iconById, icons, presetSteps, resolvable, total, version } from '@/lib/icons';
+import { catalogSize, covered, familyCount, iconById, iconFor, presets, total, version } from '@/lib/icons';
 import { cn } from '@/lib/cn';
+import { CTA_ICONS, EMOJI_ROWS, RECIPE } from '@/lib/showcase';
 import { githubUrl, marmaladeUrl, newIssueUrl, npmUrl, packageName } from '@/lib/shared';
 
-// Ingredients that share one emoji, and the icons that tell them apart.
-const EMOJI_ROWS = [
-  { emoji: '🧅', label: 'onion', ids: ['en:onion', 'en:red-onion', 'en:shallot', 'en:spring-onion', 'en:leek'] },
-  { emoji: '🧂', label: 'salt shaker', ids: ['en:salt', 'en:black-pepper', 'en:white-pepper', 'en:pink-peppercorn', 'en:celery-salt'] },
-  { emoji: '🧀', label: 'cheese wedge', ids: ['en:brie', 'en:feta', 'en:roquefort', 'en:mozzarella', 'en:parmigiano-reggiano'] },
-];
-
-// A recipe as an app stores it: Open Food Facts ids, some without an icon of their own.
-const RECIPE = [
-  { id: 'en:aubergine', quantity: '1', name: 'aubergine' },
-  { id: 'en:courgette', quantity: '2', name: 'courgettes' },
-  { id: 'en:red-bell-pepper', quantity: '1', name: 'red pepper' },
-  { id: 'en:onion', quantity: '1', name: 'onion' },
-  { id: 'en:garlic-clove', quantity: '3', name: 'garlic cloves' },
-  { id: 'en:cherry-tomato', quantity: '250 g', name: 'cherry tomatoes' },
-  { id: 'en:thyme', quantity: '4 sprigs', name: 'thyme' },
-  { id: 'en:extra-virgin-olive-oil', quantity: '3 tbsp', name: 'olive oil' },
-];
-
 const reactCode = `import { iconUrl } from "${packageName}"
+import { iconFor } from "./ingredient-icon" // the fallback, in the docs
 
 export function Ingredient({ id, quantity, name }) {
   return (
     <li>
-      <img src={iconUrl(id)} alt="" width={40} height={40} />
+      <img src={iconUrl(iconFor(id))} alt="" width={40} height={40} />
       {quantity} {name}
     </li>
   )
 }
 
-<Ingredient id="en:cherry-tomato" quantity="250 g" name="cherry tomatoes" />`;
+<Ingredient id="cherry-tomato" quantity="250 g" name="cherry tomatoes" />`;
 
 const nativeCode = `import { Image, Text, View } from "react-native"
 import { iconUrl } from "${packageName}"
+import { iconFor } from "./ingredient-icon" // the fallback, in the docs
 
 export function Ingredient({ id, quantity, name }) {
   return (
     <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
-      <Image source={{ uri: iconUrl(id) }} style={{ width: 40, height: 40 }} />
+      <Image source={{ uri: iconUrl(iconFor(id)) }} style={{ width: 40, height: 40 }} />
       <Text>{quantity} {name}</Text>
     </View>
   )
 }`;
 
-const urlCode = `import { findIcon, GENERIC_ID, iconUrl } from "${packageName}"
+const urlCode = `import { iconUrl } from "${packageName}"
+import { iconFor } from "./ingredient-icon" // the fallback, in the docs
 
-iconUrl("en:peeled-tomatoes")
-// https://cdn.jsdelivr.net/npm/${packageName}@${version}/icons/webp/128/en_tomato.webp
+iconUrl("shallot")
+// https://cdn.jsdelivr.net/npm/${packageName}@${version}/icons/webp/128/shallot.webp
 
-iconUrl("en:shallot", { size: 256, baseUrl: "https://cdn.example.com/ingredients" })
-// https://cdn.example.com/ingredients/icons/webp/256/en_shallot.webp
+iconUrl("shallot", { size: 256, baseUrl: "https://cdn.example.com/ingredients" })
+// https://cdn.example.com/ingredients/icons/webp/256/shallot.webp
 
-findIcon("en:unicorn-steak")
-// undefined: the fallback is yours
+iconUrl("extra-virgin-olive-oil")
+// undefined: no icon of its own
 
-iconUrl("en:unicorn-steak") ?? iconUrl(GENERIC_ID)
-// the generic icon, a cluster of fresh ingredients`;
+iconUrl(iconFor("extra-virgin-olive-oil"))
+// .../icons/webp/128/olive-oil.webp, its parent's
+
+iconUrl(iconFor("unicorn-steak"))
+// .../icons/webp/128/generic.webp, a cluster of fresh ingredients`;
 
 const LADDER = [64, 128, 256, 512] as const;
 
 const CODE_FACTS = [
   { title: 'Pinned to your version', body: 'URLs point to the exact release you installed on jsDelivr, so icons never change under you.' },
   { title: 'Or your own server', body: 'Pass baseUrl to serve the icons folder from your CDN or your app bundle.' },
-  { title: 'Typed', body: 'Icon and IconSize types ship with the package.' },
-];
-
-const CTA_ICONS = [
-  'en_lemon', 'en_garlic', 'en_basil', 'en_egg', 'en_tomato', 'en_butter',
-  'en_avocado', 'en_carrot', 'en_strawberry', 'en_mushroom', 'en_brie', 'en_chili-pepper',
-  'en_pear', 'en_shallot', 'en_cherry', 'en_broccoli', 'en_aubergine', 'en_peach',
+  { title: 'Typed', body: 'Types ship with the package, and catalog.json imports as typed JSON.' },
 ];
 
 function SectionHeader({ title, children }: { title: React.ReactNode; children: React.ReactNode }) {
@@ -110,9 +91,11 @@ function Coverage() {
         <ArrowRight className="mb-7 size-5 shrink-0 text-tomato" aria-hidden />
         <div>
           <p className="font-display text-4xl font-semibold leading-none tracking-tight text-basil">
-            {resolvable.toLocaleString('en')}
+            {covered.toLocaleString('en')}
           </p>
-          <p className="mt-2 text-sm text-fd-muted-foreground">ingredients covered</p>
+          <p className="mt-2 text-sm text-fd-muted-foreground">
+            of {catalogSize.toLocaleString('en')} ingredients covered
+          </p>
         </div>
       </div>
     </div>
@@ -120,8 +103,6 @@ function Coverage() {
 }
 
 export default function HomePage() {
-  const slugs = Object.fromEntries(icons.map((icon) => [icon.id, icon.slug]));
-
   return (
     <main className="flex flex-1 flex-col">
       {/* Hero */}
@@ -133,9 +114,9 @@ export default function HomePage() {
             An icon for every ingredient.
           </h1>
           <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-fd-muted-foreground">
-            {total} soft 3D icons for recipe apps, keyed by the Open Food Facts taxonomy. Shallots,
-            crème fraîche, salt and pepper each get their own, and anything else borrows its closest
-            parent&apos;s. Public domain.
+            {total} soft 3D icons for recipe apps, keyed by the ids of an open ingredient catalog.
+            Shallots, crème fraîche, salt and pepper each get their own, and anything else borrows its
+            closest parent&apos;s. Public domain.
           </p>
           <InstallCommand className="mt-8" />
           <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -186,17 +167,18 @@ export default function HomePage() {
                 <ArrowRight className="size-5 shrink-0 text-fd-muted-foreground max-sm:hidden" aria-hidden />
                 <ul className="grid min-w-0 flex-1 grid-cols-5 gap-1 sm:gap-3">
                   {row.ids.map((id) => {
-                    const icon = iconById(id)!;
+                    const icon = iconById(id);
+                    if (!icon) throw new Error(`Emoji row: no icon for ${id}`);
                     return (
                       <li key={id}>
-                        <Link href={`/icons/${icon.slug}`} className="group flex flex-col items-center gap-1.5 text-center">
+                        <Link href={`/icons/${icon.id}`} className="group flex flex-col items-center gap-1.5 text-center">
                           <IconImage
-                            file={icon.file}
+                            file={icon.id}
                             size={72}
                             className="size-12 transition-transform group-hover:-translate-y-0.5 sm:size-[4.5rem]"
                           />
                           <span className="hyphens-auto text-[11px] leading-tight text-fd-muted-foreground [overflow-wrap:anywhere] group-hover:text-fd-foreground sm:text-[13px]">
-                            {icon.en}
+                            {icon.name}
                           </span>
                         </Link>
                       </li>
@@ -219,21 +201,22 @@ export default function HomePage() {
             </>
           }
         >
-          Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and
-          sea salt is a salt. When an ingredient has no icon, <code className="font-mono text-[0.9em]">findIcon</code>{' '}
-          walks up its parents and takes the first one that has.
+          Ids come from an open ingredient catalog, which knows that a brioche bun is a burger bun, a
+          burger bun is a bread roll, and bread rolls are breads. Each ingredient has one parent, up to
+          one of {familyCount} families. When an ingredient has no icon, walk up its parents and take the
+          first that has one. Nothing on the way? Show the generic icon.
         </SectionHeader>
         <div className="mt-12">
-          <FallbackDemo slugs={slugs} presetSteps={presetSteps} footer={<Coverage />} />
+          <FallbackDemo presets={presets} footer={<Coverage />} />
         </div>
       </section>
 
       {/* Code + recipe */}
       <section className="border-y bg-fd-card">
         <div className="mx-auto w-full max-w-(--site-width) px-5 py-24 sm:px-8">
-          <SectionHeader title="One function between your recipe and its icons.">
-            Pass the ingredient id you already store and get back an image URL, in React, React
-            Native or anything else that shows images.
+          <SectionHeader title="A few lines between your recipe and its icons.">
+            Pass the catalog id you store and get back an image URL, in React, React Native or anything
+            else that shows images. The fallback is ten lines of your own, copied from the docs.
           </SectionHeader>
           <div className="mt-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-12">
             <CodeBlockTabs defaultValue="react" className="my-0 min-w-0">
@@ -262,7 +245,7 @@ export default function HomePage() {
               <ul className="mt-5 grid grid-cols-1 gap-x-6 sm:grid-cols-2">
                 {RECIPE.map((item) => (
                   <li key={item.id} className="flex items-center gap-3 border-b border-dashed py-1.5 last:border-0 sm:nth-last-2:border-0">
-                    <IconImage file={findIcon(item.id)!.file} size={40} className="size-10" />
+                    <IconImage file={iconFor(item.id)} size={40} className="size-10" />
                     <span className="text-[15px] leading-tight">
                       <span className="font-medium">{item.quantity}</span> {item.name}
                     </span>
@@ -293,7 +276,7 @@ export default function HomePage() {
           {LADDER.map((size) => (
             <figure key={size} className="flex shrink-0 flex-col items-center gap-3">
               <img
-                src={`/icons/png/${size}/en_strawberry.png`}
+                src={`/icons/png/${size}/strawberry.png`}
                 alt={`Strawberry, ${size} px`}
                 width={size}
                 height={size}
@@ -313,9 +296,9 @@ export default function HomePage() {
             <dt className="text-fd-muted-foreground">PNG</dt>
             <dd>64 to 512 px, in the repository</dd>
             <dt className="text-fd-muted-foreground">Names</dt>
-            <dd>English and French, from Open Food Facts</dd>
+            <dd>Six languages in catalog.json, French and English reviewed</dd>
             <dt className="text-fd-muted-foreground">License</dt>
-            <dd>CC0: use them anywhere, no credit needed</dd>
+            <dd>CC0, icons and catalog: use them anywhere, no credit needed</dd>
           </dl>
         </div>
       </section>
@@ -328,8 +311,8 @@ export default function HomePage() {
               Missing an ingredient?
             </h2>
             <p className="mt-4 leading-relaxed opacity-85">
-              New icons ship in batches. Open an issue with the Open Food Facts id or the name of
-              the ingredient, and it goes on the list.
+              New icons ship in batches. Open an issue with the catalog id or the name of the
+              ingredient, and it goes on the list. An ingredient the catalog lacks is added to it first.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -369,7 +352,7 @@ export default function HomePage() {
         <div className="mx-auto flex w-full max-w-(--site-width) flex-col gap-3 px-5 py-8 text-sm text-fd-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <p>
             Made by <a href={marmaladeUrl} className="text-fd-foreground underline-offset-4 hover:underline">Marmalade</a>.
-            Icons CC0, taxonomy data ODbL from Open Food Facts, code MIT.
+            Icons and catalog CC0, code MIT.
           </p>
           <nav className="flex gap-5">
             <Link href="/docs" className="hover:text-fd-foreground">Docs</Link>

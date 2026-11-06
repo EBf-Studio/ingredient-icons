@@ -1,24 +1,24 @@
 ---
 title: Introduction
-description: Soft 3D icons for cooking ingredients, keyed by the Open Food Facts taxonomy.
+description: Soft 3D icons for cooking ingredients, keyed by the ids of an open ingredient catalog.
 icon: Sparkles
 ---
 
-Ingredient Icons gives every ingredient of a recipe its own picture. There are <Total /> icons today, and each one is named after an id of the [Open Food Facts ingredients taxonomy](https://wiki.openfoodfacts.org/Global_taxonomies), so a recipe that stores `en:shallot` already knows which icon to show.
+Ingredient Icons gives every ingredient of a recipe its own picture. There are <Total /> icons today, and each one is named after an id of [Marmalade](https://try-marmalade.com)'s ingredient catalog, so a recipe that stores `shallot` already knows which icon to show. The package ships the catalog too: `catalog.json`, with <CatalogSize /> ingredients and families, their parents and their names in six languages.
 
-<IconRow ids={["en:shallot", "en:fresh-cream", "en:salt", "en:black-pepper", "en:brie", "en:basil", "en:lemon", "en:salmon"]} />
+<IconRow ids={["shallot", "creme-fraiche", "salt", "black-pepper", "brie", "basil", "lemon", "salmon"]} />
 
 ## Why not emojis?
 
-Emojis run out fast in a kitchen. There is no emoji for a shallot or fresh cream, and 🧂 has to stand for both salt and pepper. Recipe apps end up with half their ingredients drawn as a generic bowl.
+Emojis run out fast in a kitchen. There is no emoji for a shallot or crème fraîche, and 🧂 has to stand for both salt and pepper. Recipe apps end up with half their ingredients drawn as a generic bowl.
 
 ## What you get
 
 - **<Total /> icons**, in one consistent soft 3D style, on transparent backgrounds.
-- **Fallback through the taxonomy.** An ingredient without an icon gets its closest ancestor's: peeled tomatoes get the tomato, lardons get bacon. That covers <Resolvable /> taxonomy ids.
+- **Fallback through the catalog.** Every ingredient has one parent, up to one of <FamilyCount /> families. An ingredient without an icon gets its nearest ancestor's: extra virgin olive oil gets the olive oil, a brioche bun gets the bread. That covers <Covered /> of the <CatalogSize /> catalog entries.
 - **WebP in 64, 128 and 256 px** in the npm package, served from jsDelivr or from your own server. **PNG up to 512 px** in the repository.
-- **Names from Open Food Facts**: English for every icon, French for nearly all of them.
-- **Public domain.** The icons are CC0: no attribution, no license file to ship.
+- **Names in six languages** in `catalog.json`: French and English for every entry, Spanish, Italian, German and Portuguese where Wikidata has them.
+- **Public domain.** The icons and the catalog are CC0: no attribution, no license file to ship.
 
 ## Where to start
 
@@ -33,6 +33,6 @@ Emojis run out fast in a kitchen. There is no emoji for a shallot or fresh cream
     How an ingredient finds its icon.
   </Card>
   <Card icon={<span>🧺</span>} title="Browse the icons" href="/icons">
-    Every icon, searchable in English and French.
+    Every icon, searchable in six languages.
   </Card>
 </Cards>

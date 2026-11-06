@@ -14,7 +14,7 @@ const fraunces = Fraunces({
 });
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono-face' });
 
-const description = `${total} soft 3D icons for cooking ingredients, keyed by the Open Food Facts taxonomy. Public domain, for recipe apps.`;
+const description = `${total} soft 3D icons for cooking ingredients, keyed by the ids of an open ingredient catalog. Public domain, for recipe apps.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

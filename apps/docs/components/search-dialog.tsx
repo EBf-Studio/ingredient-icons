@@ -32,7 +32,7 @@ export default function SiteSearchDialog(props: SharedProps) {
   const router = useRouter();
   const [icons, setIcons] = useState<SearchableIcon[]>();
 
-  // A small file (about 16 KB gzipped), so fetch it as soon as the dialog first opens.
+  // A small file (about 30 KB gzipped), so fetch it as soon as the dialog first opens.
   useEffect(() => {
     // On failure the dialog still searches the docs, and the next opening tries again.
     if (props.open && !icons) fetchJsonOnce<SearchableIcon[]>('/data/search-icons.json').then(setIcons, () => {});
@@ -47,7 +47,7 @@ export default function SiteSearchDialog(props: SharedProps) {
       id: `icon:${icon.id}`,
       type: 'action',
       node: <IconResult icon={icon} via={via} />,
-      onSelect: () => router.push(`/icons/${icon.slug}`),
+      onSelect: () => router.push(`/icons/${icon.id}`),
     }));
     if (matches.length > MAX_ICONS) {
       iconItems.push({
@@ -87,11 +87,11 @@ export default function SiteSearchDialog(props: SharedProps) {
 function IconResult({ icon, via }: { icon: SearchableIcon; via?: string }) {
   return (
     <span className="flex items-center gap-3">
-      <img src={iconSrc(icon.file, 64)} alt="" width={36} height={36} className="icon-img size-9 shrink-0" />
+      <img src={iconSrc(icon.id, 64)} alt="" width={36} height={36} className="icon-img size-9 shrink-0" />
       <span className="min-w-0 flex-1">
-        <span className="block truncate font-medium first-letter:uppercase">{icon.en}</span>
+        <span className="block truncate font-medium first-letter:uppercase">{icon.name}</span>
         <span className="block truncate text-xs text-fd-muted-foreground">
-          {via ? `Shown for ${via}` : icon.fr && icon.fr !== icon.en ? <span lang="fr">{icon.fr}</span> : icon.id}
+          {via ? `Shown for ${via}` : icon.fr && icon.fr !== icon.name ? <span lang="fr">{icon.fr}</span> : icon.id}
         </span>
       </span>
       <span className="shrink-0 rounded-full bg-fd-muted px-2 py-0.5 text-[11px] text-fd-muted-foreground">Icon</span>
