@@ -73,7 +73,7 @@ findIcon("en:unicorn-steak")
 // undefined: the fallback is yours
 
 iconUrl("en:unicorn-steak") ?? iconUrl(GENERIC_ID)
-// the generic icon, a paper grocery bag`;
+// the generic icon, a cluster of fresh ingredients`;
 
 const LADDER = [64, 128, 256, 512] as const;
 

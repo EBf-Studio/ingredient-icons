@@ -7,7 +7,7 @@ export type IconSize = (typeof SIZES)[number]
 export const sizes: readonly IconSize[] = SIZES
 
 /**
- * Id of the generic icon: a paper grocery bag, for an ingredient that cannot be placed
+ * Id of the generic icon: a cluster of fresh ingredients, for an ingredient that cannot be placed
  * at all. Not an Open Food Facts id. Show it when `findIcon` returns undefined:
  * `iconUrl(id) ?? iconUrl(GENERIC_ID)`.
  */

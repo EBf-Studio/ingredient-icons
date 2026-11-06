@@ -20,7 +20,7 @@ import { GENERIC_ID, iconUrl } from "@ingredient-icons/core"
 
 export function IngredientIcon({ id, size = 40 }: { id: string; size?: number }) {
   const options = { size: size <= 42 ? 128 : 256 } as const
-  // An ingredient the taxonomy cannot place gets the generic icon, a paper grocery bag.
+  // An ingredient the taxonomy cannot place gets the generic icon, a cluster of fresh ingredients.
   const uri = iconUrl(id, options) ?? iconUrl(GENERIC_ID, options)!
   return (
     <Image

@@ -61,7 +61,7 @@ iconUrl("en:shallot", { size: 256 })
 findIcon("en:peeled-tomatoes")  // { id: "en:tomato", file: "en_tomato", exact: false }
 iconName("en:shallot", "fr")  // "échalote"
 findIcon("en:unicorn-steak")  // undefined: the fallback is yours
-iconUrl("en:unicorn-steak") ?? iconUrl(GENERIC_ID)  // the generic icon, a paper grocery bag
+iconUrl("en:unicorn-steak") ?? iconUrl(GENERIC_ID)  // the generic icon, a cluster of fresh ingredients
 ```
 
 `GENERIC_ID` (`"generic"`) is a reserved id, not an Open Food Facts one: the icon to show when `findIcon` returns `undefined`, for an ingredient the taxonomy cannot place at all.
