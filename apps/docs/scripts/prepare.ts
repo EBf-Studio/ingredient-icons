@@ -8,13 +8,15 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
 import type { Catalog } from "@ingredient-icons/core"
 import { FALLBACK_PRESETS } from "../lib/fallback-presets"
-import { fallbackKind, fallbackSteps, familyLabel } from "../lib/fallback"
 
 const site = path.resolve(import.meta.dir, "..")
 const root = path.resolve(site, "../..")
 
 await Bun.$`bun run --cwd ${path.join(root, "packages/core")} build`.quiet()
+// Imported once the package is built: a fresh checkout (Vercel) has no dist/ before this point,
+// and lib/fallback.ts imports the package too.
 const core = await import("@ingredient-icons/core")
+const { fallbackKind, fallbackSteps, familyLabel } = await import("../lib/fallback")
 
 const catalog: Catalog = JSON.parse(
   await readFile(path.join(root, "catalog.json"), "utf8"),
