@@ -49,6 +49,11 @@ describe('ids cited in the docs', () => {
       expect({ file, id: match[1], exists: ids.includes(match[1]!) }).toEqual({ file, id: match[1], exists: true });
   });
 
+  test('fallback arrows in the READMEs show what the fallback returns', () => {
+    for (const { file, match } of cited(/<code>([a-z0-9-]+)<\/code> → <img src="[^"]*\/([a-z0-9-]+)\.png"/g))
+      expect({ file, id: match[1], icon: iconFor(match[1]!) }).toEqual({ file, id: match[1], icon: match[2] });
+  });
+
   test('<IconRow> ids have their own icon', () => {
     for (const { file, match } of cited(/<IconRow ids=\{\[([^\]]+)\]\}/g))
       for (const [, id] of match[1]!.matchAll(/"([^"]+)"/g)) expect({ file, id, own: own(id!) }).toEqual({ file, id, own: true });
