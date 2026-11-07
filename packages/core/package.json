@@ -1,6 +1,6 @@
 {
   "name": "@ingredient-icons/core",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Soft 3D icons for cooking ingredients, keyed by ingredient catalog ids, with a CC0 snapshot of the catalog",
   "license": "(MIT AND CC0-1.0)",
   "type": "module",
