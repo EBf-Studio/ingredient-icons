@@ -5,7 +5,7 @@ export const FALLBACK_PRESETS = [
   'vegan-chorizo',
   'basmati-rice',
   'cheese-tortelloni',
-  'chinese-cabbage',
+  'savoy-cabbage',
   'pork-paprika-and-almond-sausage',
   'shallot',
 ];
