@@ -17,10 +17,8 @@ Every icon, keyed by catalog id.
     "png": [64, 128, 256, 512],
     "webp": [64, 128, 256]
   },
-  "path": "icons/{format}/{size}/{file}.{format}",
-  "icons": {
-    "shallot": { "file": "shallot" }
-  }
+  "path": "icons/{format}/{size}/{id}.{format}",
+  "icons": ["generic", "shallot"]
 }
 ```
 
@@ -29,11 +27,11 @@ Every icon, keyed by catalog id.
     style: { type: 'number', description: 'Version of the drawing style.' },
     sizes: { type: '{ png: number[]; webp: number[] }', description: 'Sizes available in each format.' },
     path: { type: 'string', description: 'Template of a file\'s path from the repository root.' },
-    icons: { type: 'Record<string, { file: string }>', description: 'File name of each id that has its own icon. The file name is the id.' },
+    icons: { type: 'string[]', description: 'Every id that has its own icon, sorted. The id is also the file name.' },
   }}
 />
 
-One key is not a catalog id: `"generic": { "file": "generic" }`, the generic icon (a cluster of fresh ingredients) to show for an ingredient the fallback cannot place.
+One id is not a catalog id: `generic`, the generic icon (a cluster of fresh ingredients) to show for an ingredient the fallback cannot place.
 
 License: CC0 1.0.
 

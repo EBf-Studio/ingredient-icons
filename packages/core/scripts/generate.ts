@@ -9,7 +9,7 @@ import type { Catalog } from "../src/catalog"
 const root = path.resolve(import.meta.dir, "../../..")
 const pkg = path.resolve(import.meta.dir, "..")
 
-const manifest: { style: number; sizes: { webp: number[] }; icons: Record<string, { file: string }> } =
+const manifest: { style: number; sizes: { webp: number[] }; icons: string[] } =
   JSON.parse(await readFile(path.join(root, "manifest.json"), "utf8"))
 const catalog: Catalog = JSON.parse(
   await readFile(path.join(root, "catalog.json"), "utf8"),
@@ -26,7 +26,7 @@ export const STYLE = ${manifest.style}
 export const SIZES = ${json(manifest.sizes.webp)} as const
 export const CATALOG_RELEASE = ${json(catalog.release)}
 /** Every id that has its own icon, which is also its file name. */
-export const IDS: readonly string[] = ${json(Object.keys(manifest.icons))}
+export const IDS: readonly string[] = ${json(manifest.icons)}
 `,
 )
 
@@ -34,4 +34,4 @@ await rm(path.join(pkg, "icons"), { recursive: true, force: true })
 await cp(path.join(root, "icons/webp"), path.join(pkg, "icons/webp"), { recursive: true })
 for (const file of ["catalog.json", "LICENSE", "LICENSE-ICONS", "NOTICE"]) await cp(path.join(root, file), path.join(pkg, file))
 
-console.log(`${Object.keys(manifest.icons).length} icons, ${Object.keys(catalog.entries).length} catalog entries`)
+console.log(`${manifest.icons.length} icons, ${Object.keys(catalog.entries).length} catalog entries`)

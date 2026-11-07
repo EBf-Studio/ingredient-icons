@@ -6,10 +6,10 @@ export const SIZES = { png: [64, 128, 256, 512], webp: [64, 128, 256] } as const
 export type Format = keyof typeof SIZES
 
 export const ICONS_DIR = "icons"
-export const PATH_TEMPLATE = `${ICONS_DIR}/{format}/{size}/{file}.{format}`
+export const PATH_TEMPLATE = `${ICONS_DIR}/{format}/{size}/{id}.{format}`
 
-export const iconPath = (format: Format, size: number, file: string) =>
-  path.join(ICONS_DIR, format, String(size), `${file}.${format}`)
+export const iconPath = (format: Format, size: number, id: string) =>
+  path.join(ICONS_DIR, format, String(size), `${id}.${format}`)
 
 /**
  * The icon to show for an ingredient that cannot be placed at all. A reserved id, not a
@@ -51,5 +51,6 @@ export interface Manifest {
   style: number
   sizes: typeof SIZES
   path: string
-  icons: Record<string, { file: string }>
+  /** Every id that has its own icon, sorted; the id is also the file name. */
+  icons: string[]
 }

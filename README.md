@@ -131,12 +131,12 @@ File names are catalog ids: `shallot` → `icons/png/256/shallot.png`. To find a
 import manifest from "./manifest.json"
 import catalog from "./catalog.json"
 
-const icons: Record<string, { file: string }> = manifest.icons
+const icons = new Set<string>(manifest.icons)
 const entries: Record<string, { parent?: string; names: object }> = catalog.entries
 
 function iconFor(id: string): string {
   for (let at: string | undefined = id; at; at = entries[at]?.parent) {
-    if (Object.hasOwn(icons, at)) return icons[at]!.file
+    if (icons.has(at)) return at
   }
   return "generic"
 }

@@ -54,14 +54,14 @@ Look the id up in `manifest.json`. When it has none, follow `parent` in `catalog
 ```python title="icons.py"
 import json
 
-icons = json.load(open("manifest.json"))["icons"]
+icons = set(json.load(open("manifest.json"))["icons"])
 entries = json.load(open("catalog.json"))["entries"]
 
 def icon_for(id: str) -> str:
     seen, at = set(), id
     while at is not None and at not in seen:
         if at in icons:
-            return icons[at]["file"]
+            return at
         seen.add(at)
         at = entries.get(at, {}).get("parent")
     return "generic"
@@ -73,14 +73,14 @@ icon_for("extra-virgin-olive-oil")  # "olive-oil"
 <Tab value="Swift">
 
 ```swift title="IngredientIcons.swift"
-struct Manifest: Decodable { let icons: [String: Icon]; struct Icon: Decodable { let file: String } }
+struct Manifest: Decodable { let icons: Set<String> }
 struct Catalog: Decodable { let entries: [String: Entry]; struct Entry: Decodable { let parent: String? } }
 
 func iconFor(_ id: String, manifest: Manifest, catalog: Catalog) -> String {
     var at: String? = id
     var seen = Set<String>()
     while let current = at, seen.insert(current).inserted {
-        if let icon = manifest.icons[current] { return icon.file }
+        if manifest.icons.contains(current) { return current }
         at = catalog.entries[current]?.parent
     }
     return "generic"
@@ -91,11 +91,11 @@ func iconFor(_ id: String, manifest: Manifest, catalog: Catalog) -> String {
 <Tab value="Kotlin">
 
 ```kotlin title="IngredientIcons.kt"
-fun iconFor(id: String, files: Map<String, String>, parents: Map<String, String>): String {
+fun iconFor(id: String, icons: Set<String>, parents: Map<String, String>): String {
     val seen = mutableSetOf<String>()
     var at: String? = id
     while (at != null && seen.add(at)) {
-        files[at]?.let { return it }
+        if (at in icons) return at
         at = parents[at]
     }
     return "generic"
@@ -105,4 +105,4 @@ fun iconFor(id: String, files: Map<String, String>, parents: Map<String, String>
 </Tab>
 </Tabs>
 
-The file name goes into `manifest.json`'s `path` template: `icons/{format}/{size}/{file}.{format}`. The generic icon, a cluster of fresh ingredients, has the file `generic` (`icons/png/128/generic.png`).
+The id goes into `manifest.json`'s `path` template: `icons/{format}/{size}/{id}.{format}`. The generic icon, a cluster of fresh ingredients, has the id `generic` (`icons/png/128/generic.png`).

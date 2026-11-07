@@ -111,10 +111,10 @@ if (import.meta.main) {
   // What bun run check will refuse, told before the snapshot changes: icons whose id left the
   // catalog (rename or drop them) and families without an icon (draw them).
   const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
-  const icons = Object.keys(manifest.icons).filter((id) => id !== GENERIC_ID)
+  const icons = manifest.icons.filter((id) => id !== GENERIC_ID)
   for (const id of icons.filter((id) => !Object.hasOwn(catalog.entries, id)))
     console.log(`⚠ ${id}: has an icon but left the catalog`)
-  for (const id of families(catalog).filter((id) => !Object.hasOwn(manifest.icons, id)))
+  for (const id of families(catalog).filter((id) => !manifest.icons.includes(id)))
     console.log(`⚠ ${id}: a family without an icon`)
   await writeFile(CATALOG_FILE, formatCatalog(catalog))
   const count = Object.keys(catalog.entries).length

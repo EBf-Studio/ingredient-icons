@@ -50,7 +50,7 @@ if (duplicates.length) throw new Error(`Duplicate slugs in subjects.json: ${dupl
 
 const rawFiles = new Set(await readdir(path.join(sources, "raw")))
 const lock: Lock = await readFile(LOCK, "utf8").then(JSON.parse, () => ({ pipeline: "", raws: {} }))
-const published: Manifest = await readFile("manifest.json", "utf8").then(JSON.parse, () => ({ icons: {} }))
+const published: Manifest = await readFile("manifest.json", "utf8").then(JSON.parse, () => ({ icons: [] }))
 // Everything that decides the output: a change rebuilds every icon.
 const pipeline = sha256(
   (await readFile(new URL("./cut-out.ts", import.meta.url), "utf8")) +
@@ -68,7 +68,7 @@ for (const { slug: id } of [...subjects].sort((a, b) => a.slug.localeCompare(b.s
   }
 }
 
-const dropped = Object.keys(published.icons).filter((id) => !Object.hasOwn(raws, id))
+const dropped = published.icons.filter((id) => !Object.hasOwn(raws, id))
 if (dropped.length && !prune)
   throw new Error(
     `${dropped.length} published icons have no raw or subject in ${sources}: ${dropped.join(" ")}\n` +
@@ -116,8 +116,7 @@ for (const format of await readdir(ICONS_DIR)) {
   }
 }
 
-const icons: Manifest["icons"] = Object.fromEntries(ids.map((id) => [id, { file: id }]))
-const manifest: Manifest = { style: STYLE_VERSION, sizes: SIZES, path: PATH_TEMPLATE, icons }
+const manifest: Manifest = { style: STYLE_VERSION, sizes: SIZES, path: PATH_TEMPLATE, icons: ids }
 await writeFile("manifest.json", `${JSON.stringify(manifest, null, 2)}\n`)
 await writeFile(LOCK, `${JSON.stringify({ pipeline, raws } satisfies Lock, null, 2)}\n`)
 

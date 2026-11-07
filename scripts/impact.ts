@@ -23,7 +23,7 @@ if (!args.length) {
   process.exit(1)
 }
 
-const published = new Set(Object.keys(manifest.icons))
+const published = new Set(manifest.icons)
 const pending = new Set<string>()
 const sources = (() => {
   try {

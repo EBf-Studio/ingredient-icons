@@ -21,7 +21,7 @@ const { fallbackKind, fallbackSteps, familyLabel } = await import("../lib/fallba
 const catalog: Catalog = JSON.parse(
   await readFile(path.join(root, "catalog.json"), "utf8"),
 )
-const manifest: { icons: Record<string, { file: string }> } = JSON.parse(
+const manifest: { icons: string[] } = JSON.parse(
   await readFile(path.join(root, "manifest.json"), "utf8"),
 )
 const { version } = JSON.parse(await readFile(path.join(root, "packages/core/package.json"), "utf8"))
@@ -29,11 +29,8 @@ const { version } = JSON.parse(await readFile(path.join(root, "packages/core/pac
 const entries = catalog.entries
 const LANGUAGES = ["en", "fr", "es", "it", "de", "pt"] as const
 
-// The site names files and pages after ids: it relies on file === id.
-for (const [id, { file }] of Object.entries(manifest.icons))
-  if (file !== id) throw new Error(`manifest.json: ${id} has file ${file}`)
 // The generic icon is no ingredient: out of the gallery, the search and the counts.
-const drawn = new Set(Object.keys(manifest.icons).filter((id) => id !== core.GENERIC_ID))
+const drawn = new Set(manifest.icons.filter((id) => id !== core.GENERIC_ID))
 for (const id of drawn) if (!entries[id]) throw new Error(`manifest.json: ${id} is not in catalog.json`)
 
 const parentOf = (id: string) => entries[id]?.parent

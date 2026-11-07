@@ -14,26 +14,24 @@ const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
 const catalog = await readCatalog()
 const errors: string[] = []
 
-for (const [id, { file }] of Object.entries(manifest.icons)) {
-  if (file !== id) errors.push(`${id}: file should be ${id}`)
+const ids = new Set(manifest.icons)
+for (const id of ids)
   if (id !== GENERIC_ID && !Object.hasOwn(catalog.entries, id)) errors.push(`${id}: not in the catalog ${catalog.release}`)
-}
 for (const id of [...families(catalog), GENERIC_ID])
-  if (!Object.hasOwn(manifest.icons, id)) errors.push(`${id}: ${id === GENERIC_ID ? "the generic icon" : "a family"} has no icon`)
+  if (!ids.has(id)) errors.push(`${id}: ${id === GENERIC_ID ? "the generic icon" : "a family"} has no icon`)
 
-const files = new Set(Object.values(manifest.icons).map(({ file }) => file))
 for (const format of Object.keys(SIZES) as Format[])
   for (const size of SIZES[format]) {
     const present = new Set(await readdir(path.join(ICONS_DIR, format, String(size))).catch(() => []))
-    for (const file of files)
-      if (!present.has(`${file}.${format}`)) errors.push(`missing ${iconPath(format, size, file)}`)
+    for (const id of ids)
+      if (!present.has(`${id}.${format}`)) errors.push(`missing ${iconPath(format, size, id)}`)
     for (const name of present)
-      if (!files.has(path.basename(name, `.${format}`))) errors.push(`orphan ${path.join(ICONS_DIR, format, String(size), name)}`)
+      if (!ids.has(path.basename(name, `.${format}`))) errors.push(`orphan ${path.join(ICONS_DIR, format, String(size), name)}`)
   }
 
 if (errors.length) {
   console.error(errors.join("\n"))
   process.exit(1)
 }
-const generic = Object.hasOwn(manifest.icons, GENERIC_ID)
-console.log(`${files.size - Number(generic)} ingredient icons${generic ? " and the generic icon" : ""} OK`)
+const generic = ids.has(GENERIC_ID)
+console.log(`${ids.size - Number(generic)} ingredient icons${generic ? " and the generic icon" : ""} OK`)

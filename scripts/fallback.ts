@@ -24,7 +24,7 @@ export async function onMain() {
   }
   const manifest: Manifest = json("manifest.json")
   const lock: { raws: Record<string, string> } = json("build.lock.json")
-  const icons = new Set(Object.keys(manifest.icons))
+  const icons = new Set(manifest.icons)
   const catalog = await readCatalog()
   return {
     icons,
