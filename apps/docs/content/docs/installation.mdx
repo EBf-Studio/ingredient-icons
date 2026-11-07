@@ -39,7 +39,7 @@ You don't have to bundle the images. By default the URLs point at the [jsDelivr]
 
 The functions weigh almost nothing. `catalog.json` is the heavy part, a few hundred kilobytes (under 100 KB gzipped), and it only enters your bundle if you import it. On the web, walk the catalog on the server when you can (a Server Component, an API route, your build step) and send only the URLs to the browser. In a mobile app it is a small part of the bundle.
 
-In plain Node, import the JSON with an import attribute: `import catalog from "@ingredient-icons/core/catalog.json" with { type: "json" }`. Bundlers and Bun don't need it.
+In plain Node and Deno, and in TypeScript with `"module": "nodenext"`, import the JSON with an import attribute: `import catalog from "@ingredient-icons/core/catalog.json" with { type: "json" }`. Bundlers and Bun don't need it.
 
 <Callout title="No npm?">
   The icons are plain files in a Git repository, with two JSON files. See [Without npm](/docs/guides/without-npm) for Swift, Kotlin, Python or anything else.

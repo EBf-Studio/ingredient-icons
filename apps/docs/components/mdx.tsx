@@ -48,9 +48,12 @@ function Resolves({ id }: { id: string }) {
           {steps.map((step, i) => (
             <Fragment key={step}>
               {i > 0 && (
-                <span className="text-tomato" aria-label="then">
-                  →
-                </span>
+                <>
+                  <span className="text-tomato" aria-hidden>
+                    →
+                  </span>
+                  <span className="sr-only">then</span>
+                </>
               )}
               {i === steps.length - 1 && i > 0 && iconById(step) ? (
                 <Link href={`/icons/${step}`} className="underline underline-offset-4">

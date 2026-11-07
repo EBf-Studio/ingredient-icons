@@ -39,14 +39,9 @@ Every family has its own icon (the pack's checks refuse a release otherwise), so
 `iconUrl` and `iconPath` return an id's own icon, and `undefined` when it has none. The fallback is yours, in a few lines: walk up the parents in `catalog.json` and take the first id that has an icon.
 
 ```ts title="ingredient-icon.ts"
-import { GENERIC_ID, iconPath } from "@ingredient-icons/core"
+import { GENERIC_ID, iconPath, type CatalogEntry } from "@ingredient-icons/core"
 import catalog from "@ingredient-icons/core/catalog.json"
 
-interface CatalogEntry {
-  parent?: string
-  family?: string
-  names: Partial<Record<string, { name?: string; synonyms: string[] }>>
-}
 const entries: Record<string, CatalogEntry> = catalog.entries
 
 /** The id whose icon an ingredient shows: its own, its nearest ancestor's (its family's last), or the generic icon. */

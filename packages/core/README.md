@@ -24,7 +24,7 @@ There is no emoji for a shallot, and 🧂 has to stand in for salt and pepper. A
 | Emoji | Ingredient Icons |
 | :---: | --- |
 | 🧅 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/onion.png" width="56" alt="Onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/red-onion.png" width="56" alt="Red onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/shallot.png" width="56" alt="Shallot"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/spring-onion.png" width="56" alt="Spring onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/leek.png" width="56" alt="Leek"> |
-| 🧂 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/salt.png" width="56" alt="Salt"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/black-pepper.png" width="56" alt="Black pepper"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/white-pepper.png" width="56" alt="White pepper"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/green-peppercorn.png" width="56" alt="Green peppercorn"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/celery-salt.png" width="56" alt="Celery salt"> |
+| 🧂 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/salt.png" width="56" alt="Salt"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/black-pepper.png" width="56" alt="Black pepper"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/white-pepper.png" width="56" alt="White pepper"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/peppercorn.png" width="56" alt="Peppercorn"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/celery-salt.png" width="56" alt="Celery salt"> |
 | 🧀 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/brie.png" width="56" alt="Brie"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/feta.png" width="56" alt="Feta"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/blue-cheese.png" width="56" alt="Blue cheese"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/mozzarella.png" width="56" alt="Mozzarella"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/parmesan.png" width="56" alt="Parmesan"> |
 
 ## Quick start
@@ -68,7 +68,7 @@ iconUrl("unicorn-steak") ?? iconUrl(GENERIC_ID)  // the generic icon, a cluster 
 
 ## No icon of its own? It borrows its parent's
 
-Ids come from an ingredient catalog of about 1,260 catalog ingredients under 32 families, each with exactly one parent: sea salt is a salt, and salt falls under the salts family. Every family has an icon, so walking up the parents always ends on one: that's how **309 icons cover all 1,259 catalog entries**. The catalog ships with every release as `catalog.json` (ids, parents, families, and names in six languages).
+Ids come from an ingredient catalog of 1,227 catalog ingredients under 32 families, each with exactly one parent: sea salt is a salt, and salt falls under the salts family. Every family has an icon, so walking up the parents always ends on one: that's how **309 icons cover all 1,259 catalog entries**. The catalog ships with every release as `catalog.json` (ids, parents, families, and names in six languages).
 
 <p>
   <code>sea-salt</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/salt.png" width="40" alt="" align="center"> <code>salt</code><br>
@@ -92,6 +92,8 @@ function iconFor(id: string): string {
 }
 ```
 
+In plain Node or Deno, import the JSON with an import attribute: `with { type: "json" }`.
+
 Try it with any ingredient [on the website](https://ingredient-icons.vercel.app).
 
 ## What's in the package
@@ -104,7 +106,7 @@ To serve the files yourself, expose the package's `icons/` folder and pass `{ ba
 
 ## Missing an ingredient?
 
-New icons ship in batches. [Open an issue](https://github.com/EBf-Studio/ingredient-icons/issues/new) with the catalog id (`yuzu`) or the name of the ingredient, and it goes on the list. An ingredient the catalog lacks is added to it first.
+New icons ship in batches. [Open an issue](https://github.com/EBf-Studio/ingredient-icons/issues/new) with the catalog id (`acorn-squash`) or the name of the ingredient, and it goes on the list. An ingredient the catalog lacks is added to it first.
 
 ## Licenses
 

@@ -5,8 +5,9 @@ import { iconOf, readCatalog } from "./catalog"
 import { iconPath, type Manifest } from "./layout"
 
 /**
- * What origin/main shows today, read from git rather than from this checkout, whose
- * manifest and icons already hold the batch's own work (a rejected icon is not "today").
+ * What origin/main shows today: its icons, read from git rather than from this checkout, whose
+ * manifest and icons already hold the batch's own work (a rejected icon is not "today"). The
+ * walk uses this checkout's catalog.json, so a catalog refresh in the batch shows on both sides.
  */
 export async function onMain() {
   // A stale origin/main would show icons merged since as new ones, or as today's.

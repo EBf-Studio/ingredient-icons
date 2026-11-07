@@ -1,20 +1,19 @@
 // Ids the site quotes must stay true after a catalog release or a batch of icons: the build
 // throws on some of them, but bun run check doesn't build the site. This reads the docs,
-// the home page and the hand-picked showcases, and checks each id against catalog.json and
+// the home page, the two READMEs and the hand-picked showcases, and checks each id against catalog.json and
 // manifest.json, and each commented result of iconFor, iconUrl, iconPath and nameOf.
 
 import { describe, expect, test } from 'bun:test';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { GENERIC_ID, iconPath, ids } from '@ingredient-icons/core';
+import { type CatalogEntry, GENERIC_ID, iconPath, ids } from '@ingredient-icons/core';
 import catalog from '@ingredient-icons/core/catalog.json';
 import { fallbackSteps } from './fallback';
 import { FALLBACK_PRESETS } from './fallback-presets';
 import { CTA_ICONS, EMOJI_ROWS, OG_ICONS, RECIPE, SHELF_PICKS } from './showcase';
 import { logoFile } from './shared';
 
-type Names = Partial<Record<string, { name?: string; synonyms: string[] }>>;
-const entries: Record<string, { parent?: string; names: Names }> = catalog.entries;
+const entries: Record<string, CatalogEntry> = catalog.entries;
 
 /** Ids the docs use on purpose as unknown to the catalog, to show the generic icon. */
 const NOT_IN_CATALOG = new Set(['unicorn-steak']);
@@ -24,6 +23,7 @@ const nameOf = (id: string, language = 'en') => entries[id]?.names[language]?.na
 const own = (id: string) => id !== GENERIC_ID && ids.includes(id);
 
 const content = path.join(import.meta.dir, '../content/docs');
+const root = path.join(import.meta.dir, '../../..');
 const pages = [
   ...(await Promise.all(
     (await readdir(content, { recursive: true }))
@@ -31,6 +31,9 @@ const pages = [
       .map(async (file) => ({ file, text: await readFile(path.join(content, file), 'utf8') })),
   )),
   { file: 'app/(home)/page.tsx', text: await readFile(path.join(import.meta.dir, '../app/(home)/page.tsx'), 'utf8') },
+  ...(await Promise.all(
+    ['README.md', 'packages/core/README.md'].map(async (file) => ({ file, text: await readFile(path.join(root, file), 'utf8') })),
+  )),
 ];
 const cited = (pattern: RegExp) =>
   pages.flatMap(({ file, text }) => [...text.matchAll(pattern)].map((match) => ({ file, match })));
@@ -39,6 +42,11 @@ describe('ids cited in the docs', () => {
   test('<Resolves> ids are catalog ids', () => {
     for (const { file, match } of cited(/<Resolves id="([^"]+)"/g))
       expect({ file, id: match[1], inCatalog: !!entries[match[1]!] }).toEqual({ file, id: match[1], inCatalog: true });
+  });
+
+  test('icon images the READMEs show exist', () => {
+    for (const { file, match } of cited(/icons\/png\/\d+\/([a-z0-9-]+)\.png/g))
+      expect({ file, id: match[1], exists: ids.includes(match[1]!) }).toEqual({ file, id: match[1], exists: true });
   });
 
   test('<IconRow> ids have their own icon', () => {

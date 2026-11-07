@@ -40,10 +40,6 @@ describe("the catalog snapshot", () => {
     expect(catalog.license).toBe("CC0-1.0")
   })
 
-  test("keys every icon, the generic one aside", () => {
-    for (const id of ids) if (id !== GENERIC_ID) expect(catalog.entries).toHaveProperty([id])
-  })
-
   test("gives each catalog ingredient its parent, its family and its names", () => {
     expect(catalog.entries["shallot"]).toMatchObject({
       family: "vegetables",

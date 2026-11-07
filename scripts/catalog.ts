@@ -9,6 +9,7 @@ import { readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 
 import type { Catalog, CatalogNames } from "../packages/core/src/catalog"
+import { GENERIC_ID, type Manifest } from "./layout"
 
 export const CATALOG_FILE = "catalog.json"
 
@@ -106,6 +107,15 @@ if (import.meta.main) {
   if (!existsSync(data)) throw new Error(`No ${data}: run bun run codegen in ${dir}`)
   const build: CatalogBuild = (await import(data)).default
   const catalog = snapshot(build)
+  if (!Object.keys(catalog.entries).length) throw new Error(`${data} holds no entry: nothing written`)
+  // What bun run check will refuse, told before the snapshot changes: icons whose id left the
+  // catalog (rename or drop them) and families without an icon (draw them).
+  const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
+  const icons = Object.keys(manifest.icons).filter((id) => id !== GENERIC_ID)
+  for (const id of icons.filter((id) => !Object.hasOwn(catalog.entries, id)))
+    console.log(`⚠ ${id}: has an icon but left the catalog`)
+  for (const id of families(catalog).filter((id) => !Object.hasOwn(manifest.icons, id)))
+    console.log(`⚠ ${id}: a family without an icon`)
   await writeFile(CATALOG_FILE, formatCatalog(catalog))
   const count = Object.keys(catalog.entries).length
   console.log(

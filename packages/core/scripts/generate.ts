@@ -4,12 +4,14 @@
 import { cp, readFile, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
 
+import type { Catalog } from "../src/catalog"
+
 const root = path.resolve(import.meta.dir, "../../..")
 const pkg = path.resolve(import.meta.dir, "..")
 
 const manifest: { style: number; sizes: { webp: number[] }; icons: Record<string, { file: string }> } =
   JSON.parse(await readFile(path.join(root, "manifest.json"), "utf8"))
-const catalog: { release: string; entries: Record<string, unknown> } = JSON.parse(
+const catalog: Catalog = JSON.parse(
   await readFile(path.join(root, "catalog.json"), "utf8"),
 )
 const { version } = JSON.parse(await readFile(path.join(pkg, "package.json"), "utf8"))

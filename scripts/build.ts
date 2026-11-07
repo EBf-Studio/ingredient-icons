@@ -163,7 +163,7 @@ function checkSources(dir: string) {
 function reviewPage(ids: string[]) {
   const card = (id: string) => {
     const src = `../${iconPath("webp", 256, id)}`
-    return `<figure><img class="big" src="${src}"><figcaption><img class="row" src="${src}">${id}</figcaption><p>in text <img class="inline" src="${src}"> ${id.slice(id.indexOf(":") + 1)}</p></figure>`
+    return `<figure><img class="big" src="${src}"><figcaption><img class="row" src="${src}">${id}</figcaption><p>in text <img class="inline" src="${src}"> ${id}</p></figure>`
   }
   const grid = ids.map(card).join("")
   return `<!doctype html><meta charset="utf-8"><title>ingredient-icons review</title><style>

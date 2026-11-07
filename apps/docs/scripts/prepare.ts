@@ -6,6 +6,7 @@
 
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
+import type { Catalog } from "@ingredient-icons/core"
 import { FALLBACK_PRESETS } from "../lib/fallback-presets"
 import { fallbackKind, fallbackSteps, familyLabel } from "../lib/fallback"
 
@@ -15,12 +16,7 @@ const root = path.resolve(site, "../..")
 await Bun.$`bun run --cwd ${path.join(root, "packages/core")} build`.quiet()
 const core = await import("@ingredient-icons/core")
 
-interface Entry {
-  parent?: string
-  family?: string
-  names: Partial<Record<string, { name?: string; synonyms: string[] }>>
-}
-const catalog: { release: string; entries: Record<string, Entry> } = JSON.parse(
+const catalog: Catalog = JSON.parse(
   await readFile(path.join(root, "catalog.json"), "utf8"),
 )
 const manifest: { icons: Record<string, { file: string }> } = JSON.parse(
@@ -122,7 +118,6 @@ await writeFile(
   path.join(site, "lib/generated/icons.json"),
   JSON.stringify({
     version,
-    catalogRelease: catalog.release,
     catalogSize: Object.keys(entries).length,
     familyCount: families.length,
     covered,
@@ -142,10 +137,7 @@ await writeFile(
   path.join(site, "lib/generated/catalog.json"),
   JSON.stringify(
     Object.fromEntries(
-      Object.entries(entries).map(([id, entry]) => [
-        id,
-        { name: nameOf(id), fr: entry.names.fr?.name ?? null, family: isFamily(id), steps: steps[id] },
-      ]),
+      Object.keys(entries).map((id) => [id, { name: nameOf(id), family: isFamily(id), steps: steps[id] }]),
     ),
   ),
 )

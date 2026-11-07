@@ -46,14 +46,9 @@ iconUrl("extra-virgin-olive-oil") // undefined
 The catalog knows that extra virgin olive oil is an olive oil. Copy this helper: it walks up the parents in `catalog.json` and returns the first id that has an icon, the ingredient's family last, and the generic icon when nothing on the way has one.
 
 ```ts title="ingredient-icon.ts"
-import { GENERIC_ID, iconPath } from "@ingredient-icons/core"
+import { GENERIC_ID, iconPath, type CatalogEntry } from "@ingredient-icons/core"
 import catalog from "@ingredient-icons/core/catalog.json"
 
-interface CatalogEntry {
-  parent?: string
-  family?: string
-  names: Partial<Record<string, { name?: string; synonyms: string[] }>>
-}
 const entries: Record<string, CatalogEntry> = catalog.entries
 
 /** The id whose icon an ingredient shows: its own, its nearest ancestor's (its family's last), or the generic icon. */

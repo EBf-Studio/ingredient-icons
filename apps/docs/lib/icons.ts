@@ -40,7 +40,6 @@ export const categories: Category[] = data.categories;
 /** Icons drawn, the generic one aside. */
 export const total = icons.length;
 export const version: string = data.version;
-export const catalogRelease: string = data.catalogRelease;
 /** Families and catalog ingredients in catalog.json. */
 export const catalogSize: number = data.catalogSize;
 export const familyCount: number = data.familyCount;
@@ -56,7 +55,6 @@ export const categoryTitle = (key: string) => categories.find((c) => c.key === k
 
 interface CatalogInfo {
   name: string;
-  fr: string | null;
   family: boolean;
   steps: string[];
 }
