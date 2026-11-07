@@ -1,21 +1,15 @@
 import Link from 'next/link';
 import { IconImage } from '@/components/icon-image';
-import { type IconEntry, icons } from '@/lib/icons';
+import { type IconEntry, iconById } from '@/lib/icons';
+import { SHELF_PICKS } from '@/lib/showcase';
 import { cn } from '@/lib/cn';
 
-// Hand-picked so every column mixes colours and shapes instead of clumping greens together.
-const PICKS = [
-  'tomato', 'avocado', 'brie', 'lemon', 'salmon', 'garlic', 'strawberry', 'cheddar',
-  'shallot', 'basil', 'egg', 'carrot', 'parmigiano-reggiano', 'blueberry', 'shrimp', 'aubergine',
-  'butter', 'chili-pepper', 'mushroom', 'pomegranate', 'bread', 'spaghetti', 'leek', 'pita',
-  'red-onion', 'maple-syrup', 'pineapple', 'octopus', 'cinnamon', 'broccoli', 'mozzarella', 'peach',
-  'olive-oil', 'pumpkin', 'star-anise', 'fig', 'bacon', 'lime', 'radish', 'dark-chocolate',
-  'mango', 'artichoke', 'rosemary', 'crab', 'beetroot', 'coconut-milk', 'cherry', 'ginger',
-];
-
 function pick(): IconEntry[] {
-  const bySlug = new Map(icons.map((icon) => [icon.slug, icon]));
-  return PICKS.flatMap((slug) => bySlug.get(slug) ?? []);
+  return SHELF_PICKS.map((id) => {
+    const icon = iconById(id);
+    if (!icon) throw new Error(`Shelf: no icon for ${id}`);
+    return icon;
+  });
 }
 
 const COLUMNS = [
@@ -48,18 +42,18 @@ export function Shelf({ className }: { className?: string }) {
               items.map((icon) => (
                 <li key={`${copy}-${icon.id}`} aria-hidden={copy === 1 || undefined}>
                   <Link
-                    href={`/icons/${icon.slug}`}
+                    href={`/icons/${icon.id}`}
                     tabIndex={copy === 1 ? -1 : undefined}
                     className="group flex flex-col items-center gap-1 rounded-card px-2 py-3 outline-none focus-visible:ring-2 focus-visible:ring-fd-ring"
                   >
                     <IconImage
-                      file={icon.file}
+                      file={icon.id}
                       size={96}
                       priority={copy === 0}
                       className="size-20 transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-110 sm:size-24"
                     />
                     <span className="text-xs text-fd-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-                      {icon.en}
+                      {icon.name}
                     </span>
                   </Link>
                 </li>

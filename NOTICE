@@ -5,11 +5,11 @@ Icons (icons/, manifest.json)
   Dedicated to the public domain under CC0 1.0 (LICENSE-ICONS).
   Created with Grok.
 
-Taxonomy (taxonomy.json)
-  Contains data from the Open Food Facts ingredients taxonomy
-  (https://world.openfoodfacts.org), made available under the
-  Open Database License 1.0: https://opendatacommons.org/licenses/odbl/1-0/
-  ingredient-icons is not affiliated with Open Food Facts.
+Catalog snapshot (catalog.json)
+  Ids, parents, families and names of Marmalade's ingredient catalog,
+  dedicated to the public domain under CC0 1.0 (LICENSE-ICONS).
+  Names come from Wikidata (CC0, https://www.wikidata.org) or were
+  written by Marmalade.
 
-Code (scripts/)
+Code (scripts/, packages/core/src/)
   MIT (LICENSE).

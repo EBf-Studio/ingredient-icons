@@ -4,16 +4,15 @@ import { categories, icons, total } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Browse the icons',
-  description: `All ${total} ingredient icons. Search in English or French, click one for every size, its id and the ingredients that fall back to it.`,
+  description: `All ${total} ingredient icons. Search in English, French, Spanish, Italian, German or Portuguese, click one for every size, its catalog id and the ingredients that fall back to it.`,
 };
 
 export default function IconsPage() {
   const items: GalleryIcon[] = icons.map((icon) => ({
     id: icon.id,
-    slug: icon.slug,
-    file: icon.file,
-    en: icon.en,
-    fr: icon.fr,
+    name: icon.name,
+    fr: icon.names.fr,
+    terms: icon.terms,
     category: icon.category,
     aliases: icon.aliases,
   }));
@@ -24,8 +23,8 @@ export default function IconsPage() {
         The pantry
       </h1>
       <p className="mt-3 max-w-xl text-lg text-fd-muted-foreground">
-        All {total} icons, public domain. Click one for every size, its id and the ingredients that
-        borrow it.
+        All {total} icons, public domain, grouped by family. Click one for every size, its catalog id
+        and the ingredients that borrow it.
       </p>
       <Gallery icons={items} categories={categories} />
     </main>

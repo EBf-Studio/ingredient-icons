@@ -8,6 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: siteUrl, priority: 1 },
     { url: `${siteUrl}/icons`, priority: 0.9 },
     ...source.getPages().map((page) => ({ url: `${siteUrl}${page.url}`, priority: 0.7 })),
-    ...icons.map((icon) => ({ url: `${siteUrl}/icons/${icon.slug}`, priority: 0.5 })),
+    ...icons.map((icon) => ({ url: `${siteUrl}/icons/${icon.id}`, priority: 0.5 })),
   ];
 }

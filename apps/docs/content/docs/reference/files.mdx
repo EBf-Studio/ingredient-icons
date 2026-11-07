@@ -1,14 +1,14 @@
 ---
 title: Files
-description: The format of manifest.json and taxonomy.json.
+description: The format of manifest.json and catalog.json.
 icon: FileCode
 ---
 
-Both files live at the root of the [repository](https://github.com/EBf-Studio/ingredient-icons). The npm package compiles them into its code, so you only need them [without npm](/docs/guides/without-npm).
+Both files live at the root of the [repository](https://github.com/EBf-Studio/ingredient-icons). The npm package compiles `manifest.json` into its code and ships `catalog.json` as is (`@ingredient-icons/core/catalog.json`), so you only need to read `manifest.json` [without npm](/docs/guides/without-npm).
 
 ## manifest.json
 
-Every icon, keyed by taxonomy id.
+Every icon, keyed by catalog id.
 
 ```json title="manifest.json"
 {
@@ -17,10 +17,8 @@ Every icon, keyed by taxonomy id.
     "png": [64, 128, 256, 512],
     "webp": [64, 128, 256]
   },
-  "path": "icons/{format}/{size}/{file}.{format}",
-  "icons": {
-    "en:shallot": { "file": "en_shallot" }
-  }
+  "path": "icons/{format}/{size}/{id}.{format}",
+  "icons": ["generic", "shallot"]
 }
 ```
 
@@ -29,45 +27,60 @@ Every icon, keyed by taxonomy id.
     style: { type: 'number', description: 'Version of the drawing style.' },
     sizes: { type: '{ png: number[]; webp: number[] }', description: 'Sizes available in each format.' },
     path: { type: 'string', description: 'Template of a file\'s path from the repository root.' },
-    icons: { type: 'Record<string, { file: string }>', description: 'File name of each id that has its own icon.' },
+    icons: { type: 'string[]', description: 'Every id that has its own icon, sorted. The id is also the file name.' },
   }}
 />
 
-One key is not a taxonomy id: `"generic": { "file": "generic" }`, the generic icon (a cluster of fresh ingredients) to show for an ingredient the fallback cannot place.
+One id is not a catalog id: `generic`, the generic icon (a cluster of fresh ingredients) to show for an ingredient the fallback cannot place.
 
 License: CC0 1.0.
 
-## taxonomy.json
+## catalog.json
 
-The part of the Open Food Facts ingredients taxonomy the fallback needs.
+A snapshot of Marmalade's ingredient catalog: every family and catalog ingredient, by id.
 
-```json title="taxonomy.json"
+```json title="catalog.json"
 {
-  "source": "Open Food Facts ingredients taxonomy",
-  "release": "v2.118.0",
-  "commit": "<commit>",
-  "url": "https://github.com/openfoodfacts/openfoodfacts-server/releases/download/v2.118.0/food-taxonomies-json.tgz",
-  "sha256": "<sha256 of ingredients.json>",
-  "license": "ODbL-1.0",
-  "parents": {
-    "en:fleur-de-sel": ["en:sea-salt"],
-    "en:sea-salt": ["en:salt"]
-  },
-  "names": {
-    "en:shallot": { "en": "shallot", "fr": "échalote" }
+  "release": "<release>",
+  "license": "CC0-1.0",
+  "entries": {
+    "onion": {
+      "parent": "vegetables",
+      "family": "vegetables",
+      "names": {
+        "fr": { "name": "oignon", "synonyms": [] },
+        "en": { "name": "onion", "synonyms": ["onions"] },
+        "es": { "name": "cebolla", "synonyms": [] }
+      }
+    },
+    "vegetables": {
+      "names": {
+        "fr": { "name": "légume", "synonyms": [] },
+        "en": { "name": "vegetable", "synonyms": ["vegetables", "veggie"] }
+      }
+    }
   }
 }
 ```
 
 <TypeTable
   type={{
-    release: { type: 'string', description: 'openfoodfacts-server release the data was taken from.' },
-    commit: { type: 'string', description: 'Commit of that release.' },
-    url: { type: 'string', description: 'The release asset holding ingredients.json.' },
-    sha256: { type: 'string', description: 'SHA-256 of the ingredients.json the data was taken from.' },
-    parents: { type: 'Record<string, string[]>', description: 'Parents of every taxonomy entry that has one, in taxonomy order.' },
-    names: { type: 'Record<string, { en?: string; fr?: string }>', description: 'English and French names of the ids that have an icon.' },
+    release: { type: 'string', description: 'Release of the catalog, a hash of its content. The package exports it as CATALOG_RELEASE.' },
+    license: { type: '"CC0-1.0"', description: 'The catalog is in the public domain.' },
+    entries: { type: 'Record<string, CatalogEntry>', description: 'Every family and catalog ingredient, sorted by id.' },
   }}
 />
 
-License: ODbL 1.0, from Open Food Facts. See [Licenses](/docs/licenses).
+### CatalogEntry
+
+<TypeTable
+  type={{
+    parent: { type: 'string', description: 'The catalog ingredient or family it falls under. Absent on a family.' },
+    family: { type: 'string', description: 'The family at the top of its parents. Absent on a family.' },
+    names: { type: 'Partial<Record<"fr" | "en" | "es" | "it" | "de" | "pt", { name?: string; synonyms: string[] }>>', description: 'Name and synonyms per language. French and English are reviewed and present on every entry; the others come from Wikidata, where it has them.' },
+  }}
+/>
+
+A family is an entry with no `parent`. Every other entry has exactly one parent and one family. There are <CatalogSize /> entries in this release, <FamilyCount /> of them families.
+
+License: CC0 1.0. See [Licenses](/docs/licenses).

@@ -80,7 +80,7 @@ export function Gallery({ icons, categories }: { icons: GalleryIcon[]; categorie
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search in English or French: basil, échalote, en:feta"
+              placeholder="Search in any language: basil, échalote, Schalotte"
               aria-label="Search icons"
               className="h-11 w-full rounded-control border bg-fd-card pl-10 shadow-card pr-10 text-[15px] outline-none placeholder:text-fd-muted-foreground focus:border-basil focus:ring-4 focus:ring-basil/15 [&::-webkit-search-cancel-button]:hidden"
             />
@@ -119,7 +119,7 @@ export function Gallery({ icons, categories }: { icons: GalleryIcon[]; categorie
             ))}
           </div>
         </div>
-        <div className="-mx-1 mt-3 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] md:flex-wrap md:overflow-visible" role="group" aria-label="Filter by aisle">
+        <div className="-mx-1 mt-3 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] md:flex-wrap md:overflow-visible" role="group" aria-label="Filter by family">
           <FilterPill active={!category} onClick={() => setCategory(undefined)} count={icons.length}>
             All
           </FilterPill>
@@ -218,19 +218,19 @@ function Tile({ icon, via, density }: { icon: GalleryIcon; via?: string; density
   return (
     <li className="group relative">
       <Link
-        href={`/icons/${icon.slug}`}
+        href={`/icons/${icon.id}`}
         className={cn(
           'flex h-full flex-col items-center rounded-card text-center transition-colors hover:bg-fd-card focus-visible:bg-fd-card focus-visible:outline-2 focus-visible:outline-fd-ring',
           cozy ? 'gap-2 px-2 pt-5 pb-4' : 'gap-1 px-1 pt-3 pb-2',
         )}
       >
         <IconImage
-          file={icon.file}
+          file={icon.id}
           size={cozy ? 88 : 56}
           alt=""
           className={cn('transition-transform duration-200 group-hover:scale-105', cozy ? 'size-22' : 'size-14')}
         />
-        <span className={cn('leading-tight', cozy ? 'text-sm' : 'text-xs')}>{icon.en}</span>
+        <span className={cn('leading-tight', cozy ? 'text-sm' : 'text-xs')}>{icon.name}</span>
         {via && <span className="text-xs leading-tight text-fd-muted-foreground">for {via}</span>}
       </Link>
       <button

@@ -6,33 +6,14 @@ icon: Braces
 
 ```ts
 import {
-  findIcon, iconPath, iconUrl, iconName,
-  GENERIC_ID, ids, sizes, CDN_URL, VERSION, STYLE, TAXONOMY_RELEASE, TAXONOMY_COMMIT,
-  type Icon, type IconSize,
+  iconPath, iconUrl,
+  GENERIC_ID, ids, sizes, CDN_URL, VERSION, STYLE, CATALOG_RELEASE,
+  type IconSize, type Catalog, type CatalogEntry, type CatalogNames,
 } from "@ingredient-icons/core"
+import catalog from "@ingredient-icons/core/catalog.json"
 ```
 
-## findIcon
-
-```ts
-function findIcon(id: string): Icon | undefined
-```
-
-The icon of an Open Food Facts ingredient id, or of its closest ancestor in the taxonomy when it has none of its own. `undefined` when no ancestor within six levels has one: the fallback is yours to pick, such as the generic icon (`GENERIC_ID`). See [Ids and fallback](/docs/guides/ids-and-fallback).
-
-```ts
-findIcon("en:peeled-tomatoes") // { id: "en:tomato", file: "en_tomato", exact: false }
-```
-
-### Icon
-
-<TypeTable
-  type={{
-    id: { type: 'string', description: 'The id whose icon this is: the one asked for, or the closest ancestor that has one.' },
-    file: { type: 'string', description: 'File name without extension: "en_shallot".' },
-    exact: { type: 'boolean', description: 'False when the icon is an ancestor\'s: peeled tomatoes get the tomato.' },
-  }}
-/>
+The functions only know an id's own icon: there is no fallback inside the package. To show an ancestor's icon for an ingredient that has none, walk up `catalog.json` as in [Ids and fallback](/docs/guides/ids-and-fallback).
 
 ## iconUrl
 
@@ -40,7 +21,7 @@ findIcon("en:peeled-tomatoes") // { id: "en:tomato", file: "en_tomato", exact: f
 function iconUrl(id: string, options?: { size?: IconSize; baseUrl?: string }): string | undefined
 ```
 
-URL of the icon's WebP file, after fallback. `undefined` when `findIcon` finds nothing.
+URL of the id's own WebP file. `undefined` when the id has no icon of its own.
 
 <TypeTable
   type={{
@@ -50,8 +31,11 @@ URL of the icon's WebP file, after fallback. `undefined` when `findIcon` finds n
 />
 
 ```ts
-iconUrl("en:shallot", { size: 256 })
-// https://cdn.jsdelivr.net/npm/@ingredient-icons/core@<version>/icons/webp/256/en_shallot.webp
+iconUrl("shallot", { size: 256 })
+// https://cdn.jsdelivr.net/npm/@ingredient-icons/core@<version>/icons/webp/256/shallot.webp
+
+iconUrl("extra-virgin-olive-oil") // undefined: no icon of its own
+iconUrl(GENERIC_ID) // …/icons/webp/128/generic.webp
 ```
 
 ## iconPath
@@ -60,47 +44,62 @@ iconUrl("en:shallot", { size: 256 })
 function iconPath(id: string, size?: IconSize): string | undefined
 ```
 
-Path of the icon inside the package, after fallback. `size` defaults to `128`.
+Path of the id's own icon inside the package, or `undefined` when it has none. `size` defaults to `128`.
 
 ```ts
-iconPath("en:shallot", 64) // "icons/webp/64/en_shallot.webp"
-```
-
-## iconName
-
-```ts
-function iconName(id: string, locale?: "en" | "fr"): string | undefined
-```
-
-Name of an id that has its own icon, from the Open Food Facts taxonomy. `locale` defaults to `"en"`. No fallback: `undefined` for ids without an icon. `"Ingredient"` (`"Ingrédient"`) for `GENERIC_ID`. See [Names](/docs/guides/names).
-
-```ts
-iconName("en:shallot", "fr") // "échalote"
+iconPath("shallot", 64) // "icons/webp/64/shallot.webp"
+iconPath("cheeses") // "icons/webp/128/cheeses.webp"
 ```
 
 ## Constants
 
 <TypeTable
   type={{
-    GENERIC_ID: { type: 'string', description: 'Id of the generic icon, a cluster of fresh ingredients: "generic". Not an Open Food Facts id. Show it for an ingredient findIcon cannot place: iconUrl(id) ?? iconUrl(GENERIC_ID).' },
-    ids: { type: 'readonly string[]', description: 'Every id that has its own icon, GENERIC_ID included.' },
+    GENERIC_ID: { type: 'string', description: 'Id of the generic icon, a cluster of fresh ingredients: "generic". Not a catalog id. Show it for an ingredient that has no icon and no ancestor with one.' },
+    ids: { type: 'readonly string[]', description: 'Every id that has its own icon: catalog ids (families among them), plus GENERIC_ID.' },
     sizes: { type: 'readonly IconSize[]', description: 'Sizes shipped in the package: [64, 128, 256].' },
     CDN_URL: { type: 'string', description: 'jsDelivr URL of the package, pinned to its version. The default baseUrl.' },
     VERSION: { type: 'string', description: 'Version of the installed package.' },
     STYLE: { type: 'number', description: 'Version of the drawing style. It changes when icons are redrawn in a new style.' },
-    TAXONOMY_RELEASE: { type: 'string', description: 'openfoodfacts-server release the parents and names come from: "v2.118.0". Compare it with the release your own Open Food Facts data comes from.' },
-    TAXONOMY_COMMIT: { type: 'string', description: 'Commit of that release.' },
+    CATALOG_RELEASE: { type: 'string', description: 'Release of the ingredient catalog the ids come from, the same as release in catalog.json.' },
   }}
 />
+
+## catalog.json
+
+```ts
+import catalog from "@ingredient-icons/core/catalog.json"
+
+catalog.entries["shallot"].parent // "onion"
+catalog.entries["shallot"].family // "vegetables"
+catalog.entries["shallot"].names.fr.name // "échalote"
+```
+
+The ingredient catalog the ids come from: every family and catalog ingredient, with its parent, its family and its names in six languages. See [Files](/docs/reference/files) for its format, and [Names](/docs/guides/names).
 
 ## Types
 
 ```ts
 type IconSize = 64 | 128 | 256
+```
 
-interface Icon {
-  id: string
-  file: string
-  exact: boolean
+```ts
+interface Catalog {
+  release: string // CATALOG_RELEASE
+  license: "CC0-1.0"
+  entries: Record<string, CatalogEntry>
+}
+
+interface CatalogEntry {
+  parent?: string // none for a family
+  family?: string // none for a family
+  names: Partial<Record<string, CatalogNames>> // fr, en, es, it, de, pt
+}
+
+interface CatalogNames {
+  name?: string
+  synonyms: string[]
 }
 ```
+
+The shape of `catalog.json`. A JSON import is typed with its exact keys, so give it this type to index it with any string: `const catalog: Catalog = snapshot as Catalog`.

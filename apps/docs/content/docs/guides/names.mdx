@@ -1,36 +1,76 @@
 ---
 title: Names
-description: English and French names of the icons.
+description: Names and synonyms of every catalog ingredient, in six languages.
 icon: Languages
 ---
 
-Each icon comes with its English name from Open Food Facts, and nearly every one with its French name too. `iconName` returns `undefined` when a name is missing.
+`catalog.json` names every entry, whether it has an icon or not: an ingredient that borrows its parent's icon still has its own name. French and English names are reviewed by Marmalade. Spanish, Italian, German and Portuguese come from Wikidata, where it has them.
 
-```ts
-import { iconName } from "@ingredient-icons/core"
+<NameCoverage />
 
-iconName("en:shallot")        // "shallot"
-iconName("en:shallot", "fr")  // "échalote"
-iconName("en:fresh-cream", "fr") // "crème fraîche"
+Each language has a `name` and a list of `synonyms`:
+
+```json title="catalog.json (excerpt)"
+"shallot": {
+  "parent": "onion",
+  "family": "vegetables",
+  "names": {
+    "fr": { "name": "échalote", "synonyms": [] },
+    "en": { "name": "shallot", "synonyms": [] },
+    "it": { "name": "scalogno", "synonyms": [] },
+    "de": { "name": "Schalotte", "synonyms": ["Schalotten"] }
+  }
+}
 ```
 
-## Only ids with an icon have a name
+## Reading a name
 
-`iconName` knows the names of the <Total /> ids that have an icon, not of the whole taxonomy. For an id that falls back to an ancestor, name the icon you show, not the ingredient:
+```ts title="ingredient-names.ts"
+import catalog from "@ingredient-icons/core/catalog.json"
 
-```ts
-import { findIcon, iconName } from "@ingredient-icons/core"
+type Language = "fr" | "en" | "es" | "it" | "de" | "pt"
+type Names = Partial<Record<string, { name?: string; synonyms: string[] }>>
+const entries: Record<string, { names: Names }> = catalog.entries
 
-iconName("en:peeled-tomatoes") // undefined
-
-const icon = findIcon("en:peeled-tomatoes")
-iconName(icon!.id) // "tomato"
+/** An ingredient's name in a language, else its English name. */
+export function nameOf(id: string, language: Language = "en"): string | undefined {
+  const names = entries[id]?.names
+  return names?.[language]?.name ?? names?.en?.name
+}
 ```
 
-The generic icon is named too: `iconName(GENERIC_ID)` is `"Ingredient"`, and `"Ingrédient"` in French.
+```ts
+nameOf("shallot") // "shallot"
+nameOf("shallot", "fr") // "échalote"
+nameOf("shallot", "de") // "Schalotte"
+nameOf("shallot", "es") // "shallot"
+nameOf("creme-fraiche", "fr") // "crème fraîche"
+```
 
-Your recipe data most likely has its own names for ingredients already: use those in the interface, and `iconName` for alt text and search.
+Shallot has no Spanish name in the catalog yet, hence the English one.
+
+## Name the ingredient, not the icon
+
+For an ingredient that falls back to an ancestor's icon, use the ingredient's own name: `extra-virgin-olive-oil` shows the olive oil icon, but its alt text, if it needs one, is "extra virgin olive oil".
+
+Family names come from Wikidata labels and can read oddly (`eggs` is "egg as food" in English). Your interface probably names families its own way.
+
+The generic icon is not in the catalog. Name it yourself, "Ingredient" for example.
+
+## Searching by synonyms
+
+Synonyms are spellings and other names people type: "EVOO" for extra virgin olive oil, "Schalotten" for shallots. Search them with the names to map free text to a catalog id (`entries` as in `ingredient-names.ts` above):
+
+```ts
+const matches = Object.entries(entries).filter(([, entry]) =>
+  Object.values(entry.names).some((names) =>
+    [names?.name, ...(names?.synonyms ?? [])].some((text) => text?.toLowerCase() === query.toLowerCase()),
+  ),
+)
+```
+
+Your recipe data most likely has its own names for ingredients already: use those in the interface, and the catalog's for search, alt text and the languages you don't cover.
 
 ## Other languages
 
-Only English and French ship today. The [Open Food Facts taxonomy](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/food/ingredients.txt) has names in many more languages. Open an issue if you need one.
+Open an issue for a missing language, or for a name that reads wrong.

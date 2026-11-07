@@ -1,29 +1,29 @@
-// What adding icons for some ids would change, before generating them: whether each
-// id exists in the taxonomy, what it shows today, and which ids would switch to it.
-// "Today" counts the raws already in the sources but not published yet.
-// A broad icon (en:seed) can take over ids it draws badly (pepper, sesame): read the takeovers.
-// The reserved generic icon (GENERIC_ID) is no taxonomy entry and nothing falls back on it: skipped.
-// Run: bun run impact en:yuzu en:seed …
+// What adding icons for some ids would change, before generating them: whether each id is in the
+// catalog, what it shows today, and which entries would switch to it (an entry without an icon
+// shows its nearest ancestor's, its family's last). "Today" counts the raws already in the
+// sources but not published yet. A broad icon (a parent of many) can take over entries it draws badly:
+// read the takeovers. The reserved generic icon (GENERIC_ID) is no catalog entry and nothing
+// falls back on it: skipped.
+// Run: bun run impact acorn-squash garam-masala …
 
 import { existsSync } from "node:fs"
-import { mkdir, readFile, writeFile } from "node:fs/promises"
+import { readFile } from "node:fs/promises"
 import path from "node:path"
 
-import { iconOf, readTaxonomy } from "./fallback"
-import { GENERIC_ID, fileName, sourcesDir, type Manifest } from "./layout"
-import { downloadTaxonomy, type Entries } from "./off"
+import { iconOf, readCatalog } from "./catalog"
+import { GENERIC_ID, sourcesDir, type Manifest } from "./layout"
 
 const manifest: Manifest = JSON.parse(await readFile("manifest.json", "utf8"))
-const { parents, release } = await readTaxonomy()
+const catalog = await readCatalog()
 const args = process.argv.slice(2)
 if (args.includes(GENERIC_ID)) console.log(`- ${GENERIC_ID}: reserved id, not an ingredient: nothing falls back on it, skipped`)
 const proposed = args.filter((id) => id !== GENERIC_ID)
 if (!args.length) {
-  console.error("Usage: bun run impact en:yuzu en:seed …")
+  console.error("Usage: bun run impact acorn-squash garam-masala …")
   process.exit(1)
 }
 
-const published = new Set(Object.keys(manifest.icons))
+const published = new Set(manifest.icons)
 const pending = new Set<string>()
 const sources = (() => {
   try {
@@ -35,58 +35,59 @@ const sources = (() => {
 if (sources) {
   const subjects: { slug: string }[] = JSON.parse(await readFile(path.join(sources, "subjects.json"), "utf8"))
   for (const { slug } of subjects)
-    if (!published.has(slug) && existsSync(path.join(sources, "raw", `${fileName(slug)}.png`))) pending.add(slug)
+    if (!published.has(slug) && existsSync(path.join(sources, "raw", `${slug}.png`))) pending.add(slug)
 }
 /** Where to look at the icon an id shows: the published icon, or the raw of one not published yet. */
 const picture = (id: string) =>
-  pending.has(id) ? `${id} (not published: ${path.join(sources!, "raw", `${fileName(id)}.png`)})` : `${id} (${path.resolve("icons/png/128", `${fileName(id)}.png`)})`
+  pending.has(id) ? `${id} (not published: ${path.join(sources!, "raw", `${id}.png`)})` : `${id} (${path.resolve("icons/png/128", `${id}.png`)})`
 const current = new Set([...published, ...pending])
 
-// taxonomy.json only lists entries in the parent graph: look the others up in the pinned release.
-const inGraph = new Set([...Object.keys(parents), ...Object.values(parents).flat()])
-const outside = proposed.filter((id) => !inGraph.has(id))
-const entries = outside.length ? await pinnedEntries() : {}
-const exists = (id: string) => inGraph.has(id) || Object.hasOwn(entries, id)
-
+const exists = (id: string) => Object.hasOwn(catalog.entries, id)
 const next = new Set([...current, ...proposed.filter(exists)])
 
-const universe = (icons: Set<string>) => new Set([...Object.keys(parents), ...icons].filter((id) => id !== GENERIC_ID))
-const covered = (icons: Set<string>) => [...universe(icons)].filter((id) => iconOf(id, icons, parents)).length
+const entries = Object.keys(catalog.entries)
+const isFamily = (id: string) => catalog.entries[id]!.parent === undefined
+/** How many entries show their own icon, an ancestor's, their family's (or none): the share on the family's is what new icons shrink. */
+const breakdown = (icons: Set<string>) => {
+  const counts = { own: 0, ancestor: 0, family: 0, generic: 0 }
+  for (const id of entries) {
+    const icon = iconOf(id, icons, catalog)
+    if (icon === id) counts.own++
+    else if (icon && isFamily(icon)) counts.family++
+    else if (icon) counts.ancestor++
+    else counts.generic++
+  }
+  return counts
+}
 
-const changes = new Map<string, { gained: string[]; takenOver: string[] }>()
-for (const id of universe(next)) {
-  const before = iconOf(id, current, parents)
-  const after = iconOf(id, next, parents)
+/** For each proposed icon, the entries that would switch to it, with what they show today. */
+const takeovers = new Map<string, string[]>()
+for (const id of entries) {
+  const before = iconOf(id, current, catalog)
+  const after = iconOf(id, next, catalog)
   if (!after || before === after || after === id) continue
-  const entry = changes.get(after) ?? { gained: [], takenOver: [] }
-  if (before) entry.takenOver.push(`${id} (was ${before})`)
-  else entry.gained.push(id)
-  changes.set(after, entry)
+  takeovers.set(after, [...(takeovers.get(after) ?? []), `${id} (was ${before ?? "the generic icon"})`])
 }
 
 for (const id of proposed) {
-  if (!exists(id)) console.log(`✗ ${id}: not in the Open Food Facts taxonomy ${release}`)
+  if (!exists(id)) console.log(`✗ ${id}: not in the catalog ${catalog.release} (bun run catalog to refresh it)`)
   else if (published.has(id)) console.log(`✗ ${id}: already has an icon (to regenerate it, edit its subject)`)
   else if (pending.has(id)) console.log(`✗ ${id}: already has a raw, waiting to be published`)
   else {
-    const today = iconOf(id, current, parents)
-    const { gained = [], takenOver = [] } = changes.get(id) ?? {}
-    console.log(`✓ ${id}: today ${today ? `→ ${picture(today)}` : "no icon"}; +${gained.length} ids without an icon, ${takenOver.length} taken over from another icon`)
+    const today = iconOf(id, current, catalog)
+    const takenOver = takeovers.get(id) ?? []
+    console.log(`✓ ${id}: today ${today ? `→ ${picture(today)}` : "the generic icon"}; ${takenOver.length} entries switch to it`)
     for (const line of takenOver.slice(0, 12)) console.log(`    ${line}`)
     if (takenOver.length > 12) console.log(`    … and ${takenOver.length - 12} more`)
   }
 }
 const ingredientIcons = (icons: Set<string>) => icons.size - Number(icons.has(GENERIC_ID))
-if (proposed.length)
-  console.log(`\nIcons ${ingredientIcons(current)} → ${ingredientIcons(next)}, ingredients covered ${covered(current)} → ${covered(next)}`)
-if (pending.size) console.log(`(counting ${pending.size} raws not published yet)`)
-
-/** Every entry of the pinned release, downloaded once into .out/. */
-async function pinnedEntries(): Promise<Entries> {
-  const cache = path.join(".out", `taxonomy-${release}.json`)
-  if (existsSync(cache)) return JSON.parse(await readFile(cache, "utf8"))
-  const { entries } = await downloadTaxonomy(release)
-  await mkdir(".out", { recursive: true })
-  await writeFile(cache, JSON.stringify(entries))
-  return entries
+if (proposed.length) {
+  const [before, after] = [breakdown(current), breakdown(next)]
+  console.log(`\nIcons ${ingredientIcons(current)} → ${ingredientIcons(next)}, of the ${entries.length} catalog entries:`)
+  for (const [kind, label] of [["own", "own icon"], ["ancestor", "an ancestor's"], ["family", "their family's"]] as const)
+    console.log(`  ${label}: ${before[kind]} → ${after[kind]}`)
+  // Only a family without an icon yet leaves entries here (bun run catalog warns about it).
+  if (before.generic || after.generic) console.log(`  the generic icon: ${before.generic} → ${after.generic}`)
 }
+if (pending.size) console.log(`(counting ${pending.size} raws not published yet)`)

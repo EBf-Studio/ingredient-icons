@@ -4,15 +4,16 @@ description: An ingredient icon component for React and React DOM.
 icon: Atom
 ---
 
-The package has no React dependency: `iconUrl` returns a string you put in an `<img>`. A small component of your own keeps sizes and the fallback to the generic icon in one place.
+The package has no React dependency: `iconUrl` returns a string you put in an `<img>`. A small component of your own keeps sizes and the fallback in one place. It uses `iconFor` from [Ids and fallback](/docs/guides/ids-and-fallback).
 
 ## A typed component
 
 ```tsx title="components/ingredient-icon.tsx"
-import { GENERIC_ID, iconUrl, type IconSize } from "@ingredient-icons/core"
+import { iconUrl, type IconSize } from "@ingredient-icons/core"
+import { iconFor } from "@/lib/ingredient-icon"
 
 interface Props {
-  /** Open Food Facts id: "en:shallot" */
+  /** Catalog id: "shallot" */
   id: string
   /** Display size in CSS pixels. */
   size?: number
@@ -26,15 +27,15 @@ function fileSize(size: number): IconSize {
 }
 
 export function IngredientIcon({ id, size = 40 }: Props) {
-  // An ingredient the taxonomy cannot place gets the generic icon, a cluster of fresh ingredients.
-  const options = { size: fileSize(size) }
-  const src = iconUrl(id, options) ?? iconUrl(GENERIC_ID, options)!
+  // Its own icon, else its nearest ancestor's, else the generic icon: never undefined.
+  const src = iconUrl(iconFor(id), { size: fileSize(size) })!
   return <img src={src} alt="" width={size} height={size} loading="lazy" decoding="async" />
 }
 ```
 
 ```tsx
-<IngredientIcon id="en:cherry-tomato" size={48} />
+<IngredientIcon id="cherry-tomato" size={48} />
+<IngredientIcon id="brioche-bun" size={48} />
 ```
 
 ## Choosing a size
@@ -49,15 +50,14 @@ export function IngredientIcon({ id, size = 40 }: Props) {
 
 ## Alt text
 
-Leave `alt` empty when the ingredient's name is written next to the icon, which is the case in an ingredient list. When the icon stands alone, name it:
+Leave `alt` empty when the ingredient's name is written next to the icon, which is the case in an ingredient list. When the icon stands alone, name the ingredient (not the icon it borrows), with `nameOf` from [Names](/docs/guides/names):
 
 ```tsx
-import { findIcon, iconName, iconUrl } from "@ingredient-icons/core"
+import { nameOf } from "@/lib/ingredient-names"
 
-const icon = findIcon("en:shallot")
-<img src={iconUrl("en:shallot")} alt={(icon && iconName(icon.id)) ?? ""} />
+<img src={iconUrl(iconFor("shallot"))} alt={nameOf("shallot", "fr") ?? ""} />
 ```
 
 ## Rendering on the server
 
-The taxonomy data is about 57 KB gzipped. In a framework with server rendering, call `iconUrl` on the server and only send URLs to the browser. See [Next.js](/docs/guides/nextjs).
+`iconFor` imports `catalog.json`, under 100 KB gzipped. In a framework with server rendering, call it on the server and only send URLs to the browser. See [Next.js](/docs/guides/nextjs).

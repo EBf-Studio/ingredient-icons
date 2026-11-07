@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <b>324 soft 3D icons for recipe apps, keyed by the Open Food Facts taxonomy.</b><br>
+  <b>309 soft 3D icons for recipe apps, one for every ingredient family, keyed by an open ingredient catalog.</b><br>
   Shallots, crème fraîche, salt and pepper each get their own, and anything else borrows its closest parent's.
 </p>
 
@@ -23,9 +23,9 @@ There is no emoji for a shallot, and 🧂 has to stand in for salt and pepper. A
 
 | Emoji | Ingredient Icons |
 | :---: | --- |
-| 🧅 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_onion.png" width="56" alt="Onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_red-onion.png" width="56" alt="Red onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_shallot.png" width="56" alt="Shallot"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_spring-onion.png" width="56" alt="Spring onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_leek.png" width="56" alt="Leek"> |
-| 🧂 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_salt.png" width="56" alt="Salt"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_black-pepper.png" width="56" alt="Black pepper"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_white-pepper.png" width="56" alt="White pepper"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_pink-peppercorn.png" width="56" alt="Pink peppercorn"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_celery-salt.png" width="56" alt="Celery salt"> |
-| 🧀 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_brie.png" width="56" alt="Brie"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_feta.png" width="56" alt="Feta"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_roquefort.png" width="56" alt="Roquefort"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_mozzarella.png" width="56" alt="Mozzarella"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_parmigiano-reggiano.png" width="56" alt="Parmigiano Reggiano"> |
+| 🧅 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/onion.png" width="56" alt="Onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/red-onion.png" width="56" alt="Red onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/shallot.png" width="56" alt="Shallot"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/spring-onion.png" width="56" alt="Spring onion"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/leek.png" width="56" alt="Leek"> |
+| 🧂 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/salt.png" width="56" alt="Salt"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/black-pepper.png" width="56" alt="Black pepper"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/white-pepper.png" width="56" alt="White pepper"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/peppercorn.png" width="56" alt="Peppercorn"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/celery-salt.png" width="56" alt="Celery salt"> |
+| 🧀 | <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/brie.png" width="56" alt="Brie"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/feta.png" width="56" alt="Feta"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/blue-cheese.png" width="56" alt="Blue cheese"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/mozzarella.png" width="56" alt="Mozzarella"> <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/parmesan.png" width="56" alt="Parmesan"> |
 
 ## Quick start
 
@@ -33,7 +33,7 @@ There is no emoji for a shallot, and 🧂 has to stand in for salt and pepper. A
 npm install @ingredient-icons/core
 ```
 
-Pass the Open Food Facts id your recipe already stores, get back an image URL:
+Pass the catalog id of an ingredient, get back an image URL:
 
 ```tsx
 import { iconUrl } from "@ingredient-icons/core"
@@ -47,64 +47,75 @@ export function Ingredient({ id, quantity, name }) {
   )
 }
 
-<Ingredient id="en:cherry-tomato" quantity="250 g" name="cherry tomatoes" />
+<Ingredient id="cherry-tomato" quantity="250 g" name="cherry tomatoes" />
 ```
 
 URLs point to the exact release you installed on jsDelivr, so icons never change under you. Pass `baseUrl` to serve them from your own CDN or app bundle. Works in React, React Native, Node, Bun, Deno and anything else that shows images, with TypeScript types included.
 
 ```ts
-import { findIcon, GENERIC_ID, iconName, iconUrl } from "@ingredient-icons/core"
+import { GENERIC_ID, iconUrl } from "@ingredient-icons/core"
 
-iconUrl("en:shallot", { size: 256 })
-// https://cdn.jsdelivr.net/npm/@ingredient-icons/core@<version>/icons/webp/256/en_shallot.webp
+iconUrl("shallot", { size: 256 })
+// https://cdn.jsdelivr.net/npm/@ingredient-icons/core@<version>/icons/webp/256/shallot.webp
 
-findIcon("en:peeled-tomatoes")  // { id: "en:tomato", file: "en_tomato", exact: false }
-iconName("en:shallot", "fr")  // "échalote"
-findIcon("en:unicorn-steak")  // undefined: the fallback is yours
-iconUrl("en:unicorn-steak") ?? iconUrl(GENERIC_ID)  // the generic icon, a cluster of fresh ingredients
+iconUrl("garam-masala")  // undefined: no icon of its own, see below for its family's
+iconUrl("unicorn-steak") ?? iconUrl(GENERIC_ID)  // the generic icon, a cluster of fresh ingredients
 ```
 
-`GENERIC_ID` (`"generic"`) is a reserved id, not an Open Food Facts one: the icon to show when `findIcon` returns `undefined`, for an ingredient the taxonomy cannot place at all.
+`GENERIC_ID` (`"generic"`) is a reserved id, not a catalog one: the icon for an ingredient nothing places at all.
 
 [React](https://ingredient-icons.vercel.app/docs/guides/react) · [React Native](https://ingredient-icons.vercel.app/docs/guides/react-native) · [Next.js](https://ingredient-icons.vercel.app/docs/guides/nextjs) · [Self-hosting](https://ingredient-icons.vercel.app/docs/guides/self-hosting) · [Without npm](https://ingredient-icons.vercel.app/docs/guides/without-npm) · [API reference](https://ingredient-icons.vercel.app/docs/reference/api)
 
 ## No icon of its own? It borrows its parent's
 
-Ids follow the Open Food Facts taxonomy, which knows that fleur de sel is a sea salt and sea salt is a salt. When an ingredient has no icon, `findIcon` walks up its parents and takes the first one that has. That's how **324 icons cover 3,817 ingredients**.
+Ids come from an ingredient catalog of 1,227 catalog ingredients under 32 families, each with exactly one parent: sea salt is a salt, and salt falls under the salts family. Every family has an icon, so walking up the parents always ends on one: that's how **309 icons cover all 1,259 catalog entries**. The catalog ships with every release as `catalog.json` (ids, parents, families, and names in six languages).
 
 <p>
-  <code>en:fleur-de-sel</code> → <code>en:sea-salt</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_salt.png" width="40" alt="" align="center"> <code>en:salt</code><br>
-  <code>en:peeled-tomatoes</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_tomato.png" width="40" alt="" align="center"> <code>en:tomato</code>
+  <code>sea-salt</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/salt.png" width="40" alt="" align="center"> <code>salt</code><br>
+  <code>crushed-tomatoes</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/tomato.png" width="40" alt="" align="center"> <code>tomato</code><br>
+  <code>garam-masala</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/spice-blends.png" width="40" alt="" align="center"> <code>spice-blends</code>
 </p>
+
+```ts
+import snapshot from "@ingredient-icons/core/catalog.json"
+import { GENERIC_ID, iconUrl, type Catalog } from "@ingredient-icons/core"
+
+const catalog: Catalog = snapshot as Catalog
+
+/** Its own icon, else its nearest ancestor's, its family's last, else the generic one. */
+function iconFor(id: string): string {
+  for (let at: string | undefined = id; at; at = catalog.entries[at]?.parent) {
+    const url = iconUrl(at)
+    if (url) return url
+  }
+  return iconUrl(GENERIC_ID)!
+}
+```
+
+In plain Node or Deno, import the JSON with an import attribute: `with { type: "json" }`.
 
 Try it with any ingredient [on the website](https://ingredient-icons.vercel.app).
 
-The taxonomy is pinned to one [openfoodfacts-server release](https://github.com/openfoodfacts/openfoodfacts-server/releases), exported as `TAXONOMY_RELEASE` (and its commit as `TAXONOMY_COMMIT`). If your own Open Food Facts data comes from a release too, a test can check that both match, so your ids are the ones the package knows:
-
-```ts
-import { TAXONOMY_RELEASE } from "@ingredient-icons/core"
-
-expect(TAXONOMY_RELEASE).toBe("v2.118.0")
-```
-
 ## What's in the package
 
-Transparent WebP in 64, 128 and 256 px, under `icons/webp/{size}/`. 128 px covers a 40 pt icon on a 3× screen; 256 px covers almost everything else. Names come in English and French, from Open Food Facts.
+Transparent WebP in 64, 128 and 256 px, under `icons/webp/{size}/`. 128 px covers a 40 pt icon on a 3× screen; 256 px covers almost everything else. Names come from `catalog.json`, in French, English, Spanish, Italian, German and Portuguese.
 
-To serve the files yourself, expose the package's `icons/` folder and pass `{ baseUrl }`: see the [self-hosting guide](https://ingredient-icons.vercel.app/docs/guides/self-hosting). PNG up to 512 px, `manifest.json` and `taxonomy.json` are in the [GitHub repository](https://github.com/EBf-Studio/ingredient-icons).
+`catalog.json` is the snapshot of the ingredient catalog the ids come from (`CATALOG_RELEASE` names its release): every catalog ingredient and family with its parent, its family, and its names and synonyms per language. Import it as `@ingredient-icons/core/catalog.json`, typed with `Catalog`.
+
+To serve the files yourself, expose the package's `icons/` folder and pass `{ baseUrl }`: see the [self-hosting guide](https://ingredient-icons.vercel.app/docs/guides/self-hosting). PNG up to 512 px and `manifest.json` are in the [GitHub repository](https://github.com/EBf-Studio/ingredient-icons).
 
 ## Missing an ingredient?
 
-New icons ship in batches. [Open an issue](https://github.com/EBf-Studio/ingredient-icons/issues/new) with the Open Food Facts id (`en:yuzu`) or the name of the ingredient, and it goes on the list.
+New icons ship in batches. [Open an issue](https://github.com/EBf-Studio/ingredient-icons/issues/new) with the catalog id (`acorn-squash`) or the name of the ingredient, and it goes on the list. An ingredient the catalog lacks is added to it first.
 
 ## Licenses
 
 - Icons: [CC0 1.0](https://github.com/EBf-Studio/ingredient-icons/blob/main/LICENSE-ICONS). Created with Grok. No attribution required, a link back is appreciated.
-- Taxonomy data (parents and names): Open Food Facts, [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). This project is not affiliated with Open Food Facts.
+- Catalog snapshot (`catalog.json`): [CC0 1.0](https://github.com/EBf-Studio/ingredient-icons/blob/main/LICENSE-ICONS). Names from [Wikidata](https://www.wikidata.org) (CC0) or written by Marmalade.
 - Code: [MIT](https://github.com/EBf-Studio/ingredient-icons/blob/main/LICENSE).
 
 <p align="center">
   <br>
-  <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/en_avocado.png" width="48" alt=""><br>
+  <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/avocado.png" width="48" alt=""><br>
   Made by <a href="https://try-marmalade.com">Marmalade</a>
 </p>

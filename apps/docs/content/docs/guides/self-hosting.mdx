@@ -11,9 +11,9 @@ By default, URLs point at jsDelivr, pinned to the installed version. Serve the f
 `iconUrl` joins `baseUrl` and the icon's path inside the package:
 
 ```ts
-iconUrl("en:shallot", { baseUrl: "https://api.example.com/ingredient-icons" })
-// https://api.example.com/ingredient-icons/icons/webp/128/en_shallot.webp
-//                                          └──────── iconPath() ────────┘
+iconUrl("shallot", { baseUrl: "https://api.example.com/ingredient-icons" })
+// https://api.example.com/ingredient-icons/icons/webp/128/shallot.webp
+//                                          └─────── iconPath() ──────┘
 ```
 
 So `baseUrl` is the folder that contains `icons/`. A trailing slash is fine.
@@ -34,7 +34,7 @@ app.use(
   express.static(path.join(root, "icons"), { immutable: true, maxAge: "1y" }),
 )
 
-iconUrl("en:shallot", { baseUrl: "https://api.example.com/ingredient-icons" })
+iconUrl("shallot", { baseUrl: "https://api.example.com/ingredient-icons" })
 ```
 
 ## On a CDN or a bucket
@@ -48,7 +48,7 @@ An icon can be redrawn between versions while keeping its file name. If you cach
 ```ts
 import { VERSION, iconUrl } from "@ingredient-icons/core"
 
-iconUrl("en:shallot", { baseUrl: `https://cdn.example.com/ingredient-icons/${VERSION}` })
+iconUrl("shallot", { baseUrl: `https://cdn.example.com/ingredient-icons/${VERSION}` })
 ```
 
 The jsDelivr default already does this.
@@ -60,5 +60,13 @@ The jsDelivr default already does this.
 ```ts
 import { iconPath } from "@ingredient-icons/core"
 
-iconPath("en:shallot", 64) // "icons/webp/64/en_shallot.webp"
+iconPath("shallot", 64) // "icons/webp/64/shallot.webp"
+```
+
+## With the fallback
+
+`baseUrl` works the same on the id [`iconFor`](/docs/guides/ids-and-fallback) returns. Serve the whole `icons/` folder: the generic icon and the family icons are part of it.
+
+```ts
+iconUrl(iconFor(id), { baseUrl: "https://api.example.com/ingredient-icons" })
 ```

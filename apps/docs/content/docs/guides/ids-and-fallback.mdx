@@ -6,68 +6,96 @@ icon: GitFork
 
 ## Ids
 
-Every icon is named after an id of the [Open Food Facts ingredients taxonomy](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/food/ingredients.txt): a language code, a colon, and the ingredient's canonical name.
+Every icon is named after an id of Marmalade's ingredient catalog: the ingredient's English name in kebab-case. The package ships a snapshot of the catalog, `catalog.json`, with <CatalogSize /> entries: each has its parent, its family and its [names](/docs/guides/names).
 
 | Ingredient | Id | File |
 | --- | --- | --- |
-| Shallot | `en:shallot` | `en_shallot.webp` |
-| Fresh cream | `en:fresh-cream` | `en_fresh-cream.webp` |
-| Black pepper | `en:black-pepper` | `en_black-pepper.webp` |
+| Shallot | `shallot` | `shallot.webp` |
+| Crème fraîche | `creme-fraiche` | `creme-fraiche.webp` |
+| Black pepper | `black-pepper` | `black-pepper.webp` |
 
-File names are ids with `:` replaced by `_`.
+A file is named after its id, nothing more.
+
+### Families
+
+<FamilyCount /> entries have no parent: they are the families, such as `vegetables`, `cheeses` or `spice-blends`. Every other entry is a catalog ingredient, with exactly one parent (another ingredient or a family) and one family, the one at the top of its parents.
+
+```json title="catalog.json (excerpt)"
+"shallot": { "parent": "onion", "family": "vegetables", "names": { … } },
+"onion": { "parent": "vegetables", "family": "vegetables", "names": { … } },
+"vegetables": { "names": { … } }
+```
+
+Every family has its own icon (the pack's checks refuse a release otherwise), so a walk up the parents always ends on something close.
 
 ### Getting ids for your ingredients
 
-- **From Open Food Facts products.** The [product API](https://openfoodfacts.github.io/openfoodfacts-server/api/) returns `ingredients[].id` with these ids.
-- **From your own ingredient list.** Map each of your ingredients to an id once, by hand or with the [taxonomy file](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/food/ingredients.txt), and store it. The [gallery](/icons) shows the id of every icon.
-- **From other languages.** The taxonomy also has ids such as `fr:creme-fraiche-liquide`. They have parents like any other, so the fallback works on them too: that one gets the cream icon.
+- **Map your ingredient list once.** Search `catalog.json` by name or synonym, in any of its six languages, and store the id with each ingredient. The [gallery](/icons) shows the id of every icon, and the [home page](/) finds any catalog ingredient by name.
+- **Store the most precise id.** `extra-virgin-olive-oil` rather than `olive-oil`: it shows the olive oil icon today, and its own if one is drawn later.
+- **An ingredient the catalog lacks?** Ask for it: it is added to the catalog first, then drawn. See [Requesting icons](/docs/requesting-icons).
 
 ## Fallback
 
-The taxonomy knows that fleur de sel is a sea salt, and that sea salt is a salt. When an id has no icon, `findIcon` looks at its parents, then at their parents, and stops at the first one that has an icon.
+`iconUrl` and `iconPath` return an id's own icon, and `undefined` when it has none. The fallback is yours, in a few lines: walk up the parents in `catalog.json` and take the first id that has an icon.
 
-<Resolves id="en:fleur-de-sel" />
-<Resolves id="en:basmati-rice" />
-<Resolves id="en:chinese-cabbage" />
+```ts title="ingredient-icon.ts"
+import { GENERIC_ID, iconPath, type CatalogEntry } from "@ingredient-icons/core"
+import catalog from "@ingredient-icons/core/catalog.json"
 
-That is how <Total /> icons cover <Resolvable /> taxonomy ids.
+const entries: Record<string, CatalogEntry> = catalog.entries
 
-```ts
-import { findIcon } from "@ingredient-icons/core"
-
-findIcon("en:shallot")
-// { id: "en:shallot", file: "en_shallot", exact: true }
-
-findIcon("en:fleur-de-sel")
-// { id: "en:salt", file: "en_salt", exact: false }
-
-findIcon("en:not-an-ingredient")
-// undefined
+/** The id whose icon an ingredient shows: its own, its nearest ancestor's (its family's last), or the generic icon. */
+export function iconFor(id: string): string {
+  const seen = new Set<string>()
+  for (let at: string | undefined = id; at !== undefined && !seen.has(at); at = entries[at]?.parent) {
+    if (iconPath(at)) return at
+    seen.add(at)
+  }
+  return GENERIC_ID
+}
 ```
 
-`findIcon` never guesses past the taxonomy: when it returns `undefined`, the fallback is yours. The package ships one for that case, the generic icon (a cluster of fresh ingredients), under the reserved id `GENERIC_ID`:
+<Resolves id="extra-virgin-olive-oil" />
+<Resolves id="pork-paprika-and-almond-sausage" />
+<Resolves id="brioche-bun" />
+
+That is how <Total /> icons cover <Covered /> of the <CatalogSize /> catalog entries.
 
 ```ts
-import { GENERIC_ID, iconUrl } from "@ingredient-icons/core"
+import { iconUrl } from "@ingredient-icons/core"
+import { iconFor } from "./ingredient-icon"
 
-const src = iconUrl(id) ?? iconUrl(GENERIC_ID)!
+iconFor("shallot") // "shallot"
+iconFor("extra-virgin-olive-oil") // "olive-oil"
+iconFor("brioche-bun") // "breads"
+iconFor("unicorn-steak") // "generic"
+
+const src = iconUrl(iconFor(id))!
 ```
+
+`iconUrl(iconFor(id))` never returns `undefined`: the generic icon (a cluster of fresh ingredients, under the reserved id `GENERIC_ID`) ships with the others. Pick something else for that case if you prefer: compare `iconFor(id)` with `GENERIC_ID`.
 
 ### How the walk works
 
-- It goes **level by level**: all parents first, then all grandparents. An ingredient with two parents gets the icon of whichever parent comes first in the taxonomy.
-- It stops after **six levels** of ancestors.
-- It never loops, even if the taxonomy has a cycle.
+- **One parent per entry**, so the walk is a straight line: the id, its parent, its parent's parent, up to its family.
+- It stops at the **first id that has its own icon**.
+- It ends on **the generic icon** when the id is not in the catalog (a typo, an ingredient of your own), or when nothing up to its family has an icon.
+- The `seen` set keeps it from looping, should a catalog release ever contain a cycle.
 
-### When to check `exact`
+### Telling an approximation apart
 
-`exact` is `false` when the icon is an ancestor's. Most apps can ignore it: a tomato for peeled tomatoes is what people expect. Use it when an approximation would mislead, for example in an allergen list.
+`iconFor(id) !== id` when the icon is an ancestor's. Most apps can ignore it: an olive oil bottle for extra virgin olive oil is what people expect. When an approximation would mislead, for example in an allergen list, show only an ingredient's own icon:
 
 ```ts
-const icon = findIcon(id)
-const src = icon?.exact ? iconUrl(id) : undefined
+const src = iconUrl(id) // undefined unless the ingredient has its own icon
 ```
 
-## Pinned taxonomy
+## Catalog releases
 
-The package pins the taxonomy to one release of the Open Food Facts server, exported as `TAXONOMY_RELEASE` (`TAXONOMY_COMMIT` is its commit). A new id added to Open Food Facts after that release has no parents yet in the package, so it only gets an icon if it has one of its own. Updates come with new releases.
+The package pins one release of the catalog, exported as `CATALOG_RELEASE` (and `release` in `catalog.json`). New ingredients, new parents and new icons come with new package versions. If you also read the catalog from another source, check in a test that both releases match, so the ids you store are ones the package knows:
+
+```ts
+import { CATALOG_RELEASE } from "@ingredient-icons/core"
+
+expect(CATALOG_RELEASE).toBe(myCatalog.release)
+```

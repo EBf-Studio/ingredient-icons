@@ -1,53 +1,93 @@
 'use client';
 
+import { GENERIC_ID } from '@ingredient-icons/core';
 import { Check, RotateCcw, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
-import { FALLBACK_PRESETS } from '@/lib/fallback-presets';
-import { iconSrc, readableId } from '@/lib/icon-path';
+import { type FallbackKind, fallbackKind, fallbackSteps } from '@/lib/fallback';
 import { fetchJsonOnce } from '@/lib/fetch-json';
+import { iconSrc } from '@/lib/icon-path';
 import { fold } from '@/lib/icon-search';
+import type { Step } from '@/lib/icons';
 
-/** Taxonomy id → the ids findIcon walks through, ending at the one with an icon. */
-type Lookup = Record<string, string[]>;
+/** Catalog id → what the demo needs to walk it and find it by name (see scripts/prepare.ts). */
+type Lookup = Record<string, { name: string; parent?: string; family?: true; icon?: true; terms: string[] }>;
 
-/** Icon files are named after their id: "en:tomato" is en_tomato. */
-const fileOf = (id: string) => id.replace(':', '_');
-/** "en:basmati-rice" and "Basmati rice" both fold to "basmati rice". */
-const foldId = (text: string) => fold(text.trim().replace(/^en:/i, ''));
+interface Preset {
+  id: string;
+  name: string;
+  steps: Step[];
+}
+
+const KIND_COMMENT: Record<FallbackKind, string> = {
+  own: 'its own icon',
+  ancestor: 'the icon of its nearest ancestor that has one',
+  family: 'its family’s icon',
+  generic: 'nothing up to its family has an icon',
+};
+
+function walk(lookup: Lookup, id: string): Step[] {
+  return fallbackSteps(
+    id,
+    (step) => lookup[step]?.parent,
+    (step) => !!lookup[step]?.icon,
+  ).map((step) => ({
+    id: step,
+    name: step === GENERIC_ID ? 'generic icon' : (lookup[step]?.name ?? step),
+    family: !!lookup[step]?.family,
+  }));
+}
 
 export function FallbackDemo({
-  slugs,
-  presetSteps,
+  presets,
   footer,
 }: {
-  slugs: Record<string, string>;
-  /** Chains of the presets, computed at build time so the first paint is already right. */
-  presetSteps: Record<string, string[]>;
+  /** Walked at build time, so the first paint is already right. */
+  presets: Preset[];
   footer?: React.ReactNode;
 }) {
   const [lookup, setLookup] = useState<Lookup>();
   const [query, setQuery] = useState('');
-  const [selected, setSelected] = useState(FALLBACK_PRESETS[0]!);
+  const [selected, setSelected] = useState(presets[0]!.id);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const listId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Searching needs every chain; the presets already have theirs, so they play without it.
+  // Searching needs the whole catalog; the presets already have their walks, so they play without it.
   useEffect(() => {
     fetchJsonOnce<Lookup>('/data/lookup.json').then(setLookup, () => {});
   }, []);
 
+  const index = useMemo(
+    () =>
+      lookup
+        ? Object.entries(lookup).map(([id, entry]) => ({
+            id,
+            name: entry.name,
+            main: [fold(entry.name), fold(id)],
+            terms: entry.terms.map((term) => ({ folded: fold(term), term })),
+          }))
+        : [],
+    [lookup],
+  );
+
+  // Names first, then synonyms and names in other languages ("échalote" finds the shallot).
   const matches = useMemo(() => {
-    const needle = foldId(query);
-    if (!lookup || !needle) return [];
-    const english = Object.keys(lookup).filter((id) => id.startsWith('en:') && foldId(id).includes(needle));
-    return english
-      .sort((a, b) => Number(!foldId(a).startsWith(needle)) - Number(!foldId(b).startsWith(needle)) || a.length - b.length)
-      .slice(0, 7);
-  }, [lookup, query]);
+    const needle = fold(query);
+    if (!needle) return [];
+    const scored: { id: string; name: string; via?: string; score: number }[] = [];
+    for (const { id, name, main, terms } of index) {
+      if (main.some((text) => text.startsWith(needle))) scored.push({ id, name, score: 0 });
+      else {
+        const term = terms.find(({ folded }) => folded.startsWith(needle)) ?? terms.find(({ folded }) => folded.includes(needle));
+        if (term) scored.push({ id, name, via: term.term, score: term.folded.startsWith(needle) ? 1 : 2 });
+        else if (main.some((text) => text.includes(needle))) scored.push({ id, name, score: 2 });
+      }
+    }
+    return scored.sort((a, b) => a.score - b.score || a.name.length - b.name.length).slice(0, 7);
+  }, [index, query]);
 
   const [run, setRun] = useState(0);
   const choose = (id: string) => {
@@ -58,11 +98,12 @@ export function FallbackDemo({
     setActive(0);
   };
 
-  const steps = lookup?.[selected] ?? presetSteps[selected] ?? [selected];
-  const known = Boolean(lookup?.[selected] ?? presetSteps[selected]);
-  const target = steps.at(-1)!;
+  const steps = lookup ? walk(lookup, selected) : (presets.find((preset) => preset.id === selected)?.steps ?? []);
+  const known = steps.length > 0;
+  const target = steps.at(-1);
   const exact = steps.length === 1;
-  const noMatch = lookup && foldId(query) && matches.length === 0;
+  const kind = known ? fallbackKind(steps.map((step) => step.id), (id) => steps.find((step) => step.id === id)?.family ?? false) : 'own';
+  const noMatch = lookup && fold(query) && matches.length === 0;
   const tick = useClimb(known ? steps.length : 0, `${selected}#${run}`);
   const borrowed = !exact && tick >= steps.length + 2;
   const { ref: treeRef, span } = useSlotSpan(`${selected}#${run}`);
@@ -80,8 +121,8 @@ export function FallbackDemo({
             aria-controls={listId}
             aria-autocomplete="list"
             aria-activedescendant={open && matches[active] ? `${listId}-${active}` : undefined}
-            aria-label="Look up an Open Food Facts ingredient"
-            placeholder="Try “basmati rice” or “feta”"
+            aria-label="Look up a catalog ingredient"
+            placeholder="Try “basmati” or “échalote”"
             value={query}
             onFocus={() => setOpen(true)}
             onBlur={() => setTimeout(() => setOpen(false), 120)}
@@ -98,7 +139,7 @@ export function FallbackDemo({
                 event.preventDefault();
                 setActive((i) => Math.max(i - 1, 0));
               } else if (event.key === 'Enter' && matches[active]) {
-                choose(matches[active]);
+                choose(matches[active].id);
               } else if (event.key === 'Escape') {
                 setOpen(false);
               }
@@ -111,7 +152,7 @@ export function FallbackDemo({
               role="listbox"
               className="absolute inset-x-0 top-full z-20 mt-1.5 overflow-hidden rounded-control border bg-fd-popover p-1 shadow-popover"
             >
-              {matches.map((id, i) => (
+              {matches.map(({ id, name, via }, i) => (
                 <li
                   key={id}
                   id={`${listId}-${i}`}
@@ -127,20 +168,26 @@ export function FallbackDemo({
                     i === active && 'bg-fd-accent',
                   )}
                 >
-                  <img src={iconSrc(fileOf(lookup![id]!.at(-1)!), 64)} alt="" className="size-7" />
-                  <span className="truncate font-mono text-[13px]">{id}</span>
+                  <img src={iconSrc(walk(lookup!, id).at(-1)!.id, 64)} alt="" className="size-7" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate">
+                      {name}
+                      {via && <span className="text-fd-muted-foreground">, {via}</span>}
+                    </span>
+                    <span className="block truncate font-mono text-[11px] text-fd-muted-foreground">{id}</span>
+                  </span>
                 </li>
               ))}
             </ul>
           )}
         </div>
         <p className="mt-2 text-sm text-fd-muted-foreground empty:hidden" aria-live="polite">
-          {noMatch ? 'No ingredient by that name in the taxonomy. Try a simpler word.' : null}
+          {noMatch ? 'No ingredient by that name in the catalog. Try a simpler word, or another language.' : null}
         </p>
 
         <p className="mt-5 text-sm text-fd-muted-foreground">Or pick one:</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
-          {FALLBACK_PRESETS.map((id) => (
+          {presets.map(({ id, name }) => (
             <button
               key={id}
               type="button"
@@ -153,7 +200,7 @@ export function FallbackDemo({
                   : 'bg-fd-card hover:border-basil/50',
               )}
             >
-              {readableId(id)}
+              {name}
             </button>
           ))}
         </div>
@@ -185,22 +232,21 @@ export function FallbackDemo({
             className="relative mx-auto w-full max-w-md pr-12 sm:pr-28"
             style={{ '--drop': `${span ? -span.height : 0}px` } as React.CSSProperties}
           >
-            {/* Top of the list is the ancestor that has the icon; the ingredient asked for sits at the bottom. */}
+            {/* Top of the list is the step that has the icon; the ingredient asked for sits at the bottom. */}
             {steps
-              .map((id, i) => ({ id, i }))
+              .map((step, i) => ({ step, i }))
               .reverse()
-              .map(({ id, i }) => (
+              .map(({ step, i }) => (
                 <Rung
-                  key={id}
-                  id={id}
+                  key={step.id}
+                  step={step}
                   asked={i === 0}
                   found={i === steps.length - 1}
                   checked={tick > i}
                   checking={tick === i + 1}
                   borrowed={i === 0 && borrowed}
-                  lender={readableId(target)}
-                  href={slugs[target] ? `/icons/${slugs[target]}` : '/icons'}
-                  target={target}
+                  kind={kind}
+                  target={target!}
                   last={i === 0}
                 />
               ))}
@@ -210,13 +256,13 @@ export function FallbackDemo({
 
         <div className="relative border-t bg-fd-card px-5 py-4 font-mono text-[13px] leading-6 sm:px-7">
           <div className="overflow-x-auto whitespace-nowrap">
-            <span className="text-fd-muted-foreground">findIcon(</span>
+            <span className="text-fd-muted-foreground">iconFor(</span>
             <span className="text-basil">&quot;{selected}&quot;</span>
             <span className="text-fd-muted-foreground">)</span>
           </div>
           <div className="overflow-x-auto whitespace-nowrap text-fd-muted-foreground">
             <span aria-hidden>{'// '}</span>
-            {`{ id: "${target}", file: "${fileOf(target)}", exact: ${exact} }`}
+            {target && `"${target.id}": ${KIND_COMMENT[kind]}`}
           </div>
         </div>
       </div>
@@ -277,45 +323,43 @@ function useClimb(levels: number, key: string) {
 }
 
 function Rung(props: {
-  id: string;
+  step: Step;
   asked: boolean;
   found: boolean;
   checked: boolean;
   checking: boolean;
   borrowed: boolean;
-  lender: string;
-  href: string;
-  target: string;
+  kind: FallbackKind;
+  target: Step;
   last: boolean;
 }) {
-  const { id, asked, found, checked, checking, borrowed } = props;
+  const { step, asked, found, checked, checking, borrowed, kind, target } = props;
+  const generic = step.id === GENERIC_ID;
   const missing = checked && !found;
   // Remount the tag whenever it changes so each new verdict hops in.
   const tagKey = borrowed ? 'borrowed' : found && checked ? 'found' : missing ? 'missing' : 'idle';
 
   let slot: React.ReactNode = <span className="text-lg text-fd-muted-foreground/60">?</span>;
   if (found && checked) {
-    slot = (
-      <Link href={props.href} aria-label={`${readableId(id)} icon`} className="pop-in block">
-        <img src={iconSrc(fileOf(id), 128)} alt="" className="size-12 drop-shadow-icon sm:size-16" />
+    const image = <img src={iconSrc(step.id, 128)} alt="" className="size-12 drop-shadow-icon sm:size-16" />;
+    slot = generic ? (
+      <span className="pop-in block">{image}</span>
+    ) : (
+      <Link href={`/icons/${step.id}`} aria-label={`${step.name} icon`} className="pop-in block">
+        {image}
       </Link>
     );
   } else if (borrowed) {
-    slot = (
-      <img
-        src={iconSrc(fileOf(props.target), 128)}
-        alt=""
-        className="borrow-drop size-12 drop-shadow-icon sm:size-16"
-      />
-    );
+    slot = <img src={iconSrc(target.id, 128)} alt="" className="borrow-drop size-12 drop-shadow-icon sm:size-16" />;
   }
 
   let tag: React.ReactNode = asked && !checked ? <Tag>you asked for this</Tag> : null;
-  if (borrowed) tag = <Tag tone="butter">borrows {props.lender}</Tag>;
+  if (borrowed) tag = <Tag tone="butter">{kind === 'generic' ? 'gets the generic icon' : `borrows ${target.name}`}</Tag>;
   else if (found && checked)
     tag = (
       <Tag tone="basil">
-        <Check className="size-3" /> {asked ? 'has its own icon' : 'has an icon'}
+        <Check className="size-3" />{' '}
+        {asked ? 'has its own icon' : generic ? 'the fallback of last resort' : step.family ? 'family icon' : 'has an icon'}
       </Tag>
     );
   else if (missing)
@@ -349,7 +393,7 @@ function Rung(props: {
                 !checked && !asked && 'text-fd-muted-foreground',
               )}
             >
-              {readableId(id)}
+              {step.name}
             </span>
             {tag && (
               <span key={tagKey} className="hop-in">
@@ -357,14 +401,16 @@ function Rung(props: {
               </span>
             )}
           </div>
-          <div className="truncate font-mono text-xs text-fd-muted-foreground">{id}</div>
+          <div className="truncate font-mono text-xs text-fd-muted-foreground">
+            {generic ? 'GENERIC_ID' : step.family ? `${step.id}, a family` : step.id}
+          </div>
         </div>
       </div>
       {!props.last && (
         <div aria-hidden className="flex h-6 w-16 justify-center sm:w-20">
           <span className="relative w-px bg-[linear-gradient(var(--color-fd-muted-foreground)_50%,transparent_50%)] bg-[length:1px_6px] opacity-50">
             <span className="absolute top-1/2 left-2 -translate-y-1/2 font-sans text-[11px] whitespace-nowrap text-fd-muted-foreground">
-              is a kind of ↑
+              {generic ? 'falls back to ↑' : step.family ? 'is in the family ↑' : 'is a kind of ↑'}
             </span>
           </span>
         </div>
@@ -389,7 +435,7 @@ function Tag({ tone, children }: { tone?: 'tomato' | 'basil' | 'butter'; childre
   );
 }
 
-/** The curved arrow from the ancestor's icon back down to the empty slot. */
+/** The curved arrow from the icon found higher up back down to the empty slot. */
 function BorrowArrow({ show, top, height }: { show: boolean; top: number; height: number }) {
   if (!show) return null;
   return (

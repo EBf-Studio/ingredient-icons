@@ -1,10 +1,31 @@
-import { findIcon } from '@ingredient-icons/core';
-import { resolvable, total } from './icons';
+import { GENERIC_ID } from '@ingredient-icons/core';
+import { catalogSize, covered, familyCount, kindOf, languageNames, nameCoverage, stepsOf, total } from './icons';
 
 const VALUES: Record<string, string> = {
   Total: String(total),
-  Resolvable: resolvable.toLocaleString('en'),
+  Covered: covered.toLocaleString('en'),
+  CatalogSize: catalogSize.toLocaleString('en'),
+  FamilyCount: String(familyCount),
 };
+
+/** How each end of a fallback walk reads, shared with components/mdx.tsx. */
+export const KIND_TEXT = {
+  own: 'its own icon',
+  ancestor: 'an ancestor’s icon',
+  family: 'its family’s icon',
+  generic: 'the generic icon',
+} as const;
+
+/** "brioche-bun → burger-bun → bread-roll → breads" */
+export const walkText = (id: string) => stepsOf(id).map((step) => `\`${step}\``).join(' → ');
+
+export function nameCoverageTable() {
+  return [
+    '| Language | Entries with a name |',
+    '| --- | --- |',
+    ...nameCoverage.map(({ language, count }) => `| ${languageNames[language]} (\`${language}\`) | ${count.toLocaleString('en')} of ${catalogSize.toLocaleString('en')} |`),
+  ].join('\n');
+}
 
 /**
  * The docs use a few MDX components (see components/mdx.tsx). Where a page leaves as text,
@@ -13,10 +34,13 @@ const VALUES: Record<string, string> = {
  */
 export function spellOutComponents(markdown: string) {
   return markdown
-    .replace(/<(Total|Resolvable) \/>/g, (_, name: string) => VALUES[name]!)
+    .replace(/<(Total|Covered|CatalogSize|FamilyCount) \/>/g, (_, name: string) => VALUES[name]!)
+    .replace(/<NameCoverage \/>/g, () => nameCoverageTable())
     .replace(/<Resolves id="([^"]+)" \/>/g, (_, id: string) => {
-      const icon = findIcon(id)!;
-      return icon.exact ? `- \`${id}\` has its own icon` : `- \`${id}\` → \`${icon.id}\``;
+      const kind = kindOf(id);
+      if (kind === 'own') return `- \`${id}\` has its own icon`;
+      const last = stepsOf(id).at(-1);
+      return `- ${walkText(id)}: ${KIND_TEXT[kind]}${last === GENERIC_ID ? ' (`GENERIC_ID`)' : ''}`;
     })
     .replace(/<IconRow ids=\{\[([^\]]+)\]\} \/>/g, (_, list: string) =>
       `Icons: ${[...list.matchAll(/"([^"]+)"/g)].map(([, id]) => `\`${id}\``).join(', ')}.`,

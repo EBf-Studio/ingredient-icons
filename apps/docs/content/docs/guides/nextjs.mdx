@@ -6,17 +6,18 @@ icon: Triangle
 
 ## In a Server Component
 
-Server Components run on the server only, so the taxonomy data never reaches the browser.
+Server Components run on the server only, so `catalog.json`, which `iconFor` reads (see [Ids and fallback](/docs/guides/ids-and-fallback)), never reaches the browser.
 
 ```tsx title="app/recipes/[id]/ingredients.tsx"
 import { iconUrl } from "@ingredient-icons/core"
+import { iconFor } from "@/lib/ingredient-icon"
 
 export function Ingredients({ items }: { items: { id: string; name: string }[] }) {
   return (
     <ul>
       {items.map((item) => (
         <li key={item.id}>
-          <img src={iconUrl(item.id)} alt="" width={40} height={40} />
+          <img src={iconUrl(iconFor(item.id))} alt="" width={40} height={40} />
           {item.name}
         </li>
       ))}
@@ -34,7 +35,7 @@ The files are already small, transparent WebP at fixed sizes, so `next/image` ad
 ```tsx
 import Image from "next/image"
 
-<Image src={iconUrl(id)!} alt="" width={40} height={40} unoptimized />
+<Image src={iconUrl(iconFor(id))!} alt="" width={40} height={40} unoptimized />
 ```
 
 `unoptimized` serves the file as is, since re-encoding a 128 px WebP saves nothing. It also means the CDN doesn't need to be listed in `images.remotePatterns`.
@@ -54,8 +55,8 @@ Copy the package's `icons/` folder into `public/` after each install:
 Then point `baseUrl` at the folder that contains `icons/`:
 
 ```ts
-iconUrl("en:shallot", { baseUrl: "/ingredient-icons" })
-// /ingredient-icons/icons/webp/128/en_shallot.webp
+iconUrl("shallot", { baseUrl: "/ingredient-icons" })
+// /ingredient-icons/icons/webp/128/shallot.webp
 ```
 
 Add `public/ingredient-icons` to `.gitignore`. See [Self-hosting](/docs/guides/self-hosting) for caching.

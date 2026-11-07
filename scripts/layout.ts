@@ -6,24 +6,23 @@ export const SIZES = { png: [64, 128, 256, 512], webp: [64, 128, 256] } as const
 export type Format = keyof typeof SIZES
 
 export const ICONS_DIR = "icons"
-export const PATH_TEMPLATE = `${ICONS_DIR}/{format}/{size}/{file}.{format}`
+export const PATH_TEMPLATE = `${ICONS_DIR}/{format}/{size}/{id}.{format}`
 
-export const iconPath = (format: Format, size: number, file: string) =>
-  path.join(ICONS_DIR, format, String(size), `${file}.${format}`)
+export const iconPath = (format: Format, size: number, id: string) =>
+  path.join(ICONS_DIR, format, String(size), `${id}.${format}`)
 
 /**
- * The icon to show for an ingredient that cannot be placed at all. A reserved id, not an
- * Open Food Facts one: the scripts that check an id against the taxonomy let it through.
+ * The icon to show for an ingredient that cannot be placed at all. A reserved id, not a
+ * catalog one: the scripts that check an id against the catalog let it through.
  */
 export const GENERIC_ID = "generic" // the same as GENERIC_ID in packages/core
 
-/** "en:olive-oil" → "en_olive-oil": file names can't hold a colon on every system. */
-export const fileName = (id: string) => id.replace(":", "_")
-export const idOf = (file: string) => file.replace("_", ":")
+/** A catalog id: English kebab-case ("olive-oil"), also the icon's file name. */
+export const CATALOG_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
 export const sha256 = (data: string | Uint8Array) => new Bun.CryptoHasher("sha256").update(data).digest("hex")
 
-/** A candidate waiting in the sources' inbox/: `<file>.<n>.<jpg|png|webp>` (en:honey, candidate 2 → en_honey.2.jpg). */
+/** A candidate waiting in the sources' inbox/: `<file>.<n>.<jpg|png|webp>` (honey, candidate 2 → honey.2.jpg). */
 export function parseCandidate(name: string) {
   const match = /^(.+)\.(\d+)\.(jpe?g|png|webp)$/i.exec(name)
   return match ? { name, file: match[1]!, n: Number(match[2]) } : undefined
@@ -52,5 +51,6 @@ export interface Manifest {
   style: number
   sizes: typeof SIZES
   path: string
-  icons: Record<string, { file: string }>
+  /** Every id that has its own icon, sorted; the id is also the file name. */
+  icons: string[]
 }
