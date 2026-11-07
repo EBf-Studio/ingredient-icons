@@ -4,7 +4,7 @@
 // sources but not published yet. A broad icon (a parent of many) can take over entries it draws badly:
 // read the takeovers. The reserved generic icon (GENERIC_ID) is no catalog entry and nothing
 // falls back on it: skipped.
-// Run: bun run impact acorn-squash spice-blends …
+// Run: bun run impact acorn-squash garam-masala …
 
 import { existsSync } from "node:fs"
 import { readFile } from "node:fs/promises"
@@ -19,7 +19,7 @@ const args = process.argv.slice(2)
 if (args.includes(GENERIC_ID)) console.log(`- ${GENERIC_ID}: reserved id, not an ingredient: nothing falls back on it, skipped`)
 const proposed = args.filter((id) => id !== GENERIC_ID)
 if (!args.length) {
-  console.error("Usage: bun run impact acorn-squash spice-blends …")
+  console.error("Usage: bun run impact acorn-squash garam-masala …")
   process.exit(1)
 }
 
@@ -47,14 +47,15 @@ const next = new Set([...current, ...proposed.filter(exists)])
 
 const entries = Object.keys(catalog.entries)
 const isFamily = (id: string) => catalog.entries[id]!.parent === undefined
-/** How many entries show their own icon, an ancestor's, their family's: every family has an icon, so the share on the family's is what new icons shrink. */
+/** How many entries show their own icon, an ancestor's, their family's (or none): the share on the family's is what new icons shrink. */
 const breakdown = (icons: Set<string>) => {
-  const counts = { own: 0, ancestor: 0, family: 0 }
+  const counts = { own: 0, ancestor: 0, family: 0, generic: 0 }
   for (const id of entries) {
     const icon = iconOf(id, icons, catalog)
     if (icon === id) counts.own++
     else if (icon && isFamily(icon)) counts.family++
     else if (icon) counts.ancestor++
+    else counts.generic++
   }
   return counts
 }
@@ -86,5 +87,7 @@ if (proposed.length) {
   console.log(`\nIcons ${ingredientIcons(current)} → ${ingredientIcons(next)}, of the ${entries.length} catalog entries:`)
   for (const [kind, label] of [["own", "own icon"], ["ancestor", "an ancestor's"], ["family", "their family's"]] as const)
     console.log(`  ${label}: ${before[kind]} → ${after[kind]}`)
+  // Only a family without an icon yet leaves entries here (bun run catalog warns about it).
+  if (before.generic || after.generic) console.log(`  the generic icon: ${before.generic} → ${after.generic}`)
 }
 if (pending.size) console.log(`(counting ${pending.size} raws not published yet)`)
