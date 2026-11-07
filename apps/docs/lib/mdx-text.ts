@@ -16,7 +16,7 @@ export const KIND_TEXT = {
   generic: 'the generic icon',
 } as const;
 
-/** "brioche-bun → burger-bun → bread-roll → breads" */
+/** "cheese-tortelloni → tortelloni → filled-pasta → pasta" */
 export const walkText = (id: string) => stepsOf(id).map((step) => `\`${step}\``).join(' → ');
 
 export function nameCoverageTable() {

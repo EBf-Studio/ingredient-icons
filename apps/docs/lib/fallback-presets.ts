@@ -2,7 +2,7 @@
 export const FALLBACK_PRESETS = [
   'extra-virgin-olive-oil',
   'brioche-bun',
-  'smoked-lardons',
+  'vegan-chorizo',
   'basmati-rice',
   'cheese-tortelloni',
   'chinese-cabbage',
