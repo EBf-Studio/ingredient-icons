@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <b>386 soft 3D icons for recipe apps, one for every ingredient family, keyed by an open ingredient catalog.</b><br>
+  <b>398 soft 3D icons for recipe apps, one for every ingredient family, keyed by an open ingredient catalog.</b><br>
   Shallots, crème fraîche, salt and pepper each get their own, and anything else borrows its closest parent's.
 </p>
 
@@ -68,7 +68,7 @@ iconUrl("unicorn-steak") ?? iconUrl(GENERIC_ID)  // the generic icon, a cluster 
 
 ## No icon of its own? It borrows its parent's
 
-Ids come from an ingredient catalog of 1,227 catalog ingredients under 32 families, each with exactly one parent: smoked salt is a salt, and salt falls under the salts family. Every family has an icon, so walking up the parents always ends on one: that's how **386 icons cover all 1,259 catalog entries**. The catalog ships with every release as `catalog.json` (ids, parents, families, and names in six languages).
+Ids come from an ingredient catalog of 1,227 catalog ingredients under 32 families, each with exactly one parent: smoked salt is a salt, and salt falls under the salts family. Every family has an icon, so walking up the parents always ends on one: that's how **398 icons cover all 1,259 catalog entries**. The catalog ships with every release as `catalog.json` (ids, parents, families, and names in six languages).
 
 <p>
   <code>smoked-salt</code> → <img src="https://raw.githubusercontent.com/EBf-Studio/ingredient-icons/main/icons/png/128/salt.png" width="40" alt="" align="center"> <code>salt</code><br>
