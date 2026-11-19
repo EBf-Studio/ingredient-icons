@@ -58,6 +58,7 @@ export function iconFor(id: string): string {
 <Resolves id="extra-virgin-olive-oil" />
 <Resolves id="pork-paprika-and-almond-sausage" />
 <Resolves id="cheese-tortelloni" />
+<Resolves id="garam-masala" />
 
 That is how <Total /> icons cover <Covered /> of the <CatalogSize /> catalog entries.
 
@@ -67,7 +68,7 @@ import { iconFor } from "./ingredient-icon"
 
 iconFor("shallot") // "shallot"
 iconFor("extra-virgin-olive-oil") // "olive-oil"
-iconFor("cheese-tortelloni") // "pasta"
+iconFor("cheese-tortelloni") // "filled-pasta"
 iconFor("unicorn-steak") // "generic"
 
 const src = iconUrl(iconFor(id))!
