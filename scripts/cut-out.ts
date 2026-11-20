@@ -7,6 +7,16 @@ export const PADDING = 1.04
 const NOISE = 25
 /** How far off the line from the background to the object's colour a pixel can be and still be a blend of them. */
 const BLEND = 35
+/** Distance to the background below which a pixel connected to it is background too, and a pocket's pixel may be. */
+const REACH = 77.5
+/**
+ * A pocket that does not touch the removed background is background only if some of it is this
+ * close to the background colour, or is the background darkened within 50 of it: the gap by a
+ * peach's stem comes within 5. A pocket of a purple object often passes too, or touches the
+ * removed background, and is kept for the purplish object around it instead (a chive flower,
+ * a rye ear, a radish slice's rim).
+ */
+const CORE = 20
 
 /**
  * Removes the generated background and returns the object as a transparent square PNG,
@@ -14,7 +24,9 @@ const BLEND = 35
  *
  * The generator paints a flat magenta-ish background whose exact colour varies
  * from image to image, so it is measured on the border, then removed where it
- * touches the edge or fills an enclosed hole (a jug handle).
+ * touches the edge or fills an enclosed hole (a jug handle), and in the smaller pockets
+ * it leaves between leaves or stems, unless the object around them is itself purplish
+ * (reddish, for the smallest dull ones).
  * An edge pixel gets an opacity from its distance to the background. When it is a blend
  * of the background and the object's colour next to it, it takes that colour, and at
  * least its share of the way from one to the other as opacity, so no pink halo stays.
@@ -36,7 +48,7 @@ export async function cutOut(file: string) {
   const background = new Uint8Array(n)
   const stack: number[] = []
   const push = (i: number) => {
-    if (!background[i] && distance[i]! < 77.5) {
+    if (!background[i] && distance[i]! < REACH) {
       background[i] = 1
       stack.push(i)
     }
@@ -45,23 +57,31 @@ export async function cutOut(file: string) {
   for (let y = 0; y < h; y++) push(y * w), push(y * w + w - 1)
   floodFill(stack, w, h, push)
 
-  // Enclosed holes of almost exactly the background colour.
-  const seen = new Uint8Array(n)
-  for (let start = 0; start < n; start++) {
-    if (seen[start] || background[start] || distance[start]! >= 30) continue
-    const region: number[] = []
-    const queue = [start]
-    seen[start] = 1
-    while (queue.length) {
-      const i = queue.pop()!
-      region.push(i)
-      for (const j of neighbours(i, w, h))
-        if (!seen[j] && !background[j] && distance[j]! < 30) {
-          seen[j] = 1
-          queue.push(j)
-        }
-    }
+  // Enclosed holes of almost exactly the background colour, whatever the object around them.
+  for (const { region } of regions((j) => distance[j]! < 30))
     if (region.length > 150) for (const i of region) background[i] = 1
+
+  // Smaller pockets of background caught between parts of the object (two leaves, a stem
+  // and a fruit), and the background darkened in a narrow gap next to what is removed,
+  // marked as background unless the object around them is purplish: in a chive flower or a
+  // rye ear, a pixel close to the background, or darkened like it, is the object's own colour.
+  // Darkened only so far (within 130 of the background): a red wine bottle's dark glass lies
+  // on that line too. The darker pixels marked keep part of their opacity in the soft edges.
+  // The regions are found first and marked in turn, so a region's surroundings may already
+  // be marked, which objectAroundIs skips: marking them all at the end would change a few edge
+  // pixels in about a hundred raws, and keep a pink pocket between two wild garlic blades.
+  for (const { region, touches } of regions((j) => distance[j]! < REACH || (isShade(j) && distance[j]! < 130))) {
+    const core = region.some((i) => distance[i]! < CORE || (distance[i]! < 50 && isShade(i)))
+    if ((core || touches) && !objectAroundIs(region, isPurplish)) for (const i of region) background[i] = 1
+  }
+  // Then small gaps where the background, dimmed and mixed with the leaves around it, stays
+  // a dull magenta. Small, and a fifth of it at least close to the background: a purplish
+  // sheen along a sardine's belly is the object's own. Not in a reddish object either, where
+  // it is a dried cranberry's highlight.
+  for (const { region } of regions((j) => distance[j]! < REACH || isDimMagenta(j))) {
+    if (region.length > 100 || !region.some(isDimMagenta)) continue
+    const close = region.filter((i) => distance[i]! < REACH).length
+    if (close >= region.length / 5 && !objectAroundIs(region, isReddish)) for (const i of region) background[i] = 1
   }
 
   // Soft edges only next to the removed background; elsewhere the object stays opaque.
@@ -98,6 +118,32 @@ export async function cutOut(file: string) {
     }
   }
 
+  /** The connected regions of pixels left as object that pass `member`, and whether each touches the background. */
+  function regions(member: (j: number) => boolean) {
+    const seen = new Uint8Array(n)
+    const found: { region: number[]; touches: boolean }[] = []
+    for (let start = 0; start < n; start++) {
+      if (seen[start] || background[start] || !member(start)) continue
+      const region: number[] = []
+      const queue = [start]
+      seen[start] = 1
+      let touches = false
+      while (queue.length) {
+        const i = queue.pop()!
+        region.push(i)
+        for (const j of neighbours(i, w, h)) {
+          if (background[j]) touches = true
+          else if (!seen[j] && member(j)) {
+            seen[j] = 1
+            queue.push(j)
+          }
+        }
+      }
+      found.push({ region, touches })
+    }
+    return found
+  }
+
   /** Length of pixel `i`'s step from the background along direction `o` (from the background to an object colour). */
   function along(i: number, o: number[]) {
     return [0, 1, 2].reduce((sum, c) => sum + (data[i * 3 + c]! - bg[c]!) * o[c]!, 0) / Math.hypot(o[0]!, o[1]!, o[2]!)
@@ -122,6 +168,51 @@ export async function cutOut(file: string) {
     const t = (q[0]! * bg[0]! + q[1]! * bg[1]! + q[2]! * bg[2]!) / (bg[0]! ** 2 + bg[1]! ** 2 + bg[2]! ** 2)
     // Near black, every colour is close to that line: a dark object is no shadow.
     return t > 0.25 && Math.hypot(q[0]! - t * bg[0]!, q[1]! - t * bg[1]!, q[2]! - t * bg[2]!) < NOISE
+  }
+
+  /**
+   * Whether the object around `region` passes `hue`: more than a fifth of the pixels 2 to 3 px
+   * outside it (past the blend with the background).
+   */
+  function objectAroundIs(region: number[], hue: (j: number) => boolean) {
+    const seen = new Set(region)
+    let front = region
+    let matching = 0
+    let ring = 0
+    for (let k = 1; k <= 3; k++) {
+      const next: number[] = []
+      for (const i of front)
+        for (const j of neighbours(i, w, h))
+          if (!seen.has(j)) {
+            seen.add(j)
+            next.push(j)
+            if (k < 2 || background[j]) continue
+            ring++
+            if (hue(j)) matching++
+          }
+      front = next
+    }
+    return matching > ring * 0.2
+  }
+
+  /** Whether pixel `j` is red, pink or purple: where a dull pink spot may be a dried cranberry's own highlight. */
+  function isReddish(j: number) {
+    return data[j * 3]! - data[j * 3 + 1]! > 50
+  }
+
+  /** Whether pixel `j` is a dim magenta: the background seen in a dark gap, mixed with the leaves around it. */
+  function isDimMagenta(j: number) {
+    const [r, g, b] = [data[j * 3]!, data[j * 3 + 1]!, data[j * 3 + 2]!]
+    return g < 150 && r - g > 30 && b - g > 30 && b > r * 0.45
+  }
+
+  /**
+   * Whether pixel `j` is a muted pink to purple, as a red onion or a radish skin: red and blue
+   * above green, blue a fair share of red (a red berry is not).
+   */
+  function isPurplish(j: number) {
+    const [r, g, b] = [data[j * 3]!, data[j * 3 + 1]!, data[j * 3 + 2]!]
+    return r - g > 30 && b - g > 15 && b > r * 0.4
   }
 
   /** The pixel farthest from the background within 3 px of `i`: the object's own colour there. */
