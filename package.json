@@ -5,6 +5,7 @@
   "scripts": {
     "build": "bun scripts/build.ts",
     "preview": "bun scripts/preview.ts",
+    "audit": "bun scripts/audit.ts",
     "pick": "bun scripts/pick.ts",
     "impact": "bun scripts/impact.ts",
     "subject": "bun scripts/subject.ts",

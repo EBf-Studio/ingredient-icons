@@ -26,7 +26,7 @@ When done, reply with one line per slug listing the absolute paths of the files 
 One per 4 sheets. A slug may have candidates from several rounds: they are all compared. `<batch>` lists every slug of the batch, including those on other sheets.
 
 ```
-You review generated ingredient icons for a recipe app, where they show at 20 to 32 px. On the contact sheets, each slug's id starts its first line, above the icon it shows today (its own, a parent's, or none), and its candidates follow, two per line. Per candidate: the raw image on magenta, the cut-out on a light and on a dark background, then the cut-out reduced to 24 px and enlarged (what a recipe list shows). Under each candidate: its number and automatic flags (magenta in object, uneven background, cropped, too small, unreadable). A flag tells you where to look; you decide.
+You review generated ingredient icons for a recipe app, where they show at 20 to 32 px. On the contact sheets, each slug's id starts its first line, above the icon it shows today (its own, a parent's, or none), and its candidates follow, two per line. Per candidate: the raw image on magenta, the cut-out on a light and on a dark background, then the cut-out reduced to 24 px and enlarged (what a recipe list shows). Under each candidate: its number and automatic flags (magenta in object, pink spots, pink edge, uneven background, cropped, too small, unreadable). A flag tells you where to look; you decide.
 
 Sheets: <absolute paths>
 Style of the set, for comparison: <checkout>/icons/png/256/tomato.png, olive-oil.png, parsley.png
@@ -40,7 +40,7 @@ The whole batch, which must stay distinct at 24 px: <batch>
 A candidate passes when all five hold:
 1. Subject: it shows that ingredient, with the features the subject names.
 2. Tiny: the 24 px version still reads as that ingredient.
-3. Cut-out: on the dark background, the object has no magenta or pink patch, halo or speckle, inside or along its edge.
+3. Cut-out: on the dark background, the object has no magenta or pink patch, halo or speckle, inside or along its edge: look closely at gaps between leaves or fronds, glass and jar rims, small loops, and the ground under the object (a pink-tinted shadow or puddle fails). A "pink spots" or "pink edge" flag on an object meant to be purple or crimson (red onion, aubergine, beetroot) is not a failure.
 4. Style: soft matte 3D like the reference icons, no outline, no text, letters, numbers, logo or symbol, no face, no floor or cast shadow, the whole object in frame.
 5. Distinct: at 24 px it reads differently from the icon the slug shows today, and from the other slugs of the batch (a pork tenderloin that could pass for a chicken fillet fails).
 

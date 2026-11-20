@@ -13,7 +13,7 @@ import sharp, { type OverlayOptions } from "sharp"
 import { cutOut } from "./cut-out"
 import { LIGHT, DARK, TINY, ZOOM, onBackground, text, tinyZoomed } from "./draw"
 import { onMain } from "./fallback"
-import { inspect, type Inspection } from "./inspect"
+import { inspect, measures, type Inspection } from "./inspect"
 import { parseCandidate, sourcesDir } from "./layout"
 import { pool } from "./pool"
 
@@ -78,8 +78,7 @@ for (const [k, sheet] of sheets.entries()) {
 }
 
 for (const r of results) {
-  const measures = r.master ? `  (magenta ${(r.pinkShare * 100).toFixed(2)}%, fill ${Math.round(r.fill * 100)}%)` : ""
-  console.log(`${r.file} #${r.n}  ${r.flags.length ? `⚠ ${r.flags.join(", ")}` : "ok"}${measures}`)
+  console.log(`${r.file} #${r.n}  ${r.flags.length ? `⚠ ${r.flags.join(", ")}` : "ok"}${r.master ? `  (${measures(r)})` : ""}`)
 }
 console.log(`\n${results.length} candidates for ${lines.length} slugs. Sheets:\n${files.join("\n")}`)
 
