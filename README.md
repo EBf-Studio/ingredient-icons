@@ -159,6 +159,7 @@ bun run catalog   # rewrites catalog.json from Marmalade's ingredient catalog (s
 bun run impact acorn-squash # what new icons would change in the fallbacks, before generating them
 bun run subject acorn-squash "…" # adds or replaces a subject in the sources' subjects.json
 bun run preview    # contact sheets and checks for the candidates in the sources' inbox/
+bun run audit      # pink left in the published icons (flags and a sheet), to pick icons to regenerate
 bun run pick honey=2       # moves a chosen candidate to the sources' raw/
 bun run batch save "…"     # commits and pushes the sources' branch
 bun run build      # cut-out, every size and format, manifest.json, .out/review.html (only changed raws; --force for all, --prune to remove icons)

@@ -28,13 +28,14 @@ A stage ends with its own report; the next starts only on the user's request. Ne
 3. **Subjects.** `bun run subject <id> "<sentence>"` per id: it adds the line to `$SRC/subjects.json`, or replaces that id's, and leaves the rest of the file as it is. A subject is one sentence: the object, its colours and the one or two features that identify it. The background is magenta, so:
    - describe pink or purple things by a neighbouring hue (pink peppercorns: coral-red; a red onion: deep red-purple);
    - lay thin fronds, fine leaves and open lattices on a small white plate, and put clear liquids in an opaque or tinted container, so the plate or the container shows through instead of the background;
-   - put powders, liquids and grains in their typical plain container (bowl, bottle, jar).
+   - put powders, liquids and grains in their typical plain container (bowl, bottle, jar);
+   - leave no small opening the background shows through: fill glasses and jars to the brim (a clear rim turns pink), close a bottle with a cork or a cap rather than a wire clasp, make touching things touch with no gaps, and no puddle or shadow under the object (it comes out magenta).
 
 4. **Generate.** Split the slugs in groups of about 10, one Grok subagent per group, up to 5 at once, with the brief in [briefs.md](briefs.md#grok) and 2 candidates per slug. `delegate_task` with `target: { providerInstanceId: "grok", model: "grok-4.7", options: { reasoningEffort: "low" } }` and `runtimeMode: "full-access"`. Done when every slug has 2 more files in `$SRC/inbox/` than before this round: count them yourself, Grok's report is not the check. Files missing? Look in this checkout's `inbox/` (a relative path in Grok's hands lands there; `preview` warns about it too): move them to `$SRC/inbox/` under the next free numbers, then delete that folder.
 
-5. **Preview.** `bun run preview` (or `bun run preview <slugs…>`). It cuts out every candidate, flags what a pixel count catches better than an eye (magenta in object, uneven background, cropped, too small, unreadable), and draws `.out/preview/sheet-<k>.png` with the icon each slug shows on `main` today. A flag asks for a close look, not a rejection: about 5% of the accepted icons carry one.
+5. **Preview.** `bun run preview` (or `bun run preview <slugs…>`). It cuts out every candidate, flags what a pixel count catches better than an eye (magenta in object, pink spots, pink edge, uneven background, cropped, too small, unreadable), and draws `.out/preview/sheet-<k>.png` with the icon each slug shows on `main` today. A flag asks for a close look, not a rejection: about 1 in 10 of the published icons carries one, mostly a few pink pixels between leaves or a purple object.
 
-6. **Sort.** One Sonnet reviewer per 4 sheets, all launched in a single message so they run in parallel: Agent tool, `model: "sonnet"`, `run_in_background: false`, with the brief in [briefs.md](briefs.md#reviewer). Then look at the sheets yourself: the reviewer's PICK is a proposal. Done when every slug has a verdict.
+6. **Sort.** One Sonnet reviewer per 4 sheets, all launched in a single message so they run in parallel: Agent tool, `model: "sonnet"`, `run_in_background: false`, with the brief in [briefs.md](briefs.md#reviewer). Then look at the sheets yourself: the reviewer's PICK is a proposal. On every pink spots or pink edge flag, zoom on the dark cut-out: pink in a gap between leaves, on a glass or jar rim, in a wire loop or along the edge is a REJECT, while a purple object (red onion, aubergine, turnip) is flagged too and passes. Done when every slug has a verdict.
 
 7. **Pick.** `bun run pick honey=2 oregano=1 …`: the candidate becomes `$SRC/raw/<file>.png` and the slug's other candidates are deleted. For a REJECT, rewrite the subject from the reason, then back to step 4 with those slugs only: the new candidates join the old ones, so the next review compares them all. After 2 retries, pick the best candidate seen, or drop the slug (`bun run pick --discard <slug>` and remove its line from `subjects.json`), and tell the user. Done when `inbox/` is empty and every subject of the batch has its raw.
 
@@ -55,6 +56,8 @@ When the user says they reviewed: read every comment (`gh pr view --comments`, p
 then `bun run batch save`, `bun run build --prune` (the icon is in this branch's manifest already), commit, push. Repeat until the user approves.
 
 ### Regenerating an existing icon
+
+To find the published icons worth regenerating, `bun run audit` (or `bun run audit <ids…>`): it measures every raw like `preview` does and draws the flagged ones in `.out/audit/`, with their pink pixels in green.
 
 Same steps, with three changes: skip `impact`; in step 3, replace the slug's subject; in the reviewer brief, criterion 5 becomes "better than the icon shown today" (the preview shows it). After 2 failed retries, `bun run pick --discard <slug>` and put back `main`'s subject and raw, as in the review rounds. The sheet marks the icon "regenerated", next to the one it replaces.
 

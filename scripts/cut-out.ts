@@ -3,14 +3,23 @@ import sharp from "sharp"
 /** Side of the output square, relative to the object's larger side. */
 export const PADDING = 1.04
 
+/** Distance to the background colour below which a pixel is still background (its noise and gradient). */
+const NOISE = 25
+/** How far off the line from the background to the object's colour a pixel can be and still be a blend of them. */
+const BLEND = 35
+
 /**
  * Removes the generated background and returns the object as a transparent square PNG,
  * at the raw image's resolution, with a small margin.
  *
  * The generator paints a flat magenta-ish background whose exact colour varies
  * from image to image, so it is measured on the border, then removed where it
- * touches the edge or fills an enclosed hole (a jug handle). Edge pixels are
- * unmixed from that colour so no pink halo stays.
+ * touches the edge or fills an enclosed hole (a jug handle).
+ * An edge pixel gets an opacity from its distance to the background. When it is a blend
+ * of the background and the object's colour next to it, it takes that colour, and at
+ * least its share of the way from one to the other as opacity, so no pink halo stays.
+ * Otherwise the background is taken out of its colour, which suits a shadow of the
+ * background's hue but turns a pink object olive, hence the blend test first.
  */
 export async function cutOut(file: string) {
   const { data, info } = await sharp(file).removeAlpha().raw().toBuffer({ resolveWithObject: true })
@@ -20,20 +29,14 @@ export async function cutOut(file: string) {
   const bg = borderChannels(data, w, h).map(median)
 
   const distance = new Float32Array(n)
-  const alpha = new Float32Array(n)
-  for (let i = 0; i < n; i++) {
-    const dr = data[i * 3]! - bg[0]!
-    const dg = data[i * 3 + 1]! - bg[1]!
-    const db = data[i * 3 + 2]! - bg[2]!
-    distance[i] = Math.sqrt(dr * dr + dg * dg + db * db)
-    alpha[i] = Math.min(1, Math.max(0, (distance[i]! - 35) / 85))
-  }
+  for (let i = 0; i < n; i++)
+    distance[i] = Math.hypot(data[i * 3]! - bg[0]!, data[i * 3 + 1]! - bg[1]!, data[i * 3 + 2]! - bg[2]!)
 
   // Background reachable from the border.
   const background = new Uint8Array(n)
   const stack: number[] = []
   const push = (i: number) => {
-    if (!background[i] && alpha[i]! < 0.5) {
+    if (!background[i] && distance[i]! < 77.5) {
       background[i] = 1
       stack.push(i)
     }
@@ -65,11 +68,71 @@ export async function cutOut(file: string) {
   const near = dilate(background, w, h, 4)
   const rgba = Buffer.alloc(n * 4)
   for (let i = 0; i < n; i++) {
-    const a = near[i] ? alpha[i]! : 1
-    const keep = Math.max(a, 1e-3)
-    for (let c = 0; c < 3; c++)
-      rgba[i * 4 + c] = Math.min(255, Math.max(0, (data[i * 3 + c]! - (1 - keep) * bg[c]!) / keep))
-    rgba[i * 4 + 3] = Math.round(a * 255)
+    if (!near[i]) {
+      for (let c = 0; c < 3; c++) rgba[i * 4 + c] = data[i * 3 + c]!
+      rgba[i * 4 + 3] = 255
+      continue
+    }
+    if (distance[i]! < 30) continue
+    // Opacity from the distance to the background, and the background taken out of the colour.
+    const a = Math.min(1, Math.max(0, (distance[i]! - 35) / 85))
+    const object = objectColour(i)
+    if ((isShade(i) && isShade(object)) || (object === i ? isPink(i) : !isBlend(i, object))) {
+      const keep = Math.max(a, 1e-3)
+      for (let c = 0; c < 3; c++)
+        rgba[i * 4 + c] = Math.min(255, Math.max(0, (data[i * 3 + c]! - (1 - keep) * bg[c]!) / keep))
+      rgba[i * 4 + 3] = Math.round(a * 255)
+    } else if (object === i) {
+      // The object's own colour, farther from the background than anything around it.
+      for (let c = 0; c < 3; c++) rgba[i * 4 + c] = data[i * 3 + c]!
+      rgba[i * 4 + 3] = 255
+    } else {
+      // A blend: at least as opaque as its share of the way to the object's colour, in that colour.
+      const o = [0, 1, 2].map((c) => data[object * 3 + c]! - bg[c]!)
+      const length = Math.hypot(o[0]!, o[1]!, o[2]!)
+      const share = Math.max(0, (along(i, o) - NOISE) / (length - NOISE))
+      const opacity = Math.max(a, share)
+      if (opacity === 0) continue
+      for (let c = 0; c < 3; c++) rgba[i * 4 + c] = data[object * 3 + c]!
+      rgba[i * 4 + 3] = Math.round(opacity * 255)
+    }
+  }
+
+  /** Length of pixel `i`'s step from the background along direction `o` (from the background to an object colour). */
+  function along(i: number, o: number[]) {
+    return [0, 1, 2].reduce((sum, c) => sum + (data[i * 3 + c]! - bg[c]!) * o[c]!, 0) / Math.hypot(o[0]!, o[1]!, o[2]!)
+  }
+
+  /** Whether pixel `i` lies on the way from the background to pixel `object`'s colour, so is a blend of the two. */
+  function isBlend(i: number, object: number) {
+    if (isShade(object)) return false
+    const o = [0, 1, 2].map((c) => data[object * 3 + c]! - bg[c]!)
+    return Math.sqrt(Math.max(0, distance[i]! ** 2 - along(i, o) ** 2)) < BLEND
+  }
+
+  /** Whether pixel `i` has a magenta hue: red and blue well above green. */
+  function isPink(i: number) {
+    const [r, g, b] = [data[i * 3]!, data[i * 3 + 1]!, data[i * 3 + 2]!]
+    return r - g > 45 && b - g > 45 && b > r * 0.55
+  }
+
+  /** Whether pixel `j` is the background's colour darkened, as in a cast shadow or a puddle. */
+  function isShade(j: number) {
+    const q = [0, 1, 2].map((c) => data[j * 3 + c]!)
+    const t = (q[0]! * bg[0]! + q[1]! * bg[1]! + q[2]! * bg[2]!) / (bg[0]! ** 2 + bg[1]! ** 2 + bg[2]! ** 2)
+    // Near black, every colour is close to that line: a dark object is no shadow.
+    return t > 0.25 && Math.hypot(q[0]! - t * bg[0]!, q[1]! - t * bg[1]!, q[2]! - t * bg[2]!) < NOISE
+  }
+
+  /** The pixel farthest from the background within 3 px of `i`: the object's own colour there. */
+  function objectColour(i: number) {
+    const x = i % w
+    const y = (i - x) / w
+    let best = i
+    for (let Y = Math.max(0, y - 3); Y <= Math.min(h - 1, y + 3); Y++)
+      for (let X = Math.max(0, x - 3); X <= Math.min(w - 1, x + 3); X++)
+        if (distance[Y * w + X]! > distance[best]!) best = Y * w + X
+    return best
   }
 
   const trimmed = await sharp(rgba, { raw: { width: w, height: h, channels: 4 } })
