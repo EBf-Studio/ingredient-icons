@@ -201,10 +201,11 @@ export default function HomePage() {
             </>
           }
         >
-          Ids come from an open ingredient catalog, which knows that a brioche bun is a burger bun, a
-          burger bun is a bread roll, and bread rolls are breads. Each ingredient has one parent, up to
-          one of {familyCount} families. When an ingredient has no icon, walk up its parents and take the
-          first that has one. Nothing on the way? Show the generic icon.
+          Ids come from an open ingredient catalog, which knows that a seeded brioche bun is a brioche
+          bun, a brioche bun is a burger bun, a burger bun is a bread roll, and bread rolls are breads.
+          Each ingredient has one parent, up to one of {familyCount} families. When an ingredient has no
+          icon, walk up its parents and take the first that has one. Nothing on the way? Show the
+          generic icon.
         </SectionHeader>
         <div className="mt-12">
           <FallbackDemo presets={presets} footer={<Coverage />} />

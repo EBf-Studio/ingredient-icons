@@ -1,7 +1,7 @@
 /** Catalog ingredients the home page's fallback demo offers as one-click examples. */
 export const FALLBACK_PRESETS = [
   'extra-virgin-olive-oil',
-  'brioche-bun',
+  'potato-bun',
   'vegan-chorizo',
   'basmati-rice',
   'cheese-tortelloni',

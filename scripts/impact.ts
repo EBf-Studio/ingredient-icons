@@ -4,7 +4,7 @@
 // sources but not published yet. A broad icon (a parent of many) can take over entries it draws badly:
 // read the takeovers. The reserved generic icon (GENERIC_ID) is no catalog entry and nothing
 // falls back on it: skipped.
-// Run: bun run impact acorn-squash garam-masala …
+// Run: bun run impact acorn-squash ras-el-hanout …
 
 import { existsSync } from "node:fs"
 import { readFile } from "node:fs/promises"
@@ -19,7 +19,7 @@ const args = process.argv.slice(2)
 if (args.includes(GENERIC_ID)) console.log(`- ${GENERIC_ID}: reserved id, not an ingredient: nothing falls back on it, skipped`)
 const proposed = args.filter((id) => id !== GENERIC_ID)
 if (!args.length) {
-  console.error("Usage: bun run impact acorn-squash garam-masala …")
+  console.error("Usage: bun run impact acorn-squash ras-el-hanout …")
   process.exit(1)
 }
 
