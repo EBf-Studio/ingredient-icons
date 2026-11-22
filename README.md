@@ -16,7 +16,7 @@
   <a href="https://www.npmjs.com/package/@ingredient-icons/core"><img alt="npm" src="https://img.shields.io/npm/v/@ingredient-icons/core?color=2e6b45&label=npm"></a>
   <a href="LICENSE-ICONS"><img alt="License: CC0" src="https://img.shields.io/badge/license-CC0-2e6b45"></a>
   <a href="https://ingredient-icons.vercel.app/icons"><img alt="Icons" src="https://img.shields.io/badge/icons-599-df4a2f"></a>
-  <a href="https://ingredient-icons.vercel.app"><img alt="Coverage" src="https://img.shields.io/badge/ingredients%20covered-1%2C318-df4a2f"></a>
+  <a href="https://ingredient-icons.vercel.app"><img alt="Coverage" src="https://img.shields.io/badge/ingredients%20covered-1%2C319-df4a2f"></a>
 </p>
 
 <p align="center">
@@ -77,7 +77,7 @@ iconUrl("unicorn-steak") ?? iconUrl(GENERIC_ID)  // the generic icon, a cluster 
 
 ## No icon of its own? It borrows its parent's
 
-Ids come from an ingredient catalog of 1,286 catalog ingredients under 32 families, each with exactly one parent: smoked salt is a salt, and salt falls under the salts family. Every family has an icon, so walking up the parents always ends on one: that's how **599 icons cover all 1,318 catalog entries**. The catalog ships with every release as `catalog.json` (ids, parents, families, and names in six languages).
+Ids come from an ingredient catalog of 1,287 catalog ingredients under 32 families, each with exactly one parent: smoked salt is a salt, and salt falls under the salts family. Every family has an icon, so walking up the parents always ends on one: that's how **599 icons cover all 1,319 catalog entries**. The catalog ships with every release as `catalog.json` (ids, parents, families, and names in six languages).
 
 <p>
   <code>smoked-salt</code> → <img src="icons/png/128/salt.png" width="40" alt="" align="center"> <code>salt</code><br>
