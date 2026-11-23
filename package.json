@@ -12,6 +12,7 @@
     "batch": "bun scripts/batch.ts",
     "sheet": "bun scripts/sheet.ts",
     "catalog": "bun scripts/catalog.ts",
+    "banner": "bun scripts/banner.ts",
     "check": "tsc --noEmit && bun scripts/check.ts && bun run --cwd packages/core build && bun test",
     "docs": "bun run --cwd apps/docs dev"
   },
