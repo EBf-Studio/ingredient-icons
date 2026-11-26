@@ -9,7 +9,7 @@ import path from 'node:path';
 import { type CatalogEntry, GENERIC_ID, iconPath, ids } from '@ingredient-icons/core';
 import catalog from '@ingredient-icons/core/catalog.json';
 import { fallbackSteps } from './fallback';
-import { FALLBACK_PRESETS } from './fallback-presets';
+import { FALLBACK_PRESETS, OWN_ICON_PRESET } from './fallback-presets';
 import { CTA_ICONS, EMOJI_ROWS, OG_ICONS, RECIPE, SHELF_PICKS } from './showcase';
 import { logoFile } from './shared';
 
@@ -89,6 +89,10 @@ describe('ids cited in the docs', () => {
 describe('ids the site picks by hand', () => {
   test('fallback presets are catalog ids', () => {
     for (const id of FALLBACK_PRESETS) expect({ id, inCatalog: !!entries[id] }).toEqual({ id, inCatalog: true });
+  });
+
+  test('fallback presets borrow an ancestor\'s icon, but the one meant to have its own', () => {
+    for (const id of FALLBACK_PRESETS) expect({ id, own: own(id) }).toEqual({ id, own: id === OWN_ICON_PRESET });
   });
 
   test('showcased icons exist', () => {
